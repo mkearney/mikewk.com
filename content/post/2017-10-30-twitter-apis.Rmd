@@ -1,0 +1,58 @@
+---
+title: "Twitter APIs"
+author: "mwk"
+date: "2017-10-30"
+slug: twitter-apis
+categories: ["Twitter"]
+tags: ["Twitter data", "Twitter API"]
+---
+
+## Twitter data gatekeeping
+
+Even before the *unpresidented* Twitter-centric 2016 U.S. election,
+researchers flocked to Twitter data ([Lee, Yoon, Smith, Park, & Park,
+2017](https://doi-org.proxy.mul.missouri.edu/10.1007/s11192-017-2413-z);
+[Peoples, Midway, Sackett, Lynch, & Cooney,
+2016](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0166570);
+[Priem & Costello,
+2010](http://jasonpriem.com/self-archived/Priem_Costello_Twitter.pdf);
+[Shuai, Pepe, & Bollen,
+2012](http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0047523)).
+Why? Well, aside from the obvious--that it's an immensely popular
+social media platform--Twitter attracts scholarly attention because it
+makes a lot of its data freely available to the public via Application
+Program Interfaces (APIs). APIs refer to sets of protocols and
+procedures for interacting with sites. Twitter maintains several APIs,
+but in the context of publicly available data collection two, in
+particular, stand out.
+
+### 1. Twitter's REST API
+
+Twitter's REST API provides a [set of
+protocols](https://developer.twitter.com/en/docs/api-reference-index)
+for exploring and interacting with Twitter data related to [statuses
+(tweets)](https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/intro-to-tweet-json),
+[users](https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/overview),
+and [network connections
+(followers/friends)](https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference). The
+data are RESTful in that they have been archived by
+Twitter. Navigating these resting endpoints can, at times, be
+[resource
+intensive](https://developer.twitter.com/en/docs/basics/things-every-developer-should-know)
+and [slow](https://developer.twitter.com/en/docs/basics/rate-limits),
+but it also makes it possible to perform [highly complex and specific
+queries](https://developer.twitter.com/en/docs/tweets/search/overview/operator_descriptions).
+
+### 2. Twitter's stream API
+
+Twitter data not yet archived and accessible via the REST API can be
+accessed using [Twitter's stream API](https://developer.twitter.com/en/docs/tweets/filter-realtime/guides/connecting). As its name suggests, the stream
+API provides users with a live stream of Twitter data. Because the
+data are streamed, or pushed, to the user, the [stream API reduces
+overhead](https://developer.twitter.com/en/docs/basics/things-every-developer-should-know) associated with performing queries on archived data
+sources. This makes it possible to collect large amounts of data very
+quickly and with relatively little strain on computational
+resources. The downside to the stream API is that it is limited to
+prospective data collection via
+[sampling](https://developer.twitter.com/en/docs/tweets/sample-realtime/overview/GET_statuse_sample)
+or [filtering](https://developer.twitter.com/en/docs/tweets/filter-realtime/overview).

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>Twitter APIs</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="mwk" />
+  <meta name="description" content="Twitter data gatekeeping Even before the unpresidented Twitter-centric 2016 U.S. election, researchers flocked to Twitter data (Lee, Yoon, Smith, Park, &amp;amp; Park, 2017; Peoples, Midway, Sackett, Lynch, &amp;amp; Cooney, 2016; Priem &amp;amp; Costello, 2010; Shuai, Pepe, &amp;amp; Bollen, 2012). Why? Well, aside from the obvious–that it’s an immensely popular social media platform–Twitter attracts scholarly attention because it makes a lot of its data freely available to the public via Application Program Interfaces (APIs)." />
+
+  
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kearneymw" />
+    <meta name="twitter:title" content="Twitter APIs" />
+    <meta name="twitter:description" content="Twitter data gatekeeping Even before the unpresidented Twitter-centric 2016 U.S. election, researchers flocked to Twitter data (Lee, Yoon, Smith, Park, &amp;amp; Park, 2017; Peoples, Midway, Sackett, Lynch, &amp;amp; Cooney, 2016; Priem &amp;amp; Costello, 2010; Shuai, Pepe, &amp;amp; Bollen, 2012). Why? Well, aside from the obvious–that it’s an immensely popular social media platform–Twitter attracts scholarly attention because it makes a lot of its data freely available to the public via Application Program Interfaces (APIs)." />
+    <meta name="twitter:image" content="/img/avatar.jpg" />
+  
+
+
+
+
+<meta name="generator" content="Hugo 0.30.2" />
+
+
+<link rel="canonical" href="/post/twitter-apis/" />
+<link rel="alternative" href="/index.xml" title="Michael W. Kearney" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="google-site-verification" content="XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY" />
+
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Michael W. Kearney" />
+<meta name="msapplication-tooltip" content="Michael W. Kearney" />
+<meta name='msapplication-navbutton-color' content="#5fbf5e" />
+<meta name="msapplication-TileColor" content="#5fbf5e" />
+<meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
+<link rel="icon" href="/img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+<link rel="icon" sizes="192x192" href="/img/touch-icon-android.png" />
+<link rel="apple-touch-icon" href="/img/touch-icon-apple.png" />
+<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5fbf5e" />
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/highlight/styles/atom-one-light.css" />
+
+
+<link rel="stylesheet" href="/css/custom.css">
+
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700|Source+Code+Pro" rel="stylesheet">
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <img class="avatar" src="/img/aintnoseats.jpeg" alt="Avatar">
+  
+  <h2 class="title">Michael W. Kearney</h2>
+  
+  <p class="subtitle">Assistant Professor<br>
+  School of Journalism<br>
+  Informatics Institute<br>
+  University of Missouri</p>
+  <button class="menu-toggle" type="button">
+    <span class="icon icon-menu"></span>
+  </button>
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item  is-active"><a href="/">Home</a></li>
+      
+        <li class="menu-item "><a href="/about/">About</a></li>
+      
+        <li class="menu-item "><a href="/links/">Links</a></li>
+      
+        <li class="menu-item "><a href="/cv/cv.pdf">CV</a></li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list">
+
+      
+      <li class="social-item">
+        <a href="mailto:kearneymw@missouri.edu" title="Email"><span class="icon icon-email"></span></a>
+      </li>
+
+      
+      <li class="social-item">
+        <a href="//github.com/mkearney" title="GitHub"><span class="icon icon-github"></span></a>
+      </li>
+
+      <li class="social-item">
+        <a href="//twitter.com/kearneymw" title="Twitter"><span class="icon icon-twitter"></span></a>
+      </li>
+
+      <li class="social-item">
+        <a href="//www.facebook.com/mike.wayne.kearney" title="Facebook"><span class="icon icon-facebook"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="//www.linkedin.com/in/mikewk" title="Linkedin"><span class="icon icon-linkedin"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Twitter APIs</h1>
+      <p class="post-meta">@mwk · Oct 30, 2017 · 2 min read</p>
+    </header>
+    <article class="post-content"><div id="twitter-data-gatekeeping" class="section level2">
+<h2>Twitter data gatekeeping</h2>
+<p>Even before the <em>unpresidented</em> Twitter-centric 2016 U.S. election, researchers flocked to Twitter data (<a href="https://doi-org.proxy.mul.missouri.edu/10.1007/s11192-017-2413-z">Lee, Yoon, Smith, Park, &amp; Park, 2017</a>; <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0166570">Peoples, Midway, Sackett, Lynch, &amp; Cooney, 2016</a>; <a href="http://jasonpriem.com/self-archived/Priem_Costello_Twitter.pdf">Priem &amp; Costello, 2010</a>; <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0047523">Shuai, Pepe, &amp; Bollen, 2012</a>). Why? Well, aside from the obvious–that it’s an immensely popular social media platform–Twitter attracts scholarly attention because it makes a lot of its data freely available to the public via Application Program Interfaces (APIs). APIs refer to sets of protocols and procedures for interacting with sites. Twitter maintains several APIs, but in the context of publicly available data collection two, in particular, stand out.</p>
+<div id="twitters-rest-api" class="section level3">
+<h3>1. Twitter’s REST API</h3>
+<p>Twitter’s REST API provides a <a href="https://developer.twitter.com/en/docs/api-reference-index">set of protocols</a> for exploring and interacting with Twitter data related to <a href="https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/intro-to-tweet-json">statuses (tweets)</a>, <a href="https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/overview">users</a>, and <a href="https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference">network connections (followers/friends)</a>. The data are RESTful in that they have been archived by Twitter. Navigating these resting endpoints can, at times, be <a href="https://developer.twitter.com/en/docs/basics/things-every-developer-should-know">resource intensive</a> and <a href="https://developer.twitter.com/en/docs/basics/rate-limits">slow</a>, but it also makes it possible to perform <a href="https://developer.twitter.com/en/docs/tweets/search/overview/operator_descriptions">highly complex and specific queries</a>.</p>
+</div>
+<div id="twitters-stream-api" class="section level3">
+<h3>2. Twitter’s stream API</h3>
+<p>Twitter data not yet archived and accessible via the REST API can be accessed using <a href="https://developer.twitter.com/en/docs/tweets/filter-realtime/guides/connecting">Twitter’s stream API</a>. As its name suggests, the stream API provides users with a live stream of Twitter data. Because the data are streamed, or pushed, to the user, the <a href="https://developer.twitter.com/en/docs/basics/things-every-developer-should-know">stream API reduces overhead</a> associated with performing queries on archived data sources. This makes it possible to collect large amounts of data very quickly and with relatively little strain on computational resources. The downside to the stream API is that it is limited to prospective data collection via <a href="https://developer.twitter.com/en/docs/tweets/sample-realtime/overview/GET_statuse_sample">sampling</a> or <a href="https://developer.twitter.com/en/docs/tweets/filter-realtime/overview">filtering</a>.</p>
+</div>
+</div>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/twitter-data"><span class="tag">Twitter Data</span></a></li>
+        
+          <li><a href="/tags/twitter-api"><span class="tag">Twitter API</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © Michael W. Kearney 2017
+      </p>
+    </footer>
+    
+      
+    
+  </section>
+  <footer class="site-footer">
+  <p>© 2017 Michael W. Kearney</p>
+  
+</footer>
+
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+<script async
+        src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script src="/highlight/highlight.pack.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+<script src="/js/bundle.js"></script>
+<script src="/highlight/highlight.pack.js"></script>
+
+
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-64959413-1', 'auto');
+ga('send', 'pageview');
+</script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+  </body>
+</html>

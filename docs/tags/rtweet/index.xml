@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rtweet on Michael W. Kearney</title>
+    <link>/tags/rtweet/</link>
+    <description>Recent content in Rtweet on Michael W. Kearney</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© Michael W. Kearney 2017</copyright>
+    <lastBuildDate>Fri, 01 Sep 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/rtweet/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Intro to rtweet</title>
+      <link>/post/rtweet/</link>
+      <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/rtweet/</guid>
+      <description>Getting started with Twitter data Twitter data were already trendy, but the unpresidented 2016 U.S. election has escalated things to a fever pitch. One of the biggest drivers of the trend is the widespread availability of Twitter data. Twitter makes much of its user-generated data freely available to the public via Application Program Interfaces (APIs). APIs refer to sets of protocols and procedures for interacting with sites. Twitter maintains several APIs.</description>
+    </item>
+    
+  </channel>
+</rss>

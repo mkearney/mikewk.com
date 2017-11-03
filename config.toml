@@ -1,0 +1,89 @@
+baseURL = "http://mikewk.com"
+languageCode = "en"
+title = "Michael W. Kearney"
+theme = "hugo-nuo"
+enableRobotsTXT = true
+pygmentsuseclasses = true
+PygmentsCodeFences = true
+canonifyurls = true
+publishDir = "docs"
+ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "^make$", "^make\\.R$", "^\\.funs\\.R$"]
+
+# Disqus Username
+# disqusShortname = "kearneymw"
+
+# Google Analytics UA number
+googleAnalytics = "UA-64959413-1"
+
+# Copyright of your post
+copyright = "© Michael W. Kearney 2017"
+
+# Initial site menu, you can extend menu with content.
+[[menu.main]]
+  name = "Home"
+  weight = 10
+  identifier = "home"
+  url = "/"
+
+ [[menu.main]]
+   name = "CV"
+   weight = 40
+   identifier = "cv"
+   url = "/cv/cv.pdf"
+
+# Add your own params here
+[params]
+  author = "Michael W. Kearney, Ph.D."
+  avatar = "/img/aintnoseats.jpeg"
+  seotitle = "Michael W. Kearney"
+  subtitle1 = "Assistant Professor"
+  subtitle2 = "School of Journalism"
+  subtitle3 = "Informatics Institute"
+  subtitle4 = "University of Missouri"
+  description = "Personal website of Michael W. Kearney, assistant professor at Missouri School of Journalism and Missouri Informatics Institute"
+  paginate = 10
+
+  # Add custom assets with their paths relative to the static folder
+  custom_css = ["css/custom.css"]
+  custom_js  = ["highlight/highlight.pack.js"]
+
+  # Choose your social networks
+  email = "kearneymw@missouri.edu"
+  github = "mkearney"
+  twitter = "kearneymw"
+  linkedin = "mikewk"
+  # weibo = "weibo_username"
+  # wechat= "/img/qrcode.jpg" # Replace with your wechat qrcode image
+  facebook = "mike.wayne.kearney"
+
+  # Changyan Comments (China Only)
+  # changyan = false
+  # changyanId = "cyt3toRiB"
+  # changyanConf = "prod_0908b1cb9a581501753cce1ed074dbe3"
+
+  # Google Webmaster
+  # https://www.google.com/webmasters/
+  googleSiteVerification = "XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY"
+
+  # Bing Webmaster
+  # https://www.bing.com/toolbox/webmaster/
+  # msValidate = "22596E34341DD1D17D6022C44647E587"
+
+  # Baidu Webmaster (China Only)
+  # https://zhanzhang.baidu.com/
+  # baiduSiteVerification = "MZ23SPxxfa"
+
+  # Sogou Webmaster (China Only)
+  # http://zhanzhang.sogou.com/
+  # sogouSiteVerification = "m2jktMQTZm"
+
+  # 360 Webmaster (China Only)
+  # http://zhanzhang.so.com/
+  # soSiteVerification = "b7ab3b4c2edbc856642004d1b8c27a91"
+
+  # Baidu Tongji (China Only)
+  # https://tongji.baidu.com/
+  # baiduTongji = "e21dc1e8a592188271b615159dc88af7"
+
+  # ICP Number (China Only)
+  # ICP = "苏ICP备16005986号-2"

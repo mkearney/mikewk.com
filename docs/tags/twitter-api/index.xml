@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Twitter Api on Michael W. Kearney</title>
+    <link>/tags/twitter-api/</link>
+    <description>Recent content in Twitter Api on Michael W. Kearney</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© Michael W. Kearney 2017</copyright>
+    <lastBuildDate>Mon, 30 Oct 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/twitter-api/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Twitter APIs</title>
+      <link>/post/twitter-apis/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/twitter-apis/</guid>
+      <description>Twitter data gatekeeping Even before the unpresidented Twitter-centric 2016 U.S. election, researchers flocked to Twitter data (Lee, Yoon, Smith, Park, &amp;amp; Park, 2017; Peoples, Midway, Sackett, Lynch, &amp;amp; Cooney, 2016; Priem &amp;amp; Costello, 2010; Shuai, Pepe, &amp;amp; Bollen, 2012). Why? Well, aside from the obvious–that it’s an immensely popular social media platform–Twitter attracts scholarly attention because it makes a lot of its data freely available to the public via Application Program Interfaces (APIs).</description>
+    </item>
+    
+    <item>
+      <title>Intro to rtweet</title>
+      <link>/post/rtweet/</link>
+      <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/rtweet/</guid>
+      <description>Getting started with Twitter data Twitter data were already trendy, but the unpresidented 2016 U.S. election has escalated things to a fever pitch. One of the biggest drivers of the trend is the widespread availability of Twitter data. Twitter makes much of its user-generated data freely available to the public via Application Program Interfaces (APIs). APIs refer to sets of protocols and procedures for interacting with sites. Twitter maintains several APIs.</description>
+    </item>
+    
+  </channel>
+</rss>

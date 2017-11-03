@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Michael W. Kearney</title>
+    <link>/</link>
+    <description>Recent content on Michael W. Kearney</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© Michael W. Kearney 2017</copyright>
+    <lastBuildDate>Wed, 01 Nov 2017 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>Position I&amp;rsquo;m an assistant professor at the University of Missouri where I hold a joint appointment in Journalism Studies with the School of Journalism and in Data Science and Analytics with the Informatics Institute. I teach courses in mass media, political communication, quantitative research methods, and data science.
+Research My research uses computational social scientific methods to track the dissemination of information and better understand media selection behaviors in digital media environments.</description>
+    </item>
+    
+    <item>
+      <title>Links</title>
+      <link>/links/</link>
+      <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/links/</guid>
+      <description>My links</description>
+    </item>
+    
+    <item>
+      <title>Tweets about Mueller Investigation</title>
+      <link>/post/r/</link>
+      <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/r/</guid>
+      <description>Here’s code I used to collect a bunch of data recently.
+## load rtweet library(rtweet) ## read in where left off rt &amp;lt;- readRDS(&amp;quot;~/Dropbox/pgmm-all2.rds&amp;quot;) ## search for 3 million tweets mentioning any of these keywords rt_ &amp;lt;- search_tweets( &amp;quot;papadopolous OR gates OR mueller OR manafort&amp;quot;, n = 18000L * 10L, retryonratelimit = TRUE, max_id = max_id(rt) ) lib(warcraft) ## merge data rt &amp;lt;- do_call_rbind(list(rt, rt_)) ## view time series ts_plot(rt, &amp;quot;5 mins&amp;quot;, trim = 1L) + theme_mwk() ## view date range range(rt$created_at) ## save saveRDS(rt, &amp;quot;~/Dropbox/pgmm-all2.</description>
+    </item>
+    
+    <item>
+      <title>Twitter APIs</title>
+      <link>/post/twitter-apis/</link>
+      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/twitter-apis/</guid>
+      <description>Twitter data gatekeeping Even before the unpresidented Twitter-centric 2016 U.S. election, researchers flocked to Twitter data (Lee, Yoon, Smith, Park, &amp;amp; Park, 2017; Peoples, Midway, Sackett, Lynch, &amp;amp; Cooney, 2016; Priem &amp;amp; Costello, 2010; Shuai, Pepe, &amp;amp; Bollen, 2012). Why? Well, aside from the obvious–that it’s an immensely popular social media platform–Twitter attracts scholarly attention because it makes a lot of its data freely available to the public via Application Program Interfaces (APIs).</description>
+    </item>
+    
+    <item>
+      <title>Intro to rtweet</title>
+      <link>/post/rtweet/</link>
+      <pubDate>Fri, 01 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/post/rtweet/</guid>
+      <description>Getting started with Twitter data Twitter data were already trendy, but the unpresidented 2016 U.S. election has escalated things to a fever pitch. One of the biggest drivers of the trend is the widespread availability of Twitter data. Twitter makes much of its user-generated data freely available to the public via Application Program Interfaces (APIs). APIs refer to sets of protocols and procedures for interacting with sites. Twitter maintains several APIs.</description>
+    </item>
+    
+  </channel>
+</rss>

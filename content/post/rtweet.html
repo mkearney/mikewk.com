@@ -1,0 +1,268 @@
+---
+title: "Intro to rtweet"
+author: "mwk"
+date: "2017-09-01"
+slug: rtweet
+categories: ["R"]
+tags: ["rtweet", "Twitter API"]
+---
+
+
+
+<div id="getting-started-with-twitter-data" class="section level2">
+<h2>Getting started with Twitter data</h2>
+<p>Twitter data were already trendy, but the <em>unpresidented</em> 2016 U.S. election has escalated things to a fever pitch. One of the biggest drivers of the trend is the widespread availability of Twitter data. Twitter makes much of its user-generated data freely available to the public via Application Program Interfaces (APIs). APIs refer to sets of protocols and procedures for interacting with sites. Twitter maintains several APIs. The two most condusive to data collection are the REST API and the stream API, both of which I describe below.</p>
+<p>Twitter’s REST API provides a set of protocols for exploring and interacting with Twitter data related to user statuses (tweets), user profiles and timelines, and user network connections. The data are restful in that they have been archived by Twitter. Navigating these resting endpoints can, at times, be resource intensive, but it also makes it possible to perform highly complex and specific queries.</p>
+<p>Twitter data not yet archived and accessible via the REST API can be accessed using Twitter’s stream API. As its name suggests, the stream API provides users with a live stream of Twitter data. Because the data are streamed, or pushed, to the user, the stream API reduces overhead associated with performing queries on archived data sources. This makes it possible to collect large amounts of data very quickly and with relatively little strain on computational resources. The downside to the stream API is that it is limited to prospective (tracking, monitoring, etc.) but not retrospective (surveying, searching, etc.) queries.</p>
+<div id="installing-rtweet" class="section level3">
+<h3>Installing rtweet</h3>
+<p>Install from CRAN using <code>install.packages</code>.</p>
+<pre class="r"><code>## install from CRAN
+install.packages(&quot;rtweet&quot;)</code></pre>
+<p>Alternatively, install the most recent [development] version from Github using <code>install_github</code> (from the devtools package).</p>
+<pre class="r"><code>## install from Github (dev version)
+if (!&quot;devtools&quot; %in% installed.packages()) {
+    install.packages(&quot;devtools&quot;)
+}
+devtools::install_github(&quot;mkearney/rtweet&quot;, build_vignettes = TRUE)</code></pre>
+</div>
+<div id="api-authorization" class="section level3">
+<h3>API authorization</h3>
+<p>I’ve tried to make the API token [oauth] process as painless as possible. That’s why I’ve included the “auth” vignette, which ships with the package and contains step-by-step instructions on how to create and manage your Twitter API token. The vignette also includes instructions for saving a token as an environment variable, which automates the token-loading process for all future sessions (at least, for the machine you’re using). View the <a href="https://mkearney.github.io/rtweet/articles/auth.html">authorization vignette online</a> or enter the following code into your R console to load the vignette locally:</p>
+<pre class="r"><code>## Open Twitter token vignette in web browser.
+vignette(topic = &quot;auth&quot;, package = &quot;rtweet&quot;)</code></pre>
+</div>
+<div id="package-documentation" class="section level3">
+<h3>Package documentation</h3>
+<p>In addition to the API authorization vignette, rtweet also includes a <a href="https://mkearney.github.io/rtweet/articles/intro.html">brief package overview vignette</a> as well as a <a href="https://mkearney.github.io/rtweet/articles/stream.html">vignette demonstrating how to access Twitter’s stream API</a>. To open the vignettes locally, use the code below.</p>
+<pre class="r"><code>## overview of rtweet package
+vignette(topic = &quot;intro&quot;, package = &quot;rtweet&quot;)
+
+## accessing Twitter&#39;s stream API
+vignette(topic = &quot;stream&quot;, package = &quot;rtweet&quot;)</code></pre>
+<p>And thanks to <a href="https://github.com/hadley/pkgdown">pkgdown</a>, rtweet now has a dedicated <a href="https://mkearney.github.io/rtweet">package documentation website</a>. *Btw, while I’m on the subject of package documentation/maintenance, I’d also like to point out <a href="https://github.com/mkearney/rtweet">rtweet’s Github page</a>. Contributions are welcome and if you run into any bugs or other issues, users are encouraged to <a href="https://github.com/mkearney/rtweet/issues">create an Github issue</a>.</p>
+</div>
+</div>
+<div id="some-applied-examples" class="section level2">
+<h2>Some applied examples</h2>
+<div id="search_tweets" class="section level3">
+<h3>search_tweets</h3>
+<p>Searching for tweets is easy. For example, we could search for all [publically] available statuses from the past 7-10 days that use the hashtags <code>#ica17</code> or <code>#ica2017</code>. In the code below I’ve specified 18,000 statuses (tweets), which is the maximum number a user may request every 15 minutes.</p>
+<pre class="r"><code>## load rtweet
+library(rtweet)
+
+## search for tweets containing ICA17 or ICA2017 (not case sensitive)
+ica17 &lt;- search_tweets(
+    &quot;#ica17 OR #ica2017&quot;, n = 18000, include_rts = FALSE
+)</code></pre>
+<p>If there were more than 18,000 statuses that (a) fit the search query and (b) exist in the last 7-10 days (the limit put in place by Twitter), then users can continue where they left off by using the <code>max_id</code> parameter. Since Twitter statuses are returned in order from newest to oldest, the <code>max_id</code> value should just be the last status ID returned by the previous search.</p>
+<pre class="r"><code>## select last (oldest) status ID from previous search
+last_status_id &lt;-  ica17$status_id[nrow(ica17)]
+
+## pass last_status_id to max_id and run search again.
+ica17_contd &lt;- search_tweets(
+    &quot;#ica17 OR #ica2017&quot;, n = 18000, include_rts = FALSE,
+    max_id = last_status_id
+)</code></pre>
+<p>Data returned by <code>search_tweets</code> is quite extensive. One recently added feature makes navigating the data a bit easier. As of version 0.4.3, <em>rtweet</em> returns <code>tibble</code> data frames (assuming the user has installed the <em>tibble</em> package, which is a dependency for nearly all packages in the tidyverse). Tibbles are especially nice when working with larger data sets because accidental printing in R has been known to take years off of one’s life (needs citation).</p>
+</div>
+<div id="ts_filter-and-ts_plot" class="section level3">
+<h3>ts_filter and ts_plot</h3>
+<p>Included in the rtweet package are a few convenenience functions, which have been designed to assist in the analysis of Twitter data. One of these convenient functions is <code>ts_plot</code>, which is a plot-based wrapper around <code>ts_filter</code>. The <code>ts_plot</code> and <code>ts_filter</code> functions aggregate the frequency of tweets over specified intervals of time. Hence, the “ts” (time series) naming convention. In addition to aggregating the frequency of statuses, <code>ts_plot</code> will also plot the time series.</p>
+<pre class="r"><code>## aggregate freq of tweets in one-hour intervals
+agg &lt;- ts_filter(ica17, by = &quot;hours&quot;)
+
+## view data
+agg
+
+## plot data
+ts_plot(agg)</code></pre>
+<p>The plot produced by <code>ts_plot</code> depends on whether the user has installed <em>ggplot2</em>, which is a suggested but not required package dependency for <em>rtweet</em>. If you haven’t installed <em>ggplot2</em> then I highly recommend it. Assuming you have, then the object returned by <code>ts_plot</code> can be treated like any other ggplot object, meaning you can easily add layers and customize the plot to your liking.</p>
+<pre class="r"><code>## load ggplot2
+library(ggplot2)</code></pre>
+<pre class="r"><code>## plot a time series of tweets, aggregating by one-hour intervals
+p1 &lt;- ts_plot(ica17, &quot;hours&quot;) +
+    labs(
+        x = &quot;Date and time&quot;,
+        y = &quot;Frequency of tweets&quot;,
+        title = &quot;Time series of #ICA17 tweets&quot;,
+        subtitle = &quot;Frequency of Twitter statuses calculated in one-hour intervals.&quot;
+    ) +
+    ## a custom ggplot2 theme I mocked up for ICA
+    theme_ica17()
+
+## render plot
+p1</code></pre>
+</div>
+<div id="plain_tweets" class="section level3">
+<h3>plain_tweets</h3>
+<p>The second convenience function for analysing tweets is <code>plain_tweets</code>. As you might guess, <code>plain_tweets</code> strips the text of the tweets down to plain text. Because there are already variables included in the default tweets data that contain links, hashtags, and mentions, those entities are stripped out of the text as well. What’s returned are lower case words. Below I’ve applied the function to the first few ICA17 tweets.</p>
+<pre class="r"><code>## strip text of tweets
+plain_tweets(ica17$text[1:5])</code></pre>
+<p>The <code>plain_tweets</code> function is relatively straight forward at cutting through the clutter, but it still may not prepare you for quick and easy analysis. For that, you can use the <code>tokenize</code> argument in <code>plain_tweets</code>. The tokenize argument will return a vector of plain text words for each tweet.</p>
+<pre class="r"><code>## tokenize by word
+wrds &lt;- plain_tweets(ica17$text, tokenize = TRUE)
+wrds[1:5]</code></pre>
+</div>
+<div id="identifying-stop-words" class="section level3">
+<h3>Identifying stop words</h3>
+<p>This can easily be converted into a word count [frequency] table, but it still leaves one problem. The most common words probably aren’t going to tell us a lot about our specific topic / set of tweets.</p>
+<pre class="r"><code>## get word counts
+wrds &lt;- table(unlist(wrds))
+
+## view top 40 words
+head(sort(wrds, decreasing = TRUE), 40)</code></pre>
+<p>See, these words don’t appear to be very unique to ICA 2017. Of course, we could always find a premade list of stopwords to exclude, but those may not appropriately reflect the medium (Twitter) here. With rtweet, however, it’s possible to create your own dictionary of stopwords by locating overlap between (a) a <em>particular</em> sample of tweets of interest and (b) a more <em>general</em> sample of tweets.</p>
+<p>To do this, we’re going to search for each letter of the alphabet separated by the boolean <code>OR</code>. It’s a bit hacky, but it returns massive amounts of tweets about a wide range of topics. So, if we can identify the <em>unique</em> words used in our sample, we may yet accomplish our goal.</p>
+<p>In the code below, I’ve excluded retweets since those add unnecessary redundancies (and, ideally, we’d want a diverse pool of tweets). It’s still not perfect, but it gives us a systematic starting point that I imagine could be developed into a more reliable method.</p>
+<pre class="r"><code>## construct boolean-exploiting search query
+all &lt;- paste(letters, collapse = &quot; OR &quot;)
+
+## conduct search for 5,000 original (non-retweeted) tweets
+sw &lt;- search_tweets(all, n = 5000, include_rts = FALSE)</code></pre>
+<pre class="r"><code>## create freq table of all words from general pool of tweets
+stopwords &lt;- plain_tweets(sw$text, tokenize = TRUE)
+stopwords &lt;- table(unlist(stopwords))</code></pre>
+<p>Now that we’ve identified the frequencies of words in this more general pool of tweets, we can exclude all ICA tweet words that appear more than N number of times in the general pool.</p>
+<pre class="r"><code>## cutoff
+N &lt;- 5L
+
+## exclude all ica17 words that appear more than N times in stopwords
+wrds &lt;- wrds[!names(wrds) %in% names(stopwords[stopwords &gt; N])]
+
+## check top words again
+head(sort(wrds, decreasing = TRUE), 40)</code></pre>
+</div>
+<div id="creating-a-word-cloud" class="section level3">
+<h3>Creating a word cloud</h3>
+<p>That turned out well! These words look a lot more unique to the topic. We can quickly survey all of these words with a simple word cloud.</p>
+<pre class="r"><code>## get some good colors
+cols &lt;- sample(rainbow(10, s = .5, v = .75), 10)
+
+## plot word cloud
+par(bg = &quot;black&quot;)
+suppressWarnings(wordcloud::wordcloud(
+    words = names(wrds),
+    freq = wrds,
+    min.freq = 5,
+    random.order = FALSE,
+    random.color = FALSE,
+    colors = cols,
+    family = &quot;Roboto Condensed&quot;,
+    scale = c(4.65, .5))
+)</code></pre>
+<!-- <p align="center">
+<img src="img/p2.png" alt="p2">
+</p> -->
+</div>
+<div id="filtering-topics" class="section level3">
+<h3>Filtering topics</h3>
+<p>If we wanted to model the topics of tweets, we could conduct two searches for tweets over the same time period and then compare the frequencies of tweets over time using time series. That’s what I’ve done in the example below.</p>
+<p>First I searched for tweets mentioning “North Korea”, since I know they conducted another missile test on Monday.</p>
+<pre class="r"><code>## search tweets mentioning north korea (missle test on Monday)
+nk &lt;- search_tweets(
+    &quot;north korea&quot;, n = 18000, include_rts = FALSE
+)</code></pre>
+<p>Then I searched for tweets mentioning “CBO health care” (in any order, anywhere in the tweet), since I know the CBO was released on Wednesday.</p>
+<pre class="r"><code>## search for tweets about the CBO (released on Wed.)
+cbo &lt;- search_tweets(
+    &quot;CBO health care&quot;, n = 18000, include_rts = FALSE
+)</code></pre>
+<p>And then I combined the two data sets into one big data frame.</p>
+<pre class="r"><code>## create query (search) variable
+cbo$query &lt;- &quot;CBO health care&quot;
+nk$query &lt;- &quot;North Korea&quot;
+
+## row bind into single data frame
+df &lt;- rbind(cbo, nk)</code></pre>
+<p>Using the <code>ts_plot</code> function, I then provide a list of <code>filter</code> words (via regular expression; the bar is like an “OR”). Use the <code>key</code> argument if you want to have nicer looking filter labels. By default <code>ts_plot</code> will create groups based on the text of the tweet and the filters provided. However, you can pass along the name of any variable in DF and the function will use that to classify groups. In the code below, I applied <code>plain_tweets</code> to the text to create a new variable, and then specified that I wanted to apply the filters to that variable by using the <code>txt</code> argument in <code>ts_plot</code>.</p>
+<pre class="r"><code>## create plain tweets variable
+df$text_plain &lt;- plain_tweets(df$text)
+
+## filter by search topic
+p3 &lt;- ts_plot(
+    df, by = &quot;15 mins&quot;,
+    filter = c(&quot;cbo|health|care|bill|insured|deficit|budget&quot;,
+               &quot;korea|kim|jung un|missile&quot;),
+    key = c(&quot;CBO&quot;, &quot;NKorea&quot;),
+    txt = &quot;text_plain&quot;
+)</code></pre>
+<p>Now it’s easy to add more layers and make this plot look nice.</p>
+<pre class="r"><code>## add theme and more style layers
+p3 &lt;- p3 +
+    theme_ica17() +
+    scale_x_datetime(date_labels = &quot;%b %d %H:%m&quot;) +
+    theme(legend.title = element_blank()) +
+    labs(x = NULL, y = NULL,
+         title = &quot;Tracing topic salience in Twitter statuses&quot;,
+         subtitle = paste(&quot;Tweets (N = 23,467) were aggregated in 15-minute&quot;,
+                          &quot;intervals. Retweets were not included.&quot;)
+    )
+
+## render plot
+p3</code></pre>
+</div>
+<div id="tidy-sentiment-analysis" class="section level3">
+<h3>Tidy sentiment analysis</h3>
+<p>The <em>syuzhet</em> package makes sentiment analysis criminally easy.</p>
+<pre class="r"><code>## conduct sentiment analysis
+sa &lt;- syuzhet::get_nrc_sentiment(df$text_plain)</code></pre>
+<p>Within a few seconds, the analysis returns coded variables for several categories of emotion and valence. A preview of the sentiment scores returned by <code>get_nrc_sentiment</code> is provided below.</p>
+<pre class="r"><code>## view output
+tibble::as_tibble(sa)</code></pre>
+<p>Since the return object is a data frame with the same number of rows as the CBO/North Korea data, the columns can easily be combined to create one data frame.</p>
+<pre class="r"><code>## bind columns
+df &lt;- cbind(df, sa)</code></pre>
+<p>This data structure is useful for most media researchers, but it’s not very flexible—either for summarizing the data or for visualizing it. Fortunately, recent advancements<sup><a href="#myfootnote1">1</a></sup> in data wrangling in R make converting this wide data to tidy, long data a breeze. In the code below, I’ve created a user function to assist in time-rounding efforts, and I’ve enlisted <em>dplyr</em> and <em>tidyr</em> to do the dirty work.</p>
+<pre class="r"><code>## load dplyr
+suppressPackageStartupMessages(library(dplyr))
+
+## create function for aggregating date-time vectors
+round_time &lt;- function(x, interval = 60) {
+    ## round off to lowest value
+    rounded &lt;- floor(as.numeric(x) / interval) * interval
+    ## center so value is interval mid-point
+    rounded &lt;- rounded + round(interval * .5, 0)
+    ## return to date-time
+    as.POSIXct(rounded, origin = &quot;1970-01-01&quot;)
+}
+
+## use pipe (%&gt;%) operator for linear syntax
+long_emotion_ts &lt;- df %&gt;%
+    ## select variables (columns) of interest
+    dplyr::select(created_at, query, anger:positive) %&gt;%
+    ## convert created_at variable to desired interval
+    ## here I chose 6 hour intervals (3 * 60 seconds * 60 mins = 3 hours)
+    mutate(created_at = round_time(created_at, 3 * 60 * 60)) %&gt;%
+    ## transform data to long form
+    tidyr::gather(sentiment, score, -created_at, -query) %&gt;%
+    ## group by time, query, and sentiment
+    group_by(created_at, query, sentiment) %&gt;%
+    ## get mean for each grouping
+    summarize(score = mean(score, na.rm = TRUE),
+              n = n()) %&gt;%
+    ungroup()</code></pre>
+<p>The result is a tidy data paradise:</p>
+<pre class="r"><code>## view data
+long_emotion_ts</code></pre>
+<p>Which we can pass right along to <em>ggplot2</em> for the finish:</p>
+<pre class="r"><code>## plot data
+long_emotion_ts %&gt;%
+    ggplot(aes(x = created_at, y = score, color = query)) +
+    geom_point() +
+    geom_smooth(method = &quot;loess&quot;) +
+    facet_wrap(~ sentiment, scale = &quot;free_y&quot;, nrow = 2) +
+    theme_bw() +
+    theme(text = element_text(family = &quot;Roboto Condensed&quot;),
+          plot.title = element_text(face = &quot;bold&quot;),
+          legend.position = &quot;bottom&quot;,
+          axis.text = element_text(size = 9),
+          legend.title = element_blank()) +
+    labs(x = NULL, y = NULL,
+         title = &quot;Sentiment analysis of Twitter statuses over time&quot;,
+         subtitle = &quot;Tweets aggregated by hour on topics of the CBO and North Korea&quot;) +
+    scale_x_datetime(date_breaks = &quot;18 hours&quot;, date_labels = &quot;%b %d&quot;)</code></pre>
+<p>And that’s it!</p>
+<p><a name="myfootnote1">1</a>: I’ll admit that for a time I was hesitant to embrace the collection of packages collectively known as the <em>tidyverse</em> (formerly known as the <em>Hadley</em>verse; see: <a href="https://github.com/hadley" class="uri">https://github.com/hadley</a>). But the tidyverse, and especially <em>dplyr</em>, is really quite amazing.</p>
+</div>
+</div>

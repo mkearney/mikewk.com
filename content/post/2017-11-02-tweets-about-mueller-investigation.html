@@ -1,0 +1,88 @@
+---
+title: "Tweets about Mueller Investigation"
+author: "mwk"
+date: "2017-11-02"
+slug: r
+categories: ["R"]
+tags: ["cran", "rstudio", "rstats"]
+---
+
+
+
+<p>Here’s code I used to collect a bunch of data recently.</p>
+<pre class="r"><code>## load rtweet
+library(rtweet)
+
+## read in where left off
+rt &lt;- readRDS(&quot;~/Dropbox/pgmm-all2.rds&quot;)
+
+## search for 3 million tweets mentioning any of these keywords
+rt_ &lt;- search_tweets(
+  &quot;papadopolous OR gates OR mueller OR manafort&quot;,
+  n = 18000L * 10L,
+  retryonratelimit = TRUE,
+  max_id = max_id(rt)
+)
+
+lib(warcraft)
+
+## merge data
+rt &lt;- do_call_rbind(list(rt, rt_))
+
+## view time series
+ts_plot(rt, &quot;5 mins&quot;, trim = 1L) + theme_mwk()
+
+## view date range
+range(rt$created_at)
+
+## save
+saveRDS(rt, &quot;~/Dropbox/pgmm-all2.rds&quot;)
+
+## user defined function to create grouping var with multiple levels
+mkp &lt;- function(m, x) {
+  kp &lt;- grepl(m, x$text, ignore.case = TRUE)
+  usr &lt;- users_data(x)
+  usr &lt;- usr[usr$user_id %in% x$user_id[kp], ]
+  x &lt;- x[kp, ]
+  x$regmatch &lt;- m
+  attr(x, &quot;users&quot;) &lt;- usr
+  x
+}
+
+## apply grouping fun to data rt
+rtm &lt;- lapply(
+  c(&quot;mueller&quot;, &quot;gates&quot;, &quot;papadopoulos&quot;, &quot;manafort&quot;),
+  mkp, rt
+)
+
+## handy new rtweet function for binding a list of tweets/users data
+rtm &lt;- do_call_rbind(rtm)
+
+## group using regmatch variable and convert into time series like data
+rts &lt;- rtm %&gt;%
+  group_by(regmatch) %&gt;%
+  ts_data(&quot;5 mins&quot;, trim = 1L)
+
+## load ggplot2 package
+library(ggplot2)
+
+## create ggplot
+rts %&gt;%
+  mutate(
+    regmatch = factor(regmatch, labels = c(&quot;Gates&quot;, &quot;Manafort&quot;, &quot;Mueller&quot;, &quot;Papadopolous&quot;))) %&gt;%
+  ggplot(aes(x = time, y = n, colour = regmatch)) +
+  geom_line() +
+  tfse::theme_mwk() +
+  labs(
+    x = NULL, y = NULL,
+    title = &quot;Twitter statuses about recent charges in Mueller&#39;s Russia investigation&quot;,
+    subtitle = &quot;Search terms–Gates, Manafort, Mueller, Papadopolous–aggregated in 5-minute intervals&quot;,
+    caption = &quot;\nSource: Data (N = 3,149,735) collected from Twitter&#39;s search API via rtweet&quot;
+  ) +
+  theme(
+    legend.position = &quot;bottom&quot;,
+    legend.text = element_text(size = rel(.75)),
+    plot.caption = element_text(colour = &quot;gray30&quot;, size = rel(.65))
+  ) +
+  guides(colour = guide_legend(override.aes = list(size = 0.725))) +
+  ggsave(&quot;~/Desktop/mueller.png&quot;, width = 10, height = 7, unit = &quot;in&quot;)</code></pre>
