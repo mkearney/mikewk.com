@@ -14,10 +14,10 @@
     
     <item>
       <title>Tweets about Mueller Investigation</title>
-      <link>/post/r/</link>
+      <link>/post/2017/11/02/tweets-about-mueller-investigation/</link>
       <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>/post/r/</guid>
+      <guid>/post/2017/11/02/tweets-about-mueller-investigation/</guid>
       <description>Here’s code I used to collect a bunch of data recently.
 ## load rtweet library(rtweet) ## read in where left off rt &amp;lt;- readRDS(&amp;quot;~/Dropbox/pgmm-all2.rds&amp;quot;) ## search for 3 million tweets mentioning any of these keywords rt_ &amp;lt;- search_tweets( &amp;quot;papadopolous OR gates OR mueller OR manafort&amp;quot;, n = 18000L * 10L, retryonratelimit = TRUE, max_id = max_id(rt) ) lib(warcraft) ## merge data rt &amp;lt;- do_call_rbind(list(rt, rt_)) ## view time series ts_plot(rt, &amp;quot;5 mins&amp;quot;, trim = 1L) + theme_mwk() ## view date range range(rt$created_at) ## save saveRDS(rt, &amp;quot;~/Dropbox/pgmm-all2.</description>
     </item>

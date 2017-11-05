@@ -5,7 +5,11 @@
   <meta charset="utf-8" />
 
   
-  <title>Tweets about Mueller Investigation</title>
+  <title>
+  Tag → readchar
+  
+   | Michael W. Kearney
+</title>
 
   
   
@@ -14,19 +18,15 @@
 
 
   
-  <meta name="author" content="mwk" />
-  <meta name="description" content="Here’s code I used to collect a bunch of data recently.
-## load rtweet library(rtweet) ## read in where left off rt &amp;lt;- readRDS(&amp;quot;~/Dropbox/pgmm-all2.rds&amp;quot;) ## search for 3 million tweets mentioning any of these keywords rt_ &amp;lt;- search_tweets( &amp;quot;papadopolous OR gates OR mueller OR manafort&amp;quot;, n = 18000L * 10L, retryonratelimit = TRUE, max_id = max_id(rt) ) lib(warcraft) ## merge data rt &amp;lt;- do_call_rbind(list(rt, rt_)) ## view time series ts_plot(rt, &amp;quot;5 mins&amp;quot;, trim = 1L) &#43; theme_mwk() ## view date range range(rt$created_at) ## save saveRDS(rt, &amp;quot;~/Dropbox/pgmm-all2." />
+  <meta name="author" content="Michael W. Kearney, Ph.D." />
+  <meta name="description" content="Personal website of Michael W. Kearney, assistant professor at Missouri School of Journalism and Missouri Informatics Institute" />
 
   
-  
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@kearneymw" />
-    <meta name="twitter:title" content="Tweets about Mueller Investigation" />
-    <meta name="twitter:description" content="Here’s code I used to collect a bunch of data recently.
-## load rtweet library(rtweet) ## read in where left off rt &amp;lt;- readRDS(&amp;quot;~/Dropbox/pgmm-all2.rds&amp;quot;) ## search for 3 million tweets mentioning any of these keywords rt_ &amp;lt;- search_tweets( &amp;quot;papadopolous OR gates OR mueller OR manafort&amp;quot;, n = 18000L * 10L, retryonratelimit = TRUE, max_id = max_id(rt) ) lib(warcraft) ## merge data rt &amp;lt;- do_call_rbind(list(rt, rt_)) ## view time series ts_plot(rt, &amp;quot;5 mins&amp;quot;, trim = 1L) &#43; theme_mwk() ## view date range range(rt$created_at) ## save saveRDS(rt, &amp;quot;~/Dropbox/pgmm-all2." />
-    <meta name="twitter:image" content="/img/avatar.jpg" />
-  
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@kearneymw" />
+  <meta name="twitter:title" content="Michael W. Kearney" />
+  <meta name="twitter:description" content="Personal website of Michael W. Kearney, assistant professor at Missouri School of Journalism and Missouri Informatics Institute" />
+  <meta name="twitter:image" content="/img/avatar.jpg" />
 
 
 
@@ -34,7 +34,7 @@
 <meta name="generator" content="Hugo 0.30.2" />
 
 
-<link rel="canonical" href="/post/r/" />
+<link rel="canonical" href="/tags/readchar/" />
 <link rel="alternative" href="/index.xml" title="Michael W. Kearney" type="application/atom+xml" />
 
 
@@ -104,8 +104,6 @@
     
     <div class="suspension">
       <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
-      
-        
       
     </div>
     
@@ -205,107 +203,29 @@
   </nav>
 </header>
 
-  <section class="main post-detail">
-    <header class="post-header">
-      <h1 class="post-title">Tweets about Mueller Investigation</h1>
-      <p class="post-meta">@mwk · Nov 2, 2017 · 2 min read</p>
+  <section class="main post-list">
+    <header class="list-header offscreen">
+      <h2 class="list-label">Posts List</h2>
     </header>
-    <article class="post-content"><p>Here’s code I used to collect a bunch of data recently.</p>
-<pre class="r"><code>## load rtweet
-library(rtweet)
-
-## read in where left off
-rt &lt;- readRDS(&quot;~/Dropbox/pgmm-all2.rds&quot;)
-
-## search for 3 million tweets mentioning any of these keywords
-rt_ &lt;- search_tweets(
-  &quot;papadopolous OR gates OR mueller OR manafort&quot;,
-  n = 18000L * 10L,
-  retryonratelimit = TRUE,
-  max_id = max_id(rt)
-)
-
-lib(warcraft)
-
-## merge data
-rt &lt;- do_call_rbind(list(rt, rt_))
-
-## view time series
-ts_plot(rt, &quot;5 mins&quot;, trim = 1L) + theme_mwk()
-
-## view date range
-range(rt$created_at)
-
-## save
-saveRDS(rt, &quot;~/Dropbox/pgmm-all2.rds&quot;)
-
-## user defined function to create grouping var with multiple levels
-mkp &lt;- function(m, x) {
-  kp &lt;- grepl(m, x$text, ignore.case = TRUE)
-  usr &lt;- users_data(x)
-  usr &lt;- usr[usr$user_id %in% x$user_id[kp], ]
-  x &lt;- x[kp, ]
-  x$regmatch &lt;- m
-  attr(x, &quot;users&quot;) &lt;- usr
-  x
-}
-
-## apply grouping fun to data rt
-rtm &lt;- lapply(
-  c(&quot;mueller&quot;, &quot;gates&quot;, &quot;papadopoulos&quot;, &quot;manafort&quot;),
-  mkp, rt
-)
-
-## handy new rtweet function for binding a list of tweets/users data
-rtm &lt;- do_call_rbind(rtm)
-
-## group using regmatch variable and convert into time series like data
-rts &lt;- rtm %&gt;%
-  group_by(regmatch) %&gt;%
-  ts_data(&quot;5 mins&quot;, trim = 1L)
-
-## load ggplot2 package
-library(ggplot2)
-
-## create ggplot
-rts %&gt;%
-  mutate(
-    regmatch = factor(regmatch, labels = c(&quot;Gates&quot;, &quot;Manafort&quot;, &quot;Mueller&quot;, &quot;Papadopolous&quot;))) %&gt;%
-  ggplot(aes(x = time, y = n, colour = regmatch)) +
-  geom_line() +
-  tfse::theme_mwk() +
-  labs(
-    x = NULL, y = NULL,
-    title = &quot;Twitter statuses about recent charges in Mueller&#39;s Russia investigation&quot;,
-    subtitle = &quot;Search terms–Gates, Manafort, Mueller, Papadopolous–aggregated in 5-minute intervals&quot;,
-    caption = &quot;\nSource: Data (N = 3,149,735) collected from Twitter&#39;s search API via rtweet&quot;
-  ) +
-  theme(
-    legend.position = &quot;bottom&quot;,
-    legend.text = element_text(size = rel(.75)),
-    plot.caption = element_text(colour = &quot;gray30&quot;, size = rel(.65))
-  ) +
-  guides(colour = guide_legend(override.aes = list(size = 0.725))) +
-  ggsave(&quot;~/Desktop/mueller.png&quot;, width = 10, height = 7, unit = &quot;in&quot;)</code></pre>
-</article>
-    <footer class="post-footer">
-      
-      <ul class="post-tags">
-        
-          <li><a href="/tags/cran"><span class="tag">Cran</span></a></li>
-        
-          <li><a href="/tags/rstudio"><span class="tag">Rstudio</span></a></li>
-        
-          <li><a href="/tags/rstats"><span class="tag">Rstats</span></a></li>
-        
-      </ul>
-      
-      <p class="post-copyright">
-        © Michael W. Kearney 2017
-      </p>
-    </footer>
+    
     
       
+        <article class="post-entry">
+  <header class="post-header">
+    <h3 class="post-title"><a href="/post/2017/11/03/readcharr/" class="post-link">readChar.R</a></h3>
+    <p class="post-meta">@mwk · Nov 3, 2017 · 1 min read</p>
+  </header>
+  
+  <p class="post-summary">Function of the day When I read text into an R session, I typically use either base::readLines() or—the tidyversion analog—readr::read_lines(). Although I’ve long been aware of readChar(), I’ve managed to avoid learning what it actually does.
+Function This post introduces the readChar() function.
+x &lt;- help(&#34;?&#34;, &#34;utils&#34;) print(x)  Example x &lt;- example(&#34;readChar&#34;, package = &#34;base&#34;, give.lines = TRUE) tfse::map_chr(&#34;message&#34;, x) ## ### Name: readChar ## ### Title: Transfer Character Strings To and From Connections ## ### Aliases: readChar writeChar ## ### Keywords: file connection ## ## ### ** Examples ## ## ## test fixed-length strings ## zz &lt;- file(&#34;testchar&#34;, &#34;wb&#34;) ## x &lt;- c(&#34;a&#34;, &#34;this will be truncated&#34;, &#34;abc&#34;) ## nc &lt;- c(3, 10, 3) ## writeChar(x, zz, nc, eos = NULL) ## writeChar(x, zz, eos = &#34;\r\n&#34;) ## close(zz) ## ## zz &lt;- file(&#34;testchar&#34;, &#34;rb&#34;) ## readChar(zz, nc) ## readChar(zz, nchar(x)&#43;3) # need to read the terminator explicitly ## close(zz) ## unlink(&#34;testchar&#34;) ## ## character(0)   </p>
+  <footer class="post-footer">
+    <a class="read-more" href="/post/2017/11/03/readcharr/">Read More →</a>
+  </footer>
+</article>
+
+      
+    
     
   </section>
   <footer class="site-footer">

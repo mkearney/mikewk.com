@@ -212,14 +212,14 @@
       
         <article class="post-entry">
   <header class="post-header">
-    <h3 class="post-title"><a href="/post/r/" class="post-link">Tweets about Mueller Investigation</a></h3>
+    <h3 class="post-title"><a href="/post/2017/11/02/tweets-about-mueller-investigation/" class="post-link">Tweets about Mueller Investigation</a></h3>
     <p class="post-meta">@mwk · Nov 2, 2017 · 2 min read</p>
   </header>
   
   <p class="post-summary">Here’s code I used to collect a bunch of data recently.
 ## load rtweet library(rtweet) ## read in where left off rt &lt;- readRDS(&#34;~/Dropbox/pgmm-all2.rds&#34;) ## search for 3 million tweets mentioning any of these keywords rt_ &lt;- search_tweets( &#34;papadopolous OR gates OR mueller OR manafort&#34;, n = 18000L * 10L, retryonratelimit = TRUE, max_id = max_id(rt) ) lib(warcraft) ## merge data rt &lt;- do_call_rbind(list(rt, rt_)) ## view time series ts_plot(rt, &#34;5 mins&#34;, trim = 1L) &#43; theme_mwk() ## view date range range(rt$created_at) ## save saveRDS(rt, &#34;~/Dropbox/pgmm-all2.</p>
   <footer class="post-footer">
-    <a class="read-more" href="/post/r/">Read More →</a>
+    <a class="read-more" href="/post/2017/11/02/tweets-about-mueller-investigation/">Read More →</a>
   </footer>
 </article>
 

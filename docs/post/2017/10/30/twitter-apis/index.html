@@ -5,11 +5,7 @@
   <meta charset="utf-8" />
 
   
-  <title>
-  Tag → cran
-  
-   | Michael W. Kearney
-</title>
+  <title>Twitter APIs</title>
 
   
   
@@ -18,15 +14,17 @@
 
 
   
-  <meta name="author" content="Michael W. Kearney, Ph.D." />
-  <meta name="description" content="Personal website of Michael W. Kearney, assistant professor at Missouri School of Journalism and Missouri Informatics Institute" />
+  <meta name="author" content="mwk" />
+  <meta name="description" content="Twitter data gatekeeping Even before the unpresidented Twitter-centric 2016 U.S. election, researchers flocked to Twitter data (Lee, Yoon, Smith, Park, &amp;amp; Park, 2017; Peoples, Midway, Sackett, Lynch, &amp;amp; Cooney, 2016; Priem &amp;amp; Costello, 2010; Shuai, Pepe, &amp;amp; Bollen, 2012). Why? Well, aside from the obvious–that it’s an immensely popular social media platform–Twitter attracts scholarly attention because it makes a lot of its data freely available to the public via Application Program Interfaces (APIs)." />
 
   
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@kearneymw" />
-  <meta name="twitter:title" content="Michael W. Kearney" />
-  <meta name="twitter:description" content="Personal website of Michael W. Kearney, assistant professor at Missouri School of Journalism and Missouri Informatics Institute" />
-  <meta name="twitter:image" content="/img/avatar.jpg" />
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kearneymw" />
+    <meta name="twitter:title" content="Twitter APIs" />
+    <meta name="twitter:description" content="Twitter data gatekeeping Even before the unpresidented Twitter-centric 2016 U.S. election, researchers flocked to Twitter data (Lee, Yoon, Smith, Park, &amp;amp; Park, 2017; Peoples, Midway, Sackett, Lynch, &amp;amp; Cooney, 2016; Priem &amp;amp; Costello, 2010; Shuai, Pepe, &amp;amp; Bollen, 2012). Why? Well, aside from the obvious–that it’s an immensely popular social media platform–Twitter attracts scholarly attention because it makes a lot of its data freely available to the public via Application Program Interfaces (APIs)." />
+    <meta name="twitter:image" content="/img/avatar.jpg" />
+  
 
 
 
@@ -34,7 +32,7 @@
 <meta name="generator" content="Hugo 0.30.2" />
 
 
-<link rel="canonical" href="/tags/cran/" />
+<link rel="canonical" href="/post/2017/10/30/twitter-apis/" />
 <link rel="alternative" href="/index.xml" title="Michael W. Kearney" type="application/atom+xml" />
 
 
@@ -104,6 +102,8 @@
     
     <div class="suspension">
       <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
       
     </div>
     
@@ -203,28 +203,40 @@
   </nav>
 </header>
 
-  <section class="main post-list">
-    <header class="list-header offscreen">
-      <h2 class="list-label">Posts List</h2>
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">Twitter APIs</h1>
+      <p class="post-meta">@mwk · Oct 30, 2017 · 2 min read</p>
     </header>
-    
-    
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="/post/2017/11/02/tweets-about-mueller-investigation/" class="post-link">Tweets about Mueller Investigation</a></h3>
-    <p class="post-meta">@mwk · Nov 2, 2017 · 2 min read</p>
-  </header>
-  
-  <p class="post-summary">Here’s code I used to collect a bunch of data recently.
-## load rtweet library(rtweet) ## read in where left off rt &lt;- readRDS(&#34;~/Dropbox/pgmm-all2.rds&#34;) ## search for 3 million tweets mentioning any of these keywords rt_ &lt;- search_tweets( &#34;papadopolous OR gates OR mueller OR manafort&#34;, n = 18000L * 10L, retryonratelimit = TRUE, max_id = max_id(rt) ) lib(warcraft) ## merge data rt &lt;- do_call_rbind(list(rt, rt_)) ## view time series ts_plot(rt, &#34;5 mins&#34;, trim = 1L) &#43; theme_mwk() ## view date range range(rt$created_at) ## save saveRDS(rt, &#34;~/Dropbox/pgmm-all2.</p>
-  <footer class="post-footer">
-    <a class="read-more" href="/post/2017/11/02/tweets-about-mueller-investigation/">Read More →</a>
-  </footer>
+    <article class="post-content"><div id="twitter-data-gatekeeping" class="section level2">
+<h2>Twitter data gatekeeping</h2>
+<p>Even before the <em>unpresidented</em> Twitter-centric 2016 U.S. election, researchers flocked to Twitter data (<a href="https://doi-org.proxy.mul.missouri.edu/10.1007/s11192-017-2413-z">Lee, Yoon, Smith, Park, &amp; Park, 2017</a>; <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0166570">Peoples, Midway, Sackett, Lynch, &amp; Cooney, 2016</a>; <a href="http://jasonpriem.com/self-archived/Priem_Costello_Twitter.pdf">Priem &amp; Costello, 2010</a>; <a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0047523">Shuai, Pepe, &amp; Bollen, 2012</a>). Why? Well, aside from the obvious–that it’s an immensely popular social media platform–Twitter attracts scholarly attention because it makes a lot of its data freely available to the public via Application Program Interfaces (APIs). APIs refer to sets of protocols and procedures for interacting with sites. Twitter maintains several APIs, but in the context of publicly available data collection two, in particular, stand out.</p>
+<div id="twitters-rest-api" class="section level3">
+<h3>1. Twitter’s REST API</h3>
+<p>Twitter’s REST API provides a <a href="https://developer.twitter.com/en/docs/api-reference-index">set of protocols</a> for exploring and interacting with Twitter data related to <a href="https://developer.twitter.com/en/docs/tweets/data-dictionary/overview/intro-to-tweet-json">statuses (tweets)</a>, <a href="https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/overview">users</a>, and <a href="https://developer.twitter.com/en/docs/accounts-and-users/follow-search-get-users/api-reference">network connections (followers/friends)</a>. The data are RESTful in that they have been archived by Twitter. Navigating these resting endpoints can, at times, be <a href="https://developer.twitter.com/en/docs/basics/things-every-developer-should-know">resource intensive</a> and <a href="https://developer.twitter.com/en/docs/basics/rate-limits">slow</a>, but it also makes it possible to perform <a href="https://developer.twitter.com/en/docs/tweets/search/overview/operator_descriptions">highly complex and specific queries</a>.</p>
+</div>
+<div id="twitters-stream-api" class="section level3">
+<h3>2. Twitter’s stream API</h3>
+<p>Twitter data not yet archived and accessible via the REST API can be accessed using <a href="https://developer.twitter.com/en/docs/tweets/filter-realtime/guides/connecting">Twitter’s stream API</a>. As its name suggests, the stream API provides users with a live stream of Twitter data. Because the data are streamed, or pushed, to the user, the <a href="https://developer.twitter.com/en/docs/basics/things-every-developer-should-know">stream API reduces overhead</a> associated with performing queries on archived data sources. This makes it possible to collect large amounts of data very quickly and with relatively little strain on computational resources. The downside to the stream API is that it is limited to prospective data collection via <a href="https://developer.twitter.com/en/docs/tweets/sample-realtime/overview/GET_statuse_sample">sampling</a> or <a href="https://developer.twitter.com/en/docs/tweets/filter-realtime/overview">filtering</a>.</p>
+</div>
+</div>
 </article>
-
+    <footer class="post-footer">
       
+      <ul class="post-tags">
+        
+          <li><a href="/tags/twitter-data"><span class="tag">Twitter Data</span></a></li>
+        
+          <li><a href="/tags/twitter-api"><span class="tag">Twitter API</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © Michael W. Kearney 2017
+      </p>
+    </footer>
     
+      
     
   </section>
   <footer class="site-footer">

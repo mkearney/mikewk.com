@@ -15,12 +15,17 @@ new_post <- function(title,
                      slug = NULL,
                      categories = NULL,
                      tags = NULL) {
-  op <- options()
-  on.exit(options(op))
-  options(useFancyQuotes = FALSE)
-  if (is.null(slug)) {
-    slug <- gsub(" ", "-", tolower(title))
+  if (!identical(getOption("useFancyQuotes"), FALSE)) {
+    op <- options()
+    on.exit(options(op))
+    options(useFancyQuotes = FALSE)
   }
+  if (is.null(slug)) {
+    slug <- tolower(title)
+    slug <- gsub("[[:punct:]]", "", slug)
+    slug <- gsub(" ", "-", slug)
+  }
+  ## compile yaml info
   params <- list(
     title = dQuote(title),
     author = dQuote(author),
@@ -30,10 +35,22 @@ new_post <- function(title,
     tags = format_json(tags)
   )
   yaml <- format_yaml(params)
-  saveas <- paste0(Sys.Date(), "-", slug, ".Rmd")
-  saveas <- file.path("content", "post", saveas)
+  ## file name
+  saveas <- paste0(slug, ".Rmd")
+  saveas <- file.path(date2dir(date), saveas)
   cat(yaml, file = saveas, fill = TRUE)
   browseURL(saveas, browser = "open -a emacs")
+}
+
+date2dir <- function(x) {
+  year <- substr(x, 1, 4)
+  month <- substr(x, 6, 7)
+  day <- substr(x, 9, 10)
+  dir <- file.path("content", "post", year, month, day)
+  if (!dir.exists(dir)) {
+    dir.create(dir, recursive = TRUE)
+  }
+  dir
 }
 
 format_json <- function(x = NULL) {

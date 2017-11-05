@@ -5,11 +5,7 @@
   <meta charset="utf-8" />
 
   
-  <title>
-  Tag → cran
-  
-   | Michael W. Kearney
-</title>
+  <title>readChar.R</title>
 
   
   
@@ -18,15 +14,21 @@
 
 
   
-  <meta name="author" content="Michael W. Kearney, Ph.D." />
-  <meta name="description" content="Personal website of Michael W. Kearney, assistant professor at Missouri School of Journalism and Missouri Informatics Institute" />
+  <meta name="author" content="mwk" />
+  <meta name="description" content="Function of the day When I read text into an R session, I typically use either base::readLines() or—the tidyversion analog—readr::read_lines(). Although I’ve long been aware of readChar(), I’ve managed to avoid learning what it actually does.
+Function This post introduces the readChar() function.
+x &amp;lt;- help(&amp;quot;?&amp;quot;, &amp;quot;utils&amp;quot;) print(x)  Example x &amp;lt;- example(&amp;quot;readChar&amp;quot;, package = &amp;quot;base&amp;quot;, give.lines = TRUE) tfse::map_chr(&amp;quot;message&amp;quot;, x) ## ### Name: readChar ## ### Title: Transfer Character Strings To and From Connections ## ### Aliases: readChar writeChar ## ### Keywords: file connection ## ## ### ** Examples ## ## ## test fixed-length strings ## zz &amp;lt;- file(&amp;quot;testchar&amp;quot;, &amp;quot;wb&amp;quot;) ## x &amp;lt;- c(&amp;quot;a&amp;quot;, &amp;quot;this will be truncated&amp;quot;, &amp;quot;abc&amp;quot;) ## nc &amp;lt;- c(3, 10, 3) ## writeChar(x, zz, nc, eos = NULL) ## writeChar(x, zz, eos = &amp;quot;\r\n&amp;quot;) ## close(zz) ## ## zz &amp;lt;- file(&amp;quot;testchar&amp;quot;, &amp;quot;rb&amp;quot;) ## readChar(zz, nc) ## readChar(zz, nchar(x)&#43;3) # need to read the terminator explicitly ## close(zz) ## unlink(&amp;quot;testchar&amp;quot;) ## ## character(0)   " />
 
   
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@kearneymw" />
-  <meta name="twitter:title" content="Michael W. Kearney" />
-  <meta name="twitter:description" content="Personal website of Michael W. Kearney, assistant professor at Missouri School of Journalism and Missouri Informatics Institute" />
-  <meta name="twitter:image" content="/img/avatar.jpg" />
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kearneymw" />
+    <meta name="twitter:title" content="readChar.R" />
+    <meta name="twitter:description" content="Function of the day When I read text into an R session, I typically use either base::readLines() or—the tidyversion analog—readr::read_lines(). Although I’ve long been aware of readChar(), I’ve managed to avoid learning what it actually does.
+Function This post introduces the readChar() function.
+x &amp;lt;- help(&amp;quot;?&amp;quot;, &amp;quot;utils&amp;quot;) print(x)  Example x &amp;lt;- example(&amp;quot;readChar&amp;quot;, package = &amp;quot;base&amp;quot;, give.lines = TRUE) tfse::map_chr(&amp;quot;message&amp;quot;, x) ## ### Name: readChar ## ### Title: Transfer Character Strings To and From Connections ## ### Aliases: readChar writeChar ## ### Keywords: file connection ## ## ### ** Examples ## ## ## test fixed-length strings ## zz &amp;lt;- file(&amp;quot;testchar&amp;quot;, &amp;quot;wb&amp;quot;) ## x &amp;lt;- c(&amp;quot;a&amp;quot;, &amp;quot;this will be truncated&amp;quot;, &amp;quot;abc&amp;quot;) ## nc &amp;lt;- c(3, 10, 3) ## writeChar(x, zz, nc, eos = NULL) ## writeChar(x, zz, eos = &amp;quot;\r\n&amp;quot;) ## close(zz) ## ## zz &amp;lt;- file(&amp;quot;testchar&amp;quot;, &amp;quot;rb&amp;quot;) ## readChar(zz, nc) ## readChar(zz, nchar(x)&#43;3) # need to read the terminator explicitly ## close(zz) ## unlink(&amp;quot;testchar&amp;quot;) ## ## character(0)   " />
+    <meta name="twitter:image" content="/img/avatar.jpg" />
+  
 
 
 
@@ -34,7 +36,7 @@
 <meta name="generator" content="Hugo 0.30.2" />
 
 
-<link rel="canonical" href="/tags/cran/" />
+<link rel="canonical" href="/post/2017/11/03/readcharr/" />
 <link rel="alternative" href="/index.xml" title="Michael W. Kearney" type="application/atom+xml" />
 
 
@@ -104,6 +106,8 @@
     
     <div class="suspension">
       <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
       
     </div>
     
@@ -203,28 +207,65 @@
   </nav>
 </header>
 
-  <section class="main post-list">
-    <header class="list-header offscreen">
-      <h2 class="list-label">Posts List</h2>
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">readChar.R</h1>
+      <p class="post-meta">@mwk · Nov 3, 2017 · 1 min read</p>
     </header>
-    
-    
-      
-        <article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a href="/post/2017/11/02/tweets-about-mueller-investigation/" class="post-link">Tweets about Mueller Investigation</a></h3>
-    <p class="post-meta">@mwk · Nov 2, 2017 · 2 min read</p>
-  </header>
-  
-  <p class="post-summary">Here’s code I used to collect a bunch of data recently.
-## load rtweet library(rtweet) ## read in where left off rt &lt;- readRDS(&#34;~/Dropbox/pgmm-all2.rds&#34;) ## search for 3 million tweets mentioning any of these keywords rt_ &lt;- search_tweets( &#34;papadopolous OR gates OR mueller OR manafort&#34;, n = 18000L * 10L, retryonratelimit = TRUE, max_id = max_id(rt) ) lib(warcraft) ## merge data rt &lt;- do_call_rbind(list(rt, rt_)) ## view time series ts_plot(rt, &#34;5 mins&#34;, trim = 1L) &#43; theme_mwk() ## view date range range(rt$created_at) ## save saveRDS(rt, &#34;~/Dropbox/pgmm-all2.</p>
-  <footer class="post-footer">
-    <a class="read-more" href="/post/2017/11/02/tweets-about-mueller-investigation/">Read More →</a>
-  </footer>
+    <article class="post-content"><div id="function-of-the-day" class="section level1">
+<h1>Function of the day</h1>
+<p>When I read text into an R session, I typically use either <code>base::readLines()</code> or—the tidyversion analog—<code>readr::read_lines()</code>. Although I’ve long been aware of <code>readChar()</code>, I’ve managed to avoid learning what it actually does.</p>
+<div id="function" class="section level3">
+<h3>Function</h3>
+<p>This post introduces the <code>readChar()</code> function.</p>
+<pre class="r"><code>x &lt;- help(&quot;?&quot;, &quot;utils&quot;)
+print(x)</code></pre>
+</div>
+<div id="example" class="section level3">
+<h3>Example</h3>
+<pre class="r"><code>x &lt;- example(&quot;readChar&quot;, package = &quot;base&quot;, give.lines = TRUE)
+tfse::map_chr(&quot;message&quot;, x)
+## ### Name: readChar
+## ### Title: Transfer Character Strings To and From Connections
+## ### Aliases: readChar writeChar
+## ### Keywords: file connection
+## 
+## ### ** Examples
+## 
+## ## test fixed-length strings
+## zz &lt;- file(&quot;testchar&quot;, &quot;wb&quot;)
+## x &lt;- c(&quot;a&quot;, &quot;this will be truncated&quot;, &quot;abc&quot;)
+## nc &lt;- c(3, 10, 3)
+## writeChar(x, zz, nc, eos = NULL)
+## writeChar(x, zz, eos = &quot;\r\n&quot;)
+## close(zz)
+## 
+## zz &lt;- file(&quot;testchar&quot;, &quot;rb&quot;)
+## readChar(zz, nc)
+## readChar(zz, nchar(x)+3) # need to read the terminator explicitly
+## close(zz)
+## unlink(&quot;testchar&quot;)
+## 
+## character(0)</code></pre>
+</div>
+</div>
 </article>
-
+    <footer class="post-footer">
       
+      <ul class="post-tags">
+        
+          <li><a href="/tags/readchar"><span class="tag">ReadChar</span></a></li>
+        
+          <li><a href="/tags/rstats"><span class="tag">Rstats</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © Michael W. Kearney 2017
+      </p>
+    </footer>
     
+      
     
   </section>
   <footer class="site-footer">

@@ -1,0 +1,100 @@
+---
+title: "Tweets about Mueller Investigation"
+author: "mwk"
+date: "2017-11-02"
+slug: tweets-about-mueller-investigation
+categories: ["R"]
+tags: ["politics", "rtweet"]
+---
+
+
+
+<p>On Monday (Oct. 30th), the <a href="http://www.cnn.com/2017/10/27/politics/first-charges-mueller-investigation/index.html">first charges were filed</a> in the Mueller investigation on potential connections between the Trump campaign and the Kremlin. It’s major political news, so I wanted to capture as much of the relevant tweets as I could. In this post, I’ve documented the step-by-step of how I went about collecting the data.</p>
+<div id="install-and-load-rtweet" class="section level3">
+<h3>1. Install and load rtweet</h3>
+<p>Although I expect to update rtweet on CRAN very soon, the code below assumes the installed version of rtweet is <strong>at least</strong> version <code>'0.5.32'</code>, which—at the time of writing—is only available on Github. So, first install <a href="https://github.com/mkearney/rtweet">rtweet from Github</a> and then load the package.</p>
+<pre class="r"><code>## install devtools if necessary
+if (!requireNamespace(&quot;devtools&quot;, quietly = TRUE)) {
+  install.packages(&quot;devtools&quot;)
+}
+
+## install dev version of rtweet from github
+devtools::install_github(&quot;mkearney/rtweet&quot;)
+
+## load rtweet
+library(rtweet)</code></pre>
+</div>
+<div id="search-for-tweets" class="section level3">
+<h3>2. Search for tweets</h3>
+<p>Next, search for tweets containing one or more keywords. I selected the important names from Monday’s news stories. To search for <strong>any</strong> occurrance, make sure to separate each search term by <code>OR</code>. The code below asks for 4 million tweets containing at least one of the queried search terms. To automate the process of dealing with Twitter rate limits—which is required for a single <code>search_tweets()</code> call to return more than 18,000 tweets—set <code>retryonratelimit = TRUE</code>. Executing this code will take around 55.5 hours, but otherwise it’s super easy!</p>
+<pre class="r"><code>## search for 4 million tweets mentioning any of these keywords
+rt &lt;- search_tweets(
+  &quot;papadopolous OR gates OR mueller OR manafort&quot;,
+  n = 4e6,
+  retryonratelimit = TRUE
+)</code></pre>
+</div>
+<div id="save-the-data" class="section level3">
+<h3>3. Save the data</h3>
+<p>I recommend saving the data as an R data file via the <code>saveRDS()</code> function.</p>
+<pre class="r}"><code>## save
+saveRDS(rt, &quot;~/Dropbox/mueller-investigation.rds&quot;)</code></pre>
+</div>
+<div id="visualize-the-data" class="section level3">
+<h3>4. Visualize the data</h3>
+<p>The remaining code creates a dummy variable for which key figure was mentioned by tweets, groups the data by that created variable, and then plots the frequencies of those grouped data over time.</p>
+<pre class="r"><code>## user defined function to create grouping var with multiple levels
+mkp &lt;- function(m, x) {
+  kp &lt;- grepl(m, x$text, ignore.case = TRUE)
+  usr &lt;- users_data(x)
+  usr &lt;- usr[usr$user_id %in% x$user_id[kp], ]
+  x &lt;- x[kp, ]
+  x$regmatch &lt;- m
+  attr(x, &quot;users&quot;) &lt;- usr
+  x
+}
+
+## apply grouping fun to data rt
+rtm &lt;- lapply(
+  c(&quot;mueller&quot;, &quot;gates&quot;, &quot;papadopoulos&quot;, &quot;manafort&quot;),
+  mkp, rt
+)
+
+## handy new rtweet function for binding a list of tweets/users data
+rtm &lt;- do_call_rbind(rtm)
+
+## load tidyverse
+library(tidyverse)
+
+## group using regmatch variable and convert into time series like data
+rts &lt;- rtm %&gt;%
+  group_by(regmatch) %&gt;%
+  ts_data(&quot;5 mins&quot;, trim = 1L)
+
+## create ggplot
+rts %&gt;%
+  mutate(
+    regmatch = factor(regmatch, labels = c(&quot;Gates&quot;, &quot;Manafort&quot;, &quot;Mueller&quot;, &quot;Papadopolous&quot;))) %&gt;%
+  ggplot(aes(x = time, y = n, colour = regmatch)) +
+  geom_line() +
+  ## a ggplot2 theme from my own utility package
+  tfse::theme_mwk() +
+  labs(
+    x = NULL, y = NULL,
+    title = &quot;Twitter statuses about recent charges in Mueller&#39;s Russia investigation&quot;,
+    subtitle = &quot;Search terms–Gates, Manafort, Mueller, Papadopolous–aggregated in 5-minute intervals&quot;,
+    caption = &quot;\nSource: Data (N = 3,149,735) collected from Twitter&#39;s search API via rtweet&quot;
+  ) +
+  theme(
+    legend.position = &quot;bottom&quot;,
+    legend.text = element_text(size = rel(.75)),
+    plot.caption = element_text(colour = &quot;gray30&quot;, size = rel(.65))
+  ) +
+  guides(colour = guide_legend(override.aes = list(size = 0.725))) +
+  ggsave(&quot;~/mueller.png&quot;, width = 10, height = 7, unit = &quot;in&quot;)</code></pre>
+<p>And here’s what the plot looks like:</p>
+<div class="figure">
+<img src="../mueller.png" />
+
+</div>
+</div>
