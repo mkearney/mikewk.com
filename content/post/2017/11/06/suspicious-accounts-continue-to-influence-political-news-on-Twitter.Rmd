@@ -46,15 +46,20 @@ Papadolpous. Here's the frequency of each in the final data set:
 
 <img src="../mueller-final-draw.png" style="width:100%; max-width:900px;"> </img>
 
-Notice the weird spike in Manafort mentions? Because, for the most
-part, media coverage still drives Twitter activity, my first thought
-was that the spike was in response to a specific article or a new
-piece of information---maybe something related to Manafort's house
-arrest. However, a spike in mentions, without a more noticeable
-residual tail, still seemed odd and probably not related to something
-that happened in the news media. So, I looked closer at the data and
-discovered the spike was due to a very sudden rush to retweet the
-following status:
+Notice the weird spike in Manafort mentions? I did. Only, I couldn't
+make sense of it.
+
+It could have been due to some new development in external
+media. After all, media coverage, for the most part, [still drives
+Twitter
+activity](https://www.aaai.org/ocs/index.php/ICWSM/ICWSM16/paper/viewPaper/13006). Thus,
+the spike could have occurred in response to a new
+article or piece of information---maybe something related to
+Manafort's house arrest. However, a spike in mentions, without a more
+noticeable residual tail, still seemed odd and probably not explained
+by some external event in news media. So, I looked a little closer at
+the data and discovered the spike was due to a very sudden rush of
+retweets of the following status:
 
 <center>
 <blockquote class="twitter-tweet" data-lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/Innocent?src=hash&amp;ref_src=twsrc%5Etfw">#Innocent</a> until PROVEN guilty. My heart goes out to <a href="https://twitter.com/hashtag/Manafort?src=hash&amp;ref_src=twsrc%5Etfw">#Manafort</a> family - especially for the attorney daughter - please don&#39;t change your name</p>&mdash; Trust Of Syed Doha (@syeddoha) <a href="https://twitter.com/syeddoha/status/926132168044240896?ref_src=twsrc%5Etfw">November 2, 2017</a></blockquote>
@@ -65,16 +70,20 @@ And here's a screen shot of the tweet in case it ever gets deleted:
 
 <img src="../retweet.png" style="width:100%; max-width:500px;"> </img>
 
-So I guess the spike can be explained by a fairly popular account
-tweeting about the presumed innocence of Paul Manafort?
+I could have stopped here, deciding that the spike occurred because a
+fairly popular account tweeted about the presumed innocence of Paul
+Manafort. But given the [nature of Manafort's
+indictment](http://www.businessinsider.com/trump-russia-mueller-manafort-investigation-collusion-2017-11),
+isn't it a little hard to believe that hundreds of users were eager to
+retweet a status so obviously supportive of Manafort?
 
-But given the nature of his recent indictment, isn't it a little hard
-to believe that anyone was really excited and ready to retweet a
-status so obviously supportive of Manafort?
-
-Well I couldn't beleive it. So, next, I looked at a list of all the
-retweeters. I quickly noticed a few flags that led me to believe this
-was a coordinated effort on the part of hundreds of partisan bots.
+Well, I couldn't beleive it, so I continued to dig---this time by
+examining the list of all the retweeters. Ultimately, I noticed a few
+flags that led me to believe this weird spike in Manafort mentions was
+a coordinated effort on the part of hundreds of partisan bots. I'm
+sure there are more than four flags that give away these accounts as
+partisan bots, but these are the first four I ran into...and they were
+enough to convince me.
 
 ### Flags of suspicious partisan bots
 
@@ -108,10 +117,10 @@ least 100 of the accounts **happened** to be created.
 
 #### 4. Twitter already restricted several of them
 
-The final flag that gave away these suspiciously partisan bot accounts
-can be seen when opening many of the specific accounts in a web
-browser. Among first five accounts I opened in my browser, for instance,
-, I found that three had already been deleted by Twitter
+I discovered this last flag when I started opening profiles of
+specific accounts in my web browser. Among first five accounts I
+opened in my browser, for instance, , I found that three had already
+been deleted by Twitter
 
 <center>
 

@@ -21,3 +21,4 @@ servr::daemon_stop(x)
 rm_.DS_Store()
 
 add_to_git("new blog post")
+1
