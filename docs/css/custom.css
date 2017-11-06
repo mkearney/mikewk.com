@@ -1,3 +1,9 @@
+.main {
+  max-width: 65rem;
+}
+html {
+  font-size: 18px;
+}
 
 .post-content pre code {
   font-size: 95%;

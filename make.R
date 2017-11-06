@@ -6,10 +6,9 @@ source(".funs.R")
 
 ## create new post template
 new_post(
-  "readChar.R",
-  categories = "R",
-  tags = c("readChar", "rstats"),
-  date = "2017-11-03"
+  "Suspicious accounts continue to influence news about Trump adminstration",
+  categories = "politics",
+  tags = c("trump", "bots")
 )
 
 ## serve site
@@ -21,4 +20,4 @@ servr::daemon_stop(x)
 ## rm these damn things
 rm_.DS_Store()
 
-add_to_git("edited new_post funs and blog post organization")
+add_to_git("new blog post")

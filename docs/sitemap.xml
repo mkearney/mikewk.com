@@ -13,6 +13,11 @@
   </url>
   
   <url>
+    <loc>/post/2017/11/06/suspicious-accounts-continue-to-influence-political-news-on-twitter/</loc>
+    <lastmod>2017-11-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/post/2017/11/02/tweets-about-mueller-investigation/</loc>
     <lastmod>2017-11-02T00:00:00+00:00</lastmod>
   </url>
@@ -20,6 +25,12 @@
   <url>
     <loc>/post/2017/10/30/twitter-apis/</loc>
     <lastmod>2017-10-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/bots/</loc>
+    <lastmod>2017-11-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -40,8 +51,14 @@
   </url>
   
   <url>
+    <loc>/categories/politics/</loc>
+    <lastmod>2017-11-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/post/</loc>
-    <lastmod>2017-11-02T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -59,7 +76,13 @@
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2017-11-02T00:00:00+00:00</lastmod>
+    <lastmod>2017-11-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/trump/</loc>
+    <lastmod>2017-11-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
