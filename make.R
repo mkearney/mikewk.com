@@ -9,10 +9,11 @@ new_post(
   "readChar.R",
   categories = "R",
   tags = c("readChar", "rstats"),
-  date = "2017-11-03"
-)
+  date = "2017-11-03")
 
 ## serve site
+blogdown::build_site()
+
 x <- blogdown:::serve_site()
 
 ## stop server (or restart R session)
@@ -21,4 +22,5 @@ servr::daemon_stop(x)
 ## rm these damn things
 rm_.DS_Store()
 
-add_to_git("edited new_post funs and blog post organization")
+add_to_git("set links as homepage. misc css changes, etc.")
+1

@@ -13,16 +13,6 @@
   </url>
   
   <url>
-    <loc>/post/2017/11/02/tweets-about-mueller-investigation/</loc>
-    <lastmod>2017-11-02T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/2017/10/30/twitter-apis/</loc>
-    <lastmod>2017-10-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/categories/</loc>
     <priority>0</priority>
   </url>
@@ -34,50 +24,7 @@
   </url>
   
   <url>
-    <loc>/tags/politics/</loc>
-    <lastmod>2017-11-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2017-11-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/r/</loc>
-    <lastmod>2017-11-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/rtweet/</loc>
-    <lastmod>2017-11-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/tags/</loc>
-    <lastmod>2017-11-02T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/twitter/</loc>
-    <lastmod>2017-10-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/twitter-api/</loc>
-    <lastmod>2017-10-30T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/twitter-data/</loc>
-    <lastmod>2017-10-30T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

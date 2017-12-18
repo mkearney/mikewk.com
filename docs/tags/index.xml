@@ -7,46 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2017</copyright>
-    <lastBuildDate>Thu, 02 Nov 2017 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Politics</title>
-      <link>/tags/politics/</link>
-      <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/politics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Rtweet</title>
-      <link>/tags/rtweet/</link>
-      <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/rtweet/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Twitter Api</title>
-      <link>/tags/twitter-api/</link>
-      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/twitter-api/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Twitter Data</title>
-      <link>/tags/twitter-data/</link>
-      <pubDate>Mon, 30 Oct 2017 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/twitter-data/</guid>
-      <description></description>
-    </item>
     
   </channel>
 </rss>
