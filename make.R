@@ -25,5 +25,5 @@ servr::daemon_stop(x)
 ## rm these damn things
 rm_.DS_Store()
 
-add_to_git("new blog post")
+add_to_git("style tweaks and new landing page")
 1
