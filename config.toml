@@ -10,7 +10,7 @@ publishDir = "docs"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "^make$", "^make\\.R$", "^\\.funs\\.R$"]
 
 # Disqus Username
-disqusShortname = "kearneymw"
+#disqusShortname = "kearneymw"
 
 # Google Analytics UA number
 googleAnalytics = "UA-64959413-1"
