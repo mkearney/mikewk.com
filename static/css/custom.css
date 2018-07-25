@@ -18,14 +18,16 @@ html {
 }
 
 section.main.links-list {
-  padding-top: 10px;
+  padding-top: 3%;
 }
 
-.link-item {
-  margin: 1.0rem auto;
+.links-list .link-item {
+  margin: 4% auto;
   display: inline-block;
   width: 33%;
+  min-width: 150px;
 }
+
 
 .main {
   max-width: 100rem;
