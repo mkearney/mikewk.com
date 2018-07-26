@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Michael W. Kearney</title>
-    <link>http://mikewk.com/</link>
+    <link>/</link>
     <description>Recent content on Michael W. Kearney</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2017</copyright>
     <lastBuildDate>Wed, 01 Nov 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://mikewk.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>About</title>
-      <link>http://mikewk.com/about/</link>
+      <link>/about/</link>
       <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://mikewk.com/about/</guid>
+      <guid>/about/</guid>
       <description>Appointment I&amp;rsquo;m an assistant professor at the University of Missouri where I hold a joint appointment in Journalism Studies with the School of Journalism and Data Science and Analytics with the Informatics Institute. I teach courses in mass media, political communication, quantitative research methods, and data science.
 Research My research uses computational social scientific methods to analyze the selection and dissemination of information in digital media environments. Broadly, I&amp;rsquo;m interested in selective exposure, new media, data journalism, and data science.</description>
     </item>
     
     <item>
       <title>Links</title>
-      <link>http://mikewk.com/links/</link>
+      <link>/links/</link>
       <pubDate>Wed, 01 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://mikewk.com/links/</guid>
+      <guid>/links/</guid>
       <description>My links</description>
     </item>
     
