@@ -9,8 +9,8 @@ section.main.links-list {
 .links-list .link-item {
   margin: 1% auto;
   display: inline-block;
-  width: 33%;
-  min-width: 150px;
+  width: 25%;
+  min-width: 140px;
 }
 
 .links-list .link-item .link-avatar {
@@ -18,7 +18,7 @@ section.main.links-list {
   position: relative;
   width: 110px;
   background-color: transparent;
-  margin: 8.87px 0;
+  margin: 12.87px 0;
 }
 
 .links-list .link-item .link-avatar:before,
