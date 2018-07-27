@@ -25,5 +25,5 @@ servr::daemon_stop(x)
 ## rm these damn things
 rm_.DS_Store()
 
-add_to_git("style tweaks and new landing page")
+tfse::add_to_git("edit fonts")
 1

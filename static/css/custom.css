@@ -3,16 +3,58 @@ html {
 }
 
 section.main.links-list {
-  padding-top: 3%;
+  padding-top: 2%;
 }
 
 .links-list .link-item {
-  margin: 4% auto;
+  margin: 1% auto;
   display: inline-block;
   width: 33%;
   min-width: 150px;
 }
 
+.links-list .link-item .link-avatar {
+  border: none;
+  position: relative;
+  width: 110px;
+  background-color: transparent;
+  margin: 8.87px 0;
+}
+
+.links-list .link-item .link-avatar:before,
+.links-list .link-item .link-avatar:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  width: 70.71px;
+  height: 70.71px;
+  -webkit-transform: scaleY(0.5774) rotate(-45deg);
+  -ms-transform: scaleY(0.5774) rotate(-45deg);
+  transform: scaleY(0.5774) rotate(-45deg);
+  background-color: inherit;
+  left: 14.6447px;
+}
+
+
+.links-list .link-item .link-avatar:before {
+  top: -35.3553px;
+}
+
+.links-list .link-item .link-avatar:after {
+  bottom: -35.3553px;
+}
+
+/*cover up extra shadows*/
+.links-list .link-item .link-avatar span {
+  display: block;
+  position: absolute;
+  top:0px;
+  left: 0;
+  width:100px;
+  height:57.7350px;
+  z-index: 2;
+  background: inherit;
+}
 
 .main {
   max-width: 100rem;

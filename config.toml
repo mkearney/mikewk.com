@@ -1,4 +1,4 @@
-baseURL = "http://mikewk.com"
+baseURL = "https://mikewk.com"
 languageCode = "en"
 title = "Michael W. Kearney"
 theme = "hugo-nuo"

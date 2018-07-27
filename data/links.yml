@@ -1,7 +1,7 @@
 01_botrnot:
-  title: botrnot
+  title: tweetbotornot
   link: https://mikewk.shinyapps.io/botornot/
-  avatar: /media/links/botrnot.png
+  avatar: /media/links/tweetbotornot.png
   description:
 
 02_candisheng:
@@ -56,4 +56,28 @@
   title: Twitter
   link: https://twitter.com/kearneymw/
   avatar: /media/links/twitter.png
+  description:
+
+10_pkgverse:
+  title: pkgverse
+  link: https://github.com/mkearney/pkgverse/
+  avatar: /media/links/pkgverse.png
+  description:
+
+11_tidyversity:
+  title: tidyversity
+  link: https://github.com/mkearney/tidyversity/
+  avatar: /media/links/pkgverse.png
+  description:
+
+11_tidyversity:
+  title: tidyversity
+  link: https://github.com/mkearney/tidyversity/
+  avatar: /media/links/pkgverse.png
+  description:
+
+12_kaggler:
+  title: kaggler
+  link: https://github.com/mkearney/kaggler/
+  avatar: /media/links/kaggler.png
   description:
