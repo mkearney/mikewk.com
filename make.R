@@ -1,17 +1,4 @@
-## r
-
-
 ## mikewk.com
-
-## read in my blogdown/hugo helper funs
-source(".funs.R")
-
-## create new post template
-#new_post(
-#  "Suspicious accounts continue to influence news about Trump adminstration",
-#  categories = "politics",
-#  tags = c("trump", "bots")
-#)
 
 ## build site
 blogdown::build_site()
