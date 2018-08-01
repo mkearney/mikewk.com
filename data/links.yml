@@ -46,7 +46,7 @@
   avatar: /media/links/rtweet.png
   description:
 
-08_candisheng:
+08_textfeatures:
   title: textfeatures
   link: https://github.com/mkearney/textfeatures/
   avatar: /media/links/textfeatures.png
@@ -67,17 +67,35 @@
 11_tidyversity:
   title: tidyversity
   link: https://github.com/mkearney/tidyversity/
-  avatar: /media/links/pkgverse.png
+  avatar: /media/links/tidyversity.png
   description:
 
-11_tidyversity:
+12_tidyreg:
   title: tidyversity
-  link: https://github.com/mkearney/tidyversity/
-  avatar: /media/links/pkgverse.png
+  link: https://github.com/mkearney/tidyreg/
+  avatar: /media/links/tidyreg.png
   description:
 
-12_kaggler:
+13_kaggler:
   title: kaggler
   link: https://github.com/mkearney/kaggler/
   avatar: /media/links/kaggler.png
+  description:
+
+14_nytimes:
+  title: nytimes
+  link: https://github.com/mkearney/nytimes/
+  avatar: /media/links/nytimes.png
+  description:
+
+15_funique:
+  title: funique
+  link: https://github.com/mkearney/funique/
+  avatar: /media/links/funique.png
+  description:
+
+16_chr:
+  title: chr
+  link: https://github.com/mkearney/chr/
+  avatar: /media/links/chr.png
   description:
