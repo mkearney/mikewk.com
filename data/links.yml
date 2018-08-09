@@ -1,29 +1,24 @@
 01_botrnot:
-  title: tweetbotornot
   link: https://mikewk.shinyapps.io/botornot/
   avatar: /media/links/tweetbotornot.png
   description:
 
 02_candisheng:
-  title: Curriculum Vitae
   link: http://mikewk.com/cv/cv.pdf
   avatar: /media/links/cv.png
   description:
 
 03_github:
-  title: Github
   link: https://github.com/mkearney/
   avatar: /media/links/github.png
   description:
 
 04_candisheng:
-  title: friendship
   link: https://mikewk.shinyapps.io/friendship/
   avatar: /media/links/friendship.png
   description:
 
 05_gscholar:
-  title: Google Scholar
   link: https://scholar.google.com/citations?user=j3EZl3MAAAAJ
   avatar: /media/links/google-scholar.png
   description:
@@ -35,67 +30,56 @@
 #  description:
 
 06_researchgate:
-  title: Research Gate
   link: https://www.researchgate.net/profile/Michael_Kearney11/
   avatar: /media/links/research-gate.png
   description:
 
 07_rtweet:
-  title: rtweet
   link: http://rtweet.info/
   avatar: /media/links/rtweet.png
   description:
 
 08_textfeatures:
-  title: textfeatures
   link: https://github.com/mkearney/textfeatures/
   avatar: /media/links/textfeatures.png
   description:
 
 09_twitter:
-  title: Twitter
   link: https://twitter.com/kearneymw/
   avatar: /media/links/twitter.png
   description:
 
 10_pkgverse:
-  title: pkgverse
   link: https://github.com/mkearney/pkgverse/
   avatar: /media/links/pkgverse.png
   description:
 
 11_tidyversity:
-  title: tidyversity
   link: https://github.com/mkearney/tidyversity/
   avatar: /media/links/tidyversity.png
   description:
 
 12_tidyreg:
-  title: tidyversity
   link: https://github.com/mkearney/tidyreg/
   avatar: /media/links/tidyreg.png
   description:
 
 13_kaggler:
-  title: kaggler
   link: https://github.com/mkearney/kaggler/
   avatar: /media/links/kaggler.png
   description:
 
 14_nytimes:
-  title: nytimes
   link: https://github.com/mkearney/nytimes/
   avatar: /media/links/nytimes.png
   description:
 
 15_funique:
-  title: funique
   link: https://github.com/mkearney/funique/
   avatar: /media/links/funique.png
   description:
 
 16_chr:
-  title: chr
   link: https://github.com/mkearney/chr/
   avatar: /media/links/chr.png
   description:

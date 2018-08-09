@@ -4,13 +4,14 @@ html {
 
 section.main.links-list {
   padding-top: 2%;
+  padding-bottom: 2%;
 }
 
 .links-list .link-item {
-  margin: 1% auto;
+  margin: 2% auto 0 auto;
   display: inline-block;
-  width: 25%;
-  min-width: 140px;
+  width: 22%;
+  min-width: 120px;
 }
 
 .links-list .link-item .link-avatar {
@@ -18,7 +19,7 @@ section.main.links-list {
   position: relative;
   width: 110px;
   background-color: transparent;
-  margin: 12.87px 0;
+  margin: 0 0 0 0;
 }
 
 .links-list .link-item .link-avatar:before,
@@ -48,10 +49,10 @@ section.main.links-list {
 .links-list .link-item .link-avatar span {
   display: block;
   position: absolute;
-  top:0px;
+  top: 0px;
   left: 0;
   width:100px;
-  height:57.7350px;
+  height: 57.7350px;
   z-index: 2;
   background: inherit;
 }
@@ -71,7 +72,7 @@ article.post-content {
 }
 
 .highlight {
-  margin: 0px;
+  margin: 0;
   display: block;
   overflow-x: auto;
   padding: 15px 20px;
