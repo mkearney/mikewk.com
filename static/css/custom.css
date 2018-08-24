@@ -158,3 +158,101 @@ article.post-content {
 .highlight .code .selector-id {
   font-weight: 500;
 }
+
+.hexBadges {
+ position:relative;
+ width:500px;
+ margin-top:-130px;
+ height:600px
+}
+.hexBadges img {
+ width:128px;
+ height:148px;
+ position:absolute;
+ -webkit-transition-property:opacity;
+ -moz-transition-property:opacity;
+ -o-transition-property:opacity;
+ transition-property:opacity;
+ -webkit-transition-duration:.25s;
+ -moz-transition-duration:.25s;
+ -o-transition-duration:.25s;
+ transition-duration:.25s
+}
+.hexBadges img.r0.c0,.hexBadges img.r2.c0,.hexBadges img.r4.c0 {
+ left:0
+}
+.hexBadges img.r0.c00,.hexBadges img.r2.c00,.hexBadges img.r4.c00 {
+ left:-125px
+}
+.hexBadges img.r0.c1,.hexBadges img.r2.c1,.hexBadges img.r4.c1 {
+ left:125px
+}
+.hexBadges img.r0.c15,.hexBadges img.r2.c15,.hexBadges img.r4.c15 {
+ left:125px
+}
+.hexBadges img.r0.c2,.hexBadges img.r2.c2,.hexBadges img.r4.c2 {
+ left:250px
+}
+.hexBadges img.r0.c25,.hexBadges img.r2.c25,.hexBadges img.r4.c25 {
+ left:250px
+}
+.hexBadges img.r0.c3,.hexBadges img.r2.c3,.hexBadges img.r4.c3 {
+ left:375px
+}
+.hexBadges img.r0.c5,.hexBadges img.r2.c5,.hexBadges img.r4.c5 {
+ left:500px
+}
+.hexBadges img.r0.c7,.hexBadges img.r2.c7,.hexBadges img.r4.c7 {
+ left:625px
+}
+.hexBadges img.r1.c0,.hexBadges img.r3.c0,.hexBadges img.r5.c0 {
+ left:62px
+}
+.hexBadges img.r1.c00,.hexBadges img.r3.c00,.hexBadges img.r5.c00 {
+ left:-62px
+}
+.hexBadges img.r1.c1,.hexBadges img.r3.c1,.hexBadges img.r5.c1 {
+ left:187px
+}
+.hexBadges img.r1.c2,.hexBadges img.r3.c2,.hexBadges img.r5.c2 {
+ left:312px
+}
+.hexBadges img.r1.c3,.hexBadges img.r3.c3,.hexBadges img.r5.c3 {
+ left:437px
+}
+.hexBadges img.r1.c5,.hexBadges img.r3.c5,.hexBadges img.r5.c5 {
+ left:562px
+}
+.hexBadges img.r0 {
+ top:0
+}
+.hexBadges img.r1 {
+ top:107.5px
+}
+.hexBadges img.r2 {
+ top:215px
+}
+.hexBadges img.r3 {
+ top:322.5px
+}
+.hexBadges img.r4 {
+ top:430px
+}
+.hexBadges img.r5 {
+ top:537.5px
+}
+
+.hexBadges img:hover {
+  transform:rotate(45deg)}.links-list .link-item .link-title{font-size:1rem;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;min-width:100px;
+}
+
+.hexBadges img {
+    transition:transform ease-out .5s;
+}
+
+
+div.hexBadges {
+  min-width: 100px !important;
+  margin-top: auto;
+  margin-bottom: auto;
+}

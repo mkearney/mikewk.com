@@ -5,16 +5,25 @@
 {{ define "main" }}
   {{ partial "header.html" . }}
 <section class="main links-list">
-    <header class="list-header offscreen">
-      <h2 class="list-label">{{ .Title }}</h2>
-    </header>
-    {{ range $.Site.Data.links }}
-      <a class="link-item" href="{{ .link }}">
-        <img class="link-avatar" src="{{ .avatar }}" alt="{{ .title }}">
-        <h3 class="link-title">{{ .title }}</h3>
-        <p class="link-description">{{ .description }}</p>
-      </a>
-    {{ end }}
+
+ <div class="hexBadges">
+        <a href="http://purrr.tidyverse.org/"><img src="/media/links/hex-rtweet.png" alt="purrr hex sticker" class="r4 c2" /></a>
+        <a href="http://ggplot2.tidyverse.org/"><img src="/media/links/hex-github.png" alt="ggplot2 hex sticker" class="r2 c0"></a>
+        <a href="http://ggplot2.tidyverse.org/"><img src="/media/links/hex-tfse.png" alt="ggplot2 hex sticker" class="r2 c15"></a>
+        <a href="http://dplyr.tidyverse.org/"><img src="/media/links/hex-tidyversity.png" alt="dplyr hex sticker" class="r1 c2"></a>
+        <a href="http://dplyr.tidyverse.org/"><img src="/media/links/hex-tidyreg.png" alt="dplyr hex sticker" class="r1 c0"></a>
+        <a href="http://dplyr.tidyverse.org/"><img src="/media/links/hex-chr.png" alt="dplyr hex sticker" class="r1 c1"></a>
+        <a href="http://dplyr.tidyverse.org/"><img src="/media/links/hex-tweetbotornot.png" alt="dplyr hex sticker" class="r1 c3"></a>
+        <a href="http://tidyr.tidyverse.org/"><img src="/media/links/hex-textfeatures.png" alt="tidyr hex sticker" class="r3 c2"></a>
+        <a href="http://readr.tidyverse.org/"><img src="/media/links/hex-research-gate.png" alt="readr hex sticker" class="r3 c0"></a>
+        <a href="http://readr.tidyverse.org/"><img src="/media/links/hex-stat.png" alt="readr hex sticker" class="r3 c3"></a>
+        <a href="http://tibble.tidyverse.org/"><img src="/media/links/hex-twitter.png" alt="tibble hex sticker" class="r2 c2"></a>
+        <a href="http://tibble.tidyverse.org/"><img src="/media/links/hex-funique.png" alt="tibble hex sticker" class="r2 c3"></a>
+        <a href="http://dplyr.tidyverse.org/"><img src="/media/links/hex-friendship.png" alt="dplyr hex sticker" class="r4 c1"></a>
+        <a href="http://dplyr.tidyverse.org/"><img src="/media/links/hex-kaggler.png" alt="dplyr hex sticker" class="r4 c0"></a>
+        <a href="http://dplyr.tidyverse.org/"><img src="/media/links/hex-nytimes.png" alt="dplyr hex sticker" class="r4 c3"></a>
+        <a href="http://tibble.tidyverse.org/"><img src="/media/links/hex-funique.png" alt="tibble hex sticker" class="r3 c1"></a>
+</div>
   </section>
   {{ partial "footer.html" . }}
 {{ end }}
