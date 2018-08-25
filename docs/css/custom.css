@@ -1,3 +1,50 @@
+@charset "UTF-8";
+
+@font-face{
+  font-family: "Avenir-Next";
+  src:url("../fonts/avenir-next/AvenirNextLTPro-Regular.otf");
+  font-weight: 300;
+}
+
+@font-face{
+  font-family: "Avenir-Next";
+  src:url("../fonts/avenir-next/AvenirNextLTPro-It.otf");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face{
+  font-family: "Avenir-Next";
+  src:url("../fonts/avenir-next//AvenirNextLTPro-Demi.otf");
+  font-weight: 500;
+}
+
+@font-face{
+  font-family: "Avenir-Next";
+  src:url("../fonts/avenir-next//AvenirNextLTPro-DemiIt.otf");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face{
+  font-family: "Avenir-Next";
+  src:url("../fonts/avenir-next/AvenirNextLTPro-Bold.otf");
+  font-weight: 600;
+}
+
+@font-face{
+  font-family: "Avenir-Next";
+  src:url("../fonts/avenir-next/AvenirNextLTPro-BoldIt.otf");
+  font-weight: 600;
+  font-style: italic;
+}
+
+
+body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
+  font-family: 'Avenir-Next', 'Helvetica Neue', Helvetica, Roboto, sans-serif;
+  font-weight: 300;
+}
+
 html {
   font-family: 'Helvetica Neue', Roboto, Helvetica, sans-serif;
 }
@@ -160,10 +207,10 @@ article.post-content {
 }
 
 .hexBadges {
- position:relative;
+/* position:relative;
  width:500px;
  margin-top:-130px;
- height:600px
+ height:600px */
 }
 .hexBadges img {
  width:128px;

@@ -1,64 +1,67 @@
-html {
-  font-family: 'Helvetica Neue', Roboto, Helvetica, sans-serif;
+@charset "UTF-8";
+
+@font-face{
+  font-family: "Avenir-Next";
+  src:url("../fonts/avenir-next/AvenirNextLTPro-Regular.otf");
+  font-weight: 300;
 }
 
-section.main.links-list {
-  padding-top: 2%;
-  padding-bottom: 2%;
+@font-face{
+  font-family: "Avenir-Next";
+  src:url("../fonts/avenir-next/AvenirNextLTPro-It.otf");
+  font-weight: 300;
+  font-style: italic;
 }
+
+@font-face{
+  font-family: "Avenir-Next";
+  src:url("../fonts/avenir-next//AvenirNextLTPro-Demi.otf");
+  font-weight: 500;
+}
+
+@font-face{
+  font-family: "Avenir-Next";
+  src:url("../fonts/avenir-next//AvenirNextLTPro-DemiIt.otf");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face{
+  font-family: "Avenir-Next";
+  src:url("../fonts/avenir-next/AvenirNextLTPro-Bold.otf");
+  font-weight: 600;
+}
+
+@font-face{
+  font-family: "Avenir-Next";
+  src:url("../fonts/avenir-next/AvenirNextLTPro-BoldIt.otf");
+  font-weight: 600;
+  font-style: italic;
+}
+
+
+html, body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
+  font-family: 'Avenir-Next', 'Helvetica Neue', Helvetica, Roboto, sans-serif;
+  font-weight: 300;
+  color: #333;
+}
+
+.main {
+  box-shadow: rgba(0, 0, 0, 0.14) 0px 16px 24px 2px, rgba(0, 0, 0, 0.12) 0px 6px 30px 5px, rgba(0, 0, 0, 0.2) 0px 8px 10px -5px;
+  margin: .5rem .5rem .5rem 20rem;
+  border-radius: 6px;
+  height: 100vh;
+  width: calc(99vw - 20rem);
+}
+
+@media screen and (max-width: 800px){.main {margin: auto; width: 98%; height: 100%; min-height: 310px; padding: 0 5px;}}
+
 
 .links-list .link-item {
   margin: 2% auto 0 auto;
   display: inline-block;
   width: 22%;
   min-width: 120px;
-}
-
-.links-list .link-item .link-avatar {
-  border: none;
-  position: relative;
-  width: 110px;
-  background-color: transparent;
-  margin: 0 0 0 0;
-}
-
-.links-list .link-item .link-avatar:before,
-.links-list .link-item .link-avatar:after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  width: 70.71px;
-  height: 70.71px;
-  -webkit-transform: scaleY(0.5774) rotate(-45deg);
-  -ms-transform: scaleY(0.5774) rotate(-45deg);
-  transform: scaleY(0.5774) rotate(-45deg);
-  background-color: inherit;
-  left: 14.6447px;
-}
-
-
-.links-list .link-item .link-avatar:before {
-  top: -35.3553px;
-}
-
-.links-list .link-item .link-avatar:after {
-  bottom: -35.3553px;
-}
-
-/*cover up extra shadows*/
-.links-list .link-item .link-avatar span {
-  display: block;
-  position: absolute;
-  top: 0px;
-  left: 0;
-  width:100px;
-  height: 57.7350px;
-  z-index: 2;
-  background: inherit;
-}
-
-.main {
-  max-width: 100rem;
 }
 
 article.post-content {
@@ -160,10 +163,8 @@ article.post-content {
 }
 
 .hexBadges {
- position:relative;
- width:500px;
- margin-top:-130px;
- height:600px
+  margin: auto;
+  position:relative;
 }
 .hexBadges img {
  width:128px;
@@ -178,78 +179,74 @@ article.post-content {
  -o-transition-duration:.25s;
  transition-duration:.25s
 }
-.hexBadges img.r0.c0,.hexBadges img.r2.c0,.hexBadges img.r4.c0 {
- left:0
+
+@media screen and (max-width: 800px){.hexBadges img{width:60px; height:70px;}}
+@media screen and (max-width: 800px){.hexBadges{margin: auto; position: relative;}}
+
+.hexBadges img.r0.c0,.hexBadges img.r2.c0,.hexBadges img.r4.c0,.hexBadges img.r6.c0 {left:0}
+@media screen and (max-width: 800px){.hexBadges img.r0.c1,.hexBadges img.r2.c1,.hexBadges img.r4.c1,.hexBadges img.r6.c1 {left:0px;}}
+
+.hexBadges img.r0.c1,.hexBadges img.r2.c1,.hexBadges img.r4.c1,.hexBadges img.r6.c1 {left:125px}
+@media screen and (max-width: 800px){.hexBadges img.r0.c1,.hexBadges img.r2.c1,.hexBadges img.r4.c1,.hexBadges img.r6.c1 {left:60px;}}
+
+.hexBadges img.r0.c2,.hexBadges img.r2.c2,.hexBadges img.r4.c2,.hexBadges img.r6.c2 {left:250px}
+@media screen and (max-width: 800px){.hexBadges img.r0.c2,.hexBadges img.r2.c2,.hexBadges img.r4.c2,.hexBadges img.r6.c2 {left:120px}}
+
+.hexBadges img.r0.c3,.hexBadges img.r2.c3,.hexBadges img.r4.c3,.hexBadges img.r6.c3 {left:375px}
+@media screen and (max-width: 800px){.hexBadges img.r0.c3,.hexBadges img.r2.c3,.hexBadges img.r4.c3,.hexBadges img.r6.c3 {left:180px}}
+
+.hexBadges img.r0.c5,.hexBadges img.r2.c5,.hexBadges img.r4.c5,.hexBadges img.r6.c5 {left:500px}
+@media screen and (max-width: 800px){.hexBadges img.r0.c5,.hexBadges img.r2.c5,.hexBadges img.r4.c5,.hexBadges img.r6.c5 {left:240px}}
+
+.hexBadges img.r0.c7,.hexBadges img.r2.c7,.hexBadges img.r4.c7,.hexBadges img.r6.c7 {left:625px}
+@media screen and (max-width: 800px){.hexBadges img.r0.c7,.hexBadges img.r2.c7,.hexBadges img.r4.c7,.hexBadges img.r6.c7 {left:300px}}
+
+.hexBadges img.r1.c0,.hexBadges img.r3.c0,.hexBadges img.r5.c0 {left:62px}
+@media screen and (max-width: 800px){.hexBadges img.r1.c0,.hexBadges img.r3.c0,.hexBadges img.r5.c0 {left:30px}}
+
+.hexBadges img.r1.c1,.hexBadges img.r3.c1,.hexBadges img.r5.c1 {left:187px}
+@media screen and (max-width: 800px){.hexBadges img.r1.c1,.hexBadges img.r3.c1,.hexBadges img.r5.c1 {left:90px}}
+
+.hexBadges img.r1.c2,.hexBadges img.r3.c2,.hexBadges img.r5.c2 {left:312px}
+@media screen and (max-width: 800px){.hexBadges img.r1.c2,.hexBadges img.r3.c2,.hexBadges img.r5.c2 {left:150px}}
+
+.hexBadges img.r1.c3,.hexBadges img.r3.c3,.hexBadges img.r5.c3 {left:437px}
+@media screen and (max-width: 800px){.hexBadges img.r1.c3,.hexBadges img.r3.c3,.hexBadges img.r5.c3 {left:210px}}
+
+.hexBadges img.r1.c5,.hexBadges img.r3.c5,.hexBadges img.r5.c5 {left:562px}
+@media screen and (max-width: 800px){.hexBadges img.r1.c5,.hexBadges img.r3.c5,.hexBadges img.r5.c5 {left:270px}}
+
+.hexBadges img.r1 {top:7.5px}
+@media screen and (max-width: 800px){.hexBadges img.r1 {top:10px}}
+
+.hexBadges img.r2 {top:115px}
+@media screen and (max-width: 800px){.hexBadges img.r2 {top:65px}}
+
+.hexBadges img.r3 {top:222.5px}
+@media screen and (max-width: 800px){.hexBadges img.r3 {top:120px}}
+
+.hexBadges img.r4 {top:330px}
+@media screen and (max-width: 800px){.hexBadges img.r4 {top:175px}}
+
+.hexBadges img.r5 {top:437.5px}
+@media screen and (max-width: 800px){.hexBadges img.r5 {top:230px}}
+
+.hexBadges img.r6 {top:545px}
+@media screen and (max-width: 800px){.hexBadges img.r6 {top:285px}}
+
+.hexBadges img.c0:hover, .hexBadges img.c2:hover, .hexBadges img.c5:hover, .hexBadges img.c7:hover {
+  transform:rotate(58.5deg)
 }
-.hexBadges img.r0.c00,.hexBadges img.r2.c00,.hexBadges img.r4.c00 {
- left:-125px
-}
-.hexBadges img.r0.c1,.hexBadges img.r2.c1,.hexBadges img.r4.c1 {
- left:125px
-}
-.hexBadges img.r0.c15,.hexBadges img.r2.c15,.hexBadges img.r4.c15 {
- left:125px
-}
-.hexBadges img.r0.c2,.hexBadges img.r2.c2,.hexBadges img.r4.c2 {
- left:250px
-}
-.hexBadges img.r0.c25,.hexBadges img.r2.c25,.hexBadges img.r4.c25 {
- left:250px
-}
-.hexBadges img.r0.c3,.hexBadges img.r2.c3,.hexBadges img.r4.c3 {
- left:375px
-}
-.hexBadges img.r0.c5,.hexBadges img.r2.c5,.hexBadges img.r4.c5 {
- left:500px
-}
-.hexBadges img.r0.c7,.hexBadges img.r2.c7,.hexBadges img.r4.c7 {
- left:625px
-}
-.hexBadges img.r1.c0,.hexBadges img.r3.c0,.hexBadges img.r5.c0 {
- left:62px
-}
-.hexBadges img.r1.c00,.hexBadges img.r3.c00,.hexBadges img.r5.c00 {
- left:-62px
-}
-.hexBadges img.r1.c1,.hexBadges img.r3.c1,.hexBadges img.r5.c1 {
- left:187px
-}
-.hexBadges img.r1.c2,.hexBadges img.r3.c2,.hexBadges img.r5.c2 {
- left:312px
-}
-.hexBadges img.r1.c3,.hexBadges img.r3.c3,.hexBadges img.r5.c3 {
- left:437px
-}
-.hexBadges img.r1.c5,.hexBadges img.r3.c5,.hexBadges img.r5.c5 {
- left:562px
-}
-.hexBadges img.r0 {
- top:0
-}
-.hexBadges img.r1 {
- top:107.5px
-}
-.hexBadges img.r2 {
- top:215px
-}
-.hexBadges img.r3 {
- top:322.5px
-}
-.hexBadges img.r4 {
- top:430px
-}
-.hexBadges img.r5 {
- top:537.5px
+.hexBadges img.c1:hover, .hexBadges img.c3:hover, .hexBadges img.c6:hover {
+  transform:rotate(-58.5deg)
 }
 
-.hexBadges img:hover {
-  transform:rotate(45deg)}.links-list .link-item .link-title{font-size:1rem;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;min-width:100px;
+.hexBadges img.c0, .hexBadges img.c2, .hexBadges img.c5, .hexBadges img.c7 {
+  transition:transform ease-out .3s .3s;
 }
-
-.hexBadges img {
-    transition:transform ease-out .5s;
+.hexBadges img.c1, .hexBadges img.c3, .hexBadges img.c6 {
+  transition:transform ease-out .3s;
 }
-
 
 div.hexBadges {
   min-width: 100px !important;
