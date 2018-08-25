@@ -47,25 +47,26 @@ html, body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
 }
 
 .main {
-  box-shadow: rgba(0, 0, 0, 0.14) 0px 16px 24px 2px, rgba(0, 0, 0, 0.12) 0px 6px 30px 5px, rgba(0, 0, 0, 0.2) 0px 8px 10px -5px;
-  margin: .5rem .5rem .5rem 20rem;
-  border-radius: 6px;
-  height: 100vh;
-  width: calc(99vw - 20rem);
+  position: fixed;
+  box-shadow: rgba(0, 0, 0, 0.14) 0 16px 24px 2px, rgba(0, 0, 0, 0.12) 0 6px 30px 5px, rgba(0, 0, 0, 0.2) 0 8px 10px -5px;
+  margin: 0 0 0 20rem;
+  height: 100%;
+  width: 100%;
+  max-width: none;
 }
 
-@media screen and (max-width: 800px){.main {margin: auto; width: 98%; height: 100%; min-height: 310px; padding: 0 5px;}}
+
+@media screen and (max-width: 800px){.main {margin: auto; width: 100%; height: 100%; min-height: 310px; padding: 0 5px;}}
 
 
-.links-list .link-item {
-  margin: 2% auto 0 auto;
-  display: inline-block;
-  width: 22%;
-  min-width: 120px;
-}
 
 article.post-content {
-  max-width: 55rem;
+  width: calc(100vw - 24rem);
+  max-width: 800px;
+}
+
+.main.post-detail {
+  max-width: calc(100vw - 20rem);
 }
 
 .post-content pre code {
@@ -164,20 +165,20 @@ article.post-content {
 
 .hexBadges {
   margin: auto;
-  position:relative;
+  position: relative;
 }
 .hexBadges img {
- width:128px;
- height:148px;
- position:absolute;
- -webkit-transition-property:opacity;
- -moz-transition-property:opacity;
- -o-transition-property:opacity;
- transition-property:opacity;
- -webkit-transition-duration:.25s;
- -moz-transition-duration:.25s;
- -o-transition-duration:.25s;
- transition-duration:.25s
+  width:128px;
+  height:148px;
+  position:absolute;
+  -webkit-transition-property:opacity;
+  -moz-transition-property:opacity;
+  -o-transition-property:opacity;
+  transition-property:opacity;
+  -webkit-transition-duration:.25s;
+  -moz-transition-duration:.25s;
+  -o-transition-duration:.25s;
+  transition-duration:.25s
 }
 
 @media screen and (max-width: 800px){.hexBadges img{width:60px; height:70px;}}
@@ -216,28 +217,30 @@ article.post-content {
 .hexBadges img.r1.c5,.hexBadges img.r3.c5,.hexBadges img.r5.c5 {left:562px}
 @media screen and (max-width: 800px){.hexBadges img.r1.c5,.hexBadges img.r3.c5,.hexBadges img.r5.c5 {left:270px}}
 
-.hexBadges img.r1 {top:7.5px}
+.hexBadges img.r1 {top:77.5px}
 @media screen and (max-width: 800px){.hexBadges img.r1 {top:10px}}
 
-.hexBadges img.r2 {top:115px}
+.hexBadges img.r2 {top:185px}
 @media screen and (max-width: 800px){.hexBadges img.r2 {top:65px}}
 
-.hexBadges img.r3 {top:222.5px}
+.hexBadges img.r3 {top:292.5px}
 @media screen and (max-width: 800px){.hexBadges img.r3 {top:120px}}
 
-.hexBadges img.r4 {top:330px}
+.hexBadges img.r4 {top:400px}
 @media screen and (max-width: 800px){.hexBadges img.r4 {top:175px}}
 
-.hexBadges img.r5 {top:437.5px}
+.hexBadges img.r5 {top:507.5px}
 @media screen and (max-width: 800px){.hexBadges img.r5 {top:230px}}
 
-.hexBadges img.r6 {top:545px}
+.hexBadges img.r6 {top:615px}
 @media screen and (max-width: 800px){.hexBadges img.r6 {top:285px}}
 
-.hexBadges img.c0:hover, .hexBadges img.c2:hover, .hexBadges img.c5:hover, .hexBadges img.c7:hover {
+.hexBadges img.c0:hover, .hexBadges img.c2:hover, .hexBadges img.c5:hover, .hexBadges img.c7:hover,
+.hexBadges img.c0:focus, .hexBadges img.c2:focus, .hexBadges img.c5:focus, .hexBadges img.c7:focus {
   transform:rotate(58.5deg)
 }
-.hexBadges img.c1:hover, .hexBadges img.c3:hover, .hexBadges img.c6:hover {
+.hexBadges img.c1:hover, .hexBadges img.c3:hover, .hexBadges img.c6:hover,
+.hexBadges img.c1:focus, .hexBadges img.c3:focus, .hexBadges img.c6:focus{
   transform:rotate(-58.5deg)
 }
 
@@ -248,8 +251,4 @@ article.post-content {
   transition:transform ease-out .3s;
 }
 
-div.hexBadges {
-  min-width: 100px !important;
-  margin-top: auto;
-  margin-bottom: auto;
-}
+@media screen and (max-width: 800px){.subtitle {line-height: 1.1; margin: 0; position:relative;}}
