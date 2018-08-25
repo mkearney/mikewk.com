@@ -47,11 +47,13 @@ html, body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
 }
 
 .main {
-  position: fixed;
+  position: absolute;
   box-shadow: rgba(0, 0, 0, 0.14) 0 16px 24px 2px, rgba(0, 0, 0, 0.12) 0 6px 30px 5px, rgba(0, 0, 0, 0.2) 0 8px 10px -5px;
   margin: 0 0 0 20rem;
   height: 100%;
-  width: 100%;
+  min-height: 700px;
+  width: calc(100vw - 20rem);
+  min-width: 800px;
   max-width: none;
 }
 
@@ -165,7 +167,7 @@ article.post-content {
 
 .hexBadges {
   margin: auto;
-  position: relative;
+  position: absolute;
 }
 .hexBadges img {
   width:128px;
