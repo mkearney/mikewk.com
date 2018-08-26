@@ -68,24 +68,18 @@ html, body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
 }
 .main {
   position: fixed;
-  overflow-x: scroll;
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 6px 1px, rgba(0, 0, 0, 0.1) 0 2px 7px 1px, rgba(0, 0, 0, 0.4) 0 2px 2px -1px;
   margin: 0 0 0 20rem;
   height: 100vh;
   min-height: 700px;
-  width: calc(100vw - 20rem);
+  width: calc(100% - 20rem);
   min-width: 800px;
   max-width: none;
 }
-@media screen and (max-width: 800px){.main {margin: auto; width: 100vw; height: 80%; min-width: 383px; min-height: 110px; padding: 0 5px;}}
-@media screen and (max-width: 800px){.hexwrap {margin: 3vh 0 0 calc((100% - 383px)/2);}}
 article.post-content {
   width: calc(100vw - 24rem);
   max-width: 800px;
 }
-@media screen and (max-width: 800px){article.post-detail {width: 100%;}}
-@media screen and (max-width: 800px){.main.post-detail {min-width: 100vw; width: 100vw;}}
-@media screen and (max-width: 800px){article.post-content {min-width: 96%; margin: 2%;}}
 .main.post-detail {
   max-width: calc(100vw - 20rem);
 }
@@ -94,6 +88,12 @@ article.post-content {
   line-height: 1.4em;
   font-family: "Fira Code", Consolas, Monaco, Menlo, Inconsolata, monospace;
 }
+@media screen and (max-width: 800px){article.post-detail {width: 100%;}}
+@media screen and (max-width: 800px){.main.post-detail {min-width: 100vw; width: 100vw;}}
+@media screen and (max-width: 800px){article.post-content {min-width: 96%; margin: 2%;}}
+@media screen and (max-width: 800px){.main {position: relative; margin: auto; min-height: 400px !important; width: 100vw; height: 80%; min-width: 383px; min-height: 110px; padding: 0 5px;}}
+@media screen and (max-width: 800px){.hexwrap {margin: 3vh 0 0 calc((100% - 383px)/2);}}
+
 .highlight {
   margin: 0;
   display: block;
@@ -182,7 +182,6 @@ article.post-content {
 }
 .hexBadges {
   margin: auto;
-  position: absolute;
 }
 .hexBadges img {
   width:128px;
