@@ -1,91 +1,104 @@
 @charset "UTF-8";
-
 @font-face{
   font-family: "Avenir-Next";
   src:url("../fonts/avenir-next/AvenirNextLTPro-Regular.otf");
   font-weight: 300;
 }
-
 @font-face{
   font-family: "Avenir-Next";
   src:url("../fonts/avenir-next/AvenirNextLTPro-It.otf");
   font-weight: 300;
   font-style: italic;
 }
-
-@font-face{
-  font-family: "Avenir-Next";
-  src:url("../fonts/avenir-next//AvenirNextLTPro-Demi.otf");
-  font-weight: 500;
-}
-
-@font-face{
-  font-family: "Avenir-Next";
-  src:url("../fonts/avenir-next//AvenirNextLTPro-DemiIt.otf");
-  font-weight: 500;
-  font-style: italic;
-}
-
 @font-face{
   font-family: "Avenir-Next";
   src:url("../fonts/avenir-next/AvenirNextLTPro-Bold.otf");
   font-weight: 600;
 }
-
 @font-face{
   font-family: "Avenir-Next";
   src:url("../fonts/avenir-next/AvenirNextLTPro-BoldIt.otf");
   font-weight: 600;
   font-style: italic;
 }
-
-
+@font-face{
+  font-family: 'Fira Code';
+  src: url('../fonts/fira-code/eot/FiraCode-Light.eot');
+  src: url('../fonts/fira-code/eot/FiraCode-Light.eot') format('embedded-opentype'),
+       url('../fonts/fira-code/woff2/FiraCode-Light.woff2') format('woff2'),
+       url('../fonts/fira-code/woff/FiraCode-Light.woff') format('woff'),
+       url('../fonts/fira-code/ttf/FiraCode-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face{
+  font-family: 'Fira Code';
+  src: url('eot/FiraCode-Regular.eot');
+  src: url('eot/FiraCode-Regular.eot') format('embedded-opentype'),
+       url('woff2/FiraCode-Regular.woff2') format('woff2'),
+       url('woff/FiraCode-Regular.woff') format('woff'),
+       url('ttf/FiraCode-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face{
+  font-family: 'Fira Code';
+  src: url('../fonts/fira-code/eot/FiraCode-Medium.eot');
+  src: url('../fonts/fira-code/eot/FiraCode-Medium.eot') format('embedded-opentype'),
+       url('../fonts/fira-code/woff2/FiraCode-Medium.woff2') format('woff2'),
+       url('../fonts/fira-code/woff/FiraCode-Medium.woff') format('woff'),
+       url('../fonts/fira-code/ttf/FiraCode-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face{
+  font-family: 'Fira Code';
+  src: url('../fonts/fira-code/eot/FiraCode-Bold.eot');
+  src: url('../fonts/fira-code/eot/FiraCode-Bold.eot') format('embedded-opentype'),
+       url('../fonts/fira-code/woff2/FiraCode-Bold.woff2') format('woff2'),
+       url('../fonts/fira-code/woff/FiraCode-Bold.woff') format('woff'),
+       url('../fonts/fira-code/ttf/FiraCode-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
 html, body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
   font-family: 'Avenir-Next', 'Helvetica Neue', Helvetica, Roboto, sans-serif;
   font-weight: 300;
   color: #333;
 }
-
 .main {
-  position: absolute;
-  box-shadow: rgba(0, 0, 0, 0.14) 0 16px 24px 2px, rgba(0, 0, 0, 0.12) 0 6px 30px 5px, rgba(0, 0, 0, 0.2) 0 8px 10px -5px;
+  position: fixed;
+  overflow-x: scroll;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 6px 1px, rgba(0, 0, 0, 0.1) 0 2px 7px 1px, rgba(0, 0, 0, 0.4) 0 2px 2px -1px;
   margin: 0 0 0 20rem;
-  height: 100%;
+  height: 100vh;
   min-height: 700px;
   width: calc(100vw - 20rem);
   min-width: 800px;
   max-width: none;
 }
-
-
-@media screen and (max-width: 800px){.main {margin: auto; width: 100%; height: 100%; min-height: 310px; padding: 0 5px;}}
-
-
-
+@media screen and (max-width: 800px){.main {margin: auto; width: 100%; height: 80%; min-width: 383px; min-height: 110px; padding: 0 5px;}}
+@media screen and (max-width: 800px){.hexwrap {margin: 3vh 0 0 calc((100% - 383px)/2);}}
 article.post-content {
   width: calc(100vw - 24rem);
   max-width: 800px;
 }
-
 .main.post-detail {
   max-width: calc(100vw - 20rem);
 }
-
 .post-content pre code {
   font-size: 95%;
   line-height: 1.4em;
-  font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
+  font-family: "Fira Code", Consolas, Monaco, Menlo, Inconsolata, monospace;
 }
-
 .highlight {
   margin: 0;
   display: block;
   overflow-x: auto;
   padding: 15px 20px;
   font-size: 14px;
-  font-family: "Source Code Pro", Consolas, Monaco, Menlo, Consolas, monospace;
+  font-family: "Fira Code", Consolas, Monaco, Menlo, Inconsolata, monospace;
 }
-
 .highlight table {
   margin: 0;
   width: auto;
@@ -164,7 +177,6 @@ article.post-content {
 .highlight .code .selector-id {
   font-weight: 500;
 }
-
 .hexBadges {
   margin: auto;
   position: absolute;
@@ -182,61 +194,42 @@ article.post-content {
   -o-transition-duration:.25s;
   transition-duration:.25s
 }
-
 @media screen and (max-width: 800px){.hexBadges img{width:60px; height:70px;}}
 @media screen and (max-width: 800px){.hexBadges{margin: auto; position: relative;}}
-
 .hexBadges img.r0.c0,.hexBadges img.r2.c0,.hexBadges img.r4.c0,.hexBadges img.r6.c0 {left:0}
 @media screen and (max-width: 800px){.hexBadges img.r0.c1,.hexBadges img.r2.c1,.hexBadges img.r4.c1,.hexBadges img.r6.c1 {left:0px;}}
-
 .hexBadges img.r0.c1,.hexBadges img.r2.c1,.hexBadges img.r4.c1,.hexBadges img.r6.c1 {left:125px}
 @media screen and (max-width: 800px){.hexBadges img.r0.c1,.hexBadges img.r2.c1,.hexBadges img.r4.c1,.hexBadges img.r6.c1 {left:60px;}}
-
 .hexBadges img.r0.c2,.hexBadges img.r2.c2,.hexBadges img.r4.c2,.hexBadges img.r6.c2 {left:250px}
 @media screen and (max-width: 800px){.hexBadges img.r0.c2,.hexBadges img.r2.c2,.hexBadges img.r4.c2,.hexBadges img.r6.c2 {left:120px}}
-
 .hexBadges img.r0.c3,.hexBadges img.r2.c3,.hexBadges img.r4.c3,.hexBadges img.r6.c3 {left:375px}
 @media screen and (max-width: 800px){.hexBadges img.r0.c3,.hexBadges img.r2.c3,.hexBadges img.r4.c3,.hexBadges img.r6.c3 {left:180px}}
-
 .hexBadges img.r0.c5,.hexBadges img.r2.c5,.hexBadges img.r4.c5,.hexBadges img.r6.c5 {left:500px}
 @media screen and (max-width: 800px){.hexBadges img.r0.c5,.hexBadges img.r2.c5,.hexBadges img.r4.c5,.hexBadges img.r6.c5 {left:240px}}
-
 .hexBadges img.r0.c7,.hexBadges img.r2.c7,.hexBadges img.r4.c7,.hexBadges img.r6.c7 {left:625px}
 @media screen and (max-width: 800px){.hexBadges img.r0.c7,.hexBadges img.r2.c7,.hexBadges img.r4.c7,.hexBadges img.r6.c7 {left:300px}}
-
 .hexBadges img.r1.c0,.hexBadges img.r3.c0,.hexBadges img.r5.c0 {left:62px}
 @media screen and (max-width: 800px){.hexBadges img.r1.c0,.hexBadges img.r3.c0,.hexBadges img.r5.c0 {left:30px}}
-
 .hexBadges img.r1.c1,.hexBadges img.r3.c1,.hexBadges img.r5.c1 {left:187px}
 @media screen and (max-width: 800px){.hexBadges img.r1.c1,.hexBadges img.r3.c1,.hexBadges img.r5.c1 {left:90px}}
-
 .hexBadges img.r1.c2,.hexBadges img.r3.c2,.hexBadges img.r5.c2 {left:312px}
 @media screen and (max-width: 800px){.hexBadges img.r1.c2,.hexBadges img.r3.c2,.hexBadges img.r5.c2 {left:150px}}
-
 .hexBadges img.r1.c3,.hexBadges img.r3.c3,.hexBadges img.r5.c3 {left:437px}
 @media screen and (max-width: 800px){.hexBadges img.r1.c3,.hexBadges img.r3.c3,.hexBadges img.r5.c3 {left:210px}}
-
 .hexBadges img.r1.c5,.hexBadges img.r3.c5,.hexBadges img.r5.c5 {left:562px}
 @media screen and (max-width: 800px){.hexBadges img.r1.c5,.hexBadges img.r3.c5,.hexBadges img.r5.c5 {left:270px}}
-
 .hexBadges img.r1 {top:77.5px}
 @media screen and (max-width: 800px){.hexBadges img.r1 {top:10px}}
-
 .hexBadges img.r2 {top:185px}
 @media screen and (max-width: 800px){.hexBadges img.r2 {top:65px}}
-
 .hexBadges img.r3 {top:292.5px}
 @media screen and (max-width: 800px){.hexBadges img.r3 {top:120px}}
-
 .hexBadges img.r4 {top:400px}
 @media screen and (max-width: 800px){.hexBadges img.r4 {top:175px}}
-
 .hexBadges img.r5 {top:507.5px}
 @media screen and (max-width: 800px){.hexBadges img.r5 {top:230px}}
-
 .hexBadges img.r6 {top:615px}
 @media screen and (max-width: 800px){.hexBadges img.r6 {top:285px}}
-
 .hexBadges img.c0:hover, .hexBadges img.c2:hover, .hexBadges img.c5:hover, .hexBadges img.c7:hover,
 .hexBadges img.c0:focus, .hexBadges img.c2:focus, .hexBadges img.c5:focus, .hexBadges img.c7:focus {
   transform:rotate(58.5deg)
@@ -245,12 +238,10 @@ article.post-content {
 .hexBadges img.c1:focus, .hexBadges img.c3:focus, .hexBadges img.c6:focus{
   transform:rotate(-58.5deg)
 }
-
 .hexBadges img.c0, .hexBadges img.c2, .hexBadges img.c5, .hexBadges img.c7 {
   transition:transform ease-out .3s .3s;
 }
 .hexBadges img.c1, .hexBadges img.c3, .hexBadges img.c6 {
   transition:transform ease-out .3s;
 }
-
 @media screen and (max-width: 800px){.subtitle {line-height: 1.1; margin: 0; position:relative;}}
