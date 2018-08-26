@@ -83,6 +83,8 @@ article.post-content {
   width: calc(100vw - 24rem);
   max-width: 800px;
 }
+@media screen and (max-width: 800px){article.post-detail {width: 100%;}}
+@media screen and (max-width: 800px){article.post-content {min-width: 100vw; width: 100%;}}
 .main.post-detail {
   max-width: calc(100vw - 20rem);
 }
