@@ -28,9 +28,8 @@ Research My research uses computational social scientific methods to analyze the
       <pubDate>Wed, 19 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018-09-19-tick-marks-var-names-and-ggplot2/</guid>
-      <description>This tutorial identifies three common mistakes users make when attempting to map variables from dplyr::summarize() to aesthetic dimensions of a plot with ggplot2. It concludes by describing the solution to these common mistakes.
-Packages/styles To complete this tutorial, you will need to load the tidyverse set of packages and define a couple stylistic functions used throughout to make the #dataviz a little prettier.
-## load tidyverse library(tidyverse) #&amp;gt; ── Attaching packages ─────────────────────────────────────────────────────────── tidyverse 1.</description>
+      <description>I still remember how hard it was to learn ggplot2 after only knowing a little about R1. Sure, the plots were pretty. But compared to the ways I had used R before, ggplot2&amp;rsquo;s syntax seemed almost counter-intuitive. Its pipe-like workflow of building layer-by-layer was like nothing I had ever ever used before. Not to mention, I was unfamiliar with its central terms of art like &amp;ldquo;geoms&amp;rdquo; and &amp;ldquo;aesthetics&amp;rdquo;.
+But&amp;hellip;still&amp;hellip;the plots were really pretty.</description>
     </item>
     
   </channel>

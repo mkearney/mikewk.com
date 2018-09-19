@@ -15,18 +15,16 @@
 
   
   <meta name="author" content="" />
-  <meta name="description" content="This tutorial identifies three common mistakes users make when attempting to map variables from dplyr::summarize() to aesthetic dimensions of a plot with ggplot2. It concludes by describing the solution to these common mistakes.
-Packages/styles To complete this tutorial, you will need to load the tidyverse set of packages and define a couple stylistic functions used throughout to make the #dataviz a little prettier.
-## load tidyverse library(tidyverse) #&amp;gt; ── Attaching packages ─────────────────────────────────────────────────────────── tidyverse 1." />
+  <meta name="description" content="I still remember how hard it was to learn ggplot2 after only knowing a little about R1. Sure, the plots were pretty. But compared to the ways I had used R before, ggplot2&amp;rsquo;s syntax seemed almost counter-intuitive. Its pipe-like workflow of building layer-by-layer was like nothing I had ever ever used before. Not to mention, I was unfamiliar with its central terms of art like &amp;ldquo;geoms&amp;rdquo; and &amp;ldquo;aesthetics&amp;rdquo;.
+But&amp;hellip;still&amp;hellip;the plots were really pretty." />
 
   
   
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@kearneymw" />
     <meta name="twitter:title" content="Tick marks, variable names, and ggplot2" />
-    <meta name="twitter:description" content="This tutorial identifies three common mistakes users make when attempting to map variables from dplyr::summarize() to aesthetic dimensions of a plot with ggplot2. It concludes by describing the solution to these common mistakes.
-Packages/styles To complete this tutorial, you will need to load the tidyverse set of packages and define a couple stylistic functions used throughout to make the #dataviz a little prettier.
-## load tidyverse library(tidyverse) #&amp;gt; ── Attaching packages ─────────────────────────────────────────────────────────── tidyverse 1." />
+    <meta name="twitter:description" content="I still remember how hard it was to learn ggplot2 after only knowing a little about R1. Sure, the plots were pretty. But compared to the ways I had used R before, ggplot2&amp;rsquo;s syntax seemed almost counter-intuitive. Its pipe-like workflow of building layer-by-layer was like nothing I had ever ever used before. Not to mention, I was unfamiliar with its central terms of art like &amp;ldquo;geoms&amp;rdquo; and &amp;ldquo;aesthetics&amp;rdquo;.
+But&amp;hellip;still&amp;hellip;the plots were really pretty." />
     <meta name="twitter:image" content="/img/avatar.jpg" />
   
 
@@ -212,28 +210,53 @@ Packages/styles To complete this tutorial, you will need to load the tidyverse s
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">Tick marks, variable names, and ggplot2</h1>
-      <p class="post-meta">@ · Sep 19, 2018 · 8 min read</p>
+      <p class="post-meta">@ · Sep 19, 2018 · 10 min read</p>
     </header>
     <article class="post-content">
 
-<p>This tutorial identifies <strong>three common mistakes users make when attempting to
-map variables</strong> from <a href="https://dplyr.tidyverse.org/reference/summarise.html"><code>dplyr::summarize()</code></a>
-to aesthetic dimensions of a plot with <a href="https://ggplot2.tidyverse.org">ggplot2</a>.
-It concludes by describing the solution to these common mistakes.</p>
+<p>I still remember how hard it was to learn <a href="https://ggplot2.tidyverse.org">ggplot2</a>
+after only knowing a little about R<sup>1</sup>. Sure, the plots were pretty.
+But compared to the ways I had used R before, ggplot2&rsquo;s syntax seemed almost
+counter-intuitive. Its pipe-like workflow of building layer-by-layer
+was like nothing I had ever ever used before. Not to mention, I was unfamiliar
+with its central terms of art like &ldquo;<code>geom</code>s&rdquo; and &ldquo;<code>aes</code>thetics&rdquo;.</p>
+
+<p>But&hellip;still&hellip;the plots were <em>really</em> pretty.</p>
+
+<p>Fortunately, the aesthetic motivator of being able to generate pretty plots
+allowed me to percervere. And not long after truly committing myself to learning
+how to <code>ggplot2</code>, I realized why everyone likes it so much–it&rsquo;s actaully really
+easy! Once I learned about the key building blocks of <code>ggplot()</code>, <code>aes()</code>,
+and <code>geom_.*()</code>), I could create pretty plots for all sorts of data types and
+relationships.</p>
+
+<h3 id="it-s-in-the-details">It&rsquo;s in the details</h3>
+
+<p>Over time my <a href="https://twitter.com/search?q=%23rstats%20%23dataviz&amp;src=typed_query&amp;f=image">#dataviz</a>
+has gotten a lot better I think, but it&rsquo;s had very little
+to do the actual plotting of data points (<code>ggplot2</code> outputs beautiful plots by
+default). Instead, my dataviz has improved because (a) I learned more about how to
+correctly label scales, data points, and other visual dimensions and (b) I figured
+out how to (re)size and save high-resolution plots using nice-looking fonts.</p>
+
+<p>With this in mind, my goal with this post is to identify <strong>three common mistakes
+users make when attempting to map variables</strong> from <a href="https://dplyr.tidyverse.org/reference/summarise.html"><code>dplyr::summarize()</code></a>
+to aesthetic dimensions of a plot with <a href="https://ggplot2.tidyverse.org">ggplot2</a>
+and then conclude by describing a solution to these common mistakes.</p>
 
 <h2 id="packages-styles">Packages/styles</h2>
 
-<p>To complete this tutorial, you will need to load the <a href="https://tidyverse.org">tidyverse</a>
-set of packages and define a couple stylistic functions used throughout to make
-the <a href="https://twitter.com/search?q=%23rstats%20%23dataviz&amp;src=typed_query&amp;f=image">#dataviz</a> a little prettier.</p>
+<p>To follow along with the examples in this post, you will need to load the
+<a href="https://tidyverse.org">tidyverse</a> set of packages and define a couple stylistic
+functions used throughout to make the plots even prettier.</p>
 <div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1">## load tidyverse</span>
 <span class="kn">library</span><span class="p">(</span>tidyverse<span class="p">)</span>
-<span class="c1">#&gt; ── Attaching packages ─────────────────────────────────────────────────────────── tidyverse 1.2.1 ──</span>
+<span class="c1">#&gt; ── Attaching packages ───────────────────────────────────────────────────── tidyverse 1.2.1 ──</span>
 <span class="c1">#&gt; ✔ ggplot2 3.0.0.9000     ✔ purrr   0.2.5     </span>
 <span class="c1">#&gt; ✔ tibble  1.4.2          ✔ dplyr   0.7.6     </span>
 <span class="c1">#&gt; ✔ tidyr   0.8.1          ✔ stringr 1.3.1     </span>
 <span class="c1">#&gt; ✔ readr   1.1.1          ✔ forcats 0.3.0</span>
-<span class="c1">#&gt; ── Conflicts ────────────────────────────────────────────────────────────── tidyverse_conflicts() ──</span>
+<span class="c1">#&gt; ── Conflicts ──────────────────────────────────────────────────────── tidyverse_conflicts() ──</span>
 <span class="c1">#&gt; ✖ dplyr::filter() masks stats::filter()</span>
 <span class="c1">#&gt; ✖ dplyr::lag()    masks stats::lag()</span>
 
@@ -245,7 +268,8 @@ my_theme <span class="o">&lt;-</span> <span class="kr">function</span><span clas
       plot.caption <span class="o">=</span> element_text<span class="p">(</span>color <span class="o">=</span> <span class="s">&#34;#777777&#34;</span><span class="p">,</span> vjust <span class="o">=</span> <span class="m">0</span><span class="p">),</span>
       axis.title <span class="o">=</span> element_text<span class="p">(</span>size <span class="o">=</span> rel<span class="p">(</span><span class="m">.9</span><span class="p">),</span> hjust <span class="o">=</span> <span class="m">0.95</span><span class="p">,</span> face <span class="o">=</span> <span class="s">&#34;italic&#34;</span><span class="p">),</span>
       panel.grid.major <span class="o">=</span> element_line<span class="p">(</span>size <span class="o">=</span> rel<span class="p">(</span><span class="m">.1</span><span class="p">),</span> color <span class="o">=</span> <span class="s">&#34;#000000&#34;</span><span class="p">),</span> 
-      panel.grid.minor <span class="o">=</span> element_line<span class="p">(</span>size <span class="o">=</span> rel<span class="p">(</span><span class="m">.05</span><span class="p">),</span> color <span class="o">=</span> <span class="s">&#34;#000000&#34;</span><span class="p">))</span>
+      panel.grid.minor <span class="o">=</span> element_line<span class="p">(</span>size <span class="o">=</span> rel<span class="p">(</span><span class="m">.05</span><span class="p">),</span> color <span class="o">=</span> <span class="s">&#34;#000000&#34;</span><span class="p">),</span> 
+      legend.position <span class="o">=</span> <span class="s">&#34;none&#34;</span><span class="p">)</span>
 <span class="p">}</span>
 my_labs <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">()</span> <span class="p">{</span>
   labs<span class="p">(</span>title <span class="o">=</span> <span class="s">&#34;Average miles per gallon by number of cylinders&#34;</span><span class="p">,</span> 
@@ -258,8 +282,9 @@ my_save <span class="o">&lt;-</span> <span class="kr">function</span><span class
 <span class="p">}</span></code></pre></div>
 <h2 id="data">Data</h2>
 
-<p>The examples below use the <strong>mtcars</strong> data from the <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html">datasets</a>
-package. Specifically, the examples below will feature the <code>mpg</code> (miles per gallon)
+<p>The data set used to demonstrate the mistakes (and the eventual solution) is
+<strong>mtcars</strong>, which is from the core <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html">datasets</a>
+package. Specifically, the examples feature the <code>mpg</code> (miles per gallon)
 and <code>cyl</code> (number of cylinders) variables.</p>
 <div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1">## print first six rows</span>
 <span class="kp">head</span><span class="p">(</span>mtcars<span class="p">)</span>
@@ -273,7 +298,7 @@ and <code>cyl</code> (number of cylinders) variables.</p>
 <h3 id="names-from-summarize">Names from <code>summarize()</code></h3>
 
 <p>A popular workflow in R uses <a href="https://dplyr.tidyverse.org">dplyr</a> to <code>group_by()</code>
-and then <code>summarise()</code><sup>1</sup> variables.
+and then <code>summarise()</code><sup>2</sup> variables.
 It&rsquo;s an intuitive and easy way to aggregate and describe data, especially along
 multiple dimensions. The cost of being both powerful and user-friendly,
 however, is its arguably inconvenient default method for assigning names to
@@ -290,8 +315,13 @@ mtcars <span class="o">%&gt;%</span>
 <span class="c1">#&gt; 2     6  19.7</span>
 <span class="c1">#&gt; 3     8  15.1</span></code></pre></div>
 <p>But when users don&rsquo;t explicitly name the summarized values, instead of inheriting
-the name of the summarized variable (in this case, <code>mpg</code>), they are named with
-the expression used to calculate it.</p>
+the name of a summarized variable (in this case <code>mpg</code>), variables are named–by
+default–with the text of the expression used to create the summarized value.</p>
+
+<p>For example, the code below summarizes by estimating the mean <code>mpg</code> for cars
+grouped by number of <code>cyl</code>. The code is fairly straight forward, and you can
+probably see why users often assume the returned summarized data would contain
+two variables <code>cyl</code> and <code>mpg</code>.</p>
 <div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1">## unnamed summarize variable</span>
 mtcars <span class="o">%&gt;%</span>
   group_by<span class="p">(</span>cyl<span class="p">)</span> <span class="o">%&gt;%</span>
@@ -302,24 +332,21 @@ mtcars <span class="o">%&gt;%</span>
 <span class="c1">#&gt; 1     4        26.7</span>
 <span class="c1">#&gt; 2     6        19.7</span>
 <span class="c1">#&gt; 3     8        15.1</span></code></pre></div>
-<p>As you can see above, the variable name <code>mean(mpg)</code> in the unnamed summarize
-output is different than the simpler and cleaner name <code>mpg</code> in the explicitly
-names summarize output.</p>
+<p>As you can see above, the variable names are wind up being <code>cyl</code> and <code>mean(mpg)</code>–
+instead of simply <code>cyl</code> and <code>mpg</code>. This default behavior may seem obnoxious at
+first, but it makes a lot of sense when you think about using <strong>two or more</strong>
+variables when calculating <code>summarize()</code> values.</p>
 
-<p>This may seem a bit obnoxious at first, but it makes a lot of sense when you
-think about instances when you may want to use <strong>two or more</strong> variables when
-calculating <code>summarize()</code> values.</p>
-
-<p>Regardless, while it&rsquo;s probably better practice to provide your own summary
-variable names, you will invariably find yourself in a situation where you are
-trying to plot variables that were named using the expressions used to create
-them.</p>
+<p>Regardless, while it&rsquo;s definitely a good idea to provide your own summary
+variable names, you will invariably find yourself in a situation in which you
+would like to plot summarized variables that were named using with the text of
+the expressions used to create them.</p>
 
 <h2 id="mapping-incorrect-names">Mapping incorrect names</h2>
 
 <p>When visualizing data with <a href="https://ggplot2.tidyverse.org">ggplot2</a>, one of the
 first and most important steps entails mapping observed variables in the data
-set to aesthetic dimensions of a plot. But aesthetic mapping will only work as
+set to the aesthetic dimensions of a plot. But aesthetic mapping will only work as
 expected when you provide the correct names via <code>ggplot2::aes()</code>.</p>
 
 <p>The following section describes three common mistakes users make that result in
@@ -387,7 +414,7 @@ mtcars <span class="o">%&gt;%</span>
 because it tries to calculate mean of <code>mpg</code>, which, again, doesn&rsquo;t exist in the
 summarized data.</p>
 
-<h3 id="3-passing-the-expression-name-as-a-string">3. Passing the expression name as a string.</h3>
+<h3 id="3-passing-the-expression-as-a-quoted-string">3. Passing the expression as a quoted string.</h3>
 
 <p>The third common mistake is to treat the summarized expression name as a string.</p>
 <div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1">## if we put quotes around it, it assumes it&#39;s a string</span>
@@ -432,8 +459,8 @@ x <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">10</
 
 <span class="c1">## print x wrapped in tick marks</span>
 <span class="sb">`x`</span>
-<span class="c1">#&gt;  [1]  0.354255 -0.817416 -1.134515  0.368869 -0.727252 -0.250804  1.998156</span>
-<span class="c1">#&gt;  [8] -0.129397  1.226897 -0.907484</span></code></pre></div>
+<span class="c1">#&gt;  [1] -1.261127 -0.460150  0.242471  1.102429  1.075430 -1.026970 -1.609631</span>
+<span class="c1">#&gt;  [8]  1.240303  1.494035  0.377001</span></code></pre></div>
 <p>So, really, tick marks are used to distinguish symbols that contain one or more
 unfriendly punctuation/characters, e.g., parenthesis, dashes, spaces, etc.</p>
 
@@ -448,13 +475,55 @@ mtcars <span class="o">%&gt;%</span>
   geom_point<span class="p">()</span> <span class="o">+</span> 
   geom_line<span class="p">()</span> <span class="o">+</span> 
   my_theme<span class="p">()</span> <span class="o">+</span> 
-  my_labs<span class="p">()</span> <span class="o">+</span> 
   my_save<span class="p">(</span><span class="s">&#34;img/tick-marks.png&#34;</span><span class="p">)</span></code></pre></div>
 <p style="align:center"> <img src="../img/tick-marks.png"> </p>
 
+<p>Of course, most audiences don&rsquo;t really want to see expression text on a plot,
+so we can dress it up a bit by using the previusly defined <code>my_labs()</code> function.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1">## if we put quotes around it, aes() assumes we are entering a string</span>
+mtcars <span class="o">%&gt;%</span>
+  group_by<span class="p">(</span>cyl<span class="p">)</span> <span class="o">%&gt;%</span>
+  summarize<span class="p">(</span><span class="kp">mean</span><span class="p">(</span>mpg<span class="p">))</span> <span class="o">%&gt;%</span>
+  ggplot<span class="p">(</span>aes<span class="p">(</span>x <span class="o">=</span> cyl<span class="p">,</span> y <span class="o">=</span> <span class="sb">`mean(mpg)`</span><span class="p">))</span> <span class="o">+</span> 
+  geom_point<span class="p">()</span> <span class="o">+</span> 
+  geom_line<span class="p">()</span> <span class="o">+</span> 
+  my_theme<span class="p">()</span> <span class="o">+</span> 
+  my_labs<span class="p">()</span> <span class="o">+</span> 
+  my_save<span class="p">(</span><span class="s">&#34;img/with-labs.png&#34;</span><span class="p">)</span></code></pre></div>
+<p style="align:center"> <img src="../img/with-labs.png"> </p>
+
+<p>Or we can really dress it up and include the labelled data points as an
+additional layer to the plot.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1">## include row names as a variable</span>
+mtcars2 <span class="o">&lt;-</span> mtcars
+mtcars2<span class="o">$</span>make <span class="o">&lt;-</span> <span class="kp">row.names</span><span class="p">(</span>mtcars<span class="p">)</span>
+mtcars2<span class="o">$</span>mpg<span class="p">[</span>mtcars2<span class="o">$</span>cyl <span class="o">==</span> <span class="m">4</span><span class="p">]</span> <span class="o">&lt;-</span> mtcars2<span class="o">$</span>mpg<span class="p">[</span>mtcars2<span class="o">$</span>cyl <span class="o">==</span> <span class="m">4</span><span class="p">]</span> <span class="o">+</span> runif<span class="p">(</span><span class="kp">sum</span><span class="p">(</span>mtcars2<span class="o">$</span>cyl <span class="o">==</span> <span class="m">4</span><span class="p">),</span> <span class="m">0.0</span><span class="p">,</span> <span class="m">.4</span><span class="p">)</span>
+mtcars2<span class="o">$</span>mpg<span class="p">[</span>mtcars2<span class="o">$</span>cyl <span class="o">==</span> <span class="m">6</span><span class="p">]</span> <span class="o">&lt;-</span> mtcars2<span class="o">$</span>mpg<span class="p">[</span>mtcars2<span class="o">$</span>cyl <span class="o">==</span> <span class="m">6</span><span class="p">]</span> <span class="o">+</span> runif<span class="p">(</span><span class="kp">sum</span><span class="p">(</span>mtcars2<span class="o">$</span>cyl <span class="o">==</span> <span class="m">6</span><span class="p">),</span> <span class="m">-.4</span><span class="p">,</span> <span class="m">0.0</span><span class="p">)</span>
+mtcars2<span class="o">$</span>mpg<span class="p">[</span>mtcars2<span class="o">$</span>cyl <span class="o">==</span> <span class="m">8</span><span class="p">]</span> <span class="o">&lt;-</span> mtcars2<span class="o">$</span>mpg<span class="p">[</span>mtcars2<span class="o">$</span>cyl <span class="o">==</span> <span class="m">8</span><span class="p">]</span> <span class="o">+</span> runif<span class="p">(</span><span class="kp">sum</span><span class="p">(</span>mtcars2<span class="o">$</span>cyl <span class="o">==</span> <span class="m">8</span><span class="p">),</span> <span class="m">-.3</span><span class="p">,</span> <span class="m">0.0</span><span class="p">)</span>
+
+<span class="c1">## add labels to plot and to raw data points</span>
+mtcars <span class="o">%&gt;%</span>
+  group_by<span class="p">(</span>cyl<span class="p">)</span> <span class="o">%&gt;%</span>
+  summarize<span class="p">(</span><span class="kp">mean</span><span class="p">(</span>mpg<span class="p">))</span> <span class="o">%&gt;%</span>
+  ggplot<span class="p">(</span>aes<span class="p">(</span>x <span class="o">=</span> cyl<span class="p">,</span> y <span class="o">=</span> <span class="sb">`mean(mpg)`</span><span class="p">))</span> <span class="o">+</span> 
+  geom_point<span class="p">(</span>size <span class="o">=</span> <span class="m">2.5</span><span class="p">)</span> <span class="o">+</span> 
+  geom_line<span class="p">(</span>alpha <span class="o">=</span> <span class="m">.6</span><span class="p">)</span> <span class="o">+</span> 
+  ggrepel<span class="o">::</span>geom_label_repel<span class="p">(</span>data <span class="o">=</span> mtcars2<span class="p">,</span> 
+    aes<span class="p">(</span>y <span class="o">=</span> mpg<span class="p">,</span> color <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>cyl<span class="p">),</span> fill <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>cyl<span class="p">),</span> label <span class="o">=</span> make<span class="p">),</span> 
+    family <span class="o">=</span> <span class="s">&#34;Roboto Condensed&#34;</span><span class="p">,</span> label.padding <span class="o">=</span> <span class="m">0.2</span><span class="p">,</span> label.size <span class="o">=</span> <span class="m">.05</span><span class="p">,</span> 
+    min.segment.length <span class="o">=</span> <span class="m">100</span><span class="p">,</span> color <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">,</span> size <span class="o">=</span> <span class="m">3.0</span><span class="p">,</span> alpha <span class="o">=</span> <span class="m">.8</span><span class="p">)</span> <span class="o">+</span> 
+  my_theme<span class="p">()</span> <span class="o">+</span> 
+  my_labs<span class="p">()</span> <span class="o">+</span> 
+  my_save<span class="p">(</span><span class="s">&#34;img/tick-marks-final.png&#34;</span><span class="p">)</span></code></pre></div>
+<p style="align:center"> <img src="../img/tick-marks-final.png"> </p>
+
 <h2 id="notes">Notes</h2>
 
-<p><sup>1</sup> The <code>s</code> and <code>z</code> toward the end of <code>summarise()</code> and <code>summarize()</code>
+<p><sup>1</sup> I knew just enough to (a) read in data, (b)
+do some <a href="http://lavaan.ugent.be/">structural equation modeling</a>, and &copy;
+generate some simple plots via <code>base::plot()</code> and <code>base::histogram()</code>.</p>
+
+<p><sup>2</sup> The <code>s</code> and <code>z</code> toward the end of <code>summarise()</code> and <code>summarize()</code>
 are interchangeable.</p>
 
 <style>
