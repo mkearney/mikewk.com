@@ -10,13 +10,13 @@ publishDir = "docs"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$", "^make$", "^make\\.R$", "^\\.funs\\.R$"]
 
 # Disqus Username
-#disqusShortname = "kearneymw"
+disqusShortname = "kearneymw"
 
 # Google Analytics UA number
 googleAnalytics = "UA-64959413-1"
 
 # Copyright of your post
-copyright = "© Michael W. Kearney 2017"
+copyright = "© Michael W. Kearney 2018"
 
 # Initial site menu, you can extend menu with content.
 [[menu.main]]
@@ -24,6 +24,12 @@ copyright = "© Michael W. Kearney 2017"
   weight = 10
   identifier = "home"
   url = "/"
+
+ [[menu.main]]
+   name = "Blog"
+   weight = 30
+   identifier = "blog"
+   url = "/post"
 
  [[menu.main]]
    name = "CV"

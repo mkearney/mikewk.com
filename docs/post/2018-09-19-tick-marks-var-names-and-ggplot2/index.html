@@ -108,12 +108,14 @@ Packages/styles To complete this tutorial, you will need to load the tidyverse s
       <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
       
         
+        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
+        
       
     </div>
     
     
   <header class="site-header">
-  <img class="avatar" src="/img/aintnoseats.jpeg" alt="Avatar">
+  <a class="avatar_link" href="/"><img class="avatar" src="/img/aintnoseats.jpeg" alt="Avatar"></a>
   
   <h2 class="title">Michael W. Kearney</h2>
   
@@ -134,6 +136,8 @@ Packages/styles To complete this tutorial, you will need to load the tidyverse s
         <li class="menu-item  is-active"><a href="/">Home</a></li>
       
         <li class="menu-item "><a href="/about/">About</a></li>
+      
+        <li class="menu-item "><a href="/post">Blog</a></li>
       
         <li class="menu-item "><a href="/cv/cv.pdf">CV</a></li>
       
@@ -208,7 +212,7 @@ Packages/styles To complete this tutorial, you will need to load the tidyverse s
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">Tick marks, variable names, and ggplot2</h1>
-      <p class="post-meta">@ · Sep 19, 2018 · 7 min read</p>
+      <p class="post-meta">@ · Sep 19, 2018 · 8 min read</p>
     </header>
     <article class="post-content">
 
@@ -248,6 +252,9 @@ my_labs <span class="o">&lt;-</span> <span class="kr">function</span><span class
     subtitle <span class="o">=</span> <span class="s">&#34;Scatter plot depicting average miles per gallon aggregated by number of cylinders&#34;</span><span class="p">,</span>
     x <span class="o">=</span> <span class="s">&#34;Number of cylinders&#34;</span><span class="p">,</span> y <span class="o">=</span> <span class="s">&#34;Miles per gallon&#34;</span><span class="p">,</span>
     caption <span class="o">=</span> <span class="s">&#34;Source: Estimates calculated from the &#39;mtcars&#39; data set&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+my_save <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="kp">file</span><span class="p">)</span> <span class="p">{</span>
+  ggsave<span class="p">(</span><span class="kp">file</span><span class="p">,</span> width <span class="o">=</span> <span class="m">7</span><span class="p">,</span> height <span class="o">=</span> <span class="m">4.5</span><span class="p">,</span> units <span class="o">=</span> <span class="s">&#34;in&#34;</span><span class="p">)</span>
 <span class="p">}</span></code></pre></div>
 <h2 id="data">Data</h2>
 
@@ -352,7 +359,18 @@ mtcars <span class="o">%&gt;%</span>
   geom_point<span class="p">()</span> <span class="o">+</span> 
   geom_line<span class="p">()</span> <span class="o">+</span> 
   my_theme<span class="p">()</span> <span class="o">+</span> 
-  my_labs<span class="p">()</span>
+  my_labs<span class="p">()</span> <span class="o">+</span> 
+  my_save<span class="p">(</span><span class="s">&#34;img/empty-plot.png&#34;</span><span class="p">)</span>
+<span class="c1">#&gt; Warning in mean.default(mpg): argument is not numeric or logical: returning</span>
+<span class="c1">#&gt; NA</span>
+
+<span class="c1">#&gt; Warning in mean.default(mpg): argument is not numeric or logical: returning</span>
+<span class="c1">#&gt; NA</span>
+
+<span class="c1">#&gt; Warning in mean.default(mpg): argument is not numeric or logical: returning</span>
+<span class="c1">#&gt; NA</span>
+<span class="c1">#&gt; Warning: Removed 3 rows containing missing values (geom_point).</span>
+<span class="c1">#&gt; Warning: Removed 3 rows containing missing values (geom_path).</span>
 <span class="c1">#&gt; Warning in mean.default(mpg): argument is not numeric or logical: returning</span>
 <span class="c1">#&gt; NA</span>
 
@@ -363,7 +381,7 @@ mtcars <span class="o">%&gt;%</span>
 <span class="c1">#&gt; NA</span>
 <span class="c1">#&gt; Warning: Removed 3 rows containing missing values (geom_point).</span>
 <span class="c1">#&gt; Warning: Removed 3 rows containing missing values (geom_path).</span></code></pre></div>
-<p><img src="../img/unnamed-chunk-7-1.png" width="100%" /></p>
+<p style="align:center"> <img src="../img/empty-plot.png"> </p>
 
 <p>The result is a handful of warnings and an empty plot. The above code fails
 because it tries to calculate mean of <code>mpg</code>, which, again, doesn&rsquo;t exist in the
@@ -380,8 +398,9 @@ mtcars <span class="o">%&gt;%</span>
   geom_point<span class="p">()</span> <span class="o">+</span> 
   geom_line<span class="p">()</span> <span class="o">+</span> 
   my_theme<span class="p">()</span> <span class="o">+</span> 
-  my_labs<span class="p">()</span></code></pre></div>
-<p><img src="../img/unnamed-chunk-8-1.png" width="100%" /></p>
+  my_labs<span class="p">()</span> <span class="o">+</span> 
+  my_save<span class="p">(</span><span class="s">&#34;img/static-y.png&#34;</span><span class="p">)</span></code></pre></div>
+<p style="align:center"> <img src="../img/static-y.png"> </p>
 
 <p>This time we get a plot and no warnings, but it&rsquo;s clearly not right. It shows
 every <code>y</code> value is exactly the same, but it seems far fetched to think the
@@ -413,8 +432,8 @@ x <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">10</
 
 <span class="c1">## print x wrapped in tick marks</span>
 <span class="sb">`x`</span>
-<span class="c1">#&gt;  [1] -0.357539  0.810610 -1.061565 -0.672062  0.801778 -0.964567 -0.576194</span>
-<span class="c1">#&gt;  [8]  1.155428 -1.744274  0.922891</span></code></pre></div>
+<span class="c1">#&gt;  [1]  0.354255 -0.817416 -1.134515  0.368869 -0.727252 -0.250804  1.998156</span>
+<span class="c1">#&gt;  [8] -0.129397  1.226897 -0.907484</span></code></pre></div>
 <p>So, really, tick marks are used to distinguish symbols that contain one or more
 unfriendly punctuation/characters, e.g., parenthesis, dashes, spaces, etc.</p>
 
@@ -429,8 +448,9 @@ mtcars <span class="o">%&gt;%</span>
   geom_point<span class="p">()</span> <span class="o">+</span> 
   geom_line<span class="p">()</span> <span class="o">+</span> 
   my_theme<span class="p">()</span> <span class="o">+</span> 
-  my_labs<span class="p">()</span></code></pre></div>
-<p><img src="../img/unnamed-chunk-10-1.png" width="100%" /></p>
+  my_labs<span class="p">()</span> <span class="o">+</span> 
+  my_save<span class="p">(</span><span class="s">&#34;img/tick-marks.png&#34;</span><span class="p">)</span></code></pre></div>
+<p style="align:center"> <img src="../img/tick-marks.png"> </p>
 
 <h2 id="notes">Notes</h2>
 
@@ -479,10 +499,30 @@ min-width: 30%
       </ul>
       
       <p class="post-copyright">
-        © Michael W. Kearney 2017
+        © Michael W. Kearney 2018
       </p>
     </footer>
     
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "kearneymw" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
       
     
   </section>

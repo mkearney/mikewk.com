@@ -1,5 +1,5 @@
 <header class="site-header">
-  <img class="avatar" src="{{ .Site.Params.avatar }}" alt="Avatar">
+  <a class="avatar_link" href="/"><img class="avatar" src="{{ .Site.Params.avatar }}" alt="Avatar"></a>
   {{  if eq .Kind "home" }}
   <h1 class="title">{{ .Site.Title }}</h1>
   {{ else }}

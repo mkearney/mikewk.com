@@ -77,7 +77,7 @@ h1, h2, h3, h4, h5, h6, .post-content h1, .post-content h2, .post-content h3, .p
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 6px 1px, rgba(0, 0, 0, 0.1) 0 2px 7px 1px, rgba(0, 0, 0, 0.3) 0 2px 2px -1px;
   margin: 0 0 0 20rem;
   /*height: 100vh;*/
-  min-height: 700px;
+  min-height: 100vh;
   width: calc(100% - 20rem);
   min-width: 800px;
   max-width: none;
@@ -274,10 +274,7 @@ article.post-content {
 
 
 .post-content h1{margin-top:2rem;margin-bottom:1rem;font-size:2.25rem}.post-content h2{margin-top:1.75rem;margin-bottom:0.75rem;font-size:1.5rem}.post-content h3{margin-top:1.5rem;margin-bottom:0.5rem;font-size:1.3rem}.post-content h4{margin-top:1.25rem;margin-bottom:0.25rem;font-size:1.1rem}.post-content h5{margin-top:1rem;margin-bottom:0;font-size:1rem}.post-content h6{margin-top:1rem;margin-bottom:0;font-size:.8rem}.post-content p{margin-top:1.25rem;margin-bottom:1.25rem;text-align:left}
-.post-content pre {
-  margin: .5rem auto;
-  padding: .5rem 1rem;
-}
+
 .post-content{line-height:1.7;}
 .post-content img {
   box-shadow: rgba(0, 0, 0, 0.1) 0 1px 1px 1px, rgba(0, 0, 0, 0.1) 0 1px 1px 1px, rgba(0, 0, 0, 0.2) 0 1px 1px -1px;
@@ -286,5 +283,19 @@ article.post-content {
   padding: 0;
   margin: 0 auto;
   max-width: 100%;
-  width: unset;
+  width: 88%;
+  height: auto;
+  min-width: 200px;
+}
+.highlight {
+    margin: .5rem auto .5rem auto;
+    width: 88%;
+    min-width: 200px;
+}
+.post-content pre {
+  margin: .5rem auto;
+  padding: .5rem 1rem;
+}
+a.avatar_link {
+  opacity: unset;
 }

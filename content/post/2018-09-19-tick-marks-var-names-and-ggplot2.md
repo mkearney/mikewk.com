@@ -7,10 +7,9 @@ tags: ["ggplot2", "plot", "summarize", "dplyr"]
 output: 
   html_document: 
     df_print: default
-    fig_height: 5
-    fig_width: 7
     highlight: haddock
     keep_md: yes
+    self_contained: no
     theme: null
 ---
 
@@ -55,6 +54,9 @@ my_labs <- function() {
     subtitle = "Scatter plot depicting average miles per gallon aggregated by number of cylinders",
     x = "Number of cylinders", y = "Miles per gallon",
     caption = "Source: Estimates calculated from the 'mtcars' data set")
+}
+my_save <- function(file) {
+  ggsave(file, width = 7, height = 4.5, units = "in")
 }
 ```
 
@@ -187,7 +189,18 @@ mtcars %>%
   geom_point() + 
   geom_line() + 
   my_theme() + 
-  my_labs()
+  my_labs() + 
+  my_save("img/empty-plot.png")
+#> Warning in mean.default(mpg): argument is not numeric or logical: returning
+#> NA
+
+#> Warning in mean.default(mpg): argument is not numeric or logical: returning
+#> NA
+
+#> Warning in mean.default(mpg): argument is not numeric or logical: returning
+#> NA
+#> Warning: Removed 3 rows containing missing values (geom_point).
+#> Warning: Removed 3 rows containing missing values (geom_path).
 #> Warning in mean.default(mpg): argument is not numeric or logical: returning
 #> NA
 
@@ -200,7 +213,7 @@ mtcars %>%
 #> Warning: Removed 3 rows containing missing values (geom_path).
 ```
 
-<img src="../img/unnamed-chunk-7-1.png" width="100%" />
+<p style="align:center"> <img src="../img/empty-plot.png"> </p>
 
 The result is a handful of warnings and an empty plot. The above code fails 
 because it tries to calculate mean of `mpg`, which, again, doesn't exist in the 
@@ -220,10 +233,11 @@ mtcars %>%
   geom_point() + 
   geom_line() + 
   my_theme() + 
-  my_labs()
+  my_labs() + 
+  my_save("img/static-y.png")
 ```
 
-<img src="../img/unnamed-chunk-8-1.png" width="100%" />
+<p style="align:center"> <img src="../img/static-y.png"> </p>
 
 This time we get a plot and no warnings, but it's clearly not right. It shows 
 every `y` value is exactly the same, but it seems far fetched to think the 
@@ -260,8 +274,8 @@ x <- rnorm(10)
 
 ## print x wrapped in tick marks
 `x`
-#>  [1] -0.357539  0.810610 -1.061565 -0.672062  0.801778 -0.964567 -0.576194
-#>  [8]  1.155428 -1.744274  0.922891
+#>  [1]  0.354255 -0.817416 -1.134515  0.368869 -0.727252 -0.250804  1.998156
+#>  [8] -0.129397  1.226897 -0.907484
 ```
 
 So, really, tick marks are used to distinguish symbols that contain one or more
@@ -281,11 +295,11 @@ mtcars %>%
   geom_point() + 
   geom_line() + 
   my_theme() + 
-  my_labs()
+  my_labs() + 
+  my_save("img/tick-marks.png")
 ```
 
-<img src="../img/unnamed-chunk-10-1.png" width="100%" />
-
+<p style="align:center"> <img src="../img/tick-marks.png"> </p>
 
 ## Notes
 

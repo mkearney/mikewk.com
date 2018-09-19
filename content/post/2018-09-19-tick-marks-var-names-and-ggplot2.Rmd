@@ -7,10 +7,9 @@ tags: ["ggplot2", "plot", "summarize", "dplyr"]
 output: 
   html_document: 
     df_print: default
-    fig_height: 5
-    fig_width: 7
     highlight: haddock
     keep_md: yes
+    self_contained: no
     theme: null
 ---
 
@@ -18,9 +17,8 @@ output:
 knitr::opts_chunk$set(
   echo = TRUE, 
   comment = "#>", 
-  collapse = TRUE, 
-  out.width = "100%",
-  fig.path = "../img/"
+  collapse = TRUE,
+  fig.show = "hide"
 )
 ```
 
@@ -63,6 +61,9 @@ my_labs <- function() {
     x = "Number of cylinders", y = "Miles per gallon",
     caption = "Source: Estimates calculated from the 'mtcars' data set")
 }
+my_save <- function(file) {
+  ggsave(file, width = 7, height = 4.5, units = "in")
+}
 ```
 
 ```{r, include = FALSE, echo = FALSE}
@@ -84,6 +85,9 @@ my_labs <- function() {
     subtitle = "Scatter plot depicting average miles per gallon aggregated by number of cylinders",
     x = "Number of cylinders", y = "Miles per gallon",
     caption = "Source: Estimates calculated from the 'mtcars' data set")
+}
+my_save <- function(file) {
+  ggsave(file, width = 7, height = 4.5, units = "in")
 }
 ```
 
@@ -190,8 +194,11 @@ mtcars %>%
   geom_point() + 
   geom_line() + 
   my_theme() + 
-  my_labs()
+  my_labs() + 
+  my_save("img/empty-plot.png")
 ```
+
+<p style="align:center"> <img src="../img/empty-plot.png"> </p>
 
 The result is a handful of warnings and an empty plot. The above code fails 
 because it tries to calculate mean of `mpg`, which, again, doesn't exist in the 
@@ -210,8 +217,11 @@ mtcars %>%
   geom_point() + 
   geom_line() + 
   my_theme() + 
-  my_labs()
+  my_labs() + 
+  my_save("img/static-y.png")
 ```
+
+<p style="align:center"> <img src="../img/static-y.png"> </p>
 
 This time we get a plot and no warnings, but it's clearly not right. It shows 
 every `y` value is exactly the same, but it seems far fetched to think the 
@@ -264,9 +274,11 @@ mtcars %>%
   geom_point() + 
   geom_line() + 
   my_theme() + 
-  my_labs()
+  my_labs() + 
+  my_save("img/tick-marks.png")
 ```
 
+<p style="align:center"> <img src="../img/tick-marks.png"> </p>
 
 ## Notes
 
