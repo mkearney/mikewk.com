@@ -52,38 +52,9 @@ copyright = "© Michael W. Kearney 2017"
   github = "mkearney"
   twitter = "kearneymw"
   linkedin = "mikewk"
-  # weibo = "weibo_username"
-  # wechat= "/img/qrcode.jpg" # Replace with your wechat qrcode image
   facebook = "mike.wayne.kearney"
-
-  # Changyan Comments (China Only)
-  # changyan = false
-  # changyanId = "cyt3toRiB"
-  # changyanConf = "prod_0908b1cb9a581501753cce1ed074dbe3"
 
   # Google Webmaster
   # https://www.google.com/webmasters/
   googleSiteVerification = "XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY"
 
-  # Bing Webmaster
-  # https://www.bing.com/toolbox/webmaster/
-  # msValidate = "22596E34341DD1D17D6022C44647E587"
-
-  # Baidu Webmaster (China Only)
-  # https://zhanzhang.baidu.com/
-  # baiduSiteVerification = "MZ23SPxxfa"
-
-  # Sogou Webmaster (China Only)
-  # http://zhanzhang.sogou.com/
-  # sogouSiteVerification = "m2jktMQTZm"
-
-  # 360 Webmaster (China Only)
-  # http://zhanzhang.so.com/
-  # soSiteVerification = "b7ab3b4c2edbc856642004d1b8c27a91"
-
-  # Baidu Tongji (China Only)
-  # https://tongji.baidu.com/
-  # baiduTongji = "e21dc1e8a592188271b615159dc88af7"
-
-  # ICP Number (China Only)
-  # ICP = "苏ICP备16005986号-2"
