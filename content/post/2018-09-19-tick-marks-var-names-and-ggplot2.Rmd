@@ -23,13 +23,13 @@ knitr::opts_chunk$set(
 ```
 
 I still remember how hard it was to learn [ggplot2](https://ggplot2.tidyverse.org)
-after only knowing a little about R<sup>1</sup>. Sure, the plots were pretty. 
-But compared to the ways I had used R before, ggplot2's syntax seemed almost 
-counter-intuitive. Its pipe-like workflow of building layer-by-layer 
-was like nothing I had ever ever used before. Not to mention, I was unfamiliar 
-with its central terms of art like "`geom`s" and "`aes`thetics". 
+after only knowing a little about R<sup>1</sup>. Sure, the plots seemed pretty. 
+But compared to the ways I had used R before, `ggplot2`'s syntax seemed almost 
+counter-intuitive. Its pipe-like `+` workflow of building layer-by-layer 
+was like nothing I had ever used before. Not to mention, I was unfamiliar 
+with central terms of art like "`geom`s" and "`aes`thetics". 
 
-But...still...the plots were *really* pretty.
+But then again...the plots were **really pretty**.
 
 Fortunately, the aesthetic motivator of being able to generate pretty plots 
 allowed me to percervere. And not long after truly committing myself to learning 

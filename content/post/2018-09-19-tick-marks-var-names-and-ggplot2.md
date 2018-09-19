@@ -16,13 +16,13 @@ output:
 
 
 I still remember how hard it was to learn [ggplot2](https://ggplot2.tidyverse.org)
-after only knowing a little about R<sup>1</sup>. Sure, the plots were pretty. 
-But compared to the ways I had used R before, ggplot2's syntax seemed almost 
-counter-intuitive. Its pipe-like workflow of building layer-by-layer 
-was like nothing I had ever ever used before. Not to mention, I was unfamiliar 
-with its central terms of art like "`geom`s" and "`aes`thetics". 
+after only knowing a little about R<sup>1</sup>. Sure, the plots seemed pretty. 
+But compared to the ways I had used R before, `ggplot2`'s syntax seemed almost 
+counter-intuitive. Its pipe-like `+` workflow of building layer-by-layer 
+was like nothing I had ever used before. Not to mention, I was unfamiliar 
+with central terms of art like "`geom`s" and "`aes`thetics". 
 
-But...still...the plots were *really* pretty.
+But then again...the plots were **really pretty**.
 
 Fortunately, the aesthetic motivator of being able to generate pretty plots 
 allowed me to percervere. And not long after truly committing myself to learning 
@@ -303,8 +303,8 @@ x <- rnorm(10)
 
 ## print x wrapped in tick marks
 `x`
-#>  [1]  0.8856686  0.4587086 -0.7035690  0.0348781  0.0200163  1.2747498
-#>  [7]  0.5477674 -0.7717193 -1.3328640  1.9604062
+#>  [1] -0.197768  1.813115 -1.138127  1.128558 -1.070463  2.253341  0.254891
+#>  [8]  0.242892  1.705886 -0.942000
 ```
 
 So, really, tick marks are used to distinguish symbols that contain one or more
