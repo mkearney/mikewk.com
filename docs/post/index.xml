@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Michael W. Kearney</title>
+    <link>/post/</link>
+    <description>Recent content in Posts on Michael W. Kearney</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© Michael W. Kearney 2017</copyright>
+    <lastBuildDate>Wed, 19 Sep 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tick marks, variable names, and ggplot2</title>
+      <link>/post/2018-09-19-tick-marks-var-names-and-ggplot2/</link>
+      <pubDate>Wed, 19 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-09-19-tick-marks-var-names-and-ggplot2/</guid>
+      <description>This tutorial identifies three common mistakes users make when attempting to map variables from dplyr::summarize() to aesthetic dimensions of a plot with ggplot2. It concludes by describing the solution to these common mistakes.
+Packages/styles To complete this tutorial, you will need to load the tidyverse set of packages and define a couple stylistic functions used throughout to make the #dataviz a little prettier.
+## load tidyverse library(tidyverse) #&amp;gt; ── Attaching packages ─────────────────────────────────────────────────────────── tidyverse 1.</description>
+    </item>
+    
+  </channel>
+</rss>

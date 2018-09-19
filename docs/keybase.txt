@@ -1,0 +1,56 @@
+==================================================================
+https://keybase.io/kearneymw
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://mikewk.com
+  * I am kearneymw (https://keybase.io/kearneymw) on keybase.
+  * I have a public key ASAprxnmWoBc1OCGFVW6Lid1F4IXNx6uabYjq-hOiDx_hQo
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "012029af19e65a805cd4e0861555ba2e2775178217371eae69b623abe84e883c7f850a",
+      "host": "keybase.io",
+      "kid": "012029af19e65a805cd4e0861555ba2e2775178217371eae69b623abe84e883c7f850a",
+      "uid": "978457b67ce7a469b95fee8a76597619",
+      "username": "kearneymw"
+    },
+    "merkle_root": {
+      "ctime": 1535763146,
+      "hash": "938af9f78d87f34b4de45ddf0a5c9753c90e2e378deddd9d77f7257fe689cd572b0f98c4e0298f196cd6860190c99c1cb13176aada1ef24d9aa45c2403dbe787",
+      "hash_meta": "e62f1794dd19c1d074a0eac2ab41158a812ece4f505f10a56b4c3ce18230d82c",
+      "seqno": 3547384
+    },
+    "service": {
+      "entropy": "0Tw3CZhR4yJb7lsYp9Ax1mz/",
+      "hostname": "mikewk.com",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "2.5.1"
+  },
+  "ctime": 1535763162,
+  "expire_in": 504576000,
+  "prev": "c7dd1c78be472074b9a9c975c1bbc80a8fc3c9e49ce977a0f0b965afb32ac7fc",
+  "seqno": 8,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgKa8Z5lqAXNTghhVVui4ndReCFzcermm2I6voTog8f4UKp3BheWxvYWTESpcCCMQgx90ceL5HIHS5qcl1wbvICo/DyeSc6Xeg8Lllr7Mqx/zEILYjVPDclpnAf8u8pjWnm3lzYWVn+/GJx1HP2B+tldRxAgHCo3NpZ8RAti5I9S2ysmUlb9kIllqGG11KIHSsHmMNm3adc+aZqbS+gVkC2zfoPcFAoCi6cGLuKU6IqZI6XgQyUziqKj/xDqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIPd5fOjDZekxV/FTjqi7utKNqkqQaWeITeFEfI0OYG95o3RhZ80CAqd2ZXJzaW9uAQ==
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/kearneymw
+
+==================================================================
