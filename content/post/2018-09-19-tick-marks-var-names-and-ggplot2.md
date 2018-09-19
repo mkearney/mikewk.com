@@ -303,8 +303,8 @@ x <- rnorm(10)
 
 ## print x wrapped in tick marks
 `x`
-#>  [1] -1.261127 -0.460150  0.242471  1.102429  1.075430 -1.026970 -1.609631
-#>  [8]  1.240303  1.494035  0.377001
+#>  [1] -1.4193929 -0.7352939 -1.0234430 -1.5542871 -0.3020631  1.5555810
+#>  [7] -1.2485056 -0.0113328  0.5811450 -0.3703764
 ```
 
 So, really, tick marks are used to distinguish symbols that contain one or more
@@ -370,7 +370,7 @@ mtcars %>%
   ggrepel::geom_label_repel(data = mtcars2, 
     aes(y = mpg, color = factor(cyl), fill = factor(cyl), label = make), 
     family = "Roboto Condensed", label.padding = 0.2, label.size = .05, 
-    min.segment.length = 100, color = "white", size = 3.0, alpha = .8) + 
+    min.segment.length = 100, color = "white", size = 2.8, alpha = .8) + 
   my_theme() + 
   my_labs() + 
   my_save("img/tick-marks-final.png")

@@ -348,7 +348,7 @@ mtcars %>%
   ggrepel::geom_label_repel(data = mtcars2, 
     aes(y = mpg, color = factor(cyl), fill = factor(cyl), label = make), 
     family = "Roboto Condensed", label.padding = 0.2, label.size = .05, 
-    min.segment.length = 100, color = "white", size = 3.0, alpha = .8) + 
+    min.segment.length = 100, color = "white", size = 2.8, alpha = .8) + 
   my_theme() + 
   my_labs() + 
   my_save("img/tick-marks-final.png")

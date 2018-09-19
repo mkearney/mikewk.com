@@ -459,8 +459,8 @@ x <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">10</
 
 <span class="c1">## print x wrapped in tick marks</span>
 <span class="sb">`x`</span>
-<span class="c1">#&gt;  [1] -1.261127 -0.460150  0.242471  1.102429  1.075430 -1.026970 -1.609631</span>
-<span class="c1">#&gt;  [8]  1.240303  1.494035  0.377001</span></code></pre></div>
+<span class="c1">#&gt;  [1] -1.4193929 -0.7352939 -1.0234430 -1.5542871 -0.3020631  1.5555810</span>
+<span class="c1">#&gt;  [7] -1.2485056 -0.0113328  0.5811450 -0.3703764</span></code></pre></div>
 <p>So, really, tick marks are used to distinguish symbols that contain one or more
 unfriendly punctuation/characters, e.g., parenthesis, dashes, spaces, etc.</p>
 
@@ -511,7 +511,7 @@ mtcars <span class="o">%&gt;%</span>
   ggrepel<span class="o">::</span>geom_label_repel<span class="p">(</span>data <span class="o">=</span> mtcars2<span class="p">,</span> 
     aes<span class="p">(</span>y <span class="o">=</span> mpg<span class="p">,</span> color <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>cyl<span class="p">),</span> fill <span class="o">=</span> <span class="kp">factor</span><span class="p">(</span>cyl<span class="p">),</span> label <span class="o">=</span> make<span class="p">),</span> 
     family <span class="o">=</span> <span class="s">&#34;Roboto Condensed&#34;</span><span class="p">,</span> label.padding <span class="o">=</span> <span class="m">0.2</span><span class="p">,</span> label.size <span class="o">=</span> <span class="m">.05</span><span class="p">,</span> 
-    min.segment.length <span class="o">=</span> <span class="m">100</span><span class="p">,</span> color <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">,</span> size <span class="o">=</span> <span class="m">3.0</span><span class="p">,</span> alpha <span class="o">=</span> <span class="m">.8</span><span class="p">)</span> <span class="o">+</span> 
+    min.segment.length <span class="o">=</span> <span class="m">100</span><span class="p">,</span> color <span class="o">=</span> <span class="s">&#34;white&#34;</span><span class="p">,</span> size <span class="o">=</span> <span class="m">2.8</span><span class="p">,</span> alpha <span class="o">=</span> <span class="m">.8</span><span class="p">)</span> <span class="o">+</span> 
   my_theme<span class="p">()</span> <span class="o">+</span> 
   my_labs<span class="p">()</span> <span class="o">+</span> 
   my_save<span class="p">(</span><span class="s">&#34;img/tick-marks-final.png&#34;</span><span class="p">)</span></code></pre></div>
