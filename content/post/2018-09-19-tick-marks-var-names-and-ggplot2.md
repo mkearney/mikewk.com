@@ -303,8 +303,8 @@ x <- rnorm(10)
 
 ## print x wrapped in tick marks
 `x`
-#>  [1] -1.4193929 -0.7352939 -1.0234430 -1.5542871 -0.3020631  1.5555810
-#>  [7] -1.2485056 -0.0113328  0.5811450 -0.3703764
+#>  [1]  0.8856686  0.4587086 -0.7035690  0.0348781  0.0200163  1.2747498
+#>  [7]  0.5477674 -0.7717193 -1.3328640  1.9604062
 ```
 
 So, really, tick marks are used to distinguish symbols that contain one or more
@@ -381,8 +381,8 @@ mtcars %>%
 
 ## Notes
 
-<sup>1</sup> I knew just enough to (a) read in data, (b) 
-do some [structural equation modeling](http://lavaan.ugent.be/), and (c) 
+<sup>1</sup> I knew just enough to read in data,
+do some [structural equation modeling](http://lavaan.ugent.be/), and 
 generate some simple plots via `base::plot()` and `base::histogram()`.
 
 <sup>2</sup> The `s` and `z` toward the end of `summarise()` and `summarize()` 

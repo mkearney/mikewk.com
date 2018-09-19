@@ -359,8 +359,8 @@ mtcars %>%
 
 ## Notes
 
-<sup>1</sup> I knew just enough to (a) read in data, (b) 
-do some [structural equation modeling](http://lavaan.ugent.be/), and (c) 
+<sup>1</sup> I knew just enough to read in data,
+do some [structural equation modeling](http://lavaan.ugent.be/), and 
 generate some simple plots via `base::plot()` and `base::histogram()`.
 
 <sup>2</sup> The `s` and `z` toward the end of `summarise()` and `summarize()` 
