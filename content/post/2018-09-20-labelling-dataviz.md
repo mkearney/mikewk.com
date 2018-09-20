@@ -16,16 +16,16 @@ output:
 
 
 
-Writing my last post reminded me how hard it was to learn [{ggplot2}](https://ggplot2.tidyverse.org)
+I still remember how hard it was to learn [{ggplot2}](https://ggplot2.tidyverse.org)
 after only knowing a little about R<sup>1</sup>. Sure, the plots seemed pretty. 
 But compared to the ways I had used R before, `{ggplot2}`'s syntax seemed almost 
-counter-intuitive. Its pipe-like `+` workflow of building layer-by-layer 
+counter-intuitive. Its pipe-like `+` workflow–building layer-by-layer–
 was like nothing I had ever used before. Not to mention, I was unfamiliar 
 with central terms of art like "`geom`s" and "`aes`thetics". 
 
 But then again...the plots were **really pretty**.
 
-Fortunately for me, _being able to generate pretty plots_ is a powerful 
+Fortunately for me, _being able to generate pretty plots_ was a powerful 
 motivator. Because not long after committing myself to learning how to `{ggplot2}`, 
 I realized why everyone likes it so much–it's actually really 
 easy! Once I learned about the key building blocks of `ggplot()`, `aes()`, 
@@ -37,13 +37,13 @@ relationships.
 Over time my [#dataviz](https://twitter.com/search?q=%23rstats%20%23dataviz&src=typed_query&f=image)
 has [gotten](https://twitter.com/kearneymw/status/762833157578162180/photo/1) a lot [better](https://twitter.com/kearneymw/status/1040702237310365701/photo/1), but it's had very little 
 to do the actual plotting of data points (`{ggplot2}` outputs beautiful plots by 
-default). Instead, my dataviz has improved because (a) I learned more about how to 
-correctly label scales, data points, and other visual dimensions and (b) I figured
-out how to (re)size and save high-resolution plots using nice-looking fonts.
+default). Instead, my dataviz has improved because I learned how to (a) more 
+effectively label scales, data points, and other dimensions of a plot and (b) 
+(re)size and save high-resolution plots using nice-looking fonts.
 
 With this in mind, my goal with this post is to demonstrate how data 
 visualizations can be improved via proper labelling. And since this idea was 
-inspired by my [last post](../post/2018-09-19-tick-marks-var-names-and-ggplot2),
+inspired by my [last post](../post/2018-09-17-tick-marks-var-names-and-ggplot2),
 I will extend the example about the relationship between miles per gallon and 
 number of cylinders. If you read the setup section from the last post, you can 
 skip ahead (it's the same).

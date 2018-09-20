@@ -15,14 +15,16 @@
 
   
   <meta name="author" content="" />
-  <meta name="description" content="Writing my last post reminded me how hard it was to learn {ggplot2} after only knowing a little about R1. Sure, the plots seemed pretty. But compared to the ways I had used R before, {ggplot2}&amp;rsquo;s syntax seemed almost counter-intuitive. Its pipe-like &#43; workflow of building layer-by-layer was like nothing I had ever used before. Not to mention, I was unfamiliar with central terms of art like &amp;ldquo;geoms&amp;rdquo; and &amp;ldquo;aesthetics&amp;rdquo;." />
+  <meta name="description" content="I still remember how hard it was to learn {ggplot2} after only knowing a little about R1. Sure, the plots seemed pretty. But compared to the ways I had used R before, {ggplot2}&amp;rsquo;s syntax seemed almost counter-intuitive. Its pipe-like &#43; workflow–building layer-by-layer– was like nothing I had ever used before. Not to mention, I was unfamiliar with central terms of art like &amp;ldquo;geoms&amp;rdquo; and &amp;ldquo;aesthetics&amp;rdquo;.
+But then again&amp;hellip;the plots were really pretty." />
 
   
   
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@kearneymw" />
     <meta name="twitter:title" content="Labelling dataviz" />
-    <meta name="twitter:description" content="Writing my last post reminded me how hard it was to learn {ggplot2} after only knowing a little about R1. Sure, the plots seemed pretty. But compared to the ways I had used R before, {ggplot2}&amp;rsquo;s syntax seemed almost counter-intuitive. Its pipe-like &#43; workflow of building layer-by-layer was like nothing I had ever used before. Not to mention, I was unfamiliar with central terms of art like &amp;ldquo;geoms&amp;rdquo; and &amp;ldquo;aesthetics&amp;rdquo;." />
+    <meta name="twitter:description" content="I still remember how hard it was to learn {ggplot2} after only knowing a little about R1. Sure, the plots seemed pretty. But compared to the ways I had used R before, {ggplot2}&amp;rsquo;s syntax seemed almost counter-intuitive. Its pipe-like &#43; workflow–building layer-by-layer– was like nothing I had ever used before. Not to mention, I was unfamiliar with central terms of art like &amp;ldquo;geoms&amp;rdquo; and &amp;ldquo;aesthetics&amp;rdquo;.
+But then again&amp;hellip;the plots were really pretty." />
     <meta name="twitter:image" content="/img/avatar.jpg" />
   
 
@@ -212,16 +214,16 @@
     </header>
     <article class="post-content">
 
-<p>Writing my last post reminded me how hard it was to learn <a href="https://ggplot2.tidyverse.org">{ggplot2}</a>
+<p>I still remember how hard it was to learn <a href="https://ggplot2.tidyverse.org">{ggplot2}</a>
 after only knowing a little about R<sup>1</sup>. Sure, the plots seemed pretty.
 But compared to the ways I had used R before, <code>{ggplot2}</code>&rsquo;s syntax seemed almost
-counter-intuitive. Its pipe-like <code>+</code> workflow of building layer-by-layer
+counter-intuitive. Its pipe-like <code>+</code> workflow–building layer-by-layer–
 was like nothing I had ever used before. Not to mention, I was unfamiliar
 with central terms of art like &ldquo;<code>geom</code>s&rdquo; and &ldquo;<code>aes</code>thetics&rdquo;.</p>
 
 <p>But then again&hellip;the plots were <strong>really pretty</strong>.</p>
 
-<p>Fortunately for me, <em>being able to generate pretty plots</em> is a powerful
+<p>Fortunately for me, <em>being able to generate pretty plots</em> was a powerful
 motivator. Because not long after committing myself to learning how to <code>{ggplot2}</code>,
 I realized why everyone likes it so much–it&rsquo;s actually really
 easy! Once I learned about the key building blocks of <code>ggplot()</code>, <code>aes()</code>,
@@ -233,13 +235,13 @@ relationships.</p>
 <p>Over time my <a href="https://twitter.com/search?q=%23rstats%20%23dataviz&amp;src=typed_query&amp;f=image">#dataviz</a>
 has <a href="https://twitter.com/kearneymw/status/762833157578162180/photo/1">gotten</a> a lot <a href="https://twitter.com/kearneymw/status/1040702237310365701/photo/1">better</a>, but it&rsquo;s had very little
 to do the actual plotting of data points (<code>{ggplot2}</code> outputs beautiful plots by
-default). Instead, my dataviz has improved because (a) I learned more about how to
-correctly label scales, data points, and other visual dimensions and (b) I figured
-out how to (re)size and save high-resolution plots using nice-looking fonts.</p>
+default). Instead, my dataviz has improved because I learned how to (a) more
+effectively label scales, data points, and other dimensions of a plot and (b)
+(re)size and save high-resolution plots using nice-looking fonts.</p>
 
 <p>With this in mind, my goal with this post is to demonstrate how data
 visualizations can be improved via proper labelling. And since this idea was
-inspired by my <a href="../post/2018-09-19-tick-marks-var-names-and-ggplot2">last post</a>,
+inspired by my <a href="../post/2018-09-17-tick-marks-var-names-and-ggplot2">last post</a>,
 I will extend the example about the relationship between miles per gallon and
 number of cylinders. If you read the setup section from the last post, you can
 skip ahead (it&rsquo;s the same).</p>
