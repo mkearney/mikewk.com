@@ -13,6 +13,11 @@
   </url>
   
   <url>
+    <loc>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</loc>
+    <lastmod>2018-09-17T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>/categories/</loc>
     <priority>0</priority>
   </url>
@@ -63,10 +68,6 @@
     <loc>/tags/</loc>
     <lastmod>2018-09-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</loc>
   </url>
   
 </urlset>

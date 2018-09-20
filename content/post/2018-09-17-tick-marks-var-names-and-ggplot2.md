@@ -1,6 +1,7 @@
 ---
 title: "Tick marks, variable names, and ggplot2"
 author: 'kearneymw'
+date: '2018-09-17'
 categories: ["R"]
 tags: ["ggplot2", "plot", "summarize", "dplyr"]
 output: 
@@ -265,8 +266,8 @@ x <- rnorm(10)
 
 ## print x wrapped in tick marks
 `x`
-#>  [1]  0.818357  0.220074 -0.265930  1.380765  0.609635 -0.993074  0.277314
-#>  [8] -0.260281 -1.376198  0.652305
+#>  [1]  0.0732954  1.2581567 -0.2562329 -0.9673479 -0.2795623 -0.0111038
+#>  [7] -0.5443010 -0.6042541  0.2727380 -0.7717563
 ```
 
 So, really, tick marks are used to distinguish symbols that contain one or more
