@@ -23,8 +23,14 @@
   </url>
   
   <url>
-    <loc>/tags/dplyr/</loc>
+    <loc>/tags/dataviz/</loc>
     <lastmod>2018-09-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/dplyr/</loc>
+    <lastmod>2018-09-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -35,14 +41,14 @@
   </url>
   
   <url>
-    <loc>/</loc>
-    <lastmod>2017-11-01T00:00:00+00:00</lastmod>
+    <loc>/tags/labels/</loc>
+    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/plot/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
+    <loc>/</loc>
+    <lastmod>2017-11-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -59,8 +65,14 @@
   </url>
   
   <url>
-    <loc>/tags/summarize/</loc>
+    <loc>/tags/rstats/</loc>
     <lastmod>2018-09-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/summarize/</loc>
+    <lastmod>2018-09-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

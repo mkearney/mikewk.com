@@ -3,7 +3,7 @@ title: "Labelling dataviz"
 author: 'kearneymw'
 date: '2018-09-20'
 categories: ["R"]
-tags: ["ggplot2", "plot", "summarize", "dplyr"]
+tags: ["ggplot2", "dataviz", "labels", "rstats"]
 output: 
   html_document: 
     df_print: default
