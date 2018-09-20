@@ -15,14 +15,14 @@
 
   
   <meta name="author" content="" />
-  <meta name="description" content="While writing my last post, I remembered how hard it was to learn {ggplot2} after only knowing a little about R1. Sure, the plots seemed pretty. But compared to the ways I had used R before, {ggplot2}&amp;rsquo;s syntax seemed almost counter-intuitive. Its pipe-like &#43; workflow of building layer-by-layer was like nothing I had ever used before. Not to mention, I was unfamiliar with central terms of art like &amp;ldquo;geoms&amp;rdquo; and &amp;ldquo;aesthetics&amp;rdquo;." />
+  <meta name="description" content="Writing my last post reminded me how hard it was to learn {ggplot2} after only knowing a little about R1. Sure, the plots seemed pretty. But compared to the ways I had used R before, {ggplot2}&amp;rsquo;s syntax seemed almost counter-intuitive. Its pipe-like &#43; workflow of building layer-by-layer was like nothing I had ever used before. Not to mention, I was unfamiliar with central terms of art like &amp;ldquo;geoms&amp;rdquo; and &amp;ldquo;aesthetics&amp;rdquo;." />
 
   
   
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@kearneymw" />
     <meta name="twitter:title" content="Labelling dataviz" />
-    <meta name="twitter:description" content="While writing my last post, I remembered how hard it was to learn {ggplot2} after only knowing a little about R1. Sure, the plots seemed pretty. But compared to the ways I had used R before, {ggplot2}&amp;rsquo;s syntax seemed almost counter-intuitive. Its pipe-like &#43; workflow of building layer-by-layer was like nothing I had ever used before. Not to mention, I was unfamiliar with central terms of art like &amp;ldquo;geoms&amp;rdquo; and &amp;ldquo;aesthetics&amp;rdquo;." />
+    <meta name="twitter:description" content="Writing my last post reminded me how hard it was to learn {ggplot2} after only knowing a little about R1. Sure, the plots seemed pretty. But compared to the ways I had used R before, {ggplot2}&amp;rsquo;s syntax seemed almost counter-intuitive. Its pipe-like &#43; workflow of building layer-by-layer was like nothing I had ever used before. Not to mention, I was unfamiliar with central terms of art like &amp;ldquo;geoms&amp;rdquo; and &amp;ldquo;aesthetics&amp;rdquo;." />
     <meta name="twitter:image" content="/img/avatar.jpg" />
   
 
@@ -208,11 +208,11 @@
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">Labelling dataviz</h1>
-      <p class="post-meta">@ · Sep 20, 2018 · 5 min read</p>
+      <p class="post-meta">@ · Sep 20, 2018 · 6 min read</p>
     </header>
     <article class="post-content">
 
-<p>While writing my last post, I remembered how hard it was to learn <a href="https://ggplot2.tidyverse.org">{ggplot2}</a>
+<p>Writing my last post reminded me how hard it was to learn <a href="https://ggplot2.tidyverse.org">{ggplot2}</a>
 after only knowing a little about R<sup>1</sup>. Sure, the plots seemed pretty.
 But compared to the ways I had used R before, <code>{ggplot2}</code>&rsquo;s syntax seemed almost
 counter-intuitive. Its pipe-like <code>+</code> workflow of building layer-by-layer
@@ -231,7 +231,7 @@ relationships.</p>
 <h3 id="it-s-in-the-details">It&rsquo;s in the details</h3>
 
 <p>Over time my <a href="https://twitter.com/search?q=%23rstats%20%23dataviz&amp;src=typed_query&amp;f=image">#dataviz</a>
-has gotten a lot better I think, but it&rsquo;s had very little
+has <a href="https://twitter.com/kearneymw/status/762833157578162180/photo/1">gotten</a> a lot <a href="https://twitter.com/kearneymw/status/1040702237310365701/photo/1">better</a>, but it&rsquo;s had very little
 to do the actual plotting of data points (<code>{ggplot2}</code> outputs beautiful plots by
 default). Instead, my dataviz has improved because (a) I learned more about how to
 correctly label scales, data points, and other visual dimensions and (b) I figured
@@ -303,22 +303,24 @@ being easy to understand <strong>and aesthetically pleasing</strong>. The differ
 experience, more often than not the only difference between a good visualization
 and great visualizations is labelling.</p>
 
-<p>In my last post, for example, the plot of <code>mpg</code> by <code>cyl</code> went from this</p>
+<p>In my last post, for example, the first successful plot of <code>mpg</code> by <code>cyl</code> was
+only _okay_–it&rsquo;s a little bland and it uses an actual expression for an axis title.</p>
 
 <p style="align:center"> <img src="../img/tick-marks.png"> </p>
 
-<p>to this</p>
+<p>But then I replaced the expression and added a custom theme and a few more labels,
+and I think it started to border on being <em>good</em>.</p>
 
 <p style="align:center"> <img src="../img/with-labs.png"> </p>
 
-<p>The combination of style changes and labels make a big difference but, still,
-this isn&rsquo;t a mind-blowing or overly impressive visual.</p>
+<p>The combination of style changes and labels clearly made a big difference but, still,
+I don&rsquo;t think the above plot is mind-blowing or overly impressive.</p>
 
-<p>Since there aren&rsquo;t <em>that</em> many data points, this visualization can be improved
-with the help of <a href="https://github.com/slowkow/ggrepel"><code>{ggrepel}</code></a> by
+<p>Since there aren&rsquo;t <em>that</em> many data points, I think this visualization can be
+further improved–with the help of <a href="https://github.com/slowkow/ggrepel"><code>{ggrepel}</code></a>–by
 labelling the individual data points–either as an additional layer or as a
-standalone plot (I don&rsquo;t think the summarized cyl estimates add much so I just
-used a standalone below).</p>
+standalone plot (I didn&rsquo;t think the summarized <code>cyl</code> estimates added much so I
+dropped the mean line/points).</p>
 <div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1">## - add row names as make variable</span>
 <span class="c1">## - add noise to cyl for spacing (store as cyl2)</span>
 <span class="c1">## - plot and format labels with ggrepel</span>
@@ -343,11 +345,19 @@ mtcars <span class="o">%&gt;%</span>
   my_save<span class="p">(</span><span class="s">&#34;img/tick-marks-final.png&#34;</span><span class="p">)</span></code></pre></div>
 <p style="align:center"> <img src="../img/tick-marks-final.png"> </p>
 
-<p>As you can see in the code chunk above, I added some noise to help out
-<code>{ggrepel}</code>&rsquo;s algorithm, which allows me to plot <em>and label</em> the make of each
-car in the data set. So now the image conveys not only the pattern between
-<code>mpg</code> and <code>cyl</code>, but it does so in a way that more people can recognize, while
-also being visually pleasing.</p>
+<p>As you can see in the code chunk above, I also added some additional noise to
+the <code>cyl</code> variable to help out <code>{ggrepel}</code>&rsquo;s spacing algorithm. The approach
+made it possible to plot <em>and label</em> each car in the data set without overloading
+or distracting the image with too much information. So, now, not only does the
+image convey the pattern between <code>mpg</code> and <code>cyl</code>, but it does so in a way that
+more people can recognize ( <em>4-cylinders</em> is less meaningful than <em>Honda Civic</em>, for example),
+while arguably being even more visually pleasing.</p>
+
+<h2 id="notes">Notes</h2>
+
+<p><sup>1</sup> I knew just enough to read in data,
+do some <a href="http://lavaan.ugent.be/">structural equation modeling</a>, and
+generate some simple plots via <code>base::plot()</code> and <code>base::histogram()</code>.</p>
 </article>
     <footer class="post-footer">
       

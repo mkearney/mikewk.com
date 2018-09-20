@@ -22,6 +22,52 @@ knitr::opts_chunk$set(
 )
 ```
 
+
+A popular workflow in R uses [{dplyr}](https://dplyr.tidyverse.org) to `group_by()`
+and then `summarise()`<sup>1</sup> variables. 
+It's an intuitive and easy way to aggregate and describe data, especially along 
+multiple dimensions. The cost of being both powerful and user-friendly, 
+however, is its arguably inconvenient default method for assigning names to 
+summarized values. As the code illustrates below, users can provide their own 
+names when using `summarize()`.
+
+```{r}
+## explicitly named summarize variable
+mtcars %>%
+  group_by(cyl) %>%
+  summarize(mpg = mean(mpg))
+```
+
+But when users don't explicitly name the summarized values, instead of inheriting 
+the name of a summarized variable (in this case `mpg`), variables are named–by 
+default–with the text of the expression used to create the summarized value.
+
+For example, the code below summarizes by estimating the mean `mpg` for cars 
+grouped by number of `cyl`. The code is fairly straight forward, and you can 
+probably see why users often assume the returned summarized data would contain 
+two variables `cyl` and `mpg`.
+
+```{r}
+## unnamed summarize variable
+mtcars %>%
+  group_by(cyl) %>%
+  summarize(mean(mpg))
+```
+
+As you can see above, the variable names are wind up being `cyl` and `mean(mpg)`–
+instead of simply `cyl` and `mpg`. This default behavior may seem obnoxious at 
+first, but it makes a lot of sense when you think about using **two or more** 
+variables when calculating `summarize()` values.
+
+Regardless, while it's definitely a good idea to provide your own summary 
+variable names, you will invariably find yourself in a situation in which you 
+would like to plot summarized variables that were named using with the text of 
+the expressions used to create them.
+
+Thus, my goal with this post is to identify **three common mistakes users make when attempting to map variables** from [`dplyr::summarize()`](https://dplyr.tidyverse.org/reference/summarise.html) 
+to aesthetic dimensions of a plot with [{ggplot2}](https://ggplot2.tidyverse.org) 
+and conclude by describing a solution.
+
 ## Setup
 
 To follow along with the examples in this post, you will need to load the 
@@ -97,54 +143,6 @@ and `cyl` (number of cylinders) variables.
 ## print first six rows
 head(mtcars)
 ```
-
-## Names from `summarize()`
-
-A popular workflow in R uses [{dplyr}](https://dplyr.tidyverse.org) to `group_by()`
-and then `summarise()`<sup>1</sup> variables. 
-It's an intuitive and easy way to aggregate and describe data, especially along 
-multiple dimensions. The cost of being both powerful and user-friendly, 
-however, is its arguably inconvenient default method for assigning names to 
-summarized values. As the code illustrates below, users can provide their own 
-names when using `summarize()`.
-
-```{r}
-## explicitly named summarize variable
-mtcars %>%
-  group_by(cyl) %>%
-  summarize(mpg = mean(mpg))
-```
-
-But when users don't explicitly name the summarized values, instead of inheriting 
-the name of a summarized variable (in this case `mpg`), variables are named–by 
-default–with the text of the expression used to create the summarized value.
-
-For example, the code below summarizes by estimating the mean `mpg` for cars 
-grouped by number of `cyl`. The code is fairly straight forward, and you can 
-probably see why users often assume the returned summarized data would contain 
-two variables `cyl` and `mpg`.
-
-```{r}
-## unnamed summarize variable
-mtcars %>%
-  group_by(cyl) %>%
-  summarize(mean(mpg))
-```
-
-As you can see above, the variable names are wind up being `cyl` and `mean(mpg)`–
-instead of simply `cyl` and `mpg`. This default behavior may seem obnoxious at 
-first, but it makes a lot of sense when you think about using **two or more** 
-variables when calculating `summarize()` values.
-
-Regardless, while it's definitely a good idea to provide your own summary 
-variable names, you will invariably find yourself in a situation in which you 
-would like to plot summarized variables that were named using with the text of 
-the expressions used to create them.
-
-Thus, my goal with this post is to identify **three common mistakes users make when attempting to map variables** from [`dplyr::summarize()`](https://dplyr.tidyverse.org/reference/summarise.html) 
-to aesthetic dimensions of a plot with [{ggplot2}](https://ggplot2.tidyverse.org) 
-and conclude by describing a solution.
-
 
 ## Mapping incorrect names
 

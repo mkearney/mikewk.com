@@ -18,7 +18,7 @@
       <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018-09-20-labelling-dataviz/</guid>
-      <description>While writing my last post, I remembered how hard it was to learn {ggplot2} after only knowing a little about R1. Sure, the plots seemed pretty. But compared to the ways I had used R before, {ggplot2}&amp;rsquo;s syntax seemed almost counter-intuitive. Its pipe-like + workflow of building layer-by-layer was like nothing I had ever used before. Not to mention, I was unfamiliar with central terms of art like &amp;ldquo;geoms&amp;rdquo; and &amp;ldquo;aesthetics&amp;rdquo;.</description>
+      <description>Writing my last post reminded me how hard it was to learn {ggplot2} after only knowing a little about R1. Sure, the plots seemed pretty. But compared to the ways I had used R before, {ggplot2}&amp;rsquo;s syntax seemed almost counter-intuitive. Its pipe-like + workflow of building layer-by-layer was like nothing I had ever used before. Not to mention, I was unfamiliar with central terms of art like &amp;ldquo;geoms&amp;rdquo; and &amp;ldquo;aesthetics&amp;rdquo;.</description>
     </item>
     
     <item>
@@ -27,8 +27,8 @@
       <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018-09-19-tick-marks-var-names-and-ggplot2/</guid>
-      <description>I still remember how hard it was to learn {ggplot2} after only knowing a little about R1. Sure, the plots seemed pretty. But compared to the ways I had used R before, {ggplot2}&amp;rsquo;s syntax seemed almost counter-intuitive. Its pipe-like + workflow of building layer-by-layer was like nothing I had ever used before. Not to mention, I was unfamiliar with central terms of art like &amp;ldquo;geoms&amp;rdquo; and &amp;ldquo;aesthetics&amp;rdquo;.
-But then again&amp;hellip;the plots were really pretty.</description>
+      <description>A popular workflow in R uses {dplyr} to group_by() and then summarise()1 variables. It&amp;rsquo;s an intuitive and easy way to aggregate and describe data, especially along multiple dimensions. The cost of being both powerful and user-friendly, however, is its arguably inconvenient default method for assigning names to summarized values. As the code illustrates below, users can provide their own names when using summarize().
+## explicitly named summarize variable mtcars %&amp;gt;% group_by(cyl) %&amp;gt;% summarize(mpg = mean(mpg)) #&amp;gt; # A tibble: 3 x 2 #&amp;gt; cyl mpg #&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; #&amp;gt; 1 4 26.</description>
     </item>
     
   </channel>

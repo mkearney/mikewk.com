@@ -42,7 +42,7 @@ relationships.
 ### It's in the details
 
 Over time my [#dataviz](https://twitter.com/search?q=%23rstats%20%23dataviz&src=typed_query&f=image)
-has gotten a lot better I think, but it's had very little 
+has [gotten](https://twitter.com/kearneymw/status/762833157578162180/photo/1) a lot [better](https://twitter.com/kearneymw/status/1040702237310365701/photo/1), but it's had very little 
 to do the actual plotting of data points (`{ggplot2}` outputs beautiful plots by 
 default). Instead, my dataviz has improved because (a) I learned more about how to 
 correctly label scales, data points, and other visual dimensions and (b) I figured
@@ -141,22 +141,24 @@ _good_ and _great_ can be something as minor as color palette, but, in my
 experience, more often than not the only difference between a good visualization
 and great visualizations is labelling.
 
-In my last post, for example, the plot of `mpg` by `cyl` went from this
+In my last post, for example, the first successful plot of `mpg` by `cyl` was 
+only _okay_–it's a little bland and it uses an actual expression for an axis title.
 
 <p style="align:center"> <img src="../img/tick-marks.png"> </p>
 
-to this
+But then I replaced the expression and added a custom theme and a few more labels, 
+and I think it started to border on being _good_.
 
 <p style="align:center"> <img src="../img/with-labs.png"> </p>
 
-The combination of style changes and labels make a big difference but, still, 
-this isn't a mind-blowing or overly impressive visual.
+The combination of style changes and labels clearly made a big difference but, still, 
+I don't think the above plot is mind-blowing or overly impressive.
 
-Since there aren't _that_ many data points, this visualization can be improved 
-with the help of [`{ggrepel}`](https://github.com/slowkow/ggrepel) by 
+Since there aren't _that_ many data points, I think this visualization can be 
+further improved–with the help of [`{ggrepel}`](https://github.com/slowkow/ggrepel)–by 
 labelling the individual data points–either as an additional layer or as a 
-standalone plot (I don't think the summarized cyl estimates add much so I just
-used a standalone below).
+standalone plot (I didn't think the summarized `cyl` estimates added much so I 
+dropped the mean line/points).
 
 ```{r}
 ## - add row names as make variable
@@ -185,11 +187,13 @@ mtcars %>%
 
 <p style="align:center"> <img src="../img/tick-marks-final.png"> </p>
 
-As you can see in the code chunk above, I added some noise to help out 
-`{ggrepel}`'s algorithm, which allows me to plot _and label_ the make of each 
-car in the data set. So now the image conveys not only the pattern between 
-`mpg` and `cyl`, but it does so in a way that more people can recognize, while
-also being visually pleasing.
+As you can see in the code chunk above, I also added some additional noise to 
+the `cyl` variable to help out `{ggrepel}`'s spacing algorithm. The approach 
+made it possible to plot _and label_ each car in the data set without overloading
+or distracting the image with too much information. So, now, not only does the 
+image convey the pattern between `mpg` and `cyl`, but it does so in a way that 
+more people can recognize ( _4-cylinders_ is less meaningful than _Honda Civic_, for example),
+while arguably being even more visually pleasing.
 
 ## Notes
 

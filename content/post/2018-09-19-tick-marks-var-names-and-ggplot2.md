@@ -15,68 +15,6 @@ output:
 
 
 
-## Setup
-
-To follow along with the examples in this post, you will need to load the 
-[{tidyverse}](https://tidyverse.org) set of packages and define a couple stylistic 
-functions used throughout to make the plots even prettier.
-
-
-```r
-## load tidyverse
-library(tidyverse)
-#> ── Attaching packages ───────────────────────────────────────────────────── tidyverse 1.2.1 ──
-#> ✔ ggplot2 3.0.0.9000     ✔ purrr   0.2.5     
-#> ✔ tibble  1.4.2          ✔ dplyr   0.7.6     
-#> ✔ tidyr   0.8.1          ✔ stringr 1.3.1     
-#> ✔ readr   1.1.1          ✔ forcats 0.3.0
-#> ── Conflicts ──────────────────────────────────────────────────────── tidyverse_conflicts() ──
-#> ✖ dplyr::filter() masks stats::filter()
-#> ✖ dplyr::lag()    masks stats::lag()
-
-## create style theme
-my_theme <- function() {
-  theme_minimal(base_family = "Roboto Condensed") + 
-    theme(plot.title = element_text(size = rel(1.5), face = "bold"), 
-      plot.subtitle = element_text(size = rel(1.1)),
-      plot.caption = element_text(color = "#777777", vjust = 0),
-      axis.title = element_text(size = rel(.9), hjust = 0.95, face = "italic"),
-      panel.grid.major = element_line(size = rel(.1), color = "#000000"), 
-      panel.grid.minor = element_line(size = rel(.05), color = "#000000"), 
-      legend.position = "none")
-}
-my_labs <- function() {
-  labs(title = "Average miles per gallon by number of cylinders", 
-    subtitle = "Scatter plot depicting average miles per gallon aggregated by number of cylinders",
-    x = "Number of cylinders", y = "Miles per gallon",
-    caption = "Source: Estimates calculated from the 'mtcars' data set")
-}
-my_save <- function(file) {
-  ggsave(file, width = 7, height = 4.5, units = "in")
-}
-```
-
-
-
-The data set featured in this post is **mtcars**, which is bundled as part of 
-the core [datasets](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html) 
-package. Specifically, examples will feature the `mpg` (miles per gallon) 
-and `cyl` (number of cylinders) variables.
-
-
-```r
-## print first six rows
-head(mtcars)
-#>                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
-#> Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
-#> Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
-#> Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
-#> Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
-#> Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
-#> Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
-```
-
-## Names from `summarize()`
 
 A popular workflow in R uses [{dplyr}](https://dplyr.tidyverse.org) to `group_by()`
 and then `summarise()`<sup>1</sup> variables. 
@@ -137,6 +75,66 @@ Thus, my goal with this post is to identify **three common mistakes users make w
 to aesthetic dimensions of a plot with [{ggplot2}](https://ggplot2.tidyverse.org) 
 and conclude by describing a solution.
 
+## Setup
+
+To follow along with the examples in this post, you will need to load the 
+[{tidyverse}](https://tidyverse.org) set of packages and define a couple stylistic 
+functions used throughout to make the plots even prettier.
+
+
+```r
+## load tidyverse
+library(tidyverse)
+#> ── Attaching packages ───────────────────────────────────────────────────── tidyverse 1.2.1 ──
+#> ✔ ggplot2 3.0.0.9000     ✔ purrr   0.2.5     
+#> ✔ tibble  1.4.2          ✔ dplyr   0.7.6     
+#> ✔ tidyr   0.8.1          ✔ stringr 1.3.1     
+#> ✔ readr   1.1.1          ✔ forcats 0.3.0
+#> ── Conflicts ──────────────────────────────────────────────────────── tidyverse_conflicts() ──
+#> ✖ dplyr::filter() masks stats::filter()
+#> ✖ dplyr::lag()    masks stats::lag()
+
+## create style theme
+my_theme <- function() {
+  theme_minimal(base_family = "Roboto Condensed") + 
+    theme(plot.title = element_text(size = rel(1.5), face = "bold"), 
+      plot.subtitle = element_text(size = rel(1.1)),
+      plot.caption = element_text(color = "#777777", vjust = 0),
+      axis.title = element_text(size = rel(.9), hjust = 0.95, face = "italic"),
+      panel.grid.major = element_line(size = rel(.1), color = "#000000"), 
+      panel.grid.minor = element_line(size = rel(.05), color = "#000000"), 
+      legend.position = "none")
+}
+my_labs <- function() {
+  labs(title = "Average miles per gallon by number of cylinders", 
+    subtitle = "Scatter plot depicting average miles per gallon aggregated by number of cylinders",
+    x = "Number of cylinders", y = "Miles per gallon",
+    caption = "Source: Estimates calculated from the 'mtcars' data set")
+}
+my_save <- function(file) {
+  ggsave(file, width = 7, height = 4.5, units = "in")
+}
+```
+
+
+
+The data set featured in this post is **mtcars**, which is bundled as part of 
+the core [datasets](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html) 
+package. Specifically, examples will feature the `mpg` (miles per gallon) 
+and `cyl` (number of cylinders) variables.
+
+
+```r
+## print first six rows
+head(mtcars)
+#>                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+#> Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+#> Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+#> Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+#> Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+#> Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+#> Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+```
 
 ## Mapping incorrect names
 
@@ -268,8 +266,8 @@ x <- rnorm(10)
 
 ## print x wrapped in tick marks
 `x`
-#>  [1]  0.4166848 -0.1159000 -2.4044152  0.6163509 -0.0904258 -1.1541614
-#>  [7] -0.8873499  0.8326924 -0.0523933 -0.4630606
+#>  [1] -1.039417 -1.676750  0.518943 -1.772282  0.520204 -0.508925 -0.656071
+#>  [8] -0.693115  2.409130  0.554592
 ```
 
 So, really, tick marks are used to distinguish symbols that contain one or more
