@@ -25,7 +25,7 @@ But then again&amp;hellip;the plots were really pretty.</description>
     <item>
       <title>Tick marks, variable names, and ggplot2</title>
       <link>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</link>
-      <pubDate>Mon, 17 Sep 2018 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</guid>
       <description>A popular workflow in R uses {dplyr} to group_by() and then summarise()1 variables. It&amp;rsquo;s an intuitive and easy way to aggregate and describe data, especially along multiple dimensions. The cost of being both powerful and user-friendly, however, is its arguably inconvenient default method for assigning names to summarized values. As the code illustrates below, users can provide their own names when using summarize().

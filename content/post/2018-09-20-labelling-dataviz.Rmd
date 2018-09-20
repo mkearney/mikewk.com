@@ -1,6 +1,6 @@
 ---
 title: "Labelling dataviz"
-author: ''
+author: 'kearneymw'
 date: '2018-09-20'
 categories: ["R"]
 tags: ["ggplot2", "plot", "summarize", "dplyr"]

@@ -1,6 +1,6 @@
 ---
 title: "Tick marks, variable names, and ggplot2"
-date: '2018-09-17'
+author: 'kearneymw'
 categories: ["R"]
 tags: ["ggplot2", "plot", "summarize", "dplyr"]
 output: 
