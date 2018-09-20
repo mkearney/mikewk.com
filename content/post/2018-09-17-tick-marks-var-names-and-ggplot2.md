@@ -67,8 +67,8 @@ first, but it makes a lot of sense when you think about using **two or more**
 variables when calculating `summarize()` values.
 
 Regardless, while it's definitely a good idea to provide your own summary 
-variable names, you will invariably find yourself in a situation in which you 
-would like to plot summarized variables that were named using with the text of 
+variable names, you will invariably find yourself in a situation where you 
+would like to plot summarized variables that were named using the text of 
 the expressions used to create them.
 
 Thus, my goal with this post is to identify **three common mistakes users make when attempting to map variables** from [`dplyr::summarize()`](https://dplyr.tidyverse.org/reference/summarise.html) 
@@ -266,8 +266,8 @@ x <- rnorm(10)
 
 ## print x wrapped in tick marks
 `x`
-#>  [1]  0.3082517  1.1588847 -0.8110835 -0.8708129  0.0607343 -0.4039328
-#>  [7]  0.3429955 -0.3341200 -0.2356145 -0.8778861
+#>  [1]  0.086826  0.646879  0.733351 -0.523320  0.846331 -0.768469  2.780651
+#>  [8]  0.492206 -0.624481  1.427155
 ```
 
 So, really, tick marks are used to distinguish symbols that contain one or more
