@@ -15,37 +15,7 @@ output:
 
 
 
-I still remember how hard it was to learn [{ggplot2}](https://ggplot2.tidyverse.org)
-after only knowing a little about R<sup>1</sup>. Sure, the plots seemed pretty. 
-But compared to the ways I had used R before, `{ggplot2}`'s syntax seemed almost 
-counter-intuitive. Its pipe-like `+` workflow of building layer-by-layer 
-was like nothing I had ever used before. Not to mention, I was unfamiliar 
-with central terms of art like "`geom`s" and "`aes`thetics". 
-
-But then again...the plots were **really pretty**.
-
-Fortunately for me, _being able to generate pretty plots_ is a powerful 
-motivator. Because not long after committing myself to learning how to `{ggplot2}`, 
-I realized why everyone likes it so much–it's actually really 
-easy! Once I learned about the key building blocks of `ggplot()`, `aes()`, 
-and `geom_.*()`), I could create pretty plots for all sorts of data types and 
-relationships.
-
-### It's in the details
-
-Over time my [#dataviz](https://twitter.com/search?q=%23rstats%20%23dataviz&src=typed_query&f=image)
-has gotten a lot better I think, but it's had very little 
-to do the actual plotting of data points (`{ggplot2}` outputs beautiful plots by 
-default). Instead, my dataviz has improved because (a) I learned more about how to 
-correctly label scales, data points, and other visual dimensions and (b) I figured
-out how to (re)size and save high-resolution plots using nice-looking fonts.
-
-With this in mind, my goals with this post are to (1) identify **three common mistakes users make when attempting to map variables** from [`dplyr::summarize()`](https://dplyr.tidyverse.org/reference/summarise.html) 
-to aesthetic dimensions of a plot with [{ggplot2}](https://ggplot2.tidyverse.org) 
-(and conclude by describing a solution) and (2) to demonstrate how data 
-visualizations can be improved via proper labelling.
-
-## Packages/styles
+## Setup
 
 To follow along with the examples in this post, you will need to load the 
 [{tidyverse}](https://tidyverse.org) set of packages and define a couple stylistic 
@@ -88,11 +58,9 @@ my_save <- function(file) {
 
 
 
-## Data
-
-The data set used to demonstrate the mistakes (and the eventual solution) is 
-**mtcars**, which is from the core [datasets](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html) 
-package. Specifically, the examples feature the `mpg` (miles per gallon) 
+The data set featured in this post is **mtcars**, which is bundled as part of 
+the core [datasets](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html) 
+package. Specifically, examples will feature the `mpg` (miles per gallon) 
 and `cyl` (number of cylinders) variables.
 
 
@@ -108,10 +76,10 @@ head(mtcars)
 #> Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
 ```
 
-### Names from `summarize()`
+## Names from `summarize()`
 
 A popular workflow in R uses [{dplyr}](https://dplyr.tidyverse.org) to `group_by()`
-and then `summarise()`<sup>2</sup> variables. 
+and then `summarise()`<sup>1</sup> variables. 
 It's an intuitive and easy way to aggregate and describe data, especially along 
 multiple dimensions. The cost of being both powerful and user-friendly, 
 however, is its arguably inconvenient default method for assigning names to 
@@ -164,6 +132,11 @@ Regardless, while it's definitely a good idea to provide your own summary
 variable names, you will invariably find yourself in a situation in which you 
 would like to plot summarized variables that were named using with the text of 
 the expressions used to create them.
+
+Thus, my goal with this post is to identify **three common mistakes users make when attempting to map variables** from [`dplyr::summarize()`](https://dplyr.tidyverse.org/reference/summarise.html) 
+to aesthetic dimensions of a plot with [{ggplot2}](https://ggplot2.tidyverse.org) 
+and conclude by describing a solution.
+
 
 ## Mapping incorrect names
 
@@ -266,13 +239,11 @@ This time we get a plot and no warnings, but it's clearly not right. It shows
 every `y` value is exactly the same, but it seems far fetched to think the 
 average miles per gallon would not vary with number of cylinders.
 
-
 In this case, the literal string `"mean(mpg)"` is mapped to the `y` variable 
 value, which means it's converted to a factor and the single factor level is 
 coded as `1` at each observation.
 
-
-### Solution: use tick marks
+## Solution: use tick marks
 
 At this point it should be clear the name of the summarized `mpg` variable is 
 actually "mean(mpg)," only now we also know wrapping the expression with quotes 
@@ -297,8 +268,8 @@ x <- rnorm(10)
 
 ## print x wrapped in tick marks
 `x`
-#>  [1]  0.804522  1.164273  0.532323 -0.550734 -0.421067  0.932971 -0.280566
-#>  [8] -1.505201 -0.126354  1.897547
+#>  [1]  0.4166848 -0.1159000 -2.4044152  0.6163509 -0.0904258 -1.1541614
+#>  [7] -0.8873499  0.8326924 -0.0523933 -0.4630606
 ```
 
 So, really, tick marks are used to distinguish symbols that contain one or more
@@ -342,45 +313,9 @@ mtcars %>%
 
 <p style="align:center"> <img src="../img/with-labs.png"> </p>
 
-Or since there aren't _that_ many data points, we can really dress it up with 
-the help of [`{ggrepel}`](https://github.com/slowkow/ggrepel) and plot the 
-labelled data points–either as an additional layer or as a standalone.
-
-
-```r
-## - add row names as make variable
-## - add noise to cyl for spacing (store as cyl2)
-## - plot and format labels with ggrepel
-## - adjust x-axis labels
-## - specify custom fill colors
-mtcars %>%
-  mutate(make = row.names(mtcars),
-    cyl2 = case_when(
-      cyl == 4 ~ cyl - runif(1, .25, .5),
-      cyl == 6 ~ cyl - runif(1, .00, .1),
-      cyl == 8 ~ cyl + runif(1, .75, 1.25), 
-      TRUE ~ cyl
-    )) %>%
-  ggplot(aes(x = cyl2, y = mpg)) + 
-  ggrepel::geom_label_repel(aes(fill = factor(cyl), label = make), 
-    family = "Roboto Condensed Light", label.padding = 0.2, label.size = .25, 
-    min.segment.length = 100, color = "black", size = 3.4) + 
-  my_theme() + 
-  my_labs() + 
-  scale_x_continuous(breaks = c(4, 6, 8)) + 
-  scale_fill_manual(values = c("#efd0ef", "#d0efd0", "#d0daef")) +
-  my_save("img/tick-marks-final.png")
-```
-
-<p style="align:center"> <img src="../img/tick-marks-final.png"> </p>
-
 
 ## Notes
 
-<sup>1</sup> I knew just enough to read in data,
-do some [structural equation modeling](http://lavaan.ugent.be/), and 
-generate some simple plots via `base::plot()` and `base::histogram()`.
-
-<sup>2</sup> The `s` and `z` toward the end of `summarise()` and `summarize()` 
+<sup>1</sup> The `s` and `z` toward the end of `summarise()` and `summarize()` 
 are interchangeable.
 
