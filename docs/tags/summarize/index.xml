@@ -7,7 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
-    <lastBuildDate>Wed, 19 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Sep 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/summarize/index.xml" rel="self" type="application/rss+xml" />
     
@@ -15,7 +15,7 @@
     <item>
       <title>Tick marks, variable names, and ggplot2</title>
       <link>/post/2018-09-19-tick-marks-var-names-and-ggplot2/</link>
-      <pubDate>Wed, 19 Sep 2018 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018-09-19-tick-marks-var-names-and-ggplot2/</guid>
       <description>I still remember how hard it was to learn ggplot2 after only knowing a little about R1. Sure, the plots seemed pretty. But compared to the ways I had used R before, ggplot2&amp;rsquo;s syntax seemed almost counter-intuitive. Its pipe-like + workflow of building layer-by-layer was like nothing I had ever used before. Not to mention, I was unfamiliar with central terms of art like &amp;ldquo;geoms&amp;rdquo; and &amp;ldquo;aesthetics&amp;rdquo;.

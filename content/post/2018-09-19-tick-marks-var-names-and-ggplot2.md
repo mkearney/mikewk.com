@@ -1,7 +1,7 @@
 ---
 title: "Tick marks, variable names, and ggplot2"
 author: ''
-date: '2018-09-19'
+date: '2018-09-20'
 categories: ["R"]
 tags: ["ggplot2", "plot", "summarize", "dplyr"]
 output: 
@@ -15,18 +15,18 @@ output:
 
 
 
-I still remember how hard it was to learn [ggplot2](https://ggplot2.tidyverse.org)
+I still remember how hard it was to learn [{ggplot2}](https://ggplot2.tidyverse.org)
 after only knowing a little about R<sup>1</sup>. Sure, the plots seemed pretty. 
-But compared to the ways I had used R before, `ggplot2`'s syntax seemed almost 
+But compared to the ways I had used R before, `{ggplot2}`'s syntax seemed almost 
 counter-intuitive. Its pipe-like `+` workflow of building layer-by-layer 
 was like nothing I had ever used before. Not to mention, I was unfamiliar 
 with central terms of art like "`geom`s" and "`aes`thetics". 
 
 But then again...the plots were **really pretty**.
 
-Fortunately, the aesthetic motivator of being able to generate pretty plots 
-allowed me to percervere. And not long after truly committing myself to learning 
-how to `ggplot2`, I realized why everyone likes it so much–it's actaully really 
+Fortunately for me, _being able to generate pretty plots_ is a powerful 
+motivator. Because not long after committing myself to learning how to `{ggplot2}`, 
+I realized why everyone likes it so much–it's actually really 
 easy! Once I learned about the key building blocks of `ggplot()`, `aes()`, 
 and `geom_.*()`), I could create pretty plots for all sorts of data types and 
 relationships.
@@ -35,20 +35,20 @@ relationships.
 
 Over time my [#dataviz](https://twitter.com/search?q=%23rstats%20%23dataviz&src=typed_query&f=image)
 has gotten a lot better I think, but it's had very little 
-to do the actual plotting of data points (`ggplot2` outputs beautiful plots by 
+to do the actual plotting of data points (`{ggplot2}` outputs beautiful plots by 
 default). Instead, my dataviz has improved because (a) I learned more about how to 
 correctly label scales, data points, and other visual dimensions and (b) I figured
 out how to (re)size and save high-resolution plots using nice-looking fonts.
 
-With this in mind, my goal with this post is to identify **three common mistakes 
-users make when attempting to map variables** from [`dplyr::summarize()`](https://dplyr.tidyverse.org/reference/summarise.html) 
-to aesthetic dimensions of a plot with [ggplot2](https://ggplot2.tidyverse.org)
-and then conclude by describing a solution to these common mistakes.
+With this in mind, my goals with this post are to (1) identify **three common mistakes users make when attempting to map variables** from [`dplyr::summarize()`](https://dplyr.tidyverse.org/reference/summarise.html) 
+to aesthetic dimensions of a plot with [{ggplot2}](https://ggplot2.tidyverse.org) 
+(and conclude by describing a solution) and (2) to demonstrate how data 
+visualizations can be improved via proper labelling.
 
 ## Packages/styles
 
 To follow along with the examples in this post, you will need to load the 
-[tidyverse](https://tidyverse.org) set of packages and define a couple stylistic 
+[{tidyverse}](https://tidyverse.org) set of packages and define a couple stylistic 
 functions used throughout to make the plots even prettier.
 
 
@@ -110,7 +110,7 @@ head(mtcars)
 
 ### Names from `summarize()`
 
-A popular workflow in R uses [dplyr](https://dplyr.tidyverse.org) to `group_by()`
+A popular workflow in R uses [{dplyr}](https://dplyr.tidyverse.org) to `group_by()`
 and then `summarise()`<sup>2</sup> variables. 
 It's an intuitive and easy way to aggregate and describe data, especially along 
 multiple dimensions. The cost of being both powerful and user-friendly, 
@@ -190,10 +190,8 @@ mtcars %>%
   summarize(mean(mpg)) %>%
   ggplot(aes(x = cyl, y = mpg)) + 
   geom_point() + 
-  geom_line() + 
-  my_theme() + 
-  my_labs()
-Error: Aesthetics must be either length 1 or the same as the data (3): x, y
+  geom_line()
+#> Error: Aesthetics must be either length 1 or the same as the data (3): x, y
 ```
 
 We know from the **summarize** section above the variable's name is actually 
@@ -217,8 +215,6 @@ mtcars %>%
   ggplot(aes(x = cyl, y = mean(mpg))) + 
   geom_point() + 
   geom_line() + 
-  my_theme() + 
-  my_labs() + 
   my_save("img/empty-plot.png")
 #> Warning in mean.default(mpg): argument is not numeric or logical: returning
 #> NA
@@ -261,8 +257,6 @@ mtcars %>%
   ggplot(aes(x = cyl, y = "mean(mpg)")) + 
   geom_point() + 
   geom_line() + 
-  my_theme() + 
-  my_labs() + 
   my_save("img/static-y.png")
 ```
 
@@ -303,8 +297,8 @@ x <- rnorm(10)
 
 ## print x wrapped in tick marks
 `x`
-#>  [1] -0.197768  1.813115 -1.138127  1.128558 -1.070463  2.253341  0.254891
-#>  [8]  0.242892  1.705886 -0.942000
+#>  [1]  0.804522  1.164273  0.532323 -0.550734 -0.421067  0.932971 -0.280566
+#>  [8] -1.505201 -0.126354  1.897547
 ```
 
 So, really, tick marks are used to distinguish symbols that contain one or more
@@ -323,14 +317,14 @@ mtcars %>%
   ggplot(aes(x = cyl, y = `mean(mpg)`)) + 
   geom_point() + 
   geom_line() + 
-  my_theme() + 
   my_save("img/tick-marks.png")
 ```
 
 <p style="align:center"> <img src="../img/tick-marks.png"> </p>
 
 Of course, most audiences don't really want to see expression text on a plot, 
-so we can dress it up a bit by using the previusly defined `my_labs()` function.
+so we can improve this plot by adding some better labels and a custom theme via
+the previously defined `my_theme()` and `my_labs()` functions.
 
 
 ```r
@@ -348,31 +342,33 @@ mtcars %>%
 
 <p style="align:center"> <img src="../img/with-labs.png"> </p>
 
-Or we can really dress it up and include the labelled data points as an 
-additional layer to the plot.
+Or since there aren't _that_ many data points, we can really dress it up with 
+the help of [`{ggrepel}`](https://github.com/slowkow/ggrepel) and plot the 
+labelled data points–either as an additional layer or as a standalone.
 
 
 ```r
-## include row names as a variable
-mtcars2 <- mtcars
-mtcars2$make <- row.names(mtcars)
-mtcars2$mpg[mtcars2$cyl == 4] <- mtcars2$mpg[mtcars2$cyl == 4] + runif(sum(mtcars2$cyl == 4), 0.0, .4)
-mtcars2$mpg[mtcars2$cyl == 6] <- mtcars2$mpg[mtcars2$cyl == 6] + runif(sum(mtcars2$cyl == 6), -.4, 0.0)
-mtcars2$mpg[mtcars2$cyl == 8] <- mtcars2$mpg[mtcars2$cyl == 8] + runif(sum(mtcars2$cyl == 8), -.3, 0.0)
-
-## add labels to plot and to raw data points
+## - add row names as make variable
+## - add noise to cyl for spacing (store as cyl2)
+## - plot and format labels with ggrepel
+## - adjust x-axis labels
+## - specify custom fill colors
 mtcars %>%
-  group_by(cyl) %>%
-  summarize(mean(mpg)) %>%
-  ggplot(aes(x = cyl, y = `mean(mpg)`)) + 
-  geom_point(size = 2.5) + 
-  geom_line(alpha = .6) + 
-  ggrepel::geom_label_repel(data = mtcars2, 
-    aes(y = mpg, color = factor(cyl), fill = factor(cyl), label = make), 
-    family = "Roboto Condensed", label.padding = 0.2, label.size = .05, 
-    min.segment.length = 100, color = "white", size = 2.8, alpha = .8) + 
+  mutate(make = row.names(mtcars),
+    cyl2 = case_when(
+      cyl == 4 ~ cyl - runif(1, .25, .5),
+      cyl == 6 ~ cyl - runif(1, .00, .1),
+      cyl == 8 ~ cyl + runif(1, .75, 1.25), 
+      TRUE ~ cyl
+    )) %>%
+  ggplot(aes(x = cyl2, y = mpg)) + 
+  ggrepel::geom_label_repel(aes(fill = factor(cyl), label = make), 
+    family = "Roboto Condensed Light", label.padding = 0.2, label.size = .25, 
+    min.segment.length = 100, color = "black", size = 3.4) + 
   my_theme() + 
   my_labs() + 
+  scale_x_continuous(breaks = c(4, 6, 8)) + 
+  scale_fill_manual(values = c("#efd0ef", "#d0efd0", "#d0daef")) +
   my_save("img/tick-marks-final.png")
 ```
 
@@ -388,30 +384,3 @@ generate some simple plots via `base::plot()` and `base::histogram()`.
 <sup>2</sup> The `s` and `z` toward the end of `summarise()` and `summarize()` 
 are interchangeable.
 
-
-<style>
-.author em {
-font-style: normal;
-color: #33333388;
-text-align: center;
-display: block;
-font-size: .95em;
-padding-top: 20px;
-font-weight: 400;
-} 
-.citation {
-font-style: normal;
-font-size: .8em;
-}
-.date {
-padding-bottom: 20px;
-}
-img {
-display: block;
-margin: auto;
-}
-.table {
-width: unset;
-min-width: 30%
-}
-</style>
