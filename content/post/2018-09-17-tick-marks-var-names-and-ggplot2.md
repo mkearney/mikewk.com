@@ -61,7 +61,7 @@ mtcars %>%
 #> 3     8        15.1
 ```
 
-As you can see above, the variable names are wind up being `cyl` and `mean(mpg)`–
+But as you can see, the variable names wind up being `cyl` and `mean(mpg)`–
 instead of simply `cyl` and `mpg`. This default behavior may seem obnoxious at 
 first, but it makes a lot of sense when you think about using **two or more** 
 variables when calculating `summarize()` values.
@@ -266,8 +266,8 @@ x <- rnorm(10)
 
 ## print x wrapped in tick marks
 `x`
-#>  [1] -0.431121 -1.006514  1.656373  0.486698 -0.119200 -1.212151  0.446706
-#>  [8]  0.676605 -0.893554 -0.156145
+#>  [1]  0.3082517  1.1588847 -0.8110835 -0.8708129  0.0607343 -0.4039328
+#>  [7]  0.3429955 -0.3341200 -0.2356145 -0.8778861
 ```
 
 So, really, tick marks are used to distinguish symbols that contain one or more

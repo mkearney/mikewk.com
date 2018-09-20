@@ -54,7 +54,7 @@ mtcars %>%
   summarize(mean(mpg))
 ```
 
-As you can see above, the variable names are wind up being `cyl` and `mean(mpg)`–
+But as you can see, the variable names wind up being `cyl` and `mean(mpg)`–
 instead of simply `cyl` and `mpg`. This default behavior may seem obnoxious at 
 first, but it makes a lot of sense when you think about using **two or more** 
 variables when calculating `summarize()` values.
