@@ -266,8 +266,8 @@ x <- rnorm(10)
 
 ## print x wrapped in tick marks
 `x`
-#>  [1]  0.1268192 -0.7152579 -0.0188094 -0.7259421  0.4218791 -0.1568668
-#>  [7]  0.8685480  1.0787687  0.7144526  0.2982972
+#>  [1] -0.431121 -1.006514  1.656373  0.486698 -0.119200 -1.212151  0.446706
+#>  [8]  0.676605 -0.893554 -0.156145
 ```
 
 So, really, tick marks are used to distinguish symbols that contain one or more
@@ -297,7 +297,7 @@ the previously defined `my_theme()` and `my_labs()` functions.
 
 
 ```r
-## if we put quotes around it, aes() assumes we are entering a string
+## use tick marks instead of quotes to indicate variable name
 mtcars %>%
   group_by(cyl) %>%
   summarize(mean(mpg)) %>%

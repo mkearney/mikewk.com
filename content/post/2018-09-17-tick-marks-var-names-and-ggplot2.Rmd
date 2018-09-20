@@ -276,7 +276,7 @@ so we can improve this plot by adding some better labels and a custom theme via
 the previously defined `my_theme()` and `my_labs()` functions.
 
 ```{r}
-## if we put quotes around it, aes() assumes we are entering a string
+## use tick marks instead of quotes to indicate variable name
 mtcars %>%
   group_by(cyl) %>%
   summarize(mean(mpg)) %>%

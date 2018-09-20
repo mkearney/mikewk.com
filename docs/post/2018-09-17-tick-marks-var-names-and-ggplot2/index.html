@@ -423,8 +423,8 @@ x <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">10</
 
 <span class="c1">## print x wrapped in tick marks</span>
 <span class="sb">`x`</span>
-<span class="c1">#&gt;  [1]  0.1268192 -0.7152579 -0.0188094 -0.7259421  0.4218791 -0.1568668</span>
-<span class="c1">#&gt;  [7]  0.8685480  1.0787687  0.7144526  0.2982972</span></code></pre></div>
+<span class="c1">#&gt;  [1] -0.431121 -1.006514  1.656373  0.486698 -0.119200 -1.212151  0.446706</span>
+<span class="c1">#&gt;  [8]  0.676605 -0.893554 -0.156145</span></code></pre></div>
 <p>So, really, tick marks are used to distinguish symbols that contain one or more
 unfriendly punctuation/characters, e.g., parenthesis, dashes, spaces, etc.</p>
 
@@ -444,7 +444,7 @@ mtcars <span class="o">%&gt;%</span>
 <p>Of course, most audiences don&rsquo;t really want to see expression text on a plot,
 so we can improve this plot by adding some better labels and a custom theme via
 the previously defined <code>my_theme()</code> and <code>my_labs()</code> functions.</p>
-<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1">## if we put quotes around it, aes() assumes we are entering a string</span>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="c1">## use tick marks instead of quotes to indicate variable name</span>
 mtcars <span class="o">%&gt;%</span>
   group_by<span class="p">(</span>cyl<span class="p">)</span> <span class="o">%&gt;%</span>
   summarize<span class="p">(</span><span class="kp">mean</span><span class="p">(</span>mpg<span class="p">))</span> <span class="o">%&gt;%</span>
