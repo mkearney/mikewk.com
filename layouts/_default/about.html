@@ -1,0 +1,56 @@
+{{ define "title" }}
+  {{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}
+{{ end }}
+
+{{ define "main" }}
+  {{ partial "header.html" . }}
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">{{ .Title }}</h1>
+    </header>
+    <article class="post-content">
+      <h3 id="appointment">Appointment</h3>
+
+        <p>I&rsquo;m an assistant professor at the <a href="https://missouri.edu/">
+        University of Missouri</a> where I hold a joint appointment in
+        Journalism Studies with the <a href="https://journalism.missouri.edu/">
+        School of Journalism</a> and <a href="https://dsa.missouri.edu/">
+        Data Science and Analytics</a> with the <a href="https://muii.missouri.edu/">
+        Informatics Institute</a>. I teach courses in mass media, political
+        communication, quantitative research methods, and data science.</p>
+
+        <h3 id="research">Research</h3>
+
+        <p>My research uses computational social scientific methods to analyze
+        the selection and dissemination of information in digital media
+        environments. Broadly, I&rsquo;m interested in selective exposure, new
+        media, data journalism, and data science.</p>
+
+        <h3 id="links">Links</h3>
+
+        <p>My updated CV can be downloaded <a href="http://mikewk.com/cv/cv.pdf">here</a>.
+        See <a href="https://journalism.missouri.edu/staff/mike-kearney/">my
+        Mizzou J-School faculty page</a> or find me on
+        <a href="https://twitter.com/kearneymw">Twitter</a>,
+        <a href="https://scholar.google.com/citations?user=j3EZl3MAAAAJ">Google
+        Scholar</a>, <a href="https://github.com/mkearney">Github</a>, and
+        <a href="https://www.researchgate.net/profile/Michael_Kearney11">
+        Research Gate</a>.</p>
+
+    </article>
+    {{ if ne .Params.comments false }}
+      {{ if .Site.Params.changyan }}
+      <div id="SOHUCS" sid="{{ .URL }}" ></div>
+      <script type="text/javascript">
+      (function(){
+      var appid = '{{ .Site.Params.changyanId }}';
+      var conf = '{{ .Site.Params.changyanConf }}';
+      var width = window.innerWidth || document.documentElement.clientWidth;
+      if (width < 960) {
+      window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+      {{ else if .Site.DisqusShortname }}{{ template "_internal/disqus.html" . }}
+      {{ else }}{{ end }}
+    {{ end }}
+  </section>
+  {{ partial "footer.html" . }}
+{{ end }}
