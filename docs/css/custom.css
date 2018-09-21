@@ -207,7 +207,7 @@ article.post-content {
 
 .hexBadges {
   position: relative;
-  margin: calc((100vh - 800px)/2) calc((80vw - 700px)/2) calc((100vh - 800px)/2) calc((80vh - 700px)/2);
+  margin: calc((100vh - 800px)/2) calc((80vw - 650px)/2) calc((100vh - 800px)/2) calc((80vh - 650px)/2);
 }
 .hexBadges img {
   width:128px;
