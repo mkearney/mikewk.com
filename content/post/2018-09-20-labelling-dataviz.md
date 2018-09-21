@@ -2,8 +2,8 @@
 title: "Labelling dataviz"
 author: 'kearneymw'
 date: '2018-09-20'
-categories: ["R"]
-tags: ["ggplot2", "dataviz", "labels", "rstats"]
+categories: ["rstats", "R"]
+tags: ["ggplot2", "ggrepel", "labels", "rstats", "dataviz"]
 output: 
   html_document: 
     df_print: default

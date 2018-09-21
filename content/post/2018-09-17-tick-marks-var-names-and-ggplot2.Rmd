@@ -2,8 +2,8 @@
 title: "Tick marks, variable names, and ggplot2"
 author: 'kearneymw'
 date: '2018-09-17'
-categories: ["R"]
-tags: ["ggplot2", "dataviz", "summarize", "dplyr"]
+categories: ["rstats", "R"]
+tags: ["ggplot2", "rstats", "summarize", "dplyr", "dataviz"]
 output: 
   html_document: 
     df_print: default
@@ -20,6 +20,7 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   fig.show = "hide"
 )
+library(tidyverse)
 ```
 
 
