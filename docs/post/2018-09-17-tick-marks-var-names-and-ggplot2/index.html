@@ -135,7 +135,7 @@
       
         <li class="menu-item "><a href="/about/">About</a></li>
       
-        <li class="menu-item "><a href="/post">Blog</a></li>
+        <li class="menu-item "><a href="/links/">Links</a></li>
       
         <li class="menu-item "><a href="/cv/cv.pdf">CV</a></li>
       
@@ -374,7 +374,7 @@ mtcars <span class="o">%&gt;%</span>
 <span class="c1">#&gt; NA</span>
 <span class="c1">#&gt; Warning: Removed 3 rows containing missing values (geom_point).</span>
 <span class="c1">#&gt; Warning: Removed 3 rows containing missing values (geom_path).</span></code></pre></div>
-<p style="align:center"> <img src="../img/empty-plot.png"> </p>
+<p style="align:center"> <img src="/img/empty-plot.png"> </p>
 
 <p>The result is a handful of warnings and an empty plot. The above code fails
 because it tries to calculate mean of <code>mpg</code>, which, again, doesn&rsquo;t exist in the
@@ -391,7 +391,7 @@ mtcars <span class="o">%&gt;%</span>
   geom_point<span class="p">()</span> <span class="o">+</span> 
   geom_line<span class="p">()</span> <span class="o">+</span> 
   my_save<span class="p">(</span><span class="s">&#34;img/static-y.png&#34;</span><span class="p">)</span></code></pre></div>
-<p style="align:center"> <img src="../img/static-y.png"> </p>
+<p style="align:center"> <img src="/img/static-y.png"> </p>
 
 <p>This time we get a plot and no warnings, but it&rsquo;s clearly not right. It shows
 every <code>y</code> value is exactly the same, but it seems far fetched to think the
@@ -439,7 +439,7 @@ mtcars <span class="o">%&gt;%</span>
   geom_point<span class="p">()</span> <span class="o">+</span> 
   geom_line<span class="p">()</span> <span class="o">+</span> 
   my_save<span class="p">(</span><span class="s">&#34;img/tick-marks.png&#34;</span><span class="p">)</span></code></pre></div>
-<p style="align:center"> <img src="../img/tick-marks.png"> </p>
+<p style="align:center"> <img src="/img/tick-marks.png"> </p>
 
 <p>Of course, most audiences don&rsquo;t really want to see expression text on a plot,
 so we can improve this plot by adding some better labels and a custom theme via
@@ -454,7 +454,7 @@ mtcars <span class="o">%&gt;%</span>
   my_theme<span class="p">()</span> <span class="o">+</span> 
   my_labs<span class="p">()</span> <span class="o">+</span> 
   my_save<span class="p">(</span><span class="s">&#34;img/with-labs.png&#34;</span><span class="p">)</span></code></pre></div>
-<p style="align:center"> <img src="../img/with-labs.png"> </p>
+<p style="align:center"> <img src="/img/with-labs.png"> </p>
 
 <h2 id="notes">Notes</h2>
 

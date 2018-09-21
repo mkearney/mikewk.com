@@ -209,7 +209,7 @@ mtcars %>%
 #> Warning: Removed 3 rows containing missing values (geom_path).
 ```
 
-<p style="align:center"> <img src="../img/empty-plot.png"> </p>
+<p style="align:center"> <img src="/img/empty-plot.png"> </p>
 
 The result is a handful of warnings and an empty plot. The above code fails 
 because it tries to calculate mean of `mpg`, which, again, doesn't exist in the 
@@ -231,7 +231,7 @@ mtcars %>%
   my_save("img/static-y.png")
 ```
 
-<p style="align:center"> <img src="../img/static-y.png"> </p>
+<p style="align:center"> <img src="/img/static-y.png"> </p>
 
 This time we get a plot and no warnings, but it's clearly not right. It shows 
 every `y` value is exactly the same, but it seems far fetched to think the 
@@ -289,7 +289,7 @@ mtcars %>%
   my_save("img/tick-marks.png")
 ```
 
-<p style="align:center"> <img src="../img/tick-marks.png"> </p>
+<p style="align:center"> <img src="/img/tick-marks.png"> </p>
 
 Of course, most audiences don't really want to see expression text on a plot, 
 so we can improve this plot by adding some better labels and a custom theme via
@@ -309,7 +309,7 @@ mtcars %>%
   my_save("img/with-labs.png")
 ```
 
-<p style="align:center"> <img src="../img/with-labs.png"> </p>
+<p style="align:center"> <img src="/img/with-labs.png"> </p>
 
 
 ## Notes
