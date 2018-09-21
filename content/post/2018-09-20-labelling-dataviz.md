@@ -43,7 +43,7 @@ effectively label scales, data points, and other dimensions of a plot and (b)
 
 With this in mind, my goal with this post is to demonstrate how data 
 visualizations can be improved via proper labelling. And since this idea was 
-inspired by my [last post](../post/2018-09-17-tick-marks-var-names-and-ggplot2),
+inspired by my [last post](post/2018-09-17-tick-marks-var-names-and-ggplot2),
 I will extend the example about the relationship between miles per gallon and 
 number of cylinders. If you read the setup section from the last post, you can 
 skip ahead (it's the same).

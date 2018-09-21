@@ -71,20 +71,21 @@ html, body {
 h1, h2, h3, h4, h5, h6, .post-content h1, .post-content h2, .post-content h3, .post-content h4, .post-content h5, .post-content h6 {
   font-weight: 600;
 }
+
 .main {
+  overflow-x: scroll;
   border: none;
-  /*position: fixed;*/
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 6px 1px, rgba(0, 0, 0, 0.1) 0 2px 7px 1px, rgba(0, 0, 0, 0.3) 0 2px 2px -1px;
   margin: 0 0 0 20rem;
   /*height: 100vh;*/
   min-height: 100vh;
   width: calc(100% - 20rem);
-  min-width: 800px;
+  min-width: 300px;
   max-width: none;
 }
 article.post-content {
   width: calc(100vw - 24rem);
-  max-width: 1000px;
+  max-width: 950px;
 }
 .main.post-detail {
   max-width: calc(100vw - 20rem);
@@ -202,8 +203,11 @@ article.post-content {
   color: #d78d3b;
 }
 */
+
+
 .hexBadges {
-  margin: auto;
+  position: relative;
+  margin: calc((100vh - 800px)/2) calc((80vw - 700px)/2) calc((100vh - 800px)/2) calc((80vh - 700px)/2);
 }
 .hexBadges img {
   width:128px;
@@ -268,7 +272,7 @@ article.post-content {
 .hexBadges img.c1, .hexBadges img.c3, .hexBadges img.c6 {
   transition:transform ease-out .3s;
 }
-@media screen and (max-width: 800px){.subtitle {line-height: 1.1; margin: 0; position:relative;}}
+@media screen and (max-width: 800px){.subtitle {display:none; line-height: 1.1; margin: 0; position:relative;}}
 
 
 
@@ -298,4 +302,17 @@ article.post-content {
 }
 a.avatar_link {
   opacity: unset;
+}
+.subtitle {
+  margin-bottom: 1.5rem;
+}
+@media screen and (max-width: 800px){.subtitle {
+  display: none;
+}}
+.hexBadges a {
+  opacity: 1.0;
+}
+
+.hexBadges a:hover {
+  opacity: 0.9;
 }
