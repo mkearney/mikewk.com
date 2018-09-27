@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogdown on Michael W. Kearney</title>
+    <link>/tags/blogdown/</link>
+    <description>Recent content in Blogdown on Michael W. Kearney</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© Michael W. Kearney 2018</copyright>
+    <lastBuildDate>Thu, 27 Sep 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/blogdown/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Calling out R-bloggers in my R-bloggers post</title>
+      <link>/post/calling-out-r-bloggers-in-my-r-bloggers-post/</link>
+      <pubDate>Thu, 27 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/calling-out-r-bloggers-in-my-r-bloggers-post/</guid>
+      <description>Allow me to preface this post by saying I’m a big fan of R-bloggers, a content aggregating site focused on blog posts about R. It serves a useful purpose,1 and it appears to have considerable reach.2 And although what follows may seem a bit combative, I honestly hope R-bloggers continues to operate and inspire people to use R for years to come.
+With that said, the goal of this post is to make the case that R-bloggers should be better.</description>
+    </item>
+    
+    <item>
+      <title>Calling out R-bloggers in my R-bloggers post</title>
+      <link>/post/calling-out-r-bloggers-in-my-r-bloggers-post/</link>
+      <pubDate>Thu, 27 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/calling-out-r-bloggers-in-my-r-bloggers-post/</guid>
+      <description>Allow me to preface this post by saying I&amp;rsquo;m a big fan of R-bloggers, a content aggregating site focusing on blog posts about R. It serves a useful purpose–a centralized directory of &amp;ldquo;over 750&amp;rdquo; R-related blogs–and appears to have a considerable reach–50k email subscribers, 60k+ Twitter followers, etc. And although what follows may seem combative, I honestly hope R-bloggers continues to operate and inspire people to use R for years to come.</description>
+    </item>
+    
+  </channel>
+</rss>

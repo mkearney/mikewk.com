@@ -1,0 +1,258 @@
+---
+title: "Tick marks, variable names, and ggplot2"
+author: kearneymw
+categories:
+  - rstats
+tags:
+  - ggplot2
+  - dataviz
+  - ggrepel
+---
+
+
+
+<p>A popular workflow in R uses <a href="https://dplyr.tidyverse.org">{dplyr}</a> to <code>group_by()</code>
+and then <code>summarise()</code><sup>1</sup> variables.
+It’s an intuitive and easy way to aggregate and describe data, especially along
+multiple dimensions. The cost of being both powerful and user-friendly,
+however, is its arguably inconvenient default method for assigning names to
+summarized values. As the code illustrates below, users can provide their own
+names when using <code>summarize()</code>.</p>
+<pre class="r"><code>## explicitly named summarize variable
+mtcars %&gt;%
+  group_by(cyl) %&gt;%
+  summarize(mpg = mean(mpg))
+#&gt; # A tibble: 3 x 2
+#&gt;     cyl   mpg
+#&gt;   &lt;dbl&gt; &lt;dbl&gt;
+#&gt; 1     4  26.7
+#&gt; 2     6  19.7
+#&gt; 3     8  15.1</code></pre>
+<p>But when users don’t explicitly name the summarized values, instead of inheriting
+the name of a summarized variable (in this case <code>mpg</code>), variables are named–by
+default–with the text of the expression used to create the summarized value.</p>
+<p>For example, the code below summarizes by estimating the mean <code>mpg</code> for cars
+grouped by number of <code>cyl</code>. The code is fairly straight forward, and you can
+probably see why users often assume the returned summarized data would contain
+two variables <code>cyl</code> and <code>mpg</code>.</p>
+<pre class="r"><code>## unnamed summarize variable
+mtcars %&gt;%
+  group_by(cyl) %&gt;%
+  summarize(mean(mpg))
+#&gt; # A tibble: 3 x 2
+#&gt;     cyl `mean(mpg)`
+#&gt;   &lt;dbl&gt;       &lt;dbl&gt;
+#&gt; 1     4        26.7
+#&gt; 2     6        19.7
+#&gt; 3     8        15.1</code></pre>
+<p>But as you can see, the variable names wind up being <code>cyl</code> and <code>mean(mpg)</code>–
+instead of simply <code>cyl</code> and <code>mpg</code>. This default behavior may seem obnoxious at
+first, but it makes a lot of sense when you think about using <strong>two or more</strong>
+variables when calculating <code>summarize()</code> values.</p>
+<p>Regardless, while it’s definitely a good idea to provide your own summary
+variable names, you will invariably find yourself in a situation where you
+would like to plot summarized variables that were named using the text of
+the expressions used to create them.</p>
+<p>Thus, my goal with this post is to identify <strong>three common mistakes users make when attempting to map variables</strong> from <a href="https://dplyr.tidyverse.org/reference/summarise.html"><code>dplyr::summarize()</code></a>
+to aesthetic dimensions of a plot with <a href="https://ggplot2.tidyverse.org">{ggplot2}</a>
+and conclude by describing a solution.</p>
+<div id="setup" class="section level2">
+<h2>Setup</h2>
+<p>To follow along with the examples in this post, you will need to load the
+<a href="https://tidyverse.org">{tidyverse}</a> set of packages and define a couple stylistic
+functions used throughout to make the plots even prettier.</p>
+<pre class="r"><code>## load tidyverse
+library(tidyverse)
+#&gt; ── Attaching packages ───────────────────────────────────────────────────── tidyverse 1.2.1 ──
+#&gt; ✔ ggplot2 3.0.0.9000     ✔ purrr   0.2.5     
+#&gt; ✔ tibble  1.4.2          ✔ dplyr   0.7.6     
+#&gt; ✔ tidyr   0.8.1          ✔ stringr 1.3.1     
+#&gt; ✔ readr   1.1.1          ✔ forcats 0.3.0
+#&gt; ── Conflicts ──────────────────────────────────────────────────────── tidyverse_conflicts() ──
+#&gt; ✖ dplyr::filter() masks stats::filter()
+#&gt; ✖ dplyr::lag()    masks stats::lag()
+
+## create style theme
+my_theme &lt;- function() {
+  theme_minimal(base_family = &quot;Roboto Condensed&quot;) + 
+    theme(plot.title = element_text(size = rel(1.5), face = &quot;bold&quot;), 
+      plot.subtitle = element_text(size = rel(1.1)),
+      plot.caption = element_text(color = &quot;#777777&quot;, vjust = 0),
+      axis.title = element_text(size = rel(.9), hjust = 0.95, face = &quot;italic&quot;),
+      panel.grid.major = element_line(size = rel(.1), color = &quot;#000000&quot;), 
+      panel.grid.minor = element_line(size = rel(.05), color = &quot;#000000&quot;), 
+      legend.position = &quot;none&quot;)
+}
+my_labs &lt;- function() {
+  labs(title = &quot;Average miles per gallon by number of cylinders&quot;, 
+    subtitle = &quot;Scatter plot depicting average miles per gallon aggregated by number of cylinders&quot;,
+    x = &quot;Number of cylinders&quot;, y = &quot;Miles per gallon&quot;,
+    caption = &quot;Source: Estimates calculated from the &#39;mtcars&#39; data set&quot;)
+}
+my_save &lt;- function(file) {
+  ggsave(file, width = 7, height = 4.5, units = &quot;in&quot;)
+}</code></pre>
+<p>The data set featured in this post is <strong>mtcars</strong>, which is bundled as part of
+the core <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html">datasets</a>
+package. Specifically, examples will feature the <code>mpg</code> (miles per gallon)
+and <code>cyl</code> (number of cylinders) variables.</p>
+<pre class="r"><code>## print first six rows
+head(mtcars)
+#&gt;                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+#&gt; Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+#&gt; Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+#&gt; Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+#&gt; Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+#&gt; Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+#&gt; Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1</code></pre>
+</div>
+<div id="mapping-incorrect-names" class="section level2">
+<h2>Mapping incorrect names</h2>
+<p>When visualizing data with <a href="https://ggplot2.tidyverse.org">ggplot2</a>, one of the
+first and most important steps entails mapping observed variables in the data
+set to the aesthetic dimensions of a plot. But aesthetic mapping will only work as
+expected when you provide the correct names via <code>ggplot2::aes()</code>.</p>
+<p>The following section describes three common mistakes users make that result in
+the mapping of incorrect names.</p>
+<div id="assuming-a-statistic-inherits-the-name-of-a-variable." class="section level3">
+<h3>1. Assuming a statistic inherits the name of a variable.</h3>
+<p>A common mistake is to assume that summarizing via <code>mean()</code> or <code>median()</code>
+results in a variable with the same name. For example, if we summarize the mean
+of <code>mpg</code> like we did above, i.e., <code>summarize(mean(mpg))</code>, and then try to map
+<code>y = mpg</code>, we get an error because “mpg” doesn’t exist.</p>
+<pre class="r"><code>## this gets an error because there is no variable named &quot;mpg&quot;
+mtcars %&gt;%
+  group_by(cyl) %&gt;%
+  summarize(mean(mpg)) %&gt;%
+  ggplot(aes(x = cyl, y = mpg)) + 
+  geom_point() + 
+  geom_line()
+#&gt; Error: Aesthetics must be either length 1 or the same as the data (3): x, y</code></pre>
+<p>We know from the <strong>summarize</strong> section above the variable’s name is actually
+<code>mean(mpg)</code>. As this example illustrates, it is incorrect to assume that
+summarized estimates inherit the name of the variable they summarize. This may
+seem annoying at first, but it makes sense when you think about times when you
+may want to summarize using <strong>two or more variables</strong> in the data set.</p>
+</div>
+<div id="repeating-the-expression-used-in-summarize." class="section level3">
+<h3>2. Repeating the expression used in <code>summarize()</code>.</h3>
+<p>A second common mistake is to assume that you can simply repeat the expression
+used in <code>summarize()</code> when specifying aesthetic mappings.</p>
+<pre class="r"><code>## this also doesn&#39;t work because it tries to caculate the mean of mpg
+mtcars %&gt;%
+  group_by(cyl) %&gt;%
+  summarize(mean(mpg)) %&gt;%
+  ggplot(aes(x = cyl, y = mean(mpg))) + 
+  geom_point() + 
+  geom_line() + 
+  my_save(&quot;img/empty-plot.png&quot;)
+#&gt; Warning in mean.default(mpg): argument is not numeric or logical: returning
+#&gt; NA
+
+#&gt; Warning in mean.default(mpg): argument is not numeric or logical: returning
+#&gt; NA
+
+#&gt; Warning in mean.default(mpg): argument is not numeric or logical: returning
+#&gt; NA
+#&gt; Warning: Removed 3 rows containing missing values (geom_point).
+#&gt; Warning: Removed 3 rows containing missing values (geom_path).
+#&gt; Warning in mean.default(mpg): argument is not numeric or logical: returning
+#&gt; NA
+
+#&gt; Warning in mean.default(mpg): argument is not numeric or logical: returning
+#&gt; NA
+
+#&gt; Warning in mean.default(mpg): argument is not numeric or logical: returning
+#&gt; NA
+#&gt; Warning: Removed 3 rows containing missing values (geom_point).
+#&gt; Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
+<p style="align:center">
+<img src="/img/empty-plot.png">
+</p>
+<p>The result is a handful of warnings and an empty plot. The above code fails
+because it tries to calculate mean of <code>mpg</code>, which, again, doesn’t exist in the
+summarized data.</p>
+</div>
+<div id="passing-the-expression-as-a-quoted-string." class="section level3">
+<h3>3. Passing the expression as a quoted string.</h3>
+<p>The third common mistake is to treat the summarized expression name as a string.</p>
+<pre class="r"><code>## if we put quotes around it, it assumes it&#39;s a string
+mtcars %&gt;%
+  group_by(cyl) %&gt;%
+  summarize(mean(mpg)) %&gt;%
+  ggplot(aes(x = cyl, y = &quot;mean(mpg)&quot;)) + 
+  geom_point() + 
+  geom_line() + 
+  my_save(&quot;img/static-y.png&quot;)</code></pre>
+<p style="align:center">
+<img src="/img/static-y.png">
+</p>
+<p>This time we get a plot and no warnings, but it’s clearly not right. It shows
+every <code>y</code> value is exactly the same, but it seems far fetched to think the
+average miles per gallon would not vary with number of cylinders.</p>
+<p>In this case, the literal string <code>&quot;mean(mpg)&quot;</code> is mapped to the <code>y</code> variable
+value, which means it’s converted to a factor and the single factor level is
+coded as <code>1</code> at each observation.</p>
+</div>
+</div>
+<div id="solution-use-tick-marks" class="section level2">
+<h2>Solution: use tick marks</h2>
+<p>At this point it should be clear the name of the summarized <code>mpg</code> variable is
+actually “mean(mpg),” only now we also know wrapping the expression with quotes
+doesn’t work because it assumes the expression is a literal string, not a
+variable name.</p>
+<p>The solution to correctly mapping unnamed <code>summarize()</code> variables is to use
+tick marks–the apostrophe-like symbol at the top-left of your keyboard. Tick
+marks work a lot like quotes insofar as they open and close and wrap all
+elements into a single object. The difference is tick marks assume the marked
+object references a symbol. To illustrate, the code below assigns 10 random
+numbers to <code>x</code> and then prints it using both ticks and quotes.</p>
+<pre class="r"><code>## assign 10 random numbers to x
+x &lt;- rnorm(10)
+
+## print x wrapped in quotes
+&quot;x&quot;
+#&gt; [1] &quot;x&quot;
+
+## print x wrapped in tick marks
+`x`
+#&gt;  [1]  0.3957787  0.3030388  0.9095560 -1.0705598 -0.8742651  1.6777262
+#&gt;  [7] -0.0451595 -0.7706271  1.0527274 -1.3772267</code></pre>
+<p>So, really, tick marks are used to distinguish symbols that contain one or more
+unfriendly punctuation/characters, e.g., parenthesis, dashes, spaces, etc.</p>
+<p>With this knowledge, we can now fix the featured <code>summarize()</code> example by
+wrapping the summarized expression, which functions as the name of the
+summarized variable, in tick marks.</p>
+<pre class="r"><code>## if we put quotes around it, aes() assumes we are entering a string
+mtcars %&gt;%
+  group_by(cyl) %&gt;%
+  summarize(mean(mpg)) %&gt;%
+  ggplot(aes(x = cyl, y = `mean(mpg)`)) + 
+  geom_point() + 
+  geom_line() + 
+  my_save(&quot;img/tick-marks.png&quot;)</code></pre>
+<p style="align:center">
+<img src="/img/tick-marks.png">
+</p>
+<p>Of course, most audiences don’t really want to see expression text on a plot,
+so we can improve this plot by adding some better labels and a custom theme via
+the previously defined <code>my_theme()</code> and <code>my_labs()</code> functions.</p>
+<pre class="r"><code>## use tick marks instead of quotes to indicate variable name
+mtcars %&gt;%
+  group_by(cyl) %&gt;%
+  summarize(mean(mpg)) %&gt;%
+  ggplot(aes(x = cyl, y = `mean(mpg)`)) + 
+  geom_point() + 
+  geom_line() + 
+  my_theme() + 
+  my_labs() + 
+  my_save(&quot;img/with-labs.png&quot;)</code></pre>
+<p style="align:center">
+<img src="/img/with-labs.png">
+</p>
+</div>
+<div id="notes" class="section level2">
+<h2>Notes</h2>
+<p><sup>1</sup> The <code>s</code> and <code>z</code> toward the end of <code>summarise()</code> and <code>summarize()</code>
+are interchangeable.</p>
+</div>
