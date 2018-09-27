@@ -1,14 +1,16 @@
 ---
-title: Labelling dataviz
-author: kearneymw
+title: "Labelling dataviz"
+author: 'kearneymw'
 date: '2018-09-20'
-slug: labelling-dataviz
-categories:
-  - rstats
-tags:
-  - ggplot2
-  - dataviz
-  - ggrepel
+categories: ["rstats", "R"]
+tags: ["ggplot2", "ggrepel", "labels", "rstats", "dataviz"]
+output: 
+  html_document: 
+    df_print: default
+    highlight: haddock
+    keep_md: yes
+    self_contained: no
+    theme: null
 ---
 
 
@@ -98,6 +100,13 @@ and `cyl` (number of cylinders) variables.
 ```r
 ## print first six rows
 head(mtcars)
+#>                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+#> Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+#> Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+#> Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+#> Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+#> Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+#> Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
 ```
 
 ## Labelling dataviz
@@ -113,12 +122,12 @@ and great visualizations is labelling.
 In my last post, for example, the first successful plot of `mpg` by `cyl` was 
 only _okay_–it's a little bland and it uses an actual expression for an axis title.
 
-<p style="align:center"> <img src="/img/tick-marks.png"> </p>
+<p style="align:center"> <img src="../img/tick-marks.png"> </p>
 
 But then I replaced the expression and added a custom theme and a few more labels, 
 and I think it started to border on being _good_.
 
-<p style="align:center"> <img src="/img/with-labs.png"> </p>
+<p style="align:center"> <img src="../img/with-labs.png"> </p>
 
 The combination of style changes and labels clearly made a big difference but, still, 
 I don't think the above plot is mind-blowing or overly impressive.
@@ -155,7 +164,7 @@ mtcars %>%
   my_save("img/tick-marks-final.png")
 ```
 
-<p style="align:center"> <img src="/img/tick-marks-final.png"> </p>
+<p style="align:center"> <img src="../img/tick-marks-final.png"> </p>
 
 As you can see in the code chunk above, I also added some additional noise to 
 the `cyl` variable to help out `{ggrepel}`'s spacing algorithm. The approach 

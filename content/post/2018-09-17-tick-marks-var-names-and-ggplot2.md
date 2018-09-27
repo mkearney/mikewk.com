@@ -1,13 +1,16 @@
 ---
-title: Tick marks, variable names, and ggplot2
-author: kearney
+title: "Tick marks, variable names, and ggplot2"
+author: 'kearneymw'
 date: '2018-09-17'
-slug: tick-marks-variable-names-and-ggplot2
-categories:
-  - rstats
-tags:
-  - dataviz
-  - ggplot2
+categories: ["rstats", "R"]
+tags: ["ggplot2", "rstats", "summarize", "dplyr", "dataviz"]
+output: 
+  html_document: 
+    df_print: default
+    highlight: haddock
+    keep_md: yes
+    self_contained: no
+    theme: null
 ---
 
 
@@ -27,6 +30,12 @@ names when using `summarize()`.
 mtcars %>%
   group_by(cyl) %>%
   summarize(mpg = mean(mpg))
+#> # A tibble: 3 x 2
+#>     cyl   mpg
+#>   <dbl> <dbl>
+#> 1     4  26.7
+#> 2     6  19.7
+#> 3     8  15.1
 ```
 
 But when users don't explicitly name the summarized values, instead of inheriting 
@@ -44,6 +53,12 @@ two variables `cyl` and `mpg`.
 mtcars %>%
   group_by(cyl) %>%
   summarize(mean(mpg))
+#> # A tibble: 3 x 2
+#>     cyl `mean(mpg)`
+#>   <dbl>       <dbl>
+#> 1     4        26.7
+#> 2     6        19.7
+#> 3     8        15.1
 ```
 
 But as you can see, the variable names wind up being `cyl` and `mean(mpg)`–
@@ -112,6 +127,13 @@ and `cyl` (number of cylinders) variables.
 ```r
 ## print first six rows
 head(mtcars)
+#>                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+#> Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+#> Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+#> Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+#> Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+#> Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+#> Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
 ```
 
 ## Mapping incorrect names
@@ -165,9 +187,29 @@ mtcars %>%
   geom_point() + 
   geom_line() + 
   my_save("img/empty-plot.png")
+#> Warning in mean.default(mpg): argument is not numeric or logical: returning
+#> NA
+
+#> Warning in mean.default(mpg): argument is not numeric or logical: returning
+#> NA
+
+#> Warning in mean.default(mpg): argument is not numeric or logical: returning
+#> NA
+#> Warning: Removed 3 rows containing missing values (geom_point).
+#> Warning: Removed 3 rows containing missing values (geom_path).
+#> Warning in mean.default(mpg): argument is not numeric or logical: returning
+#> NA
+
+#> Warning in mean.default(mpg): argument is not numeric or logical: returning
+#> NA
+
+#> Warning in mean.default(mpg): argument is not numeric or logical: returning
+#> NA
+#> Warning: Removed 3 rows containing missing values (geom_point).
+#> Warning: Removed 3 rows containing missing values (geom_path).
 ```
 
-<p style="align:center"> <img src="../img/empty-plot.png"> </p>
+<p style="align:center"> <img src="/img/empty-plot.png"> </p>
 
 The result is a handful of warnings and an empty plot. The above code fails 
 because it tries to calculate mean of `mpg`, which, again, doesn't exist in the 
@@ -189,7 +231,7 @@ mtcars %>%
   my_save("img/static-y.png")
 ```
 
-<p style="align:center"> <img src="../img/static-y.png"> </p>
+<p style="align:center"> <img src="/img/static-y.png"> </p>
 
 This time we get a plot and no warnings, but it's clearly not right. It shows 
 every `y` value is exactly the same, but it seems far fetched to think the 
@@ -220,9 +262,12 @@ x <- rnorm(10)
 
 ## print x wrapped in quotes
 "x"
+#> [1] "x"
 
 ## print x wrapped in tick marks
 `x`
+#>  [1]  1.3529560 -2.9296815  2.7014913 -0.3185779 -1.9914040  1.2656890
+#>  [7] -0.8240713  1.0881612 -1.1408821 -0.0150597
 ```
 
 So, really, tick marks are used to distinguish symbols that contain one or more
@@ -244,7 +289,7 @@ mtcars %>%
   my_save("img/tick-marks.png")
 ```
 
-<p style="align:center"> <img src="../img/tick-marks.png"> </p>
+<p style="align:center"> <img src="/img/tick-marks.png"> </p>
 
 Of course, most audiences don't really want to see expression text on a plot, 
 so we can improve this plot by adding some better labels and a custom theme via
@@ -264,7 +309,7 @@ mtcars %>%
   my_save("img/with-labs.png")
 ```
 
-<p style="align:center"> <img src="../img/with-labs.png"> </p>
+<p style="align:center"> <img src="/img/with-labs.png"> </p>
 
 
 ## Notes

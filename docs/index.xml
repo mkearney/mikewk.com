@@ -7,9 +7,426 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
+    <lastBuildDate>Thu, 20 Sep 2018 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+
+    <item>
+      <title>Labelling dataviz</title>
+      <link>/post/2018-09-20-labelling-dataviz/</link>
+      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-09-20-labelling-dataviz/</guid>
+      <description>
+
+&lt;p&gt;I still remember how hard it was to learn &lt;a href=&#34;https://ggplot2.tidyverse.org&#34;&gt;{ggplot2}&lt;/a&gt;
+after only knowing a little about R&lt;sup&gt;1&lt;/sup&gt;. Sure, the plots seemed pretty.
+But compared to the ways I had used R before, &lt;code&gt;{ggplot2}&lt;/code&gt;&amp;rsquo;s syntax seemed almost
+counter-intuitive. Its pipe-like &lt;code&gt;+&lt;/code&gt; workflow–building layer-by-layer–
+was like nothing I had ever used before. Not to mention, I was unfamiliar
+with central terms of art like &amp;ldquo;&lt;code&gt;geom&lt;/code&gt;s&amp;rdquo; and &amp;ldquo;&lt;code&gt;aes&lt;/code&gt;thetics&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;But then again&amp;hellip;the plots were &lt;strong&gt;really pretty&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Fortunately for me, &lt;em&gt;being able to generate pretty plots&lt;/em&gt; was a powerful
+motivator. Because not long after committing myself to learning how to &lt;code&gt;{ggplot2}&lt;/code&gt;,
+I realized why everyone likes it so much–it&amp;rsquo;s actually really
+easy! Once I learned about the key building blocks of &lt;code&gt;ggplot()&lt;/code&gt;, &lt;code&gt;aes()&lt;/code&gt;,
+and &lt;code&gt;geom_.*()&lt;/code&gt;), I could create pretty plots for all sorts of data types and
+relationships.&lt;/p&gt;
+
+&lt;h3 id=&#34;it-s-in-the-details&#34;&gt;It&amp;rsquo;s in the details&lt;/h3&gt;
+
+&lt;p&gt;Over time my &lt;a href=&#34;https://twitter.com/search?q=%23rstats%20%23dataviz&amp;amp;src=typed_query&amp;amp;f=image&#34;&gt;#dataviz&lt;/a&gt;
+has &lt;a href=&#34;https://twitter.com/kearneymw/status/762833157578162180/photo/1&#34;&gt;gotten&lt;/a&gt; a lot &lt;a href=&#34;https://twitter.com/kearneymw/status/1040702237310365701/photo/1&#34;&gt;better&lt;/a&gt;, but it&amp;rsquo;s had very little
+to do the actual plotting of data points (&lt;code&gt;{ggplot2}&lt;/code&gt; outputs beautiful plots by
+default). Instead, my dataviz has improved because I learned how to (a) more
+effectively label scales, data points, and other dimensions of a plot and (b)
+(re)size and save high-resolution plots using nice-looking fonts.&lt;/p&gt;
+
+&lt;p&gt;With this in mind, my goal with this post is to demonstrate how data
+visualizations can be improved via proper labelling. And since this idea was
+inspired by my &lt;a href=&#34;../2018-09-17-tick-marks-var-names-and-ggplot2&#34;&gt;last post&lt;/a&gt;,
+I will extend the example about the relationship between miles per gallon and
+number of cylinders. If you read the setup section from the last post, you can
+skip ahead (it&amp;rsquo;s the same).&lt;/p&gt;
+
+&lt;h2 id=&#34;setup&#34;&gt;Setup&lt;/h2&gt;
+
+&lt;p&gt;To follow along with the examples in this post, you will need to load the
+&lt;a href=&#34;https://tidyverse.org&#34;&gt;{tidyverse}&lt;/a&gt; set of packages and define a couple stylistic
+functions used throughout to make the plots even prettier.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## load tidyverse&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;library&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;tidyverse&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; ── Attaching packages ───────────────────────────────────────────────────── tidyverse 1.2.1 ──&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; ✔ ggplot2 3.0.0.9000     ✔ purrr   0.2.5     &lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; ✔ tibble  1.4.2          ✔ dplyr   0.7.6     &lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; ✔ tidyr   0.8.1          ✔ stringr 1.3.1     &lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; ✔ readr   1.1.1          ✔ forcats 0.3.0&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; ── Conflicts ──────────────────────────────────────────────────────── tidyverse_conflicts() ──&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; ✖ dplyr::filter() masks stats::filter()&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; ✖ dplyr::lag()    masks stats::lag()&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;## create style theme&lt;/span&gt;
+my_theme &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  theme_minimal&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;base_family &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Roboto Condensed&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+    theme&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;plot.title &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; element_text&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;size &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; rel&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; face &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;bold&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; 
+      plot.subtitle &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; element_text&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;size &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; rel&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1.1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)),&lt;/span&gt;
+      plot.caption &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; element_text&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;color &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;#777777&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; vjust &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+      axis.title &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; element_text&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;size &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; rel&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;.9&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; hjust &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0.95&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; face &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;italic&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+      panel.grid.major &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; element_line&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;size &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; rel&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;.1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; color &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;#000000&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; 
+      panel.grid.minor &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; element_line&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;size &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; rel&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;.05&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; color &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;#000000&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; 
+      legend.position &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;none&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+my_labs &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  labs&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;title &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Average miles per gallon by number of cylinders&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
+    subtitle &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Scatter plot depicting average miles per gallon aggregated by number of cylinders&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+    x &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Number of cylinders&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; y &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Miles per gallon&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+    caption &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Source: Estimates calculated from the &amp;#39;mtcars&amp;#39; data set&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+my_save &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kp&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  ggsave&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kp&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; width &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; height &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;4.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; units &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;in&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The data set featured in this post is &lt;strong&gt;mtcars&lt;/strong&gt;, which is bundled as part of
+the core &lt;a href=&#34;https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html&#34;&gt;datasets&lt;/a&gt;
+package. Specifically, examples will feature the &lt;code&gt;mpg&lt;/code&gt; (miles per gallon)
+and &lt;code&gt;cyl&lt;/code&gt; (number of cylinders) variables.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## print first six rows&lt;/span&gt;
+&lt;span class=&#34;kp&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;mtcars&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt;                    mpg cyl disp  hp drat    wt  qsec vs am gear carb&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;labelling-dataviz&#34;&gt;Labelling dataviz&lt;/h2&gt;
+
+&lt;p&gt;I think most would agree a &lt;em&gt;good&lt;/em&gt; data visualization clearly
+conveys a pattern (or lack of pattern) while being easy to understand, while a
+&lt;em&gt;great&lt;/em&gt; data visualization conveys a pattern (or lack of pattern) while
+being easy to understand &lt;strong&gt;and aesthetically pleasing&lt;/strong&gt;. The difference between
+&lt;em&gt;good&lt;/em&gt; and &lt;em&gt;great&lt;/em&gt; can be something as minor as color palette, but, in my
+experience, more often than not the only difference between a good visualization
+and great visualizations is labelling.&lt;/p&gt;
+
+&lt;p&gt;In my last post, for example, the first successful plot of &lt;code&gt;mpg&lt;/code&gt; by &lt;code&gt;cyl&lt;/code&gt; was
+only _okay_–it&amp;rsquo;s a little bland and it uses an actual expression for an axis title.&lt;/p&gt;
+
+&lt;p style=&#34;align:center&#34;&gt; &lt;img src=&#34;../img/tick-marks.png&#34;&gt; &lt;/p&gt;
+
+&lt;p&gt;But then I replaced the expression and added a custom theme and a few more labels,
+and I think it started to border on being &lt;em&gt;good&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p style=&#34;align:center&#34;&gt; &lt;img src=&#34;../img/with-labs.png&#34;&gt; &lt;/p&gt;
+
+&lt;p&gt;The combination of style changes and labels clearly made a big difference but, still,
+I don&amp;rsquo;t think the above plot is mind-blowing or overly impressive.&lt;/p&gt;
+
+&lt;p&gt;Since there aren&amp;rsquo;t &lt;em&gt;that&lt;/em&gt; many data points, I think this visualization can be
+further improved–with the help of &lt;a href=&#34;https://github.com/slowkow/ggrepel&#34;&gt;&lt;code&gt;{ggrepel}&lt;/code&gt;&lt;/a&gt;–by
+labelling the individual data points–either as an additional layer or as a
+standalone plot (I didn&amp;rsquo;t think the summarized &lt;code&gt;cyl&lt;/code&gt; estimates added much so I
+dropped the mean line/points).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## - add row names as make variable&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;## - add noise to cyl for spacing (store as cyl2)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;## - plot and format labels with ggrepel&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;## - adjust x-axis labels&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;## - specify custom fill colors&lt;/span&gt;
+mtcars &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  mutate&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;make &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kp&#34;&gt;row.names&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;mtcars&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+    cyl2 &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; case_when&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+      cyl &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;4&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;~&lt;/span&gt; cyl &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; runif&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;.25&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+      cyl &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;6&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;~&lt;/span&gt; cyl &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt; runif&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;.00&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;.1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+      cyl &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;8&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;~&lt;/span&gt; cyl &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; runif&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;.75&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;1.25&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; 
+      &lt;span class=&#34;kc&#34;&gt;TRUE&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;~&lt;/span&gt; cyl
+    &lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  ggplot&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;aes&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;x &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; cyl2&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; y &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; mpg&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  ggrepel&lt;span class=&#34;o&#34;&gt;::&lt;/span&gt;geom_label_repel&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;aes&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;fill &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kp&#34;&gt;factor&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;cyl&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; label &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; make&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; 
+    family &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Roboto Condensed Light&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; label.padding &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0.2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; label.size &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;.25&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
+    min.segment.length &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;100&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; color &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;black&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; size &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;3.4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  my_theme&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  my_labs&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  scale_x_continuous&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;breaks &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;6&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;8&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  scale_fill_manual&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;values &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;c&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;#efd0ef&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;#d0efd0&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;#d0daef&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt;
+  my_save&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;img/tick-marks-final.png&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p style=&#34;align:center&#34;&gt; &lt;img src=&#34;../img/tick-marks-final.png&#34;&gt; &lt;/p&gt;
+
+&lt;p&gt;As you can see in the code chunk above, I also added some additional noise to
+the &lt;code&gt;cyl&lt;/code&gt; variable to help out &lt;code&gt;{ggrepel}&lt;/code&gt;&amp;rsquo;s spacing algorithm. The approach
+made it possible to plot &lt;em&gt;and label&lt;/em&gt; each car in the data set without overloading
+or distracting the image with too much information. So, now, not only does the
+image convey the pattern between &lt;code&gt;mpg&lt;/code&gt; and &lt;code&gt;cyl&lt;/code&gt;, but it does so in a way that
+more people can recognize ( &lt;em&gt;4-cylinders&lt;/em&gt; is less meaningful than &lt;em&gt;Honda Civic&lt;/em&gt;, for example),
+while arguably being even more visually pleasing.&lt;/p&gt;
+
+&lt;h2 id=&#34;notes&#34;&gt;Notes&lt;/h2&gt;
+
+&lt;p&gt;&lt;sup&gt;1&lt;/sup&gt; I knew just enough to read in data,
+do some &lt;a href=&#34;http://lavaan.ugent.be/&#34;&gt;structural equation modeling&lt;/a&gt;, and
+generate some simple plots via &lt;code&gt;base::plot()&lt;/code&gt; and &lt;code&gt;base::histogram()&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+
+    <item>
+      <title>Tick marks, variable names, and ggplot2</title>
+      <link>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</link>
+      <pubDate>Mon, 17 Sep 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</guid>
+      <description>
+
+&lt;p&gt;A popular workflow in R uses &lt;a href=&#34;https://dplyr.tidyverse.org&#34;&gt;{dplyr}&lt;/a&gt; to &lt;code&gt;group_by()&lt;/code&gt;
+and then &lt;code&gt;summarise()&lt;/code&gt;&lt;sup&gt;1&lt;/sup&gt; variables.
+It&amp;rsquo;s an intuitive and easy way to aggregate and describe data, especially along
+multiple dimensions. The cost of being both powerful and user-friendly,
+however, is its arguably inconvenient default method for assigning names to
+summarized values. As the code illustrates below, users can provide their own
+names when using &lt;code&gt;summarize()&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## explicitly named summarize variable&lt;/span&gt;
+mtcars &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  group_by&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;cyl&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  summarize&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;mpg &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kp&#34;&gt;mean&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;mpg&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; # A tibble: 3 x 2&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt;     cyl   mpg&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; 1     4  26.7&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; 2     6  19.7&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; 3     8  15.1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But when users don&amp;rsquo;t explicitly name the summarized values, instead of inheriting
+the name of a summarized variable (in this case &lt;code&gt;mpg&lt;/code&gt;), variables are named–by
+default–with the text of the expression used to create the summarized value.&lt;/p&gt;
+
+&lt;p&gt;For example, the code below summarizes by estimating the mean &lt;code&gt;mpg&lt;/code&gt; for cars
+grouped by number of &lt;code&gt;cyl&lt;/code&gt;. The code is fairly straight forward, and you can
+probably see why users often assume the returned summarized data would contain
+two variables &lt;code&gt;cyl&lt;/code&gt; and &lt;code&gt;mpg&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## unnamed summarize variable&lt;/span&gt;
+mtcars &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  group_by&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;cyl&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  summarize&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kp&#34;&gt;mean&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;mpg&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; # A tibble: 3 x 2&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt;     cyl `mean(mpg)`&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt;   &amp;lt;dbl&amp;gt;       &amp;lt;dbl&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; 1     4        26.7&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; 2     6        19.7&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; 3     8        15.1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But as you can see, the variable names wind up being &lt;code&gt;cyl&lt;/code&gt; and &lt;code&gt;mean(mpg)&lt;/code&gt;–
+instead of simply &lt;code&gt;cyl&lt;/code&gt; and &lt;code&gt;mpg&lt;/code&gt;. This default behavior may seem obnoxious at
+first, but it makes a lot of sense when you think about using &lt;strong&gt;two or more&lt;/strong&gt;
+variables when calculating &lt;code&gt;summarize()&lt;/code&gt; values.&lt;/p&gt;
+
+&lt;p&gt;Regardless, while it&amp;rsquo;s definitely a good idea to provide your own summary
+variable names, you will invariably find yourself in a situation where you
+would like to plot summarized variables that were named using the text of
+the expressions used to create them.&lt;/p&gt;
+
+&lt;p&gt;Thus, my goal with this post is to identify &lt;strong&gt;three common mistakes users make when attempting to map variables&lt;/strong&gt; from &lt;a href=&#34;https://dplyr.tidyverse.org/reference/summarise.html&#34;&gt;&lt;code&gt;dplyr::summarize()&lt;/code&gt;&lt;/a&gt;
+to aesthetic dimensions of a plot with &lt;a href=&#34;https://ggplot2.tidyverse.org&#34;&gt;{ggplot2}&lt;/a&gt;
+and conclude by describing a solution.&lt;/p&gt;
+
+&lt;h2 id=&#34;setup&#34;&gt;Setup&lt;/h2&gt;
+
+&lt;p&gt;To follow along with the examples in this post, you will need to load the
+&lt;a href=&#34;https://tidyverse.org&#34;&gt;{tidyverse}&lt;/a&gt; set of packages and define a couple stylistic
+functions used throughout to make the plots even prettier.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## load tidyverse&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;library&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;tidyverse&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; ── Attaching packages ───────────────────────────────────────────────────── tidyverse 1.2.1 ──&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; ✔ ggplot2 3.0.0.9000     ✔ purrr   0.2.5     &lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; ✔ tibble  1.4.2          ✔ dplyr   0.7.6     &lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; ✔ tidyr   0.8.1          ✔ stringr 1.3.1     &lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; ✔ readr   1.1.1          ✔ forcats 0.3.0&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; ── Conflicts ──────────────────────────────────────────────────────── tidyverse_conflicts() ──&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; ✖ dplyr::filter() masks stats::filter()&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; ✖ dplyr::lag()    masks stats::lag()&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;## create style theme&lt;/span&gt;
+my_theme &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  theme_minimal&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;base_family &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Roboto Condensed&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+    theme&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;plot.title &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; element_text&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;size &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; rel&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; face &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;bold&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; 
+      plot.subtitle &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; element_text&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;size &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; rel&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;1.1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)),&lt;/span&gt;
+      plot.caption &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; element_text&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;color &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;#777777&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; vjust &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+      axis.title &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; element_text&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;size &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; rel&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;.9&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; hjust &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;0.95&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; face &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;italic&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+      panel.grid.major &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; element_line&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;size &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; rel&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;.1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; color &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;#000000&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; 
+      panel.grid.minor &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; element_line&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;size &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; rel&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;.05&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; color &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;#000000&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt; 
+      legend.position &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;none&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+my_labs &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  labs&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;title &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Average miles per gallon by number of cylinders&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; 
+    subtitle &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Scatter plot depicting average miles per gallon aggregated by number of cylinders&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+    x &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Number of cylinders&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; y &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Miles per gallon&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+    caption &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;Source: Estimates calculated from the &amp;#39;mtcars&amp;#39; data set&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+my_save &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;kr&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kp&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+  ggsave&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kp&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; width &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;7&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; height &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;m&#34;&gt;4.5&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; units &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;in&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The data set featured in this post is &lt;strong&gt;mtcars&lt;/strong&gt;, which is bundled as part of
+the core &lt;a href=&#34;https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/mtcars.html&#34;&gt;datasets&lt;/a&gt;
+package. Specifically, examples will feature the &lt;code&gt;mpg&lt;/code&gt; (miles per gallon)
+and &lt;code&gt;cyl&lt;/code&gt; (number of cylinders) variables.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## print first six rows&lt;/span&gt;
+&lt;span class=&#34;kp&#34;&gt;head&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;mtcars&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt;                    mpg cyl disp  hp drat    wt  qsec vs am gear carb&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;mapping-incorrect-names&#34;&gt;Mapping incorrect names&lt;/h2&gt;
+
+&lt;p&gt;When visualizing data with &lt;a href=&#34;https://ggplot2.tidyverse.org&#34;&gt;ggplot2&lt;/a&gt;, one of the
+first and most important steps entails mapping observed variables in the data
+set to the aesthetic dimensions of a plot. But aesthetic mapping will only work as
+expected when you provide the correct names via &lt;code&gt;ggplot2::aes()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The following section describes three common mistakes users make that result in
+the mapping of incorrect names.&lt;/p&gt;
+
+&lt;h3 id=&#34;1-assuming-a-statistic-inherits-the-name-of-a-variable&#34;&gt;1. Assuming a statistic inherits the name of a variable.&lt;/h3&gt;
+
+&lt;p&gt;A common mistake is to assume that summarizing via &lt;code&gt;mean()&lt;/code&gt; or &lt;code&gt;median()&lt;/code&gt;
+results in a variable with the same name. For example, if we summarize the mean
+of &lt;code&gt;mpg&lt;/code&gt; like we did above, i.e., &lt;code&gt;summarize(mean(mpg))&lt;/code&gt;, and then try to map
+&lt;code&gt;y = mpg&lt;/code&gt;, we get an error because &amp;ldquo;mpg&amp;rdquo; doesn&amp;rsquo;t exist.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## this gets an error because there is no variable named &amp;#34;mpg&amp;#34;&lt;/span&gt;
+mtcars &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  group_by&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;cyl&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  summarize&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kp&#34;&gt;mean&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;mpg&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  ggplot&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;aes&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;x &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; cyl&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; y &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; mpg&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  geom_point&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  geom_line&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Error: Aesthetics must be either length 1 or the same as the data (3): x, y&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;We know from the &lt;strong&gt;summarize&lt;/strong&gt; section above the variable&amp;rsquo;s name is actually
+&lt;code&gt;mean(mpg)&lt;/code&gt;. As this example illustrates, it is incorrect to assume that
+summarized estimates inherit the name of the variable they summarize. This may
+seem annoying at first, but it makes sense when you think about times when you
+may want to summarize using &lt;strong&gt;two or more variables&lt;/strong&gt; in the data set.&lt;/p&gt;
+
+&lt;h3 id=&#34;2-repeating-the-expression-used-in-summarize&#34;&gt;2. Repeating the expression used in &lt;code&gt;summarize()&lt;/code&gt;.&lt;/h3&gt;
+
+&lt;p&gt;A second common mistake is to assume that you can simply repeat the expression
+used in &lt;code&gt;summarize()&lt;/code&gt; when specifying aesthetic mappings.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## this also doesn&amp;#39;t work because it tries to caculate the mean of mpg&lt;/span&gt;
+mtcars &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  group_by&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;cyl&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  summarize&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kp&#34;&gt;mean&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;mpg&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  ggplot&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;aes&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;x &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; cyl&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; y &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kp&#34;&gt;mean&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;mpg&lt;span class=&#34;p&#34;&gt;)))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  geom_point&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  geom_line&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  my_save&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;img/empty-plot.png&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Warning in mean.default(mpg): argument is not numeric or logical: returning&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; NA&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Warning in mean.default(mpg): argument is not numeric or logical: returning&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; NA&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Warning in mean.default(mpg): argument is not numeric or logical: returning&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; NA&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Warning: Removed 3 rows containing missing values (geom_point).&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Warning: Removed 3 rows containing missing values (geom_path).&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Warning in mean.default(mpg): argument is not numeric or logical: returning&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; NA&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Warning in mean.default(mpg): argument is not numeric or logical: returning&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; NA&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Warning in mean.default(mpg): argument is not numeric or logical: returning&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; NA&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Warning: Removed 3 rows containing missing values (geom_point).&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; Warning: Removed 3 rows containing missing values (geom_path).&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p style=&#34;align:center&#34;&gt; &lt;img src=&#34;/img/empty-plot.png&#34;&gt; &lt;/p&gt;
+
+&lt;p&gt;The result is a handful of warnings and an empty plot. The above code fails
+because it tries to calculate mean of &lt;code&gt;mpg&lt;/code&gt;, which, again, doesn&amp;rsquo;t exist in the
+summarized data.&lt;/p&gt;
+
+&lt;h3 id=&#34;3-passing-the-expression-as-a-quoted-string&#34;&gt;3. Passing the expression as a quoted string.&lt;/h3&gt;
+
+&lt;p&gt;The third common mistake is to treat the summarized expression name as a string.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## if we put quotes around it, it assumes it&amp;#39;s a string&lt;/span&gt;
+mtcars &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  group_by&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;cyl&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  summarize&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kp&#34;&gt;mean&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;mpg&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  ggplot&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;aes&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;x &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; cyl&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; y &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;mean(mpg)&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  geom_point&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  geom_line&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  my_save&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;img/static-y.png&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p style=&#34;align:center&#34;&gt; &lt;img src=&#34;/img/static-y.png&#34;&gt; &lt;/p&gt;
+
+&lt;p&gt;This time we get a plot and no warnings, but it&amp;rsquo;s clearly not right. It shows
+every &lt;code&gt;y&lt;/code&gt; value is exactly the same, but it seems far fetched to think the
+average miles per gallon would not vary with number of cylinders.&lt;/p&gt;
+
+&lt;p&gt;In this case, the literal string &lt;code&gt;&amp;quot;mean(mpg)&amp;quot;&lt;/code&gt; is mapped to the &lt;code&gt;y&lt;/code&gt; variable
+value, which means it&amp;rsquo;s converted to a factor and the single factor level is
+coded as &lt;code&gt;1&lt;/code&gt; at each observation.&lt;/p&gt;
+
+&lt;h2 id=&#34;solution-use-tick-marks&#34;&gt;Solution: use tick marks&lt;/h2&gt;
+
+&lt;p&gt;At this point it should be clear the name of the summarized &lt;code&gt;mpg&lt;/code&gt; variable is
+actually &amp;ldquo;mean(mpg),&amp;rdquo; only now we also know wrapping the expression with quotes
+doesn&amp;rsquo;t work because it assumes the expression is a literal string, not a
+variable name.&lt;/p&gt;
+
+&lt;p&gt;The solution to correctly mapping unnamed &lt;code&gt;summarize()&lt;/code&gt; variables is to use
+tick marks&amp;ndash;the apostrophe-like symbol at the top-left of your keyboard. Tick
+marks work a lot like quotes insofar as they open and close and wrap all
+elements into a single object. The difference is tick marks assume the marked
+object references a symbol. To illustrate, the code below assigns 10 random
+numbers to &lt;code&gt;x&lt;/code&gt; and then prints it using both ticks and quotes.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## assign 10 random numbers to x&lt;/span&gt;
+x &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; rnorm&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;m&#34;&gt;10&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;## print x wrapped in quotes&lt;/span&gt;
+&lt;span class=&#34;s&#34;&gt;&amp;#34;x&amp;#34;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt; [1] &amp;#34;x&amp;#34;&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;## print x wrapped in tick marks&lt;/span&gt;
+&lt;span class=&#34;sb&#34;&gt;`x`&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt;  [1]  1.3529560 -2.9296815  2.7014913 -0.3185779 -1.9914040  1.2656890&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;#&amp;gt;  [7] -0.8240713  1.0881612 -1.1408821 -0.0150597&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;So, really, tick marks are used to distinguish symbols that contain one or more
+unfriendly punctuation/characters, e.g., parenthesis, dashes, spaces, etc.&lt;/p&gt;
+
+&lt;p&gt;With this knowledge, we can now fix the featured &lt;code&gt;summarize()&lt;/code&gt; example by
+wrapping the summarized expression, which functions as the name of the
+summarized variable, in tick marks.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## if we put quotes around it, aes() assumes we are entering a string&lt;/span&gt;
+mtcars &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  group_by&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;cyl&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  summarize&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kp&#34;&gt;mean&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;mpg&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  ggplot&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;aes&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;x &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; cyl&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; y &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;sb&#34;&gt;`mean(mpg)`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  geom_point&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  geom_line&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  my_save&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;img/tick-marks.png&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p style=&#34;align:center&#34;&gt; &lt;img src=&#34;/img/tick-marks.png&#34;&gt; &lt;/p&gt;
+
+&lt;p&gt;Of course, most audiences don&amp;rsquo;t really want to see expression text on a plot,
+so we can improve this plot by adding some better labels and a custom theme via
+the previously defined &lt;code&gt;my_theme()&lt;/code&gt; and &lt;code&gt;my_labs()&lt;/code&gt; functions.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span class=&#34;c1&#34;&gt;## use tick marks instead of quotes to indicate variable name&lt;/span&gt;
+mtcars &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  group_by&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;cyl&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  summarize&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kp&#34;&gt;mean&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;mpg&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&amp;gt;%&lt;/span&gt;
+  ggplot&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;aes&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;x &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; cyl&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; y &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;sb&#34;&gt;`mean(mpg)`&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  geom_point&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  geom_line&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  my_theme&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  my_labs&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; 
+  my_save&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;img/with-labs.png&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p style=&#34;align:center&#34;&gt; &lt;img src=&#34;/img/with-labs.png&#34;&gt; &lt;/p&gt;
+
+&lt;h2 id=&#34;notes&#34;&gt;Notes&lt;/h2&gt;
+
+&lt;p&gt;&lt;sup&gt;1&lt;/sup&gt; The &lt;code&gt;s&lt;/code&gt; and &lt;code&gt;z&lt;/code&gt; toward the end of &lt;code&gt;summarise()&lt;/code&gt; and &lt;code&gt;summarize()&lt;/code&gt;
+are interchangeable.&lt;/p&gt;
+</description>
+    </item>
     
   </channel>
 </rss>

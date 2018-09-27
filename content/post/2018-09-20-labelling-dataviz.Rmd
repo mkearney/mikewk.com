@@ -1,8 +1,7 @@
 ---
-title: Labelling dataviz
+title: "Labelling dataviz"
 author: kearneymw
 date: '2018-09-20'
-slug: labelling-dataviz
 categories:
   - rstats
 tags:
@@ -14,13 +13,11 @@ tags:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   echo = TRUE, 
-  eval = FALSE,
   comment = "#>", 
   collapse = TRUE,
   fig.show = "hide"
 )
 library(tidyverse)
-if (!dir.exists("img")) dir.create("img")
 ```
 
 
