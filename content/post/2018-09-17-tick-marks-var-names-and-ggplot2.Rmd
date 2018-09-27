@@ -1,19 +1,20 @@
 ---
-title: "Tick marks, variable names, and ggplot2"
-author: kearneymw
+title: Tick marks, variable names, and ggplot2
+author: kearney
 date: '2018-09-17'
+slug: tick-marks-variable-names-and-ggplot2
 categories:
   - rstats
 tags:
-  - ggplot2
   - dataviz
-  - ggrepel
-image: '/img/with-labs.png'
+  - ggplot2
+image: /img/with-labs.png
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   echo = TRUE, 
+  eval = FALSE,
   comment = "#>", 
   collapse = TRUE,
   fig.show = "hide"

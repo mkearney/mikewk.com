@@ -1,19 +1,21 @@
 ---
-title: "Labelling dataviz"
+title: Labelling dataviz
 author: kearneymw
 date: '2018-09-20'
+slug: labelling-dataviz
 categories:
   - rstats
 tags:
   - ggplot2
   - dataviz
   - ggrepel
-image: '/img/tick-marks-final.png'
+image: /img/tick-marks-final.png
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(
   echo = TRUE, 
+  eval = FALSE,
   comment = "#>", 
   collapse = TRUE,
   fig.show = "hide"
