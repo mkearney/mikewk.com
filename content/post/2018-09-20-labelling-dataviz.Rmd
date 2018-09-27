@@ -19,6 +19,7 @@ knitr::opts_chunk$set(
   fig.show = "hide"
 )
 library(tidyverse)
+if (!dir.exists("img")) dir.create("img")
 ```
 
 

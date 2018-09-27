@@ -7,73 +7,9 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
-    <lastBuildDate>Thu, 20 Sep 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Dataviz</title>
-      <link>/tags/dataviz/</link>
-      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/dataviz/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Dplyr</title>
-      <link>/tags/dplyr/</link>
-      <pubDate>Mon, 17 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/dplyr/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ggplot2</title>
-      <link>/tags/ggplot2/</link>
-      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/ggplot2/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ggrepel</title>
-      <link>/tags/ggrepel/</link>
-      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/ggrepel/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Labels</title>
-      <link>/tags/labels/</link>
-      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/labels/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Rstats</title>
-      <link>/tags/rstats/</link>
-      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/rstats/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Summarize</title>
-      <link>/tags/summarize/</link>
-      <pubDate>Mon, 17 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/summarize/</guid>
-      <description></description>
-    </item>
     
   </channel>
 </rss>

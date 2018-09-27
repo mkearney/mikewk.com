@@ -11,89 +11,17 @@
   </url>
   
   <url>
-    <loc>/post/2018-09-20-labelling-dataviz/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</loc>
-    <lastmod>2018-09-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/dataviz/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/dplyr/</loc>
-    <lastmod>2018-09-17T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/ggplot2/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/ggrepel/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/labels/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/post/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/r/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/rstats/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/rstats/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/summarize/</loc>
-    <lastmod>2018-09-17T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>/tags/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

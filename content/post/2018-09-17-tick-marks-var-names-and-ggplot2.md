@@ -1,18 +1,14 @@
 ---
 title: "Tick marks, variable names, and ggplot2"
-author: 'kearneymw'
+author: kearneymw
 date: '2018-09-17'
-categories: ["rstats", "R"]
-tags: ["ggplot2", "rstats", "summarize", "dplyr", "dataviz"]
-preview: 'twitter:description" content="A popular workflow in R uses {dplyr} to group_by() and then summarise()1 variables. It’s an intuitive and easy way to aggregate and describe data, especially along multiple dimensions. The cost of being both powerful and user-friendly, however, is its arguably inconvenient default method for assigning names to summarized values. As the code illustrates below, users can provide their own names when using summarize().'
-image: with-labs.png
-output: 
-  html_document: 
-    df_print: default
-    highlight: haddock
-    keep_md: yes
-    self_contained: no
-    theme: null
+categories:
+  - rstats
+tags:
+  - ggplot2
+  - dataviz
+  - ggrepel
+image: '/img/with-labs.png'
 ---
 
 
@@ -211,7 +207,7 @@ mtcars %>%
 #> Warning: Removed 3 rows containing missing values (geom_path).
 ```
 
-<p style="align:center"> <img src="/img/empty-plot.png"> </p>
+<p style="align:center"> <img src="../img/empty-plot.png"> </p>
 
 The result is a handful of warnings and an empty plot. The above code fails 
 because it tries to calculate mean of `mpg`, which, again, doesn't exist in the 
@@ -233,7 +229,7 @@ mtcars %>%
   my_save("img/static-y.png")
 ```
 
-<p style="align:center"> <img src="/img/static-y.png"> </p>
+<p style="align:center"> <img src="../img/static-y.png"> </p>
 
 This time we get a plot and no warnings, but it's clearly not right. It shows 
 every `y` value is exactly the same, but it seems far fetched to think the 
@@ -268,8 +264,8 @@ x <- rnorm(10)
 
 ## print x wrapped in tick marks
 `x`
-#>  [1]  1.3529560 -2.9296815  2.7014913 -0.3185779 -1.9914040  1.2656890
-#>  [7] -0.8240713  1.0881612 -1.1408821 -0.0150597
+#>  [1]  0.699317  1.360253  0.205911  2.214720 -0.651474 -1.006858  0.490512
+#>  [8] -0.832224 -0.018761  0.558890
 ```
 
 So, really, tick marks are used to distinguish symbols that contain one or more
@@ -291,7 +287,7 @@ mtcars %>%
   my_save("img/tick-marks.png")
 ```
 
-<p style="align:center"> <img src="/img/tick-marks.png"> </p>
+<p style="align:center"> <img src="../img/tick-marks.png"> </p>
 
 Of course, most audiences don't really want to see expression text on a plot, 
 so we can improve this plot by adding some better labels and a custom theme via
@@ -311,7 +307,7 @@ mtcars %>%
   my_save("img/with-labs.png")
 ```
 
-<p style="align:center"> <img src="/img/with-labs.png"> </p>
+<p style="align:center"> <img src="../img/with-labs.png"> </p>
 
 
 ## Notes

@@ -1,16 +1,14 @@
 ---
 title: "Labelling dataviz"
-author: 'kearneymw'
+author: kearneymw
 date: '2018-09-20'
-categories: ["rstats", "R"]
-tags: ["ggplot2", "ggrepel", "labels", "rstats", "dataviz"]
-output: 
-  html_document: 
-    df_print: default
-    highlight: haddock
-    keep_md: yes
-    self_contained: no
-    theme: null
+categories:
+  - rstats
+tags:
+  - ggplot2
+  - dataviz
+  - ggrepel
+image: '/img/tick-marks-final.png'
 ---
 
 
@@ -122,12 +120,12 @@ and great visualizations is labelling.
 In my last post, for example, the first successful plot of `mpg` by `cyl` was 
 only _okay_–it's a little bland and it uses an actual expression for an axis title.
 
-<p style="align:center"> <img src="../img/tick-marks.png"> </p>
+<p style="align:center"> <img src="/img/tick-marks.png"> </p>
 
 But then I replaced the expression and added a custom theme and a few more labels, 
 and I think it started to border on being _good_.
 
-<p style="align:center"> <img src="../img/with-labs.png"> </p>
+<p style="align:center"> <img src="/img/with-labs.png"> </p>
 
 The combination of style changes and labels clearly made a big difference but, still, 
 I don't think the above plot is mind-blowing or overly impressive.
@@ -164,7 +162,7 @@ mtcars %>%
   my_save("img/tick-marks-final.png")
 ```
 
-<p style="align:center"> <img src="../img/tick-marks-final.png"> </p>
+<p style="align:center"> <img src="/img/tick-marks-final.png"> </p>
 
 As you can see in the code chunk above, I also added some additional noise to 
 the `cyl` variable to help out `{ggrepel}`'s spacing algorithm. The approach 
