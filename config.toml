@@ -33,7 +33,7 @@ copyright = "© Michael W. Kearney 2018"
    name = "CV"
    weight = 40
    identifier = "cv"
-   url = "/cv/cv.pdf"
+   url = "https://cv.mikewk.com"
 
 # Add your own params here
 [params]
