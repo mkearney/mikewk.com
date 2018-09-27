@@ -4,6 +4,8 @@ author: 'kearneymw'
 date: '2018-09-17'
 categories: ["rstats", "R"]
 tags: ["ggplot2", "rstats", "summarize", "dplyr", "dataviz"]
+preview: 'twitter:description" content="A popular workflow in R uses {dplyr} to group_by() and then summarise()1 variables. It’s an intuitive and easy way to aggregate and describe data, especially along multiple dimensions. The cost of being both powerful and user-friendly, however, is its arguably inconvenient default method for assigning names to summarized values. As the code illustrates below, users can provide their own names when using summarize().'
+image: with-labs.png
 output: 
   html_document: 
     df_print: default
