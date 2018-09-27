@@ -13,13 +13,11 @@
     <meta name="twitter:site" content="@mikewk.com" />
     <meta name="twitter:title" content="{{ .Title }}" />
     <meta name="twitter:description" content="{{ .Summary | plainify }}" />
-    <meta name="twitter:image" content="{{ .Image }}" />
   {{ else }}
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@mikewk.com" />
     <meta name="twitter:title" content="{{ .Title }}" />
     <meta name="twitter:description" content="{{ .Summary | plainify }}" />
-    <meta name="twitter:image" content="{{ .Image }}" />
   {{ end }}
 
 {{ else }}
@@ -33,7 +31,6 @@
   <meta name="twitter:site" content="@mikewk.com" />
   <meta name="twitter:title" content="{{ .Title }}" />
   <meta name="twitter:description" content="{{ .Summary }}" />
-  <meta name="twitter:image" content="{{ .Image }}" />
 
 {{ end }}
 

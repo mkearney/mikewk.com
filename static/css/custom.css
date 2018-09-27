@@ -210,8 +210,8 @@ article.post-content {
   margin: calc((100vh - 800px)/2) calc((80vw - 650px)/2) calc((100vh - 800px)/2) calc((80vh - 650px)/2);
 }
 .hexBadges img {
-  width:138px;
-  height:160px;
+  width:128px;
+  height:148px;
   position:absolute;
   -webkit-transition-property:opacity;
   -moz-transition-property:opacity;
@@ -222,13 +222,11 @@ article.post-content {
   -o-transition-duration:.25s;
   transition-duration:.25s
 }
-.hexwrap { padding-left:23px}
-@media screen and (max-width: 800px){.hexwrap {padding-left:inherit;}}
-@media screen and (max-width: 800px){.hexBadges img{width:69px; height:80px;}}
+@media screen and (max-width: 800px){.hexBadges img{width:60px; height:70px;}}
 @media screen and (max-width: 800px){.hexBadges{margin: auto; position: relative;}}
-.hexBadges img.r0.c0,.hexBadges img.r2.c0,.hexBadges img.r4.c0,.hexBadges img.r6.c0 {left:0;}
+.hexBadges img.r0.c0,.hexBadges img.r2.c0,.hexBadges img.r4.c0,.hexBadges img.r6.c0 {left:0}
 @media screen and (max-width: 800px){.hexBadges img.r0.c1,.hexBadges img.r2.c1,.hexBadges img.r4.c1,.hexBadges img.r6.c1 {left:0px;}}
-.hexBadges img.r0.c1,.hexBadges img.r2.c1,.hexBadges img.r4.c1,.hexBadges img.r6.c1 {left:125px;}
+.hexBadges img.r0.c1,.hexBadges img.r2.c1,.hexBadges img.r4.c1,.hexBadges img.r6.c1 {left:125px}
 @media screen and (max-width: 800px){.hexBadges img.r0.c1,.hexBadges img.r2.c1,.hexBadges img.r4.c1,.hexBadges img.r6.c1 {left:60px;}}
 .hexBadges img.r0.c2,.hexBadges img.r2.c2,.hexBadges img.r4.c2,.hexBadges img.r6.c2 {left:250px}
 @media screen and (max-width: 800px){.hexBadges img.r0.c2,.hexBadges img.r2.c2,.hexBadges img.r4.c2,.hexBadges img.r6.c2 {left:120px}}
@@ -312,9 +310,9 @@ a.avatar_link {
   display: none;
 }}
 .hexBadges a {
-  opacity: 0.85;
+  opacity: 1.0;
 }
 
 .hexBadges a:hover {
-  opacity: 1.0;
+  opacity: 0.9;
 }

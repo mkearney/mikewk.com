@@ -9,7 +9,6 @@ tags:
   - ggplot2
   - dataviz
   - ggrepel
-image: /img/tick-marks-final.png
 ---
 
 ```{r setup, include=FALSE}

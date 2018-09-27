@@ -8,7 +8,6 @@ categories:
 tags:
   - dataviz
   - ggplot2
-image: /img/with-labs.png
 ---
 
 
