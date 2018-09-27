@@ -8,6 +8,8 @@ tags:
   - ggplot2
   - dataviz
   - ggrepel
+image: /img/tick-marks-final.png
+preview: "I still remember how hard it was to learn ggplot2 after only knowing a little about R. Sure, the plots seemed pretty. But compared to the ways I had used R before, {ggplot2}'s syntax seemed almost counter-intuitive. Its pipe-like + workflow–building layer-by-layer–was like nothing I had ever used before. Not to mention, I was unfamiliar with central terms of art like 'geom' and 'aes'thetics."
 ---
 
 ```{r setup, include=FALSE}

@@ -1,11 +1,14 @@
 {{ define "main" }}
   {{ partial "header.html" . }}
 
+  <meta property='og:title' content={{ .Title }}/>
+  <meta property='og:image' content={{ .Image }}/>
+  <meta property='og:description' content={{ .Preview }}/>
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:site" content="@mikewk.com" />
   <meta name="twitter:title" content={{ .Title }}/>
   <meta name={{ .Preview }} />
-  <meta name="twitter:image" content=https://mikewk.com{{ .Image }} />
+  <meta name="twitter:image" content={{ .Image }} />
 
   <section class="main post-detail">
     <header class="post-header">
