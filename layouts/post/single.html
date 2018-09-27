@@ -1,19 +1,20 @@
 {{ define "main" }}
   {{ partial "header.html" . }}
 
-  <meta property='og:title' content={{ .Title }}/>
-  <meta property='og:image' content={{ .Image }}/>
-  <meta property='og:description' content={{ .Preview }}/>
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@mikewk.com" />
-  <meta name="twitter:title" content={{ .Title }}/>
-  <meta name={{ .Preview }} />
-  <meta name="twitter:image" content={{ .Image }} />
-
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">{{ .Title }}</h1>
       <p class="post-meta">@{{ if isset .Params "author" }}{{ .Params.author }}{{ else }}{{ .Site.Params.author }}{{ end }} · {{ .Date.Format "Jan 2, 2006" }} · {{ .ReadingTime }} min read</p>
+        <meta property='og:title' content={{ .Title }} />
+  <meta property='og:image' content={{ .Image }} />
+  <meta property='og:description' content={{ .Summary }} />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:site" content="@mikewk.com" />
+  <meta name="twitter:title" content={{ .Title }} />
+  <meta name={{ .Summary }} />
+  <meta name="twitter:image" content={{ .Image }} />
+
     </header>
     <article class="post-content">{{ .Content }}</article>
     <footer class="post-footer">
