@@ -1,0 +1,95 @@
+---
+title: Exploratory factor analysis defaults
+author: kearneymw
+date: '2018-10-01'
+slug: exploratory-factor-analysis-defaults
+categories:
+  - rstats
+tags:
+  - efa
+  - factors
+  - rstats
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment = "#>", collapse = TRUE, fig.show = "hide")
+library(tidyverse)
+```
+
+
+A friend from grad school recently asked me about rotated solutions in exploratory factor analysis (EFA). It reminded me of two default EFA settings in SPSS, which, in my estimation, leads lots of social science researchers astray. The goal of this post is two describe those two settings and demonstrate some desirable alternatives.
+
+## Kaiser cutoff criteria
+
+There's not a lot of theoretical support behind the decision to retain a number 
+of factors based on the number of eigenvalues greater than 1.0, a rule of 
+thumb and SPSS default known as the *Kaiser cutoff criteria*.
+
+In contrast to the seemingly arbitrary cutoff of eigenvalues greater than 1.0, 
+the theoretical arguments in favor of parallel analysis–an alternative method 
+for deciding the number of retained factors–make more sense. It may not make 
+sense to expect a certain amount of **total** variation among variables linked 
+by a single factor. But it it makes a lot of sense to expect the **relative**
+amount of shared variation among *related* variables to significantly exceed 
+the amount of shared variation among *unrelated* variables.
+
+## Orthogonal vs. oblique rotations
+
+```{r}
+## function to simulate data
+lat_var <- function(n, items, nm) {
+  nms <- paste0(nm, seq_len(items))
+  l <- rnorm(n)
+  x <- as.data.frame(lapply(seq_len(items), function(i) l + .6 * l * rnorm(n)))
+  setNames(x, nms)
+}
+```
+
+
+```{r}
+## orthogonal data (to variables; 10 items)
+data1 <- cbind(lat_var(100, 5, "x"), lat_var(100, 5, "y"))
+
+## preview data
+head(data1)
+
+## correlation matrix
+cor(data1)
+
+## oblique rotation
+m1 <- psych::fa(data1, nfactors = 2, rotate = "varimax")
+
+## print results
+m1
+
+## supress printing of loadings < .3
+print(m1$loadings, cut = .3)
+```
+
+
+```{r}
+## non-orthogonal data (factors are to some extent related)
+
+## random data for x items
+d1 <- lat_var(100, 5, "x")
+
+## random data for y items built with dependency on d1
+d2 <- lat_var(100, 5, "y") * .1 * d1
+
+## combine into single data frame
+data2 <- cbind(d1, d2)
+
+## preview data
+head(data2)
+
+## correlation matrix
+cor(data2)
+
+## oblique rotation
+m2 <- psych::fa(data2, nfactors = 2, rotate = "oblimin")
+m2
+
+## supress printing of loadings < .3
+print(m2$loadings, cut = .3)
+```
+
