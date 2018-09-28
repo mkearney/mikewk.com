@@ -2,351 +2,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Michael W. Kearney</title>
-    <link>/</link>
+    <link>https://mikewk.com/</link>
     <description>Recent content on Michael W. Kearney</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
-    <lastBuildDate>Mon, 01 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Sep 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://mikewk.com/index.xml" rel="self" type="application/rss+xml" />
     
-    
-
-    <item>
-      <title>Exploratory factor analysis defaults</title>
-      <link>/post/exploratory-factor-analysis-defaults/</link>
-      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/exploratory-factor-analysis-defaults/</guid>
-      <description>&lt;p&gt;A friend from grad school recently asked me about rotated solutions in exploratory factor analysis (EFA). It reminded me of two default EFA settings in SPSS, which, in my estimation, leads lots of social science researchers astray. The goal of this post is two describe those two settings and demonstrate some desirable alternatives.&lt;/p&gt;
-&lt;div id=&#34;kaiser-cutoff-criteria&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Kaiser cutoff criteria&lt;/h2&gt;
-&lt;p&gt;There’s not a lot of theoretical support behind the decision to retain a number
-of factors based on the number of eigenvalues greater than 1.0, a rule of
-thumb and SPSS default known as the &lt;em&gt;Kaiser cutoff criteria&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;In contrast to the seemingly arbitrary cutoff of eigenvalues greater than 1.0,
-the theoretical arguments in favor of parallel analysis–an alternative method
-for deciding the number of retained factors–make more sense. It may not make
-sense to expect a certain amount of &lt;strong&gt;total&lt;/strong&gt; variation among variables linked
-by a single factor. But it it makes a lot of sense to expect the &lt;strong&gt;relative&lt;/strong&gt;
-amount of shared variation among &lt;em&gt;related&lt;/em&gt; variables to significantly exceed
-the amount of shared variation among &lt;em&gt;unrelated&lt;/em&gt; variables.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;orthogonal-vs.oblique-rotations&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Orthogonal vs. oblique rotations&lt;/h2&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## function to simulate data
-lat_var &amp;lt;- function(n, items, nm) {
-  nms &amp;lt;- paste0(nm, seq_len(items))
-  l &amp;lt;- rnorm(n)
-  x &amp;lt;- as.data.frame(lapply(seq_len(items), function(i) l + .6 * l * rnorm(n)))
-  setNames(x, nms)
-}&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## orthogonal data (to variables; 10 items)
-data1 &amp;lt;- cbind(lat_var(100, 5, &amp;quot;x&amp;quot;), lat_var(100, 5, &amp;quot;y&amp;quot;))
-
-## preview data
-head(data1)
-#&amp;gt;          x1          x2          x3         x4         x5         y1
-#&amp;gt; 1 -0.591996 -0.97261223 -0.00374877 -0.7539782 -0.0989427  1.5243251
-#&amp;gt; 2  3.710621  1.61664124  2.91222837  1.5836724  1.0334974  0.1971326
-#&amp;gt; 3  0.783342  0.31093499  0.31943136  1.7515422  0.5215307  0.0550994
-#&amp;gt; 4  0.774857  0.80850896  0.33826705  0.9717738  1.0029175 -1.4209208
-#&amp;gt; 5 -0.269299 -0.00154276 -0.38630242 -0.1926984 -0.1053408 -0.4282874
-#&amp;gt; 6  0.039333  0.04919823  0.04820981  0.0762357  0.0428007 -0.7519011
-#&amp;gt;          y2        y3         y4        y5
-#&amp;gt; 1  0.997184  0.963317  1.0165420  1.744998
-#&amp;gt; 2  0.245928  0.163117  0.0952125  0.233841
-#&amp;gt; 3 -0.989406 -3.008550 -1.2834547  0.277931
-#&amp;gt; 4 -1.568155 -1.528263  0.3849719 -0.207048
-#&amp;gt; 5 -0.326092 -0.107947 -0.3905331 -0.905187
-#&amp;gt; 6 -1.354629 -1.009838 -1.3264393 -1.141308
-
-## correlation matrix
-cor(data1)
-#&amp;gt;             x1         x2        x3         x4         x5         y1
-#&amp;gt; x1  1.00000000  0.8225845 0.7621200  0.8449411  0.8079556 -0.0215284
-#&amp;gt; x2  0.82258451  1.0000000 0.6718157  0.8076740  0.8122100 -0.0911825
-#&amp;gt; x3  0.76211996  0.6718157 1.0000000  0.8026776  0.7499424  0.0477729
-#&amp;gt; x4  0.84494112  0.8076740 0.8026776  1.0000000  0.8108378  0.0235622
-#&amp;gt; x5  0.80795558  0.8122100 0.7499424  0.8108378  1.0000000 -0.0791609
-#&amp;gt; y1 -0.02152837 -0.0911825 0.0477729  0.0235622 -0.0791609  1.0000000
-#&amp;gt; y2 -0.00362722 -0.0889853 0.0066018  0.0351548 -0.0428219  0.8013198
-#&amp;gt; y3 -0.08937355 -0.1706418 0.0180896 -0.0316361 -0.0996619  0.7094674
-#&amp;gt; y4  0.00214281 -0.0779326 0.0882040  0.0156246 -0.0210305  0.7671794
-#&amp;gt; y5  0.05228994 -0.0600483 0.0849460  0.0327749  0.0479449  0.7261628
-#&amp;gt;             y2         y3          y4         y5
-#&amp;gt; x1 -0.00362722 -0.0893735  0.00214281  0.0522899
-#&amp;gt; x2 -0.08898529 -0.1706418 -0.07793263 -0.0600483
-#&amp;gt; x3  0.00660180  0.0180896  0.08820402  0.0849460
-#&amp;gt; x4  0.03515479 -0.0316361  0.01562455  0.0327749
-#&amp;gt; x5 -0.04282187 -0.0996619 -0.02103053  0.0479449
-#&amp;gt; y1  0.80131977  0.7094674  0.76717944  0.7261628
-#&amp;gt; y2  1.00000000  0.7925112  0.79180763  0.7302743
-#&amp;gt; y3  0.79251125  1.0000000  0.80446866  0.7094802
-#&amp;gt; y4  0.79180763  0.8044687  1.00000000  0.7587559
-#&amp;gt; y5  0.73027431  0.7094802  0.75875592  1.0000000
-
-## oblique rotation
-m1 &amp;lt;- psych::fa(data1, nfactors = 2, rotate = &amp;quot;varimax&amp;quot;)
-
-## print results
-m1
-#&amp;gt; Factor Analysis using method =  minres
-#&amp;gt; Call: psych::fa(r = data1, nfactors = 2, rotate = &amp;quot;varimax&amp;quot;)
-#&amp;gt; Standardized loadings (pattern matrix) based upon correlation matrix
-#&amp;gt;      MR1   MR2   h2   u2 com
-#&amp;gt; x1  0.92  0.00 0.84 0.16   1
-#&amp;gt; x2  0.88 -0.10 0.78 0.22   1
-#&amp;gt; x3  0.83  0.07 0.69 0.31   1
-#&amp;gt; x4  0.93  0.04 0.86 0.14   1
-#&amp;gt; x5  0.90 -0.03 0.80 0.20   1
-#&amp;gt; y1 -0.02  0.86 0.74 0.26   1
-#&amp;gt; y2 -0.02  0.90 0.81 0.19   1
-#&amp;gt; y3 -0.08  0.87 0.76 0.24   1
-#&amp;gt; y4  0.00  0.90 0.82 0.18   1
-#&amp;gt; y5  0.04  0.83 0.69 0.31   1
-#&amp;gt; 
-#&amp;gt;                        MR1  MR2
-#&amp;gt; SS loadings           3.97 3.82
-#&amp;gt; Proportion Var        0.40 0.38
-#&amp;gt; Cumulative Var        0.40 0.78
-#&amp;gt; Proportion Explained  0.51 0.49
-#&amp;gt; Cumulative Proportion 0.51 1.00
-#&amp;gt; 
-#&amp;gt; Mean item complexity =  1
-#&amp;gt; Test of the hypothesis that 2 factors are sufficient.
-#&amp;gt; 
-#&amp;gt; The degrees of freedom for the null model are  45  and the objective function was  9.78 with Chi Square of  927.23
-#&amp;gt; The degrees of freedom for the model are 26  and the objective function was  0.38 
-#&amp;gt; 
-#&amp;gt; The root mean square of the residuals (RMSR) is  0.02 
-#&amp;gt; The df corrected root mean square of the residuals is  0.03 
-#&amp;gt; 
-#&amp;gt; The harmonic number of observations is  100 with the empirical chi square  3.56  with prob &amp;lt;  1 
-#&amp;gt; The total number of observations was  100  with Likelihood Chi Square =  35.78  with prob &amp;lt;  0.096 
-#&amp;gt; 
-#&amp;gt; Tucker Lewis Index of factoring reliability =  0.981
-#&amp;gt; RMSEA index =  0.068  and the 90 % confidence intervals are  0 0.107
-#&amp;gt; BIC =  -83.95
-#&amp;gt; Fit based upon off diagonal values = 1
-#&amp;gt; Measures of factor score adequacy             
-#&amp;gt;                                                    MR1  MR2
-#&amp;gt; Correlation of (regression) scores with factors   0.98 0.97
-#&amp;gt; Multiple R square of scores with factors          0.96 0.94
-#&amp;gt; Minimum correlation of possible factor scores     0.91 0.89
-
-## supress printing of loadings &amp;lt; .3
-print(m1$loadings, cut = .3)
-#&amp;gt; 
-#&amp;gt; Loadings:
-#&amp;gt;    MR1    MR2   
-#&amp;gt; x1  0.918       
-#&amp;gt; x2  0.876       
-#&amp;gt; x3  0.827       
-#&amp;gt; x4  0.927       
-#&amp;gt; x5  0.897       
-#&amp;gt; y1         0.858
-#&amp;gt; y2         0.899
-#&amp;gt; y3         0.865
-#&amp;gt; y4         0.904
-#&amp;gt; y5         0.830
-#&amp;gt; 
-#&amp;gt;                  MR1   MR2
-#&amp;gt; SS loadings    3.968 3.817
-#&amp;gt; Proportion Var 0.397 0.382
-#&amp;gt; Cumulative Var 0.397 0.779&lt;/code&gt;&lt;/pre&gt;
-&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## non-orthogonal data (factors are to some extent related)
-
-## random data for x items
-d1 &amp;lt;- lat_var(100, 5, &amp;quot;x&amp;quot;)
-
-## random data for y items built with dependency on d1
-d2 &amp;lt;- lat_var(100, 5, &amp;quot;y&amp;quot;) * .1 * d1
-
-## combine into single data frame
-data2 &amp;lt;- cbind(d1, d2)
-
-## preview data
-head(data2)
-#&amp;gt;          x1         x2         x3        x4        x5           y1
-#&amp;gt; 1  2.028627  2.6036679  1.7498222  1.315734  0.504116 -0.076784251
-#&amp;gt; 2 -0.489909 -0.5727221 -1.0117497 -0.738385 -0.779679  0.000356118
-#&amp;gt; 3  0.506996  0.5603085  0.0483553  0.180840  0.575871  0.069418980
-#&amp;gt; 4 -1.524549 -1.1651560 -1.6788442 -1.677153 -1.672350  0.118213867
-#&amp;gt; 5  0.502743  0.1581754  3.0774613  1.132109  1.553916 -0.010368766
-#&amp;gt; 6  1.806378  0.0724014  1.3293108  1.380451  0.919780  0.164699617
-#&amp;gt;             y2          y3            y4          y5
-#&amp;gt; 1 -0.110710536 -0.06397638  0.0086076649 -0.02502573
-#&amp;gt; 2  0.000256728  0.00382851  0.0051156129  0.00495334
-#&amp;gt; 3  0.031916900  0.00342597 -0.0000610199  0.00446353
-#&amp;gt; 4  0.074730373  0.07389470 -0.0106154077  0.14514301
-#&amp;gt; 5 -0.013498147 -0.03383166 -0.1240562834 -0.33228165
-#&amp;gt; 6 -0.002431084  0.24115430  0.0960794578  0.32477373
-
-## correlation matrix
-cor(data2)
-#&amp;gt;            x1         x2         x3         x4         x5         y1
-#&amp;gt; x1  1.0000000  0.7382262  0.7169457  0.7567824  0.7117078 -0.2023674
-#&amp;gt; x2  0.7382262  1.0000000  0.7331770  0.6714073  0.7382714 -0.1689516
-#&amp;gt; x3  0.7169457  0.7331770  1.0000000  0.6894758  0.7914714 -0.2077403
-#&amp;gt; x4  0.7567824  0.6714073  0.6894758  1.0000000  0.7229172 -0.0183626
-#&amp;gt; x5  0.7117078  0.7382714  0.7914714  0.7229172  1.0000000 -0.2113815
-#&amp;gt; y1 -0.2023674 -0.1689516 -0.2077403 -0.0183626 -0.2113815  1.0000000
-#&amp;gt; y2 -0.1170148 -0.1391691 -0.0822468  0.1301622 -0.0483122  0.4910274
-#&amp;gt; y3 -0.1504635 -0.0517192 -0.0537441  0.1789523 -0.0220608  0.7454763
-#&amp;gt; y4 -0.0246084  0.0676973  0.1427922  0.0781337  0.0765463  0.3141405
-#&amp;gt; y5 -0.0760834  0.0377496  0.0172613  0.0467740  0.0455962  0.5631245
-#&amp;gt;            y2         y3         y4         y5
-#&amp;gt; x1 -0.1170148 -0.1504635 -0.0246084 -0.0760834
-#&amp;gt; x2 -0.1391691 -0.0517192  0.0676973  0.0377496
-#&amp;gt; x3 -0.0822468 -0.0537441  0.1427922  0.0172613
-#&amp;gt; x4  0.1301622  0.1789523  0.0781337  0.0467740
-#&amp;gt; x5 -0.0483122 -0.0220608  0.0765463  0.0455962
-#&amp;gt; y1  0.4910274  0.7454763  0.3141405  0.5631245
-#&amp;gt; y2  1.0000000  0.6665911  0.2704744  0.3700899
-#&amp;gt; y3  0.6665911  1.0000000  0.3957167  0.5587466
-#&amp;gt; y4  0.2704744  0.3957167  1.0000000  0.3661589
-#&amp;gt; y5  0.3700899  0.5587466  0.3661589  1.0000000
-
-## oblique rotation
-m2 &amp;lt;- psych::fa(data2, nfactors = 2, rotate = &amp;quot;oblimin&amp;quot;)
-#&amp;gt; Loading required namespace: GPArotation
-m2
-#&amp;gt; Factor Analysis using method =  minres
-#&amp;gt; Call: psych::fa(r = data2, nfactors = 2, rotate = &amp;quot;oblimin&amp;quot;)
-#&amp;gt; Standardized loadings (pattern matrix) based upon correlation matrix
-#&amp;gt;      MR1   MR2   h2   u2 com
-#&amp;gt; x1  0.85 -0.11 0.74 0.26 1.0
-#&amp;gt; x2  0.84 -0.03 0.71 0.29 1.0
-#&amp;gt; x3  0.86 -0.02 0.75 0.25 1.0
-#&amp;gt; x4  0.84  0.17 0.72 0.28 1.1
-#&amp;gt; x5  0.88  0.00 0.77 0.23 1.0
-#&amp;gt; y1 -0.13  0.79 0.66 0.34 1.1
-#&amp;gt; y2 -0.01  0.65 0.43 0.57 1.0
-#&amp;gt; y3  0.04  0.95 0.89 0.11 1.0
-#&amp;gt; y4  0.11  0.44 0.20 0.80 1.1
-#&amp;gt; y5  0.06  0.64 0.41 0.59 1.0
-#&amp;gt; 
-#&amp;gt;                        MR1  MR2
-#&amp;gt; SS loadings           3.68 2.60
-#&amp;gt; Proportion Var        0.37 0.26
-#&amp;gt; Cumulative Var        0.37 0.63
-#&amp;gt; Proportion Explained  0.59 0.41
-#&amp;gt; Cumulative Proportion 0.59 1.00
-#&amp;gt; 
-#&amp;gt;  With factor correlations of 
-#&amp;gt;       MR1   MR2
-#&amp;gt; MR1  1.00 -0.07
-#&amp;gt; MR2 -0.07  1.00
-#&amp;gt; 
-#&amp;gt; Mean item complexity =  1
-#&amp;gt; Test of the hypothesis that 2 factors are sufficient.
-#&amp;gt; 
-#&amp;gt; The degrees of freedom for the null model are  45  and the objective function was  6.55 with Chi Square of  621.46
-#&amp;gt; The degrees of freedom for the model are 26  and the objective function was  0.48 
-#&amp;gt; 
-#&amp;gt; The root mean square of the residuals (RMSR) is  0.04 
-#&amp;gt; The df corrected root mean square of the residuals is  0.05 
-#&amp;gt; 
-#&amp;gt; The harmonic number of observations is  100 with the empirical chi square  13.54  with prob &amp;lt;  0.98 
-#&amp;gt; The total number of observations was  100  with Likelihood Chi Square =  44.85  with prob &amp;lt;  0.012 
-#&amp;gt; 
-#&amp;gt; Tucker Lewis Index of factoring reliability =  0.943
-#&amp;gt; RMSEA index =  0.091  and the 90 % confidence intervals are  0.04 0.127
-#&amp;gt; BIC =  -74.89
-#&amp;gt; Fit based upon off diagonal values = 0.99
-#&amp;gt; Measures of factor score adequacy             
-#&amp;gt;                                                    MR1  MR2
-#&amp;gt; Correlation of (regression) scores with factors   0.97 0.96
-#&amp;gt; Multiple R square of scores with factors          0.93 0.93
-#&amp;gt; Minimum correlation of possible factor scores     0.87 0.85
-
-## supress printing of loadings &amp;lt; .3
-print(m2$loadings, cut = .3)
-#&amp;gt; 
-#&amp;gt; Loadings:
-#&amp;gt;    MR1    MR2   
-#&amp;gt; x1  0.846       
-#&amp;gt; x2  0.840       
-#&amp;gt; x3  0.865       
-#&amp;gt; x4  0.842       
-#&amp;gt; x5  0.877       
-#&amp;gt; y1         0.791
-#&amp;gt; y2         0.652
-#&amp;gt; y3         0.948
-#&amp;gt; y4         0.444
-#&amp;gt; y5         0.641
-#&amp;gt; 
-#&amp;gt;                  MR1   MR2
-#&amp;gt; SS loadings    3.683 2.601
-#&amp;gt; Proportion Var 0.368 0.260
-#&amp;gt; Cumulative Var 0.368 0.628&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-
-    <item>
-      <title>Calling out R-bloggers in my R-bloggers post</title>
-      <link>/post/calling-out-r-bloggers-in-my-r-bloggers-post/</link>
-      <pubDate>Thu, 27 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/calling-out-r-bloggers-in-my-r-bloggers-post/</guid>
-      <description>&lt;p&gt;Allow me to preface this post by saying I’m a big fan of
-&lt;a href=&#34;https://r-bloggers.com&#34;&gt;R-bloggers&lt;/a&gt;, a content aggregating site focused on
-blog posts about R. It serves a useful purpose,&lt;sup&gt;1&lt;/sup&gt; and it appears to have
-considerable reach.&lt;sup&gt;2&lt;/sup&gt; And although what follows may seem a
-bit combative, I honestly hope R-bloggers continues to operate
-and inspire people to use R for years to come.&lt;/p&gt;
-&lt;p&gt;With that said, the goal of this post is to make the case that &lt;strong&gt;R-bloggers
-should be better&lt;/strong&gt;. Toward this end, this post proceeds by making the following
-three points:&lt;/p&gt;
-&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
-&lt;li&gt;The service provided by R-bloggers can easily be automated&lt;/li&gt;
-&lt;li&gt;R-bloggers profits from content but produces none&lt;/li&gt;
-&lt;li&gt;Its requirements are incommensurate with its contributions&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div id=&#34;the-service-provided-by-r-bloggers-can-easily-be-automated&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;1. The service provided by R-bloggers can easily be automated&lt;/h2&gt;
-&lt;p&gt;Without scraping the R-bloggers website or Twitter feed, I was easily able to
-accumulate a large list of R-related blogs and then automate a feed of links to
-blog posts. The task was so easy, I even decided to expand the aim of my
-content aggregating feed to be about data-science more generally–hence, I named
-it &lt;code&gt;data-scribers&lt;/code&gt;. You can see the site for yourself at
-&lt;a href=&#34;https://data-scribers.mikewk.com&#34;&gt;data-scribers.mikewk.com&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;r-bloggers-profits-from-content-but-produces-none&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;2. R-bloggers profits from content but produces none&lt;/h2&gt;
-&lt;p&gt;The &lt;strong&gt;real&lt;/strong&gt; contribution of R-bloggers is not the production of content, but
-the dissemination it. As a result of this contribution, R-bloggers grows its
-reach (fame), functions as a gatekeeper (influence), and generates ad revenue
-(see the plethora of ads populating the site).&lt;/p&gt;
-&lt;p&gt;I think most would agree the dissemination of content is a valuable contribution,
-but, if we’re being honest, the heavy lifting–learning, doing, and communicating innovative data science
-things in R–is being done by the bloggers. Anyone with a free afternoon can
-figure out how to string together RSS feeds. But it takes years, decades, or even
-lifetimes to equal the amount of training and work done by 750+ bloggers using and
-writing code and data analysis.&lt;/p&gt;
-&lt;/div&gt;
-&lt;div id=&#34;its-requirements-are-incommensurate-with-its-contributions&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;3. Its requirements are incommensurate with its contributions&lt;/h2&gt;
-&lt;/div&gt;
-&lt;div id=&#34;notes&#34; class=&#34;section level2&#34;&gt;
-&lt;h2&gt;Notes&lt;/h2&gt;
-&lt;p&gt;&lt;sup&gt;1&lt;/sup&gt; R-bloggers is a centralized directory of “over 750” R-related blogs&lt;/p&gt;
-&lt;p&gt;&lt;sup&gt;2&lt;/sup&gt; At the time of writing, the site has 50k email subscribers, 60k+ Twitter followers, etc.&lt;/p&gt;
-&lt;/div&gt;
-</description>
-    </item>
     
 
     <item>
       <title>Labelling dataviz</title>
-      <link>/post/2018-09-20-labelling-dataviz/</link>
+      <link>https://mikewk.com/post/2018-09-20-labelling-dataviz/</link>
       <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018-09-20-labelling-dataviz/</guid>
+      <guid>https://mikewk.com/post/2018-09-20-labelling-dataviz/</guid>
       <description>&lt;p&gt;I still remember how hard it was to learn &lt;a href=&#34;https://ggplot2.tidyverse.org&#34;&gt;{ggplot2}&lt;/a&gt;
 after only knowing a little about R&lt;sup&gt;1&lt;/sup&gt;. Sure, the plots seemed pretty.
 But compared to the ways I had used R before, &lt;code&gt;{ggplot2}&lt;/code&gt;’s syntax seemed almost
@@ -437,12 +109,12 @@ and great visualizations is labelling.&lt;/p&gt;
 &lt;p&gt;In my last post, for example, the first successful plot of &lt;code&gt;mpg&lt;/code&gt; by &lt;code&gt;cyl&lt;/code&gt; was
 only &lt;em&gt;okay&lt;/em&gt;–it’s a little bland and it uses an actual expression for an axis title.&lt;/p&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;/img/tick-marks.png&#34;&gt;
+&lt;img src=&#34;https://mikewk.com/img/tick-marks.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;But then I replaced the expression and added a custom theme and a few more labels,
 and I think it started to border on being &lt;em&gt;good&lt;/em&gt;.&lt;/p&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;/img/with-labs.png&#34;&gt;
+&lt;img src=&#34;https://mikewk.com/img/with-labs.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;The combination of style changes and labels clearly made a big difference but, still,
 I don’t think the above plot is mind-blowing or overly impressive.&lt;/p&gt;
@@ -474,7 +146,7 @@ mtcars %&amp;gt;%
   scale_fill_manual(values = c(&amp;quot;#efd0ef&amp;quot;, &amp;quot;#d0efd0&amp;quot;, &amp;quot;#d0daef&amp;quot;)) +
   my_save(&amp;quot;img/tick-marks-final.png&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;/img/tick-marks-final.png&#34;&gt;
+&lt;img src=&#34;https://mikewk.com/img/tick-marks-final.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;As you can see in the code chunk above, I also added some additional noise to
 the &lt;code&gt;cyl&lt;/code&gt; variable to help out &lt;code&gt;{ggrepel}&lt;/code&gt;’s spacing algorithm. The approach
@@ -496,10 +168,10 @@ generate some simple plots via &lt;code&gt;base::plot()&lt;/code&gt; and &lt;cod
 
     <item>
       <title>Tick marks, variable names, and ggplot2</title>
-      <link>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</link>
+      <link>https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</guid>
+      <guid>https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/</guid>
       <description>&lt;p&gt;A popular workflow in R uses &lt;a href=&#34;https://dplyr.tidyverse.org&#34;&gt;{dplyr}&lt;/a&gt; to &lt;code&gt;group_by()&lt;/code&gt;
 and then &lt;code&gt;summarise()&lt;/code&gt;&lt;sup&gt;1&lt;/sup&gt; variables.
 It’s an intuitive and easy way to aggregate and describe data, especially along
@@ -656,7 +328,7 @@ mtcars %&amp;gt;%
 #&amp;gt; Warning: Removed 3 rows containing missing values (geom_point).
 #&amp;gt; Warning: Removed 3 rows containing missing values (geom_path).&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;/img/empty-plot.png&#34;&gt;
+&lt;img src=&#34;https://mikewk.com/img/empty-plot.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;The result is a handful of warnings and an empty plot. The above code fails
 because it tries to calculate mean of &lt;code&gt;mpg&lt;/code&gt;, which, again, doesn’t exist in the
@@ -674,7 +346,7 @@ mtcars %&amp;gt;%
   geom_line() + 
   my_save(&amp;quot;img/static-y.png&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;/img/static-y.png&#34;&gt;
+&lt;img src=&#34;https://mikewk.com/img/static-y.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;This time we get a plot and no warnings, but it’s clearly not right. It shows
 every &lt;code&gt;y&lt;/code&gt; value is exactly the same, but it seems far fetched to think the
@@ -705,8 +377,8 @@ x &amp;lt;- rnorm(10)
 
 ## print x wrapped in tick marks
 `x`
-#&amp;gt;  [1] -0.8394278 -0.2279721  1.7352023  0.1961789 -1.3663652 -0.4580773
-#&amp;gt;  [7]  0.7215172  0.7638906 -0.0442518  1.3735252&lt;/code&gt;&lt;/pre&gt;
+#&amp;gt;  [1] -0.989146  0.692351 -0.597960 -1.110763 -1.187307 -0.216094  0.638157
+#&amp;gt;  [8]  0.860667  0.879004  0.549694&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;So, really, tick marks are used to distinguish symbols that contain one or more
 unfriendly punctuation/characters, e.g., parenthesis, dashes, spaces, etc.&lt;/p&gt;
 &lt;p&gt;With this knowledge, we can now fix the featured &lt;code&gt;summarize()&lt;/code&gt; example by
@@ -721,7 +393,7 @@ mtcars %&amp;gt;%
   geom_line() + 
   my_save(&amp;quot;img/tick-marks.png&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;/img/tick-marks.png&#34;&gt;
+&lt;img src=&#34;https://mikewk.com/img/tick-marks.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;Of course, most audiences don’t really want to see expression text on a plot,
 so we can improve this plot by adding some better labels and a custom theme via
@@ -737,7 +409,7 @@ mtcars %&amp;gt;%
   my_labs() + 
   my_save(&amp;quot;img/with-labs.png&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;/img/with-labs.png&#34;&gt;
+&lt;img src=&#34;https://mikewk.com/img/with-labs.png&#34;&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;notes&#34; class=&#34;section level2&#34;&gt;

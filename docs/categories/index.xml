@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Michael W. Kearney</title>
-    <link>/categories/</link>
+    <link>https://mikewk.com/categories/</link>
     <description>Recent content in Categories on Michael W. Kearney</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
     
-	<atom:link href="/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mikewk.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Rstats</title>
-      <link>/categories/rstats/</link>
-      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
+      <link>https://mikewk.com/categories/rstats/</link>
+      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/categories/rstats/</guid>
+      <guid>https://mikewk.com/categories/rstats/</guid>
       <description></description>
     </item>
     

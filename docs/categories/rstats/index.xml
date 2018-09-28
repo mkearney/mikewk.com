@@ -2,52 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Rstats on Michael W. Kearney</title>
-    <link>/categories/rstats/</link>
+    <link>https://mikewk.com/categories/rstats/</link>
     <description>Recent content in Rstats on Michael W. Kearney</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
-    <lastBuildDate>Mon, 01 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Sep 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/rstats/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mikewk.com/categories/rstats/index.xml" rel="self" type="application/rss+xml" />
     
-    
-    <item>
-      <title>Exploratory factor analysis defaults</title>
-      <link>/post/exploratory-factor-analysis-defaults/</link>
-      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/exploratory-factor-analysis-defaults/</guid>
-      <description>A friend from grad school recently asked me about rotated solutions in exploratory factor analysis (EFA). It reminded me of two default EFA settings in SPSS, which, in my estimation, leads lots of social science researchers astray. The goal of this post is two describe those two settings and demonstrate some desirable alternatives.
-Kaiser cutoff criteria There’s not a lot of theoretical support behind the decision to retain a number of factors based on the number of eigenvalues greater than 1.</description>
-    </item>
-    
-    <item>
-      <title>Calling out R-bloggers in my R-bloggers post</title>
-      <link>/post/calling-out-r-bloggers-in-my-r-bloggers-post/</link>
-      <pubDate>Thu, 27 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/calling-out-r-bloggers-in-my-r-bloggers-post/</guid>
-      <description>Allow me to preface this post by saying I’m a big fan of R-bloggers, a content aggregating site focused on blog posts about R. It serves a useful purpose,1 and it appears to have considerable reach.2 And although what follows may seem a bit combative, I honestly hope R-bloggers continues to operate and inspire people to use R for years to come.
-With that said, the goal of this post is to make the case that R-bloggers should be better.</description>
-    </item>
     
     <item>
       <title>Labelling dataviz</title>
-      <link>/post/2018-09-20-labelling-dataviz/</link>
+      <link>https://mikewk.com/post/2018-09-20-labelling-dataviz/</link>
       <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018-09-20-labelling-dataviz/</guid>
+      <guid>https://mikewk.com/post/2018-09-20-labelling-dataviz/</guid>
       <description>I still remember how hard it was to learn {ggplot2} after only knowing a little about R1. Sure, the plots seemed pretty. But compared to the ways I had used R before, {ggplot2}’s syntax seemed almost counter-intuitive. Its pipe-like + workflow–building layer-by-layer– was like nothing I had ever used before. Not to mention, I was unfamiliar with central terms of art like “geoms” and “aesthetics”.
 But then again…the plots were really pretty.</description>
     </item>
     
     <item>
       <title>Tick marks, variable names, and ggplot2</title>
-      <link>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</link>
+      <link>https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</guid>
+      <guid>https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/</guid>
       <description>A popular workflow in R uses {dplyr} to group_by() and then summarise()1 variables. It’s an intuitive and easy way to aggregate and describe data, especially along multiple dimensions. The cost of being both powerful and user-friendly, however, is its arguably inconvenient default method for assigning names to summarized values. As the code illustrates below, users can provide their own names when using summarize().
 ## explicitly named summarize variable mtcars %&amp;gt;% group_by(cyl) %&amp;gt;% summarize(mpg = mean(mpg)) #&amp;gt; # A tibble: 3 x 2 #&amp;gt; cyl mpg #&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; #&amp;gt; 1 4 26.</description>
     </item>
