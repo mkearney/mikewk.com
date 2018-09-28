@@ -3,6 +3,7 @@ title: Exploratory factor analysis defaults
 author: kearneymw
 date: '2018-10-01'
 slug: exploratory-factor-analysis-defaults
+draft: true
 categories:
   - rstats
 tags:

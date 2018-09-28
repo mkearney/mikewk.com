@@ -3,6 +3,7 @@ title: Calling out R-bloggers in my R-bloggers post
 author: kearneymw
 date: '2018-09-27'
 slug: calling-out-r-bloggers-in-my-r-bloggers-post
+draft: true
 categories:
   - rstats
 tags:

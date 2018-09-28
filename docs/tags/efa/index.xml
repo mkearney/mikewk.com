@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rstats on Michael W. Kearney</title>
-    <link>/tags/rstats/</link>
-    <description>Recent content in Rstats on Michael W. Kearney</description>
+    <title>Efa on Michael W. Kearney</title>
+    <link>/tags/efa/</link>
+    <description>Recent content in Efa on Michael W. Kearney</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
     <lastBuildDate>Mon, 01 Oct 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/rstats/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/tags/efa/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -20,16 +20,6 @@
       <guid>/post/exploratory-factor-analysis-defaults/</guid>
       <description>A friend from grad school recently asked me about rotated solutions in exploratory factor analysis (EFA). It reminded me of two default EFA settings in SPSS, which, in my estimation, leads lots of social science researchers astray. The goal of this post is two describe those two settings and demonstrate some desirable alternatives.
 Kaiser cutoff criteria There’s not a lot of theoretical support behind the decision to retain a number of factors based on the number of eigenvalues greater than 1.</description>
-    </item>
-    
-    <item>
-      <title>Calling out R-bloggers in my R-bloggers post</title>
-      <link>/post/calling-out-r-bloggers-in-my-r-bloggers-post/</link>
-      <pubDate>Thu, 27 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/post/calling-out-r-bloggers-in-my-r-bloggers-post/</guid>
-      <description>Allow me to preface this post by saying I’m a big fan of R-bloggers, a content aggregating site focused on blog posts about R. It serves a useful purpose,1 and it appears to have considerable reach.2 And although what follows may seem a bit combative, I honestly hope R-bloggers continues to operate and inspire people to use R for years to come.
-With that said, the goal of this post is to make the case that R-bloggers should be better.</description>
     </item>
     
   </channel>

@@ -40,11 +40,20 @@
     </item>
     
     <item>
-      <title>Dplyr</title>
-      <link>/tags/dplyr/</link>
-      <pubDate>Mon, 17 Sep 2018 00:00:00 +0000</pubDate>
+      <title>Efa</title>
+      <link>/tags/efa/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/dplyr/</guid>
+      <guid>/tags/efa/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Factors</title>
+      <link>/tags/factors/</link>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/factors/</guid>
       <description></description>
     </item>
     
@@ -67,15 +76,6 @@
     </item>
     
     <item>
-      <title>Labels</title>
-      <link>/tags/labels/</link>
-      <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/labels/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>R Bloggers</title>
       <link>/tags/r-bloggers/</link>
       <pubDate>Thu, 27 Sep 2018 00:00:00 +0000</pubDate>
@@ -87,18 +87,9 @@
     <item>
       <title>Rstats</title>
       <link>/tags/rstats/</link>
-      <pubDate>Thu, 27 Sep 2018 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/rstats/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Summarize</title>
-      <link>/tags/summarize/</link>
-      <pubDate>Mon, 17 Sep 2018 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/summarize/</guid>
       <description></description>
     </item>
     
