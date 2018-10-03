@@ -316,3 +316,16 @@ a.avatar_link {
 .hexBadges a:hover {
   opacity: 0.9;
 }
+
+
+
+figcaption {
+text-align: right;
+font-size: .9em;
+font-style: italic;
+}
+
+
+strong {
+font-weight: bold;
+}

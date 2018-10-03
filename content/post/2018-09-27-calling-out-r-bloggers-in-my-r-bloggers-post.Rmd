@@ -1,0 +1,247 @@
+---
+title: Calling out R-bloggers in my R-bloggers post
+author: kearneymw
+date: '2018-10-03'
+draft: true
+categories:
+  - rstats
+tags:
+  - r-bloggers
+  - data-scribers
+  - blogdown
+  - rstats
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE, 
+  comment = "#>", 
+  collapse = TRUE,
+  fig.show = "hide"
+)
+library(tidyverse)
+```
+
+
+Allow me to preface this post by saying I'm a big fan of [R-bloggers](https://
+r-bloggers.com), a content aggregating site focused on blog posts about R. It
+serves a useful purpose<sup>1</sup> and has considerable reach.<sup>2</sup> So
+although what follows may seem combative, I honestly hope R-bloggers continues
+to operate and inspire people to use R and share their R-related ideas and tips
+for many years to come.
+
+With that said, in this post I argue that <strong>R-bloggers should be better
+</strong> than it currently is. To support this argument, I forward the 
+following three points:
+
+1. R-bloggers profits from content but produces very little 
+1. The service provided by R-bloggers can easily be automated 
+1. Its requirements are incommensurate with its contributions
+
+## Background on R-bloggers
+
+Before expanding on these points, I should provide a little more background
+on R-bloggers. As I already mentioned, R-bloggers is an R-related content
+aggregating site that circulates and indexes blog posts about R. It was created,
+as far as I can tell, in 2005 by [Tal Galili](https://www.r-statistics.com/
+about/), who is, impressively, still listed as the sole maintainer of the site–
+though it also appears to be affiliated with the [Foundation for Open Access
+Statistics (FOAS)](http://www.foastat.org/), so, hopefully, they provide Tal
+with some support.
+
+As for its mission and a description of its basic operations, here's the 
+explanation straight from R-bloggers' 
+[about section](https://www.r-bloggers.com/about/):
+
+<figure> 
+<p style="align:center"><img style="max-width:600px" src="/img/r-bloggers-what.png" > </p> 
+<figcaption>Figure: Screen shot of R-bloggers description/operation</figcaption> 
+</figure>
+
+And here's the explanation of what R-bloggers offers to bloggers:
+
+<figure> 
+<p style="align:center"> <img style="max-width:600px" src="/img/r-bloggers-contribution.png" > </p> 
+<figcaption>Figure: Screen shot of R-bloggers contribution description</figcaption> 
+</figure>
+
+Anyone interested in adding their blog to the R-bloggers feed is also
+provided with a [link containing instructions and a submission form for adding
+a blog to R-bloggers](https://www.r-bloggers.com/add-your-blog/).
+
+For the most part, the [guidelines for bloggers](https://www.r-bloggers.com/
+add-your-blog/) are fairly reasonable–blog posts should be about R, include
+a minimum amount of well-written non-code content (i.e., code snippets are
+not discouraged, but they should be accompanied by text), contain reasonably
+reproducible examples/use cases (if relevant), compatible HTML code, and a link 
+back to R-bloggers, etc. There is one requirement, which, although I completely 
+understand its rationale, I wish could be relaxed a bit. The requirement is that 
+bloggers who also post about things not related to R must explicitly flag 
+eligible posts with an "R" category/tag.<sup>3</sup>
+
+If my only qualm with R-bloggers's requirements was that they closed off the 
+possibility of non R-related content, this blog post would end here. Instead, 
+however, there is one more requirement (and accompanied site design behavior) I 
+believe is worthy of scrutiny. The requirement to which I'm referring is that 
+bloggers must *"submit a feed with **full content**"*, meaning 
+*"abstracts/excerpts will not be accepted."* This, to me, seems like a rather 
+steep price of admission, as it allows R-bloggers to link to full-content posts 
+**hosted on the R-bloggers domain** and, as a consequence, acquire more clicks 
+and ad revenue at the direct expense of traffic to the original blogs. So, it is 
+this requirement–along with the aforementioned requirement that I link my blog 
+to [R-bloggers](https://r-bloggers.com)–that has inspired my claim, and the 
+points below in support of this claim, that given what it asks from 
+participating blogs, R-bloggers should be better than it currently is.
+
+## 1. R-bloggers profits from content but produces very little
+
+The **real** contribution from R-bloggers is not the *production* of content,
+but the *dissemination* it. And for a site that aggregates content from other
+users and then links from its own index to another page on *its same domain*
+(r-bloggers.com) that contains a **full repost** of the original content and
+only a trivial effort to redirect users to the original blog posts (see screen
+shot below for an example), this contribution results in greater reach, more
+influence, and higher ad revenues–especially in light of [R's growth in recent
+years](https://stackoverflow.blog/2017/10/10/impressive-growth-r/).
+
+<figure> 
+<p style="align:center"> <img style="max-width:600px" src="/img/r-bloggers-attribution.png" > </p> 
+<figcaption>Figure: Screen shot of standard R-bloggers attribution to original content</figcaption> 
+</figure> 
+
+In other words, despite producing very little original content, R-bloggers 
+profits considerably. And don't get me wrong; I still think the dissemination of 
+R-related content is a valuable contribution. I'm just not convinced it's an 
+impressive enough contribution to justify those returns. Maybe it was back in 
+2005,<sup>4</sup> but in 2018, I would, at the very least, expect the following:
+
+a. Mobile-friendly interface 
+  <figure> 
+  <p style="align:center"> <img style="max-width:200px;" src="/img/r-bloggers-iphone-x.png"> </p> 
+  <figcaption>Figure: Screen shot of R-bloggers as it appears on iPhone X</figcaption> 
+  </figure>
+a. Links that work as advertised (see: trying to click on [any page after 45](https://www.r-bloggers.com/page/947/)) 
+a. Front-end web theme created or overhauled since 2009<sup>5</sup> (the code 
+provided below scrapes the WordPress theme's homepage and then prints out the 
+log of updates)
+
+```{r}
+## load rvest
+library(rvest)
+
+## read r-bloggers' theme homepage
+h <- read_html("https://themes.bavotasan.com/themes/magazine-basic-wordpress-theme/")
+
+## write ifelse function that works better with piped vectors
+if_else <- function(., .e, .t, .f) {
+  e <- rlang::enquo(.e)
+  e <- rlang::eval_tidy(.e)
+  ifelse(e, rlang::eval_tidy(.t), rlang::eval_tidy(.f))
+}
+
+## extract changelog text and format for printing
+html_nodes(h, "#changelog div.modal-body") %>%
+  html_text() %>%
+  strsplit("\\s{0,}\n+\\s{0,}|\\s{0,}\r+\\s{0,}") %>%
+  unlist() %>%
+  grep("^$", ., invert = TRUE, value = TRUE) %>%
+  if_else(grepl("^\\d{2}/\\d{2}", .), 
+    paste0("\n", ., "  "),
+    paste0("- ", ., "  ")) %>%
+  .[1:23] %>%
+  paste(collapse = "\n") %>%
+  paste0("## Changelog for Magazine-Basic Word Press theme\n", .) %>%
+  cat(fill = TRUE)
+```
+
+In short, while the dissemination of content is a noble contribution, the real
+heavy lifting–learning, doing, and communicating innovative data science things
+in R–is being done by the actual bloggers, not R-bloggers.com. In fact, as I'll
+demonstrate in the second point below, anyone with a free or 
+procrastination-filled afternoon can figure out how to string together RSS feeds 
+and bundle them into an automated content aggregating website. In contrast, it 
+would take several lifetimes to accumulate all the training and knowledge 
+expoused by the 750+ bloggers featured on the R-bloggers site.
+
+## 2. The service provided by R-bloggers can easily be automated
+
+Without scraping the R-bloggers website, I was able to accumulate a large list
+of R-related blogs by searching for tweets via [rtweet](https://rtweet.info)
+containing R-related keywords and URLs that matched at least one of two common
+blog post conventions (`/post/` or `2018/\\d{2}/`).
+
+```{r}
+## build search query with URL filters
+m <- substr(Sys.Date(), 6, 7)
+sq <- glue::glue(
+  '(rstats OR tidyverse OR "R package") (url:post OR url:2018/{m})')
+
+## search for most recent 100 matching tweets
+rt <- rtweet::search_tweets(sq, n = 100)
+
+## print URLs
+rt %>%
+  pull(urls_expanded_url) %>%
+  unlist() %>%
+  tfse::na_omit() %>%
+  unique()
+```
+
+
+Then, after using [rvest](https://rvest.r-lib.org) to extract post information
+and text for previews, I was able to automate, with the help of 
+[blogdown](https://blogdown.rstudio.com), a continuously updating website with a
+feed containing linked post previews. The task was surprisingly easy. I even 
+decided to expand the aim of my content aggregating feed to be about 
+data-science generally–hence, its name, `data-scribers`. You can see the site 
+for yourself at [data-scribers.mikewk.com](https://data-scribers.mikewk.com). 
+*NOTE: since launching this site, it has started to take on a life of its own; 
+the range of topics and languages keep growing, and, at this point, I'm more 
+interested to see where it goes than I am in pruning it down to English-only 
+posts or filtering via some overly-strict definition of data-science.*
+
+Of course, to be competitive with R-bloggers, I'd have to add some more
+features (visuals, linked tags, search bar, etc.), but, still, I think [data-
+scribers.mikewk.com](https://data-scribers.mikewk.com) illustrates how easy it
+is to automate a blog-aggregating website using today's freely available tools.
+It also, hopefully, puts in perspective the discrepency between R-bloggers'
+contribution and R-bloggers' profits.
+
+## 3. Its requirements are incommensurate with its contributions
+
+My final point doesn't include any new arguments about R-bloggers' requirements 
+or contributions. It is merely an appeal to the bigger picture, and my attempt 
+to highlight the product of the previous two points–that (1) R-bloggers profits 
+from content it doesn't create by (2) providing a relatively easy-to-replicate 
+service. I also hope that this final point makes it clear that while I like 
+R-bloggers and hope it continues to disseminate R-related content for a long 
+time, I would also really like the site to work better on my phone 😁😁😁! 
+
+## Notes
+
+<sup>1</sup> R-bloggers is a centralized directory of "over 750" R-related blogs
+
+<sup>2</sup> At the time of writing, the site has 50k email subscribers, 60k+
+Twitter followers, etc.
+
+<sup>3</sup> So, presumably, if a blogger, who is frequently featured on
+the R-bloggers feed, writes a post commenting on something like data analysis
+used in a trending political topic, but it's not specifically about R, then the
+post is excluded from the R-bloggers feed. Like I mentioned before, I completely
+understand the rationale behind such a policy–and I can easily imagine a world
+where relaxing this restriction could devolve into chaos–but, still, part of me
+can't help but feel like the bloggers who help build R-bloggers' audience also
+have a right to access that audience even for topics not directly related to R.
+
+<sup>4</sup> The [oldest post I could find](https://www.r-bloggers.com/creating-
+shaded-areas-in-r/) is from May 2005
+
+<sup>5</sup> This made for a fun web scraping exercise. The goal was to recreate
+the html list text–i.e., `ul > li` while preserving, in meaningful position,
+the date/version number text, which preceeded each list but which was was only
+tagged with a class-less/id-less `<div>`, in one continuously piped expression.
+The hardest part was getting an `ifelse` or `case_when`-type function working
+when passing a character vector via the pipe `%>%` operator–hence the reason I
+defined the `if_else()` function.
+
+
