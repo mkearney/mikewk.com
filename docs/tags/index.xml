@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Michael W. Kearney</title>
-    <link>/tags/</link>
+    <link>https://mikewk.com/tags/</link>
     <description>Recent content in Tags on Michael W. Kearney</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
     <lastBuildDate>Thu, 20 Sep 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mikewk.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Dataviz</title>
-      <link>/tags/dataviz/</link>
+      <link>https://mikewk.com/tags/dataviz/</link>
       <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/dataviz/</guid>
+      <guid>https://mikewk.com/tags/dataviz/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ggplot2</title>
-      <link>/tags/ggplot2/</link>
+      <link>https://mikewk.com/tags/ggplot2/</link>
       <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/ggplot2/</guid>
+      <guid>https://mikewk.com/tags/ggplot2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ggrepel</title>
-      <link>/tags/ggrepel/</link>
+      <link>https://mikewk.com/tags/ggrepel/</link>
       <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/ggrepel/</guid>
+      <guid>https://mikewk.com/tags/ggrepel/</guid>
       <description></description>
     </item>
     

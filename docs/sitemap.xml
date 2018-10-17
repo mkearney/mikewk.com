@@ -3,67 +3,67 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/about/</loc>
+    <loc>https://mikewk.com/about/</loc>
   </url>
   
   <url>
-    <loc>/links/</loc>
+    <loc>https://mikewk.com/links/</loc>
   </url>
   
   <url>
-    <loc>/post/2018-09-20-labelling-dataviz/</loc>
+    <loc>https://mikewk.com/post/2018-09-20-labelling-dataviz/</loc>
     <lastmod>2018-09-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>https://mikewk.com/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/dataviz/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/ggplot2/</loc>
+    <loc>https://mikewk.com/tags/dataviz/</loc>
     <lastmod>2018-09-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/ggrepel/</loc>
+    <loc>https://mikewk.com/tags/ggplot2/</loc>
     <lastmod>2018-09-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>https://mikewk.com/tags/ggrepel/</loc>
     <lastmod>2018-09-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/</loc>
+    <loc>https://mikewk.com/</loc>
     <lastmod>2018-09-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/categories/rstats/</loc>
+    <loc>https://mikewk.com/post/</loc>
     <lastmod>2018-09-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>https://mikewk.com/categories/rstats/</loc>
     <lastmod>2018-09-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</loc>
+    <loc>https://mikewk.com/tags/</loc>
+    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/</loc>
   </url>
   
 </urlset>
