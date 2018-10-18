@@ -266,7 +266,7 @@ associated with running or automating this kind of service, it’s easy to
 understand why the dissemination of R-related content is a valuable contribution.
 But it’s perhaps even <strong>easier</strong> to understand the value of its contribution by
 actually trying to automate the process yourself…</p>
-<p>So, in addition to qualifying as my R-bloggers link, the goal of this poost is
+<p>So, in addition to qualifying as my R-bloggers link, the goal of this post is
 to create via automation a content-aggregating R-bloggers-like website.</p>
 <div id="identifying-blogs" class="section level3">
 <h3>Identifying blogs</h3>
@@ -288,31 +288,32 @@ rt %&gt;%
   unlist() %&gt;%
   tfse::na_omit() %&gt;%
   unique()
-#&gt;  [1] &quot;https://www.biorxiv.org/content/early/2018/10/18/447284&quot;                                                                              
+#&gt;  [1] &quot;https://mikewk.com/post/2018-10-18-my-r-bloggers-post/&quot;                                                                               
 #&gt;  [2] &quot;https://www.repidemicsconsortium.org/2018-10-18-RECON-NGO/&quot;                                                                           
-#&gt;  [3] &quot;https://buff.ly/2QYHbfp&quot;                                                                                                              
-#&gt;  [4] &quot;https://blog.rstudio.com/2018/10/18/shinytest-automated-testing-for-shiny-apps/&quot;                                                      
-#&gt;  [5] &quot;https://mailund.github.io/r-programmer-blog/2018/10/18/the-cost-of-pattern-matching/&quot;                                                 
-#&gt;  [6] &quot;http://bit.ly/adhoc-se-statsd&quot;                                                                                                        
-#&gt;  [7] &quot;http://bit.ly/2J22XMu&quot;                                                                                                                
-#&gt;  [8] &quot;https://www.biorxiv.org/content/early/2018/10/03/430967&quot;                                                                              
-#&gt;  [9] &quot;https://github.com/kendomaniac/rCASC&quot;                                                                                                 
-#&gt; [10] &quot;https://recology.info/2018/10/limiting-dependencies/&quot;                                                                                 
-#&gt; [11] &quot;https://jcarroll.com.au/2018/10/16/even-more-images-as-x-axis-labels/&quot;                                                                
-#&gt; [12] &quot;https://rviews.rstudio.com/2018/10/16/serendipity-at-r-medicine/&quot;                                                                     
-#&gt; [13] &quot;https://ropensci.org/technotes/2018/10/16/pubchunks/&quot;                                                                                 
+#&gt;  [3] &quot;https://www.biorxiv.org/content/early/2018/10/18/447284&quot;                                                                              
+#&gt;  [4] &quot;https://buff.ly/2QYHbfp&quot;                                                                                                              
+#&gt;  [5] &quot;https://blog.rstudio.com/2018/10/18/shinytest-automated-testing-for-shiny-apps/&quot;                                                      
+#&gt;  [6] &quot;https://mailund.github.io/r-programmer-blog/2018/10/18/the-cost-of-pattern-matching/&quot;                                                 
+#&gt;  [7] &quot;http://bit.ly/adhoc-se-statsd&quot;                                                                                                        
+#&gt;  [8] &quot;http://bit.ly/2J22XMu&quot;                                                                                                                
+#&gt;  [9] &quot;https://www.biorxiv.org/content/early/2018/10/03/430967&quot;                                                                              
+#&gt; [10] &quot;https://github.com/kendomaniac/rCASC&quot;                                                                                                 
+#&gt; [11] &quot;https://recology.info/2018/10/limiting-dependencies/&quot;                                                                                 
+#&gt; [12] &quot;https://jcarroll.com.au/2018/10/16/even-more-images-as-x-axis-labels/&quot;                                                                
+#&gt; [13] &quot;https://rviews.rstudio.com/2018/10/16/serendipity-at-r-medicine/&quot;                                                                     
 #&gt; [14] &quot;https://www.biorxiv.org/content/early/2018/10/17/444794&quot;                                                                              
 #&gt; [15] &quot;https://cran.r-project.org/web/packages/segclust2d/index.html&quot;                                                                        
 #&gt; [16] &quot;https://rud.is/b/2018/10/10/geojson-version-of-cbc-quebec-ridings-hex-cartograms-with-example-usage-in-r/&quot;                            
 #&gt; [17] &quot;https://blog.rstudio.com/2018/10/17/announcing-rstudio-package-manager/&quot;                                                              
 #&gt; [18] &quot;http://www.seascapemodels.org/rstats/2018/10/16/understanding-the-glm-link.html&quot;                                                      
 #&gt; [19] &quot;https://blog.rstudio.com/2018/10/16/rstudio-1-2-preview-stan/&quot;                                                                        
-#&gt; [20] &quot;https://blog.rstudio.com/2018/10/05/r2d3-r-interface-to-d3-visualizations/&quot;                                                           
-#&gt; [21] &quot;http://blog.sellorm.com&quot;                                                                                                              
-#&gt; [22] &quot;https://blog.sellorm.com/2018/10/14/rip-a-command-line-r-package-installer/&quot;                                                          
-#&gt; [23] &quot;http://blog.revolutionanalytics.com/2018/10/big-mac-index.html&quot;                                                                       
-#&gt; [24] &quot;https://purrple.cat/blog/2018/10/14/altrep-and-cpp/&quot;                                                                                  
-#&gt; [25] &quot;https://rviews.rstudio.com/2018/10/16/serendipity-at-r-medicine/?fbclid=IwAR2bkIhHC8YtNgCf2PE9wW6Fal9fMxEV9dk4pfAQz-4wx2Xus9E5QGBeHnQ&quot;</code></pre>
+#&gt; [20] &quot;https://ropensci.org/technotes/2018/10/16/pubchunks/&quot;                                                                                 
+#&gt; [21] &quot;https://blog.rstudio.com/2018/10/05/r2d3-r-interface-to-d3-visualizations/&quot;                                                           
+#&gt; [22] &quot;http://blog.sellorm.com&quot;                                                                                                              
+#&gt; [23] &quot;https://blog.sellorm.com/2018/10/14/rip-a-command-line-r-package-installer/&quot;                                                          
+#&gt; [24] &quot;http://blog.revolutionanalytics.com/2018/10/big-mac-index.html&quot;                                                                       
+#&gt; [25] &quot;https://purrple.cat/blog/2018/10/14/altrep-and-cpp/&quot;                                                                                  
+#&gt; [26] &quot;https://rviews.rstudio.com/2018/10/16/serendipity-at-r-medicine/?fbclid=IwAR2bkIhHC8YtNgCf2PE9wW6Fal9fMxEV9dk4pfAQz-4wx2Xus9E5QGBeHnQ&quot;</code></pre>
 </div>
 </div>
 <div id="automating-a-website" class="section level2">

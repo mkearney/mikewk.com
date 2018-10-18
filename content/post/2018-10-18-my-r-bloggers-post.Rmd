@@ -78,7 +78,7 @@ understand why the dissemination of R-related content is a valuable contribution
 But it's perhaps even **easier** to understand the value of its contribution by 
 actually trying to automate the process yourself...
 
-So, in addition to qualifying as my R-bloggers link, the goal of this poost is 
+So, in addition to qualifying as my R-bloggers link, the goal of this post is 
 to create via automation a content-aggregating R-bloggers-like website.
 
 ### Identifying blogs

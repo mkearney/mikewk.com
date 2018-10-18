@@ -75,7 +75,7 @@ associated with running or automating this kind of service, it’s easy to
 understand why the dissemination of R-related content is a valuable contribution.
 But it’s perhaps even &lt;strong&gt;easier&lt;/strong&gt; to understand the value of its contribution by
 actually trying to automate the process yourself…&lt;/p&gt;
-&lt;p&gt;So, in addition to qualifying as my R-bloggers link, the goal of this poost is
+&lt;p&gt;So, in addition to qualifying as my R-bloggers link, the goal of this post is
 to create via automation a content-aggregating R-bloggers-like website.&lt;/p&gt;
 &lt;div id=&#34;identifying-blogs&#34; class=&#34;section level3&#34;&gt;
 &lt;h3&gt;Identifying blogs&lt;/h3&gt;
@@ -97,31 +97,32 @@ rt %&amp;gt;%
   unlist() %&amp;gt;%
   tfse::na_omit() %&amp;gt;%
   unique()
-#&amp;gt;  [1] &amp;quot;https://www.biorxiv.org/content/early/2018/10/18/447284&amp;quot;                                                                              
+#&amp;gt;  [1] &amp;quot;https://mikewk.com/post/2018-10-18-my-r-bloggers-post/&amp;quot;                                                                               
 #&amp;gt;  [2] &amp;quot;https://www.repidemicsconsortium.org/2018-10-18-RECON-NGO/&amp;quot;                                                                           
-#&amp;gt;  [3] &amp;quot;https://buff.ly/2QYHbfp&amp;quot;                                                                                                              
-#&amp;gt;  [4] &amp;quot;https://blog.rstudio.com/2018/10/18/shinytest-automated-testing-for-shiny-apps/&amp;quot;                                                      
-#&amp;gt;  [5] &amp;quot;https://mailund.github.io/r-programmer-blog/2018/10/18/the-cost-of-pattern-matching/&amp;quot;                                                 
-#&amp;gt;  [6] &amp;quot;http://bit.ly/adhoc-se-statsd&amp;quot;                                                                                                        
-#&amp;gt;  [7] &amp;quot;http://bit.ly/2J22XMu&amp;quot;                                                                                                                
-#&amp;gt;  [8] &amp;quot;https://www.biorxiv.org/content/early/2018/10/03/430967&amp;quot;                                                                              
-#&amp;gt;  [9] &amp;quot;https://github.com/kendomaniac/rCASC&amp;quot;                                                                                                 
-#&amp;gt; [10] &amp;quot;https://recology.info/2018/10/limiting-dependencies/&amp;quot;                                                                                 
-#&amp;gt; [11] &amp;quot;https://jcarroll.com.au/2018/10/16/even-more-images-as-x-axis-labels/&amp;quot;                                                                
-#&amp;gt; [12] &amp;quot;https://rviews.rstudio.com/2018/10/16/serendipity-at-r-medicine/&amp;quot;                                                                     
-#&amp;gt; [13] &amp;quot;https://ropensci.org/technotes/2018/10/16/pubchunks/&amp;quot;                                                                                 
+#&amp;gt;  [3] &amp;quot;https://www.biorxiv.org/content/early/2018/10/18/447284&amp;quot;                                                                              
+#&amp;gt;  [4] &amp;quot;https://buff.ly/2QYHbfp&amp;quot;                                                                                                              
+#&amp;gt;  [5] &amp;quot;https://blog.rstudio.com/2018/10/18/shinytest-automated-testing-for-shiny-apps/&amp;quot;                                                      
+#&amp;gt;  [6] &amp;quot;https://mailund.github.io/r-programmer-blog/2018/10/18/the-cost-of-pattern-matching/&amp;quot;                                                 
+#&amp;gt;  [7] &amp;quot;http://bit.ly/adhoc-se-statsd&amp;quot;                                                                                                        
+#&amp;gt;  [8] &amp;quot;http://bit.ly/2J22XMu&amp;quot;                                                                                                                
+#&amp;gt;  [9] &amp;quot;https://www.biorxiv.org/content/early/2018/10/03/430967&amp;quot;                                                                              
+#&amp;gt; [10] &amp;quot;https://github.com/kendomaniac/rCASC&amp;quot;                                                                                                 
+#&amp;gt; [11] &amp;quot;https://recology.info/2018/10/limiting-dependencies/&amp;quot;                                                                                 
+#&amp;gt; [12] &amp;quot;https://jcarroll.com.au/2018/10/16/even-more-images-as-x-axis-labels/&amp;quot;                                                                
+#&amp;gt; [13] &amp;quot;https://rviews.rstudio.com/2018/10/16/serendipity-at-r-medicine/&amp;quot;                                                                     
 #&amp;gt; [14] &amp;quot;https://www.biorxiv.org/content/early/2018/10/17/444794&amp;quot;                                                                              
 #&amp;gt; [15] &amp;quot;https://cran.r-project.org/web/packages/segclust2d/index.html&amp;quot;                                                                        
 #&amp;gt; [16] &amp;quot;https://rud.is/b/2018/10/10/geojson-version-of-cbc-quebec-ridings-hex-cartograms-with-example-usage-in-r/&amp;quot;                            
 #&amp;gt; [17] &amp;quot;https://blog.rstudio.com/2018/10/17/announcing-rstudio-package-manager/&amp;quot;                                                              
 #&amp;gt; [18] &amp;quot;http://www.seascapemodels.org/rstats/2018/10/16/understanding-the-glm-link.html&amp;quot;                                                      
 #&amp;gt; [19] &amp;quot;https://blog.rstudio.com/2018/10/16/rstudio-1-2-preview-stan/&amp;quot;                                                                        
-#&amp;gt; [20] &amp;quot;https://blog.rstudio.com/2018/10/05/r2d3-r-interface-to-d3-visualizations/&amp;quot;                                                           
-#&amp;gt; [21] &amp;quot;http://blog.sellorm.com&amp;quot;                                                                                                              
-#&amp;gt; [22] &amp;quot;https://blog.sellorm.com/2018/10/14/rip-a-command-line-r-package-installer/&amp;quot;                                                          
-#&amp;gt; [23] &amp;quot;http://blog.revolutionanalytics.com/2018/10/big-mac-index.html&amp;quot;                                                                       
-#&amp;gt; [24] &amp;quot;https://purrple.cat/blog/2018/10/14/altrep-and-cpp/&amp;quot;                                                                                  
-#&amp;gt; [25] &amp;quot;https://rviews.rstudio.com/2018/10/16/serendipity-at-r-medicine/?fbclid=IwAR2bkIhHC8YtNgCf2PE9wW6Fal9fMxEV9dk4pfAQz-4wx2Xus9E5QGBeHnQ&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+#&amp;gt; [20] &amp;quot;https://ropensci.org/technotes/2018/10/16/pubchunks/&amp;quot;                                                                                 
+#&amp;gt; [21] &amp;quot;https://blog.rstudio.com/2018/10/05/r2d3-r-interface-to-d3-visualizations/&amp;quot;                                                           
+#&amp;gt; [22] &amp;quot;http://blog.sellorm.com&amp;quot;                                                                                                              
+#&amp;gt; [23] &amp;quot;https://blog.sellorm.com/2018/10/14/rip-a-command-line-r-package-installer/&amp;quot;                                                          
+#&amp;gt; [24] &amp;quot;http://blog.revolutionanalytics.com/2018/10/big-mac-index.html&amp;quot;                                                                       
+#&amp;gt; [25] &amp;quot;https://purrple.cat/blog/2018/10/14/altrep-and-cpp/&amp;quot;                                                                                  
+#&amp;gt; [26] &amp;quot;https://rviews.rstudio.com/2018/10/16/serendipity-at-r-medicine/?fbclid=IwAR2bkIhHC8YtNgCf2PE9wW6Fal9fMxEV9dk4pfAQz-4wx2Xus9E5QGBeHnQ&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;automating-a-website&#34; class=&#34;section level2&#34;&gt;
