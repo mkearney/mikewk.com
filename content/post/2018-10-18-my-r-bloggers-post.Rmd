@@ -1,0 +1,148 @@
+---
+title: My R-bloggers post
+author: kearneymw
+date: '2018-10-18'
+draft: true
+categories:
+  - rstats
+tags:
+  - r-bloggers
+  - data-scribers
+  - blogdown
+  - rstats
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE, 
+  comment = "#>", 
+  collapse = TRUE,
+  fig.show = "hide"
+)
+library(tidyverse)
+```
+
+
+I have long been a fan of [R-bloggers](https://r-bloggers.com), a content
+aggregating site focused on blog posts about R. It serves a useful
+purpose<sup>1</sup> and has considerable reach.<sup>2</sup> But in the first
+version of this blog post, I actually wrote a lengthy critique of the site where 
+I concluded with a not-so-blunt suggestion that R-bloggers wasn't as good as it
+should be. In retrospect, and after pleasant exchange about a draft of the post with
+[Tal Galili](https://www.r-bloggers.com/author/rlover/) (the creator and 
+operator of [R-bloggers](https://www.r-statistics.com/about/)), I can 
+confidently say my post was overly nit-picky and unrealistic in my expectations
+for a benevolent blog-aggregating site like R-bloggers.
+
+## Background on R-bloggers
+
+As I already mentioned, R-bloggers is an R-related content aggregating site that
+circulates and indexes blog posts about R. It was created, as far as I can tell,
+in 2005 by [Tal Galili](https://www.r-bloggers.com/author/rlover/), who is, 
+impressively, still listed as the sole maintainer of the site–though it also 
+appears to be affiliated with the 
+[Foundation for Open Access Statistics (FOAS)](http://www.foastat.org/), so, 
+hopefully, they provide Tal with some support.
+
+As for its mission and a description of its basic operations, here's the 
+explanation straight from R-bloggers' 
+[about section](https://www.r-bloggers.com/about/):
+
+<figure> 
+<p style="align:center"><img style="max-width:600px" src="/img/r-bloggers-what.png" > </p> 
+<figcaption>Figure: Screen shot of R-bloggers description/operation</figcaption> 
+</figure>
+
+And here's the explanation of what R-bloggers offers to bloggers:
+
+<figure> 
+<p style="align:center"> <img style="max-width:600px" src="/img/r-bloggers-contribution.png" > </p> 
+<figcaption>Figure: Screen shot of R-bloggers contribution description</figcaption> 
+</figure>
+
+Anyone interested in adding their blog to the R-bloggers feed is also
+provided with a [link containing instructions and a submission form for adding
+a blog to R-bloggers](https://www.r-bloggers.com/add-your-blog/). The 
+[guidelines for bloggers](https://www.r-bloggers.com/add-your-blog/) are
+quite reasonable–blog posts should be about R, include a minimum amount of
+well-written non-code content (i.e., code snippets are not discouraged, but they
+should be accompanied by text), contain reasonably reproducible examples/use 
+cases (if relevant), compatible HTML code, and a link back to R-bloggers, etc.
+
+## R-bloggers' contribution to #rstats
+
+Ultimately, the **contribution** made by R-bloggers is not necessarily the *production* of 
+content, but the *dissemination* it. When one considers some of the difficulties 
+associated with running or automating this kind of service, it's easy to 
+understand why the dissemination of R-related content is a valuable contribution.
+But it's perhaps even **easier** to understand the value of its contribution by 
+actually trying to automate the process yourself...
+
+So, in addition to qualifying as my R-bloggers link, the goal of this poost is 
+to create via automation a content-aggregating R-bloggers-like website.
+
+### Identifying blogs
+
+Without scraping the R-bloggers website, I was able to accumulate a large list
+of R-related blogs by searching for tweets via [rtweet](https://rtweet.info)
+containing R-related keywords and URLs that matched at least one of two common
+blog post conventions (`/post/` or `2018/\\d{2}/`).
+
+```{r}
+## build search query with URL filters
+m <- substr(Sys.Date(), 6, 7)
+sq <- glue::glue(
+  '(rstats OR tidyverse OR "R package") (url:post OR url:2018/{m})')
+
+## search for most recent 100 matching tweets
+rt <- rtweet::search_tweets(sq, n = 100)
+
+## print URLs
+rt %>%
+  pull(urls_expanded_url) %>%
+  unlist() %>%
+  tfse::na_omit() %>%
+  unique()
+```
+
+## Automating a website
+
+Then, after using [rvest](https://rvest.r-lib.org) to extract post information
+and text previews from RSS feeds, I was able to automate, with the help of 
+[blogdown](https://blogdown.rstudio.com), a continuously updating website with a
+feed containing linked post previews. It took a good amount of elbow grease, 
+but, at least initially, the task seemed surprisingly doable. I was so confident 
+in my ability to automate an R-bloggers-like website, I even decided to expand 
+the aim of my content aggregating feed to be about data-science generally–hence, 
+the name, `data-scribers`. You can see the site for yourself at 
+[data-scribers.mikewk.com](https://data-scribers.mikewk.com). 
+
+## No match for R-bloggers
+
+While the initial outcome appeared to be a resounding success, it wasn't long 
+before I realized the difficulties involved in pruning (e.g., cutting off text, 
+including/not including code chunks, dealing with inconsistent formats, etc.), 
+filtering (e.g., on-topic, non-trivial, consistent language, original content, 
+non-reposts, etc.), and maintaining (checking/updating/editing algorithm, 
+tagging posts, creating searchable and/or organized archive, etc.) a site like 
+R-bloggers would be a lot of work. In fact, since launching 
+[data-scribers](https://data-scribers.mikewk.com), the site has started to take 
+on a life of its own; the range of topics and languages keep growing, and, at 
+this point, I'm more interested to see where it goes than I am in investing 
+additional time ensuring the feed only contains English posts, filtering via 
+some overly-strict definition of data-science, battling with HTML formatting 
+issues, etc.
+
+Of course, even if I had time to prune, filter, and maintain the feed of post 
+previews, to truly be competitive with R-bloggers, I'd also have to add numerous
+other features (visuals, linked tags, search bar, etc.)–and **even then** the 
+site wouldn't include any integration with R-related advertisement opportunities
+or job postings.
+
+## Notes
+
+<sup>1</sup> R-bloggers is a centralized directory of "over 750" R-related blogs
+
+<sup>2</sup> At the time of writing, the site has 50k email subscribers, 60k+
+Twitter followers, etc.
+

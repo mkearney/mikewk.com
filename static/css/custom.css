@@ -85,7 +85,7 @@ h1, h2, h3, h4, h5, h6, .post-content h1, .post-content h2, .post-content h3, .p
 }
 article.post-content {
   width: calc(100vw - 24rem);
-  max-width: 950px;
+  max-width: 1000px;
 }
 .main.post-detail {
   max-width: calc(100vw - 20rem);
@@ -328,4 +328,8 @@ font-style: italic;
 
 strong {
 font-weight: bold;
+}
+
+.post-entry .post-summary {
+  max-width: 1000px;
 }

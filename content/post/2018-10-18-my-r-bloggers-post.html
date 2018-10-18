@@ -1,0 +1,160 @@
+---
+title: My R-bloggers post
+author: kearneymw
+date: '2018-10-18'
+draft: true
+categories:
+  - rstats
+tags:
+  - r-bloggers
+  - data-scribers
+  - blogdown
+  - rstats
+---
+
+
+
+<p>I have long been a fan of <a href="https://r-bloggers.com">R-bloggers</a>, a content
+aggregating site focused on blog posts about R. It serves a useful
+purpose<sup>1</sup> and has considerable reach.<sup>2</sup> But in the first
+version of this blog post, I actually wrote a lengthy critique of the site where
+I concluded with a not-so-blunt suggestion that R-bloggers wasn’t as good as it
+should be. In retrospect, and after pleasant exchange about a draft of the post with
+<a href="https://www.r-bloggers.com/author/rlover/">Tal Galili</a> (the creator and
+operator of <a href="https://www.r-statistics.com/about/">R-bloggers</a>), I can
+confidently say my post was overly nit-picky and unrealistic in my expectations
+for a benevolent blog-aggregating site like R-bloggers.</p>
+<div id="background-on-r-bloggers" class="section level2">
+<h2>Background on R-bloggers</h2>
+<p>As I already mentioned, R-bloggers is an R-related content aggregating site that
+circulates and indexes blog posts about R. It was created, as far as I can tell,
+in 2005 by <a href="https://www.r-bloggers.com/author/rlover/">Tal Galili</a>, who is,
+impressively, still listed as the sole maintainer of the site–though it also
+appears to be affiliated with the
+<a href="http://www.foastat.org/">Foundation for Open Access Statistics (FOAS)</a>, so,
+hopefully, they provide Tal with some support.</p>
+<p>As for its mission and a description of its basic operations, here’s the
+explanation straight from R-bloggers’
+<a href="https://www.r-bloggers.com/about/">about section</a>:</p>
+<figure>
+<p style="align:center">
+<img style="max-width:600px" src="/img/r-bloggers-what.png" >
+</p>
+<figcaption>
+Figure: Screen shot of R-bloggers description/operation
+</figcaption>
+</figure>
+<p>And here’s the explanation of what R-bloggers offers to bloggers:</p>
+<figure>
+<p style="align:center">
+<img style="max-width:600px" src="/img/r-bloggers-contribution.png" >
+</p>
+<figcaption>
+Figure: Screen shot of R-bloggers contribution description
+</figcaption>
+</figure>
+<p>Anyone interested in adding their blog to the R-bloggers feed is also
+provided with a <a href="https://www.r-bloggers.com/add-your-blog/">link containing instructions and a submission form for adding
+a blog to R-bloggers</a>. The
+<a href="https://www.r-bloggers.com/add-your-blog/">guidelines for bloggers</a> are
+quite reasonable–blog posts should be about R, include a minimum amount of
+well-written non-code content (i.e., code snippets are not discouraged, but they
+should be accompanied by text), contain reasonably reproducible examples/use
+cases (if relevant), compatible HTML code, and a link back to R-bloggers, etc.</p>
+</div>
+<div id="r-bloggers-contribution-to-rstats" class="section level2">
+<h2>R-bloggers’ contribution to #rstats</h2>
+<p>Ultimately, the <strong>contribution</strong> made by R-bloggers is not necessarily the <em>production</em> of
+content, but the <em>dissemination</em> it. When one considers some of the difficulties
+associated with running or automating this kind of service, it’s easy to
+understand why the dissemination of R-related content is a valuable contribution.
+But it’s perhaps even <strong>easier</strong> to understand the value of its contribution by
+actually trying to automate the process yourself…</p>
+<p>So, in addition to qualifying as my R-bloggers link, the goal of this poost is
+to create via automation a content-aggregating R-bloggers-like website.</p>
+<div id="identifying-blogs" class="section level3">
+<h3>Identifying blogs</h3>
+<p>Without scraping the R-bloggers website, I was able to accumulate a large list
+of R-related blogs by searching for tweets via <a href="https://rtweet.info">rtweet</a>
+containing R-related keywords and URLs that matched at least one of two common
+blog post conventions (<code>/post/</code> or <code>2018/\\d{2}/</code>).</p>
+<pre class="r"><code>## build search query with URL filters
+m &lt;- substr(Sys.Date(), 6, 7)
+sq &lt;- glue::glue(
+  &#39;(rstats OR tidyverse OR &quot;R package&quot;) (url:post OR url:2018/{m})&#39;)
+
+## search for most recent 100 matching tweets
+rt &lt;- rtweet::search_tweets(sq, n = 100)
+
+## print URLs
+rt %&gt;%
+  pull(urls_expanded_url) %&gt;%
+  unlist() %&gt;%
+  tfse::na_omit() %&gt;%
+  unique()
+#&gt;  [1] &quot;https://www.biorxiv.org/content/early/2018/10/18/447284&quot;                                                                              
+#&gt;  [2] &quot;https://www.repidemicsconsortium.org/2018-10-18-RECON-NGO/&quot;                                                                           
+#&gt;  [3] &quot;https://buff.ly/2QYHbfp&quot;                                                                                                              
+#&gt;  [4] &quot;https://blog.rstudio.com/2018/10/18/shinytest-automated-testing-for-shiny-apps/&quot;                                                      
+#&gt;  [5] &quot;https://mailund.github.io/r-programmer-blog/2018/10/18/the-cost-of-pattern-matching/&quot;                                                 
+#&gt;  [6] &quot;http://bit.ly/adhoc-se-statsd&quot;                                                                                                        
+#&gt;  [7] &quot;http://bit.ly/2J22XMu&quot;                                                                                                                
+#&gt;  [8] &quot;https://www.biorxiv.org/content/early/2018/10/03/430967&quot;                                                                              
+#&gt;  [9] &quot;https://github.com/kendomaniac/rCASC&quot;                                                                                                 
+#&gt; [10] &quot;https://recology.info/2018/10/limiting-dependencies/&quot;                                                                                 
+#&gt; [11] &quot;https://jcarroll.com.au/2018/10/16/even-more-images-as-x-axis-labels/&quot;                                                                
+#&gt; [12] &quot;https://rviews.rstudio.com/2018/10/16/serendipity-at-r-medicine/&quot;                                                                     
+#&gt; [13] &quot;https://ropensci.org/technotes/2018/10/16/pubchunks/&quot;                                                                                 
+#&gt; [14] &quot;https://www.biorxiv.org/content/early/2018/10/17/444794&quot;                                                                              
+#&gt; [15] &quot;https://cran.r-project.org/web/packages/segclust2d/index.html&quot;                                                                        
+#&gt; [16] &quot;https://rud.is/b/2018/10/10/geojson-version-of-cbc-quebec-ridings-hex-cartograms-with-example-usage-in-r/&quot;                            
+#&gt; [17] &quot;https://blog.rstudio.com/2018/10/17/announcing-rstudio-package-manager/&quot;                                                              
+#&gt; [18] &quot;http://www.seascapemodels.org/rstats/2018/10/16/understanding-the-glm-link.html&quot;                                                      
+#&gt; [19] &quot;https://blog.rstudio.com/2018/10/16/rstudio-1-2-preview-stan/&quot;                                                                        
+#&gt; [20] &quot;https://blog.rstudio.com/2018/10/05/r2d3-r-interface-to-d3-visualizations/&quot;                                                           
+#&gt; [21] &quot;http://blog.sellorm.com&quot;                                                                                                              
+#&gt; [22] &quot;https://blog.sellorm.com/2018/10/14/rip-a-command-line-r-package-installer/&quot;                                                          
+#&gt; [23] &quot;http://blog.revolutionanalytics.com/2018/10/big-mac-index.html&quot;                                                                       
+#&gt; [24] &quot;https://purrple.cat/blog/2018/10/14/altrep-and-cpp/&quot;                                                                                  
+#&gt; [25] &quot;https://rviews.rstudio.com/2018/10/16/serendipity-at-r-medicine/?fbclid=IwAR2bkIhHC8YtNgCf2PE9wW6Fal9fMxEV9dk4pfAQz-4wx2Xus9E5QGBeHnQ&quot;</code></pre>
+</div>
+</div>
+<div id="automating-a-website" class="section level2">
+<h2>Automating a website</h2>
+<p>Then, after using <a href="https://rvest.r-lib.org">rvest</a> to extract post information
+and text previews from RSS feeds, I was able to automate, with the help of
+<a href="https://blogdown.rstudio.com">blogdown</a>, a continuously updating website with a
+feed containing linked post previews. It took a good amount of elbow grease,
+but, at least initially, the task seemed surprisingly doable. I was so confident
+in my ability to automate an R-bloggers-like website, I even decided to expand
+the aim of my content aggregating feed to be about data-science generally–hence,
+the name, <code>data-scribers</code>. You can see the site for yourself at
+<a href="https://data-scribers.mikewk.com">data-scribers.mikewk.com</a>.</p>
+</div>
+<div id="no-match-for-r-bloggers" class="section level2">
+<h2>No match for R-bloggers</h2>
+<p>While the initial outcome appeared to be a resounding success, it wasn’t long
+before I realized the difficulties involved in pruning (e.g., cutting off text,
+including/not including code chunks, dealing with inconsistent formats, etc.),
+filtering (e.g., on-topic, non-trivial, consistent language, original content,
+non-reposts, etc.), and maintaining (checking/updating/editing algorithm,
+tagging posts, creating searchable and/or organized archive, etc.) a site like
+R-bloggers would be a lot of work. In fact, since launching
+<a href="https://data-scribers.mikewk.com">data-scribers</a>, the site has started to take
+on a life of its own; the range of topics and languages keep growing, and, at
+this point, I’m more interested to see where it goes than I am in investing
+additional time ensuring the feed only contains English posts, filtering via
+some overly-strict definition of data-science, battling with HTML formatting
+issues, etc.</p>
+<p>Of course, even if I had time to prune, filter, and maintain the feed of post
+previews, to truly be competitive with R-bloggers, I’d also have to add numerous
+other features (visuals, linked tags, search bar, etc.)–and <strong>even then</strong> the
+site wouldn’t include any integration with R-related advertisement opportunities
+or job postings.</p>
+</div>
+<div id="notes" class="section level2">
+<h2>Notes</h2>
+<p><sup>1</sup> R-bloggers is a centralized directory of “over 750” R-related blogs</p>
+<p><sup>2</sup> At the time of writing, the site has 50k email subscribers, 60k+
+Twitter followers, etc.</p>
+</div>

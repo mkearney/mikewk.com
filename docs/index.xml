@@ -2,23 +2,177 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Michael W. Kearney</title>
-    <link>https://mikewk.com/</link>
+    <link>/</link>
     <description>Recent content on Michael W. Kearney</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
-    <lastBuildDate>Thu, 20 Sep 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 18 Oct 2018 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://mikewk.com/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
 
     <item>
+      <title>My R-bloggers post</title>
+      <link>/post/2018-10-18-my-r-bloggers-post/</link>
+      <pubDate>Thu, 18 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-10-18-my-r-bloggers-post/</guid>
+      <description>&lt;p&gt;I have long been a fan of &lt;a href=&#34;https://r-bloggers.com&#34;&gt;R-bloggers&lt;/a&gt;, a content
+aggregating site focused on blog posts about R. It serves a useful
+purpose&lt;sup&gt;1&lt;/sup&gt; and has considerable reach.&lt;sup&gt;2&lt;/sup&gt; But in the first
+version of this blog post, I actually wrote a lengthy critique of the site where
+I concluded with a not-so-blunt suggestion that R-bloggers wasn’t as good as it
+should be. In retrospect, and after pleasant exchange about a draft of the post with
+&lt;a href=&#34;https://www.r-bloggers.com/author/rlover/&#34;&gt;Tal Galili&lt;/a&gt; (the creator and
+operator of &lt;a href=&#34;https://www.r-statistics.com/about/&#34;&gt;R-bloggers&lt;/a&gt;), I can
+confidently say my post was overly nit-picky and unrealistic in my expectations
+for a benevolent blog-aggregating site like R-bloggers.&lt;/p&gt;
+&lt;div id=&#34;background-on-r-bloggers&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Background on R-bloggers&lt;/h2&gt;
+&lt;p&gt;As I already mentioned, R-bloggers is an R-related content aggregating site that
+circulates and indexes blog posts about R. It was created, as far as I can tell,
+in 2005 by &lt;a href=&#34;https://www.r-bloggers.com/author/rlover/&#34;&gt;Tal Galili&lt;/a&gt;, who is,
+impressively, still listed as the sole maintainer of the site–though it also
+appears to be affiliated with the
+&lt;a href=&#34;http://www.foastat.org/&#34;&gt;Foundation for Open Access Statistics (FOAS)&lt;/a&gt;, so,
+hopefully, they provide Tal with some support.&lt;/p&gt;
+&lt;p&gt;As for its mission and a description of its basic operations, here’s the
+explanation straight from R-bloggers’
+&lt;a href=&#34;https://www.r-bloggers.com/about/&#34;&gt;about section&lt;/a&gt;:&lt;/p&gt;
+&lt;figure&gt;
+&lt;p style=&#34;align:center&#34;&gt;
+&lt;img style=&#34;max-width:600px&#34; src=&#34;/img/r-bloggers-what.png&#34; &gt;
+&lt;/p&gt;
+&lt;figcaption&gt;
+Figure: Screen shot of R-bloggers description/operation
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;And here’s the explanation of what R-bloggers offers to bloggers:&lt;/p&gt;
+&lt;figure&gt;
+&lt;p style=&#34;align:center&#34;&gt;
+&lt;img style=&#34;max-width:600px&#34; src=&#34;/img/r-bloggers-contribution.png&#34; &gt;
+&lt;/p&gt;
+&lt;figcaption&gt;
+Figure: Screen shot of R-bloggers contribution description
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p&gt;Anyone interested in adding their blog to the R-bloggers feed is also
+provided with a &lt;a href=&#34;https://www.r-bloggers.com/add-your-blog/&#34;&gt;link containing instructions and a submission form for adding
+a blog to R-bloggers&lt;/a&gt;. The
+&lt;a href=&#34;https://www.r-bloggers.com/add-your-blog/&#34;&gt;guidelines for bloggers&lt;/a&gt; are
+quite reasonable–blog posts should be about R, include a minimum amount of
+well-written non-code content (i.e., code snippets are not discouraged, but they
+should be accompanied by text), contain reasonably reproducible examples/use
+cases (if relevant), compatible HTML code, and a link back to R-bloggers, etc.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;r-bloggers-contribution-to-rstats&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;R-bloggers’ contribution to #rstats&lt;/h2&gt;
+&lt;p&gt;Ultimately, the &lt;strong&gt;contribution&lt;/strong&gt; made by R-bloggers is not necessarily the &lt;em&gt;production&lt;/em&gt; of
+content, but the &lt;em&gt;dissemination&lt;/em&gt; it. When one considers some of the difficulties
+associated with running or automating this kind of service, it’s easy to
+understand why the dissemination of R-related content is a valuable contribution.
+But it’s perhaps even &lt;strong&gt;easier&lt;/strong&gt; to understand the value of its contribution by
+actually trying to automate the process yourself…&lt;/p&gt;
+&lt;p&gt;So, in addition to qualifying as my R-bloggers link, the goal of this poost is
+to create via automation a content-aggregating R-bloggers-like website.&lt;/p&gt;
+&lt;div id=&#34;identifying-blogs&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Identifying blogs&lt;/h3&gt;
+&lt;p&gt;Without scraping the R-bloggers website, I was able to accumulate a large list
+of R-related blogs by searching for tweets via &lt;a href=&#34;https://rtweet.info&#34;&gt;rtweet&lt;/a&gt;
+containing R-related keywords and URLs that matched at least one of two common
+blog post conventions (&lt;code&gt;/post/&lt;/code&gt; or &lt;code&gt;2018/\\d{2}/&lt;/code&gt;).&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## build search query with URL filters
+m &amp;lt;- substr(Sys.Date(), 6, 7)
+sq &amp;lt;- glue::glue(
+  &amp;#39;(rstats OR tidyverse OR &amp;quot;R package&amp;quot;) (url:post OR url:2018/{m})&amp;#39;)
+
+## search for most recent 100 matching tweets
+rt &amp;lt;- rtweet::search_tweets(sq, n = 100)
+
+## print URLs
+rt %&amp;gt;%
+  pull(urls_expanded_url) %&amp;gt;%
+  unlist() %&amp;gt;%
+  tfse::na_omit() %&amp;gt;%
+  unique()
+#&amp;gt;  [1] &amp;quot;https://www.biorxiv.org/content/early/2018/10/18/447284&amp;quot;                                                                              
+#&amp;gt;  [2] &amp;quot;https://www.repidemicsconsortium.org/2018-10-18-RECON-NGO/&amp;quot;                                                                           
+#&amp;gt;  [3] &amp;quot;https://buff.ly/2QYHbfp&amp;quot;                                                                                                              
+#&amp;gt;  [4] &amp;quot;https://blog.rstudio.com/2018/10/18/shinytest-automated-testing-for-shiny-apps/&amp;quot;                                                      
+#&amp;gt;  [5] &amp;quot;https://mailund.github.io/r-programmer-blog/2018/10/18/the-cost-of-pattern-matching/&amp;quot;                                                 
+#&amp;gt;  [6] &amp;quot;http://bit.ly/adhoc-se-statsd&amp;quot;                                                                                                        
+#&amp;gt;  [7] &amp;quot;http://bit.ly/2J22XMu&amp;quot;                                                                                                                
+#&amp;gt;  [8] &amp;quot;https://www.biorxiv.org/content/early/2018/10/03/430967&amp;quot;                                                                              
+#&amp;gt;  [9] &amp;quot;https://github.com/kendomaniac/rCASC&amp;quot;                                                                                                 
+#&amp;gt; [10] &amp;quot;https://recology.info/2018/10/limiting-dependencies/&amp;quot;                                                                                 
+#&amp;gt; [11] &amp;quot;https://jcarroll.com.au/2018/10/16/even-more-images-as-x-axis-labels/&amp;quot;                                                                
+#&amp;gt; [12] &amp;quot;https://rviews.rstudio.com/2018/10/16/serendipity-at-r-medicine/&amp;quot;                                                                     
+#&amp;gt; [13] &amp;quot;https://ropensci.org/technotes/2018/10/16/pubchunks/&amp;quot;                                                                                 
+#&amp;gt; [14] &amp;quot;https://www.biorxiv.org/content/early/2018/10/17/444794&amp;quot;                                                                              
+#&amp;gt; [15] &amp;quot;https://cran.r-project.org/web/packages/segclust2d/index.html&amp;quot;                                                                        
+#&amp;gt; [16] &amp;quot;https://rud.is/b/2018/10/10/geojson-version-of-cbc-quebec-ridings-hex-cartograms-with-example-usage-in-r/&amp;quot;                            
+#&amp;gt; [17] &amp;quot;https://blog.rstudio.com/2018/10/17/announcing-rstudio-package-manager/&amp;quot;                                                              
+#&amp;gt; [18] &amp;quot;http://www.seascapemodels.org/rstats/2018/10/16/understanding-the-glm-link.html&amp;quot;                                                      
+#&amp;gt; [19] &amp;quot;https://blog.rstudio.com/2018/10/16/rstudio-1-2-preview-stan/&amp;quot;                                                                        
+#&amp;gt; [20] &amp;quot;https://blog.rstudio.com/2018/10/05/r2d3-r-interface-to-d3-visualizations/&amp;quot;                                                           
+#&amp;gt; [21] &amp;quot;http://blog.sellorm.com&amp;quot;                                                                                                              
+#&amp;gt; [22] &amp;quot;https://blog.sellorm.com/2018/10/14/rip-a-command-line-r-package-installer/&amp;quot;                                                          
+#&amp;gt; [23] &amp;quot;http://blog.revolutionanalytics.com/2018/10/big-mac-index.html&amp;quot;                                                                       
+#&amp;gt; [24] &amp;quot;https://purrple.cat/blog/2018/10/14/altrep-and-cpp/&amp;quot;                                                                                  
+#&amp;gt; [25] &amp;quot;https://rviews.rstudio.com/2018/10/16/serendipity-at-r-medicine/?fbclid=IwAR2bkIhHC8YtNgCf2PE9wW6Fal9fMxEV9dk4pfAQz-4wx2Xus9E5QGBeHnQ&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id=&#34;automating-a-website&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Automating a website&lt;/h2&gt;
+&lt;p&gt;Then, after using &lt;a href=&#34;https://rvest.r-lib.org&#34;&gt;rvest&lt;/a&gt; to extract post information
+and text previews from RSS feeds, I was able to automate, with the help of
+&lt;a href=&#34;https://blogdown.rstudio.com&#34;&gt;blogdown&lt;/a&gt;, a continuously updating website with a
+feed containing linked post previews. It took a good amount of elbow grease,
+but, at least initially, the task seemed surprisingly doable. I was so confident
+in my ability to automate an R-bloggers-like website, I even decided to expand
+the aim of my content aggregating feed to be about data-science generally–hence,
+the name, &lt;code&gt;data-scribers&lt;/code&gt;. You can see the site for yourself at
+&lt;a href=&#34;https://data-scribers.mikewk.com&#34;&gt;data-scribers.mikewk.com&lt;/a&gt;.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;no-match-for-r-bloggers&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;No match for R-bloggers&lt;/h2&gt;
+&lt;p&gt;While the initial outcome appeared to be a resounding success, it wasn’t long
+before I realized the difficulties involved in pruning (e.g., cutting off text,
+including/not including code chunks, dealing with inconsistent formats, etc.),
+filtering (e.g., on-topic, non-trivial, consistent language, original content,
+non-reposts, etc.), and maintaining (checking/updating/editing algorithm,
+tagging posts, creating searchable and/or organized archive, etc.) a site like
+R-bloggers would be a lot of work. In fact, since launching
+&lt;a href=&#34;https://data-scribers.mikewk.com&#34;&gt;data-scribers&lt;/a&gt;, the site has started to take
+on a life of its own; the range of topics and languages keep growing, and, at
+this point, I’m more interested to see where it goes than I am in investing
+additional time ensuring the feed only contains English posts, filtering via
+some overly-strict definition of data-science, battling with HTML formatting
+issues, etc.&lt;/p&gt;
+&lt;p&gt;Of course, even if I had time to prune, filter, and maintain the feed of post
+previews, to truly be competitive with R-bloggers, I’d also have to add numerous
+other features (visuals, linked tags, search bar, etc.)–and &lt;strong&gt;even then&lt;/strong&gt; the
+site wouldn’t include any integration with R-related advertisement opportunities
+or job postings.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;notes&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;p&gt;&lt;sup&gt;1&lt;/sup&gt; R-bloggers is a centralized directory of “over 750” R-related blogs&lt;/p&gt;
+&lt;p&gt;&lt;sup&gt;2&lt;/sup&gt; At the time of writing, the site has 50k email subscribers, 60k+
+Twitter followers, etc.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+
+    <item>
       <title>Labelling dataviz</title>
-      <link>https://mikewk.com/post/2018-09-20-labelling-dataviz/</link>
+      <link>/post/2018-09-20-labelling-dataviz/</link>
       <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://mikewk.com/post/2018-09-20-labelling-dataviz/</guid>
+      <guid>/post/2018-09-20-labelling-dataviz/</guid>
       <description>&lt;p&gt;I still remember how hard it was to learn &lt;a href=&#34;https://ggplot2.tidyverse.org&#34;&gt;{ggplot2}&lt;/a&gt;
 after only knowing a little about R&lt;sup&gt;1&lt;/sup&gt;. Sure, the plots seemed pretty.
 But compared to the ways I had used R before, &lt;code&gt;{ggplot2}&lt;/code&gt;’s syntax seemed almost
@@ -109,12 +263,12 @@ and great visualizations is labelling.&lt;/p&gt;
 &lt;p&gt;In my last post, for example, the first successful plot of &lt;code&gt;mpg&lt;/code&gt; by &lt;code&gt;cyl&lt;/code&gt; was
 only &lt;em&gt;okay&lt;/em&gt;–it’s a little bland and it uses an actual expression for an axis title.&lt;/p&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;https://mikewk.com/img/tick-marks.png&#34;&gt;
+&lt;img src=&#34;/img/tick-marks.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;But then I replaced the expression and added a custom theme and a few more labels,
 and I think it started to border on being &lt;em&gt;good&lt;/em&gt;.&lt;/p&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;https://mikewk.com/img/with-labs.png&#34;&gt;
+&lt;img src=&#34;/img/with-labs.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;The combination of style changes and labels clearly made a big difference but, still,
 I don’t think the above plot is mind-blowing or overly impressive.&lt;/p&gt;
@@ -146,7 +300,7 @@ mtcars %&amp;gt;%
   scale_fill_manual(values = c(&amp;quot;#efd0ef&amp;quot;, &amp;quot;#d0efd0&amp;quot;, &amp;quot;#d0daef&amp;quot;)) +
   my_save(&amp;quot;img/tick-marks-final.png&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;https://mikewk.com/img/tick-marks-final.png&#34;&gt;
+&lt;img src=&#34;/img/tick-marks-final.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;As you can see in the code chunk above, I also added some additional noise to
 the &lt;code&gt;cyl&lt;/code&gt; variable to help out &lt;code&gt;{ggrepel}&lt;/code&gt;’s spacing algorithm. The approach
@@ -168,10 +322,10 @@ generate some simple plots via &lt;code&gt;base::plot()&lt;/code&gt; and &lt;cod
 
     <item>
       <title>Tick marks, variable names, and ggplot2</title>
-      <link>https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/</link>
+      <link>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/</guid>
+      <guid>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</guid>
       <description>&lt;p&gt;A popular workflow in R uses &lt;a href=&#34;https://dplyr.tidyverse.org&#34;&gt;{dplyr}&lt;/a&gt; to &lt;code&gt;group_by()&lt;/code&gt;
 and then &lt;code&gt;summarise()&lt;/code&gt;&lt;sup&gt;1&lt;/sup&gt; variables.
 It’s an intuitive and easy way to aggregate and describe data, especially along
@@ -328,7 +482,7 @@ mtcars %&amp;gt;%
 #&amp;gt; Warning: Removed 3 rows containing missing values (geom_point).
 #&amp;gt; Warning: Removed 3 rows containing missing values (geom_path).&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;https://mikewk.com/img/empty-plot.png&#34;&gt;
+&lt;img src=&#34;/img/empty-plot.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;The result is a handful of warnings and an empty plot. The above code fails
 because it tries to calculate mean of &lt;code&gt;mpg&lt;/code&gt;, which, again, doesn’t exist in the
@@ -346,7 +500,7 @@ mtcars %&amp;gt;%
   geom_line() + 
   my_save(&amp;quot;img/static-y.png&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;https://mikewk.com/img/static-y.png&#34;&gt;
+&lt;img src=&#34;/img/static-y.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;This time we get a plot and no warnings, but it’s clearly not right. It shows
 every &lt;code&gt;y&lt;/code&gt; value is exactly the same, but it seems far fetched to think the
@@ -393,7 +547,7 @@ mtcars %&amp;gt;%
   geom_line() + 
   my_save(&amp;quot;img/tick-marks.png&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;https://mikewk.com/img/tick-marks.png&#34;&gt;
+&lt;img src=&#34;/img/tick-marks.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;Of course, most audiences don’t really want to see expression text on a plot,
 so we can improve this plot by adding some better labels and a custom theme via
@@ -409,7 +563,7 @@ mtcars %&amp;gt;%
   my_labs() + 
   my_save(&amp;quot;img/with-labs.png&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;https://mikewk.com/img/with-labs.png&#34;&gt;
+&lt;img src=&#34;/img/with-labs.png&#34;&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;notes&#34; class=&#34;section level2&#34;&gt;

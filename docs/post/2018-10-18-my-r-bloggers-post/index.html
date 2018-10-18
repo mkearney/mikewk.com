@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <meta charset="utf-8" />
+
+  
+  <title>My R-bloggers post</title>
+
+  
+  
+
+
+
+
+  
+  <meta name="author" content="kearneymw" />
+  <meta name="description" content="I have long been a fan of R-bloggers, a content aggregating site focused on blog posts about R. It serves a useful purpose1 and has considerable reach.2 But in the first version of this blog post, I actually wrote a lengthy critique of the site where I concluded with a not-so-blunt suggestion that R-bloggers wasn’t as good as it should be. In retrospect, and after pleasant exchange about a draft of the post with Tal Galili (the creator and operator of R-bloggers), I can confidently say my post was overly nit-picky and unrealistic in my expectations for a benevolent blog-aggregating site like R-bloggers." />
+
+  
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kearneymw" />
+    <meta name="twitter:title" content="My R-bloggers post" />
+    <meta name="twitter:description" content="I have long been a fan of R-bloggers, a content aggregating site focused on blog posts about R. It serves a useful purpose1 and has considerable reach.2 But in the first version of this blog post, I actually wrote a lengthy critique of the site where I concluded with a not-so-blunt suggestion that R-bloggers wasn’t as good as it should be. In retrospect, and after pleasant exchange about a draft of the post with Tal Galili (the creator and operator of R-bloggers), I can confidently say my post was overly nit-picky and unrealistic in my expectations for a benevolent blog-aggregating site like R-bloggers." />
+    <meta name="twitter:image" content="/img/avatar.jpg" />
+  
+
+
+
+
+<meta name="generator" content="Hugo 0.49" />
+
+
+<link rel="canonical" href="/post/2018-10-18-my-r-bloggers-post/" />
+<link rel="alternative" href="/index.xml" title="Michael W. Kearney" type="application/atom+xml" />
+
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="format-detection" content="telephone=no,email=no,adress=no" />
+<meta http-equiv="Cache-Control" content="no-transform" />
+
+
+<meta name="robots" content="index,follow" />
+<meta name="referrer" content="origin-when-cross-origin" />
+<meta name="google-site-verification" content="XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY" />
+
+
+
+
+
+
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="Michael W. Kearney" />
+<meta name="msapplication-tooltip" content="Michael W. Kearney" />
+<meta name='msapplication-navbutton-color' content="#5fbf5e" />
+<meta name="msapplication-TileColor" content="#5fbf5e" />
+<meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
+<link rel="icon" href="/img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
+<link rel="icon" sizes="192x192" href="/img/touch-icon-android.png" />
+<link rel="apple-touch-icon" href="/img/touch-icon-apple.png" />
+<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5fbf5e" />
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+
+<link rel="stylesheet" href="/css/bundle.css" />
+<link rel="stylesheet" href="/highlight/styles/atom-one-light.css" />
+
+
+<link rel="stylesheet" href="/css/custom.css">
+
+
+<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700|Source+Code+Pro" rel="stylesheet">
+
+
+  
+  <!--[if lt IE 9]>
+    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
+  <![endif]-->
+
+<!--[if lte IE 11]>
+    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
+  <![endif]-->
+
+
+<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+
+
+</head>
+  <body>
+    
+    <div class="suspension">
+      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+      
+        
+        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
+        
+      
+    </div>
+    
+    
+  <header class="site-header">
+  <a class="avatar_link" href="/"><img class="avatar" src="/img/aintnoseats.jpeg" alt="Avatar"></a>
+  
+  <h2 class="title">Michael W. Kearney</h2>
+  
+  <p class="subtitle">Assistant Professor<br>
+  School of Journalism<br>
+  Informatics Institute<br>
+  University of Missouri</p>
+  <button class="menu-toggle" type="button">
+    <span class="icon icon-menu"></span>
+  </button>
+  <nav class="site-menu collapsed">
+    <h2 class="offscreen">Main Menu</h2>
+    <ul class="menu-list">
+      
+      
+      
+      
+        <li class="menu-item  is-active"><a href="/">Home</a></li>
+      
+        <li class="menu-item "><a href="/about/">About</a></li>
+      
+        <li class="menu-item "><a href="/links/">Links</a></li>
+      
+        <li class="menu-item "><a href="https://cv.mikewk.com">CV</a></li>
+      
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed">
+    <h2 class="offscreen">Social Networks</h2>
+    <ul class="social-list">
+
+      
+      <li class="social-item">
+        <a href="mailto:kearneymw@missouri.edu" title="Email"><span class="icon icon-email"></span></a>
+      </li>
+
+      
+      <li class="social-item">
+        <a href="//github.com/mkearney" title="GitHub"><span class="icon icon-github"></span></a>
+      </li>
+
+      <li class="social-item">
+        <a href="//twitter.com/kearneymw" title="Twitter"><span class="icon icon-twitter"></span></a>
+      </li>
+
+      <li class="social-item">
+        <a href="//www.facebook.com/mike.wayne.kearney" title="Facebook"><span class="icon icon-facebook"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="//www.linkedin.com/in/mikewk" title="Linkedin"><span class="icon icon-linkedin"></span></a>
+      </li>
+
+      
+
+      
+
+      
+
+      <li class="social-item">
+        <a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+      </li>
+
+    </ul>
+  </nav>
+</header>
+
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">My R-bloggers post</h1>
+      <p class="post-meta">@kearneymw · Oct 18, 2018 · 5 min read</p>
+    </header>
+    <article class="post-content"><p>I have long been a fan of <a href="https://r-bloggers.com">R-bloggers</a>, a content
+aggregating site focused on blog posts about R. It serves a useful
+purpose<sup>1</sup> and has considerable reach.<sup>2</sup> But in the first
+version of this blog post, I actually wrote a lengthy critique of the site where
+I concluded with a not-so-blunt suggestion that R-bloggers wasn’t as good as it
+should be. In retrospect, and after pleasant exchange about a draft of the post with
+<a href="https://www.r-bloggers.com/author/rlover/">Tal Galili</a> (the creator and
+operator of <a href="https://www.r-statistics.com/about/">R-bloggers</a>), I can
+confidently say my post was overly nit-picky and unrealistic in my expectations
+for a benevolent blog-aggregating site like R-bloggers.</p>
+<div id="background-on-r-bloggers" class="section level2">
+<h2>Background on R-bloggers</h2>
+<p>As I already mentioned, R-bloggers is an R-related content aggregating site that
+circulates and indexes blog posts about R. It was created, as far as I can tell,
+in 2005 by <a href="https://www.r-bloggers.com/author/rlover/">Tal Galili</a>, who is,
+impressively, still listed as the sole maintainer of the site–though it also
+appears to be affiliated with the
+<a href="http://www.foastat.org/">Foundation for Open Access Statistics (FOAS)</a>, so,
+hopefully, they provide Tal with some support.</p>
+<p>As for its mission and a description of its basic operations, here’s the
+explanation straight from R-bloggers’
+<a href="https://www.r-bloggers.com/about/">about section</a>:</p>
+<figure>
+<p style="align:center">
+<img style="max-width:600px" src="/img/r-bloggers-what.png" >
+</p>
+<figcaption>
+Figure: Screen shot of R-bloggers description/operation
+</figcaption>
+</figure>
+<p>And here’s the explanation of what R-bloggers offers to bloggers:</p>
+<figure>
+<p style="align:center">
+<img style="max-width:600px" src="/img/r-bloggers-contribution.png" >
+</p>
+<figcaption>
+Figure: Screen shot of R-bloggers contribution description
+</figcaption>
+</figure>
+<p>Anyone interested in adding their blog to the R-bloggers feed is also
+provided with a <a href="https://www.r-bloggers.com/add-your-blog/">link containing instructions and a submission form for adding
+a blog to R-bloggers</a>. The
+<a href="https://www.r-bloggers.com/add-your-blog/">guidelines for bloggers</a> are
+quite reasonable–blog posts should be about R, include a minimum amount of
+well-written non-code content (i.e., code snippets are not discouraged, but they
+should be accompanied by text), contain reasonably reproducible examples/use
+cases (if relevant), compatible HTML code, and a link back to R-bloggers, etc.</p>
+</div>
+<div id="r-bloggers-contribution-to-rstats" class="section level2">
+<h2>R-bloggers’ contribution to #rstats</h2>
+<p>Ultimately, the <strong>contribution</strong> made by R-bloggers is not necessarily the <em>production</em> of
+content, but the <em>dissemination</em> it. When one considers some of the difficulties
+associated with running or automating this kind of service, it’s easy to
+understand why the dissemination of R-related content is a valuable contribution.
+But it’s perhaps even <strong>easier</strong> to understand the value of its contribution by
+actually trying to automate the process yourself…</p>
+<p>So, in addition to qualifying as my R-bloggers link, the goal of this poost is
+to create via automation a content-aggregating R-bloggers-like website.</p>
+<div id="identifying-blogs" class="section level3">
+<h3>Identifying blogs</h3>
+<p>Without scraping the R-bloggers website, I was able to accumulate a large list
+of R-related blogs by searching for tweets via <a href="https://rtweet.info">rtweet</a>
+containing R-related keywords and URLs that matched at least one of two common
+blog post conventions (<code>/post/</code> or <code>2018/\\d{2}/</code>).</p>
+<pre class="r"><code>## build search query with URL filters
+m &lt;- substr(Sys.Date(), 6, 7)
+sq &lt;- glue::glue(
+  &#39;(rstats OR tidyverse OR &quot;R package&quot;) (url:post OR url:2018/{m})&#39;)
+
+## search for most recent 100 matching tweets
+rt &lt;- rtweet::search_tweets(sq, n = 100)
+
+## print URLs
+rt %&gt;%
+  pull(urls_expanded_url) %&gt;%
+  unlist() %&gt;%
+  tfse::na_omit() %&gt;%
+  unique()
+#&gt;  [1] &quot;https://www.biorxiv.org/content/early/2018/10/18/447284&quot;                                                                              
+#&gt;  [2] &quot;https://www.repidemicsconsortium.org/2018-10-18-RECON-NGO/&quot;                                                                           
+#&gt;  [3] &quot;https://buff.ly/2QYHbfp&quot;                                                                                                              
+#&gt;  [4] &quot;https://blog.rstudio.com/2018/10/18/shinytest-automated-testing-for-shiny-apps/&quot;                                                      
+#&gt;  [5] &quot;https://mailund.github.io/r-programmer-blog/2018/10/18/the-cost-of-pattern-matching/&quot;                                                 
+#&gt;  [6] &quot;http://bit.ly/adhoc-se-statsd&quot;                                                                                                        
+#&gt;  [7] &quot;http://bit.ly/2J22XMu&quot;                                                                                                                
+#&gt;  [8] &quot;https://www.biorxiv.org/content/early/2018/10/03/430967&quot;                                                                              
+#&gt;  [9] &quot;https://github.com/kendomaniac/rCASC&quot;                                                                                                 
+#&gt; [10] &quot;https://recology.info/2018/10/limiting-dependencies/&quot;                                                                                 
+#&gt; [11] &quot;https://jcarroll.com.au/2018/10/16/even-more-images-as-x-axis-labels/&quot;                                                                
+#&gt; [12] &quot;https://rviews.rstudio.com/2018/10/16/serendipity-at-r-medicine/&quot;                                                                     
+#&gt; [13] &quot;https://ropensci.org/technotes/2018/10/16/pubchunks/&quot;                                                                                 
+#&gt; [14] &quot;https://www.biorxiv.org/content/early/2018/10/17/444794&quot;                                                                              
+#&gt; [15] &quot;https://cran.r-project.org/web/packages/segclust2d/index.html&quot;                                                                        
+#&gt; [16] &quot;https://rud.is/b/2018/10/10/geojson-version-of-cbc-quebec-ridings-hex-cartograms-with-example-usage-in-r/&quot;                            
+#&gt; [17] &quot;https://blog.rstudio.com/2018/10/17/announcing-rstudio-package-manager/&quot;                                                              
+#&gt; [18] &quot;http://www.seascapemodels.org/rstats/2018/10/16/understanding-the-glm-link.html&quot;                                                      
+#&gt; [19] &quot;https://blog.rstudio.com/2018/10/16/rstudio-1-2-preview-stan/&quot;                                                                        
+#&gt; [20] &quot;https://blog.rstudio.com/2018/10/05/r2d3-r-interface-to-d3-visualizations/&quot;                                                           
+#&gt; [21] &quot;http://blog.sellorm.com&quot;                                                                                                              
+#&gt; [22] &quot;https://blog.sellorm.com/2018/10/14/rip-a-command-line-r-package-installer/&quot;                                                          
+#&gt; [23] &quot;http://blog.revolutionanalytics.com/2018/10/big-mac-index.html&quot;                                                                       
+#&gt; [24] &quot;https://purrple.cat/blog/2018/10/14/altrep-and-cpp/&quot;                                                                                  
+#&gt; [25] &quot;https://rviews.rstudio.com/2018/10/16/serendipity-at-r-medicine/?fbclid=IwAR2bkIhHC8YtNgCf2PE9wW6Fal9fMxEV9dk4pfAQz-4wx2Xus9E5QGBeHnQ&quot;</code></pre>
+</div>
+</div>
+<div id="automating-a-website" class="section level2">
+<h2>Automating a website</h2>
+<p>Then, after using <a href="https://rvest.r-lib.org">rvest</a> to extract post information
+and text previews from RSS feeds, I was able to automate, with the help of
+<a href="https://blogdown.rstudio.com">blogdown</a>, a continuously updating website with a
+feed containing linked post previews. It took a good amount of elbow grease,
+but, at least initially, the task seemed surprisingly doable. I was so confident
+in my ability to automate an R-bloggers-like website, I even decided to expand
+the aim of my content aggregating feed to be about data-science generally–hence,
+the name, <code>data-scribers</code>. You can see the site for yourself at
+<a href="https://data-scribers.mikewk.com">data-scribers.mikewk.com</a>.</p>
+</div>
+<div id="no-match-for-r-bloggers" class="section level2">
+<h2>No match for R-bloggers</h2>
+<p>While the initial outcome appeared to be a resounding success, it wasn’t long
+before I realized the difficulties involved in pruning (e.g., cutting off text,
+including/not including code chunks, dealing with inconsistent formats, etc.),
+filtering (e.g., on-topic, non-trivial, consistent language, original content,
+non-reposts, etc.), and maintaining (checking/updating/editing algorithm,
+tagging posts, creating searchable and/or organized archive, etc.) a site like
+R-bloggers would be a lot of work. In fact, since launching
+<a href="https://data-scribers.mikewk.com">data-scribers</a>, the site has started to take
+on a life of its own; the range of topics and languages keep growing, and, at
+this point, I’m more interested to see where it goes than I am in investing
+additional time ensuring the feed only contains English posts, filtering via
+some overly-strict definition of data-science, battling with HTML formatting
+issues, etc.</p>
+<p>Of course, even if I had time to prune, filter, and maintain the feed of post
+previews, to truly be competitive with R-bloggers, I’d also have to add numerous
+other features (visuals, linked tags, search bar, etc.)–and <strong>even then</strong> the
+site wouldn’t include any integration with R-related advertisement opportunities
+or job postings.</p>
+</div>
+<div id="notes" class="section level2">
+<h2>Notes</h2>
+<p><sup>1</sup> R-bloggers is a centralized directory of “over 750” R-related blogs</p>
+<p><sup>2</sup> At the time of writing, the site has 50k email subscribers, 60k+
+Twitter followers, etc.</p>
+</div>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="/tags/r-bloggers"><span class="tag">R-Bloggers</span></a></li>
+        
+          <li><a href="/tags/data-scribers"><span class="tag">Data-Scribers</span></a></li>
+        
+          <li><a href="/tags/blogdown"><span class="tag">Blogdown</span></a></li>
+        
+          <li><a href="/tags/rstats"><span class="tag">Rstats</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © Michael W. Kearney 2018
+      </p>
+    </footer>
+    
+      <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "kearneymw" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    
+  </section>
+  <footer class="site-footer">
+  <p>© 2017-2018 Michael W. Kearney</p>
+  
+</footer>
+
+
+
+<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+<script async
+        src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script src="/highlight/highlight.pack.js"></script>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\[','\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+      TeX: { equationNumbers: { autoNumber: "AMS" },
+      extensions: ["AMSmath.js", "AMSsymbols.js"] }
+    }
+  });
+</script>
+<script type="text/x-mathjax-config">
+  // Fix <code> tags after MathJax finishes running. This is a
+  // hack to overcome a shortcoming of Markdown. Discussion at
+  // https://github.com/mojombo/jekyll/issues/199
+  MathJax.Hub.Queue(() => {
+    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
+  });
+</script>
+
+<script src="/js/bundle.js"></script>
+<script src="/highlight/highlight.pack.js"></script>
+
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-64959413-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+
+
+
+  </body>
+</html>
