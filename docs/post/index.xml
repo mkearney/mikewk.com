@@ -2,42 +2,51 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Michael W. Kearney</title>
-    <link>https://mikewk.com/post/</link>
+    <link>/post/</link>
     <description>Recent content in Posts on Michael W. Kearney</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
     <lastBuildDate>Fri, 19 Oct 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://mikewk.com/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Installing R and Studio</title>
-      <link>https://mikewk.com/post/2018-10-19-installing-r-and-studio/</link>
+      <link>/post/2018-10-19-installing-r-and-studio/</link>
       <pubDate>Fri, 19 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://mikewk.com/post/2018-10-19-installing-r-and-studio/</guid>
+      <guid>/post/2018-10-19-installing-r-and-studio/</guid>
       <description>This post describes how to download and perform a basic local install of R and Rstudio. The instructions should work for both macOS and Windows users. Although not required, installation tends to work best when operating systems are up-to-date. At the time of writing, this means R/Rstudio work best with macOS High Sierra and Windows 10.
 R vs Rstudio R is a statistical computing language/environment. It is distinct from Rstudio, which is an integrated development environment (IDE) or high- powered graphical user interface (GUI) optimized for working with the R language.</description>
     </item>
     
     <item>
+      <title>My R-bloggers post</title>
+      <link>/post/2018-10-18-my-r-bloggers-post/</link>
+      <pubDate>Thu, 18 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-10-18-my-r-bloggers-post/</guid>
+      <description>I have long been a fan of R-bloggers, a content aggregating site focused on blog posts about R. It serves a useful purpose1 and has considerable reach.2 But in the first version of this blog post, I actually wrote a lengthy critique of the site where I concluded with a not-so-blunt suggestion that R-bloggers wasn’t as good as it should be. In retrospect, and after pleasant exchange about a draft of the post with Tal Galili (the creator and operator of R-bloggers), I can confidently say my post was overly nit-picky and unrealistic in my expectations for a benevolent blog-aggregating site like R-bloggers.</description>
+    </item>
+    
+    <item>
       <title>Labelling dataviz</title>
-      <link>https://mikewk.com/post/2018-09-20-labelling-dataviz/</link>
+      <link>/post/2018-09-20-labelling-dataviz/</link>
       <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://mikewk.com/post/2018-09-20-labelling-dataviz/</guid>
+      <guid>/post/2018-09-20-labelling-dataviz/</guid>
       <description>I still remember how hard it was to learn {ggplot2} after only knowing a little about R1. Sure, the plots seemed pretty. But compared to the ways I had used R before, {ggplot2}’s syntax seemed almost counter-intuitive. Its pipe-like + workflow–building layer-by-layer– was like nothing I had ever used before. Not to mention, I was unfamiliar with central terms of art like “geoms” and “aesthetics”.
 But then again…the plots were really pretty.</description>
     </item>
     
     <item>
       <title>Tick marks, variable names, and ggplot2</title>
-      <link>https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/</link>
+      <link>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</link>
       <pubDate>Mon, 17 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/</guid>
+      <guid>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</guid>
       <description>A popular workflow in R uses {dplyr} to group_by() and then summarise()1 variables. It’s an intuitive and easy way to aggregate and describe data, especially along multiple dimensions. The cost of being both powerful and user-friendly, however, is its arguably inconvenient default method for assigning names to summarized values. As the code illustrates below, users can provide their own names when using summarize().
 ## explicitly named summarize variable mtcars %&amp;gt;% group_by(cyl) %&amp;gt;% summarize(mpg = mean(mpg)) #&amp;gt; # A tibble: 3 x 2 #&amp;gt; cyl mpg #&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; #&amp;gt; 1 4 26.</description>
     </item>

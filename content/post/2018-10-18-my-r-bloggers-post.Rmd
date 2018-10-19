@@ -2,7 +2,6 @@
 title: My R-bloggers post
 author: kearneymw
 date: '2018-10-18'
-draft: true
 categories:
   - rstats
 tags:
