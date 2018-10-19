@@ -7,10 +7,48 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
-    <lastBuildDate>Thu, 18 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 19 Oct 2018 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+
+    <item>
+      <title>Installing R and Studio</title>
+      <link>/post/installing-r-and-studio/</link>
+      <pubDate>Fri, 19 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/installing-r-and-studio/</guid>
+      <description>&lt;p&gt;This post provides instructions for downloading and installing R and Rstudio.&lt;/p&gt;
+&lt;div id=&#34;download-r&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Download R&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;R&lt;/strong&gt; is the language/environment (the engine).&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Go to the CRAN (Collective R Archive Network) website: &lt;a href=&#34;https://cran.r-project.org/&#34; class=&#34;uri&#34;&gt;https://cran.r-project.org/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Click on the appropriate operating system (Mac or Windows) to navigate to download page.
+&lt;img src=&#39;/img/install-r2.png&#39;&gt;
+&lt;img src=&#39;/img/install-r-mac.png&#39;&gt;
+&lt;img src=&#39;/img/install-r-windows.png&#39;&gt;&lt;/li&gt;
+&lt;li&gt;Download the most recent version of R. If Mac, select the first &lt;code&gt;.pkg&lt;/code&gt; file listed in the “files” section (e.g., &lt;code&gt;R-3.4.3.pkg&lt;/code&gt;). If Windows, select “base” (it’s the same link as the bolded message about ‘installing R for the first time’).&lt;/li&gt;
+&lt;li&gt;Double (run) click downloaded file (check &lt;code&gt;Downloads&lt;/code&gt; folder). Click yes through prompts to install like any other program. You &lt;em&gt;may&lt;/em&gt; get a warning about the source of the download being unkown. Do whatever you can to allow the installation to continue—I promise the R pkg file is safe!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;download-rstudio&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Download Rstudio&lt;/h2&gt;
+&lt;p&gt;Rstudio is the graphical user interface (GUI) that makes it easy to use R. Once both R and Rstudio are installed, you can ignore R and only open/use Rstudio moving forward (Rstudio will use R, but you won’t have to interact with it directly).&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Go to the free download location on Rstudio’s website: &lt;a href=&#34;https://www.rstudio.com/products/rstudio/download/#download&#34; class=&#34;uri&#34;&gt;https://www.rstudio.com/products/rstudio/download/#download&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Select one of the highlighted options that corresponds with your computer’s operating system (Mac or PC)
+&lt;img src=&#39;/img/install-rstudio2.png&#39;&gt;&lt;/li&gt;
+&lt;li&gt;Double (run) click downloaded file (check &lt;code&gt;Downloads&lt;/code&gt; folder). Click yes through prompts to install like any other program. You may get a warning about the source of the download being unkown. Do whatever you can to allow the installation to continue—I promise the R pkg file is safe!&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+&lt;div id=&#34;using-rrstudio&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Using R/Rstudio&lt;/h2&gt;
+&lt;p&gt;Double click Rstudio, which should be found in your applications/programs folder.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
 
     <item>

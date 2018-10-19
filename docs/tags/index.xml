@@ -58,6 +58,24 @@
     </item>
     
     <item>
+      <title>Install</title>
+      <link>/tags/install/</link>
+      <pubDate>Fri, 19 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/install/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>R</title>
+      <link>/tags/r/</link>
+      <pubDate>Fri, 19 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/r/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>R Bloggers</title>
       <link>/tags/r-bloggers/</link>
       <pubDate>Thu, 18 Oct 2018 00:00:00 +0000</pubDate>
@@ -72,6 +90,15 @@
       <pubDate>Thu, 18 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>/tags/rstats/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rstudio</title>
+      <link>/tags/rstudio/</link>
+      <pubDate>Fri, 19 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/rstudio/</guid>
       <description></description>
     </item>
     

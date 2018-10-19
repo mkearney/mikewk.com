@@ -7,10 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
-    <lastBuildDate>Thu, 18 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 19 Oct 2018 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Installing R and Studio</title>
+      <link>/post/installing-r-and-studio/</link>
+      <pubDate>Fri, 19 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/installing-r-and-studio/</guid>
+      <description>This post provides instructions for downloading and installing R and Rstudio.
+Download R R is the language/environment (the engine).
+Go to the CRAN (Collective R Archive Network) website: https://cran.r-project.org/ Click on the appropriate operating system (Mac or Windows) to navigate to download page.  Download the most recent version of R. If Mac, select the first .pkg file listed in the “files” section (e.g., R-3.4.3.pkg). If Windows, select “base” (it’s the same link as the bolded message about ‘installing R for the first time’).</description>
+    </item>
     
     <item>
       <title>My R-bloggers post</title>

@@ -281,7 +281,7 @@ article.post-content {
 
 .post-content{line-height:1.7;}
 .post-content img {
-  box-shadow: rgba(0, 0, 0, 0.1) 0 1px 1px 1px, rgba(0, 0, 0, 0.1) 0 1px 1px 1px, rgba(0, 0, 0, 0.2) 0 1px 1px -1px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 6px 1px, rgba(0, 0, 0, 0.1) 0 2px 5px 1px, rgba(0, 0, 0, 0.3) 0 2px 2px -1px;
   background-color: #f6f8fa;
   border: none !important;
   padding: 0;
@@ -291,6 +291,11 @@ article.post-content {
   height: auto;
   min-width: 200px;
 }
+.post-content li img {
+margin-top: .4em;
+margin-bottom: .8em;
+}
+
 .highlight {
     margin: .5rem auto .5rem auto;
     width: 88%;
