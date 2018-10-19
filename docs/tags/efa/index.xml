@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Efa on Michael W. Kearney</title>
+    <link>/tags/efa/</link>
+    <description>Recent content in Efa on Michael W. Kearney</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© Michael W. Kearney 2018</copyright>
+    <lastBuildDate>Fri, 05 Oct 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/efa/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Exploratory factor analysis defaults</title>
+      <link>/post/2018-10-01-exploratory-factor-analysis-defaults/</link>
+      <pubDate>Fri, 05 Oct 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2018-10-01-exploratory-factor-analysis-defaults/</guid>
+      <description>A friend from grad school recently asked me about rotated solutions in exploratory factor analysis (EFA). It reminded me of two default EFA settings in SPSS, which, in my estimation, leads lots of social science researchers astray. The goal of this post is two describe those two settings and demonstrate some desirable alternatives.
+Kaiser cutoff criteria There’s not a lot of theoretical support behind the decision to retain a number of factors based on the number of eigenvalues greater than 1.</description>
+    </item>
+    
+  </channel>
+</rss>

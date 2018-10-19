@@ -1,8 +1,7 @@
 ---
-title: Installing R and Studio
-author: Kearneymw
+title: "Installing R and Studio"
+author: kearneymw
 date: '2018-10-19'
-slug: installing-r-and-studio
 categories:
   - rstats
 tags:
@@ -11,32 +10,61 @@ tags:
   - R
 ---
 
-This post provides instructions for downloading and installing R and Rstudio.
+This post describes how to download and perform a basic local install of R 
+and Rstudio. The instructions should work for both macOS and Windows users. Although
+not required, installation tends to work best when operating systems are
+up-to-date. At the time of writing, this means R/Rstudio work best with
+macOS High Sierra and Windows 10.
 
-## Download R
+## R vs Rstudio
 
-**R** is the language/environment (the engine).
+**R** is a statistical computing language/environment. It **is distinct from
+Rstudio**, which is an integrated development environment (IDE) or high-
+powered graphical user interface (GUI) optimized for working with the R
+language. In other words, R is the engine, and Rstudio is the interface. 
+Consequently, you'll need to install *both* R *and* Rstudio.
+
+## Download and install R
+
+Use the following instructions to download and install the R statistical
+computing language/environment:
 
 1. Go to the CRAN (Collective R Archive Network) website: https://cran.r-project.org/
-1. Click on the appropriate operating system (Mac or Windows) to navigate to download page.
     <img src='/img/install-r2.png'>
+1. Click on the appropriate operating system (Mac or Windows) to navigate to download page.
+1. Download the most recent version of R. 
+   - If Mac, select the first `.pkg` file listed in the "files" section. At time of writing, this is version **`R-3.5.1.pkg`**. 
     <img src='/img/install-r-mac.png'>
+   - If Windows, select the bold, underline link written as **'install R for the first time'**.
     <img src='/img/install-r-windows.png'>
-1. Download the most recent version of R. If Mac, select the first `.pkg` file listed in the "files" section (e.g., `R-3.4.3.pkg`). If Windows, select "base" (it's the same link as the bolded message about 'installing R for the first time').
-1. Double (run) click downloaded file (check `Downloads` folder). Click yes through prompts to install like any other program. You *may* get a warning about the source of the download being unkown. Do whatever you can to allow the installation to continue---I promise the R pkg file is safe!
+1. Double click (run) the downloaded file (check your `Downloads` folder). Click yes through prompts to install like any other program (default values should be okay). You *may* get a warning about the source of the download being unkown. Do whatever you can to allow the installation to continue---I promise the R pkg file is safe!
 
-## Download Rstudio
+## Download and install Rstudio
 
-Rstudio is the graphical user interface (GUI) that makes it easy to use R. Once both R and Rstudio are installed, you can ignore R and only open/use Rstudio moving forward (Rstudio will use R, but you won't have to interact with it directly).
+Rstudio is an integrated development environment (IDE) that makes it easy to 
+use R. Once both R and Rstudio are installed, I'd actually recommend ignoring 
+the actual "R" program and instead only open and use Rstudio, which will 
+automatically call and allow interactive use of R.
 
 1. Go to the free download location on Rstudio's website: https://www.rstudio.com/products/rstudio/download/#download
 1. Select one of the highlighted options that corresponds with your computer's operating system (Mac or PC)
     <img src='/img/install-rstudio2.png'>
-1. Double (run) click downloaded file (check `Downloads` folder). Click yes through prompts to install like any other program. You may get a warning about the source of the download being unkown. Do whatever you can to allow the installation to continue---I promise the R pkg file is safe!
+1. Double (run) click the downloaded file (check `Downloads` folder). Click yes through prompts to install like any other program (the defaults should be fine). You may get a warning about the source of the download being unkown. Do whatever you can to allow the installation to continue---I promise the R pkg file is safe!
+
+For an actual demonstration of installing R and Rstudio using these
+instructions, see the appropriate video for your operating system below.
+
+### Download and install R & Rstudio on a Mac
+
+<div style="text-align: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/K9ByVDx0eRM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+
+## Download and install R & Rstudio on a PC (Windows)
+
+<div style="text-align: center;"><iframe width="560" height="315" src="https://www.youtube.com/embed/8INfvKR4uqw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe><div>
 
 ## Using R/Rstudio
 
-Double click Rstudio, which should be found in your applications/programs folder.
-
+You should be able to find the **`Rstudio`** application in your computer's `Application` or `Program` folder. Alternatively, a simple search for "Rstudio" using finder/spotlight or the Windows key should be able to locate "Rstudio" 
+on your machine.
 
 

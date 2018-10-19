@@ -5,9 +5,7 @@
   <meta charset="utf-8" />
 
   
-  <title>
-  About | Michael W. Kearney
-</title>
+  <title>Installing R and Studio</title>
 
   
   
@@ -16,15 +14,19 @@
 
 
   
-  <meta name="author" content="Michael W. Kearney, Ph.D." />
-  <meta name="description" content="Personal website of Michael W. Kearney, assistant professor at Missouri School of Journalism and Missouri Informatics Institute" />
+  <meta name="author" content="kearneymw" />
+  <meta name="description" content="This post describes how to download and perform a basic local install of R and Rstudio. The instructions should work for both macOS and Windows users. Although not required, installation tends to work best when operating systems are up-to-date. At the time of writing, this means R/Rstudio work best with macOS High Sierra and Windows 10.
+R vs Rstudio R is a statistical computing language/environment. It is distinct from Rstudio, which is an integrated development environment (IDE) or high- powered graphical user interface (GUI) optimized for working with the R language." />
 
   
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:site" content="@kearneymw" />
-  <meta name="twitter:title" content="Michael W. Kearney" />
-  <meta name="twitter:description" content="Personal website of Michael W. Kearney, assistant professor at Missouri School of Journalism and Missouri Informatics Institute" />
-  <meta name="twitter:image" content="https://mikewk.com/img/avatar.jpg" />
+  
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@kearneymw" />
+    <meta name="twitter:title" content="Installing R and Studio" />
+    <meta name="twitter:description" content="This post describes how to download and perform a basic local install of R and Rstudio. The instructions should work for both macOS and Windows users. Although not required, installation tends to work best when operating systems are up-to-date. At the time of writing, this means R/Rstudio work best with macOS High Sierra and Windows 10.
+R vs Rstudio R is a statistical computing language/environment. It is distinct from Rstudio, which is an integrated development environment (IDE) or high- powered graphical user interface (GUI) optimized for working with the R language." />
+    <meta name="twitter:image" content="https://mikewk.com/img/avatar.jpg" />
+  
 
 
 
@@ -32,7 +34,7 @@
 <meta name="generator" content="Hugo 0.49" />
 
 
-<link rel="canonical" href="https://mikewk.com/about/" />
+<link rel="canonical" href="https://mikewk.com/post/2018-10-19-installing-r-and-studio/" />
 <link rel="alternative" href="https://mikewk.com/index.xml" title="Michael W. Kearney" type="application/atom+xml" />
 
 
@@ -103,6 +105,10 @@
     <div class="suspension">
       <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
       
+        
+        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
+        
+      
     </div>
     
     
@@ -125,9 +131,9 @@
       
       
       
-        <li class="menu-item "><a href="https://mikewk.com/">Home</a></li>
+        <li class="menu-item  is-active"><a href="https://mikewk.com/">Home</a></li>
       
-        <li class="menu-item  is-active"><a href="https://mikewk.com/about/">About</a></li>
+        <li class="menu-item "><a href="https://mikewk.com/about/">About</a></li>
       
         <li class="menu-item "><a href="https://mikewk.com/links/">Links</a></li>
       
@@ -203,38 +209,92 @@
 
   <section class="main post-detail">
     <header class="post-header">
-      <h1 class="post-title">About</h1>
+      <h1 class="post-title">Installing R and Studio</h1>
+      <p class="post-meta">@kearneymw · Oct 19, 2018 · 3 min read</p>
     </header>
-    <article class="post-content">
-      <h3 id="appointment">Appointment</h3>
+    <article class="post-content"><p>This post describes how to download and perform a basic local install of R
+and Rstudio. The instructions should work for both macOS and Windows users. Although
+not required, installation tends to work best when operating systems are
+up-to-date. At the time of writing, this means R/Rstudio work best with
+macOS High Sierra and Windows 10.</p>
+<div id="r-vs-rstudio" class="section level2">
+<h2>R vs Rstudio</h2>
+<p><strong>R</strong> is a statistical computing language/environment. It <strong>is distinct from
+Rstudio</strong>, which is an integrated development environment (IDE) or high-
+powered graphical user interface (GUI) optimized for working with the R
+language. In other words, R is the engine, and Rstudio is the interface.
+Consequently, you’ll need to install <em>both</em> R <em>and</em> Rstudio.</p>
+</div>
+<div id="download-and-install-r" class="section level2">
+<h2>Download and install R</h2>
+<p>Use the following instructions to download and install the R statistical
+computing language/environment:</p>
+<ol style="list-style-type: decimal">
+<li>Go to the CRAN (Collective R Archive Network) website: <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a>
+<img src='https://mikewk.com/img/install-r2.png'></li>
+<li>Click on the appropriate operating system (Mac or Windows) to navigate to download page.</li>
+<li>Download the most recent version of R.
+<ul>
+<li>If Mac, select the first <code>.pkg</code> file listed in the “files” section. At time of writing, this is version <strong><code>R-3.5.1.pkg</code></strong>.
+<img src='https://mikewk.com/img/install-r-mac.png'></li>
+<li>If Windows, select the bold, underline link written as <strong>‘install R for the first time’</strong>.
+<img src='https://mikewk.com/img/install-r-windows.png'></li>
+</ul></li>
+<li>Double click (run) the downloaded file (check your <code>Downloads</code> folder). Click yes through prompts to install like any other program (default values should be okay). You <em>may</em> get a warning about the source of the download being unkown. Do whatever you can to allow the installation to continue—I promise the R pkg file is safe!</li>
+</ol>
+</div>
+<div id="download-and-install-rstudio" class="section level2">
+<h2>Download and install Rstudio</h2>
+<p>Rstudio is an integrated development environment (IDE) that makes it easy to
+use R. Once both R and Rstudio are installed, I’d actually recommend ignoring
+the actual “R” program and instead only open and use Rstudio, which will
+automatically call and allow interactive use of R.</p>
+<ol style="list-style-type: decimal">
+<li>Go to the free download location on Rstudio’s website: <a href="https://www.rstudio.com/products/rstudio/download/#download" class="uri">https://www.rstudio.com/products/rstudio/download/#download</a></li>
+<li>Select one of the highlighted options that corresponds with your computer’s operating system (Mac or PC)
+<img src='https://mikewk.com/img/install-rstudio2.png'></li>
+<li>Double (run) click the downloaded file (check <code>Downloads</code> folder). Click yes through prompts to install like any other program (the defaults should be fine). You may get a warning about the source of the download being unkown. Do whatever you can to allow the installation to continue—I promise the R pkg file is safe!</li>
+</ol>
+<p>For an actual demonstration of installing R and Rstudio using these
+instructions, see the appropriate video for your operating system below.</p>
+<div id="download-and-install-r-rstudio-on-a-mac" class="section level3">
+<h3>Download and install R &amp; Rstudio on a Mac</h3>
+<div style="text-align: center;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/K9ByVDx0eRM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</div>
+</div>
+</div>
+<div id="download-and-install-r-rstudio-on-a-pc-windows" class="section level2">
+<h2>Download and install R &amp; Rstudio on a PC (Windows)</h2>
+<div style="text-align: center;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8INfvKR4uqw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+<div>
 
-        <p>I&rsquo;m an assistant professor at the <a href="https://missouri.edu/">
-        University of Missouri</a> where I hold a joint appointment in
-        Journalism Studies with the <a href="https://journalism.missouri.edu/">
-        School of Journalism</a> and <a href="https://dsa.missouri.edu/">
-        Data Science and Analytics</a> with the <a href="https://muii.missouri.edu/">
-        Informatics Institute</a>. I teach courses in mass media, political
-        communication, quantitative research methods, and data science.</p>
-
-        <h3 id="research">Research</h3>
-
-        <p>My research uses computational social scientific methods to analyze
-        the selection and dissemination of information in digital media
-        environments. Broadly, I&rsquo;m interested in selective exposure, new
-        media, data journalism, and data science.</p>
-
-        <h3 id="links">Links</h3>
-
-        <p>My updated CV can be downloaded <a href="https://cv.mikewk.com/cv.pdf">here</a>.
-        See <a href="https://journalism.missouri.edu/staff/mike-kearney/">my
-        Mizzou J-School faculty page</a> or find me on
-        <a href="https://twitter.com/kearneymw">Twitter</a>,
-        <a href="https://scholar.google.com/citations?user=j3EZl3MAAAAJ">Google
-        Scholar</a>, <a href="https://github.com/mkearney">Github</a>, and
-        <a href="https://www.researchgate.net/profile/Michael_Kearney11">
-        Research Gate</a>.</p>
-
-    </article>
+</div>
+<div id="using-rrstudio" class="section level2">
+<h2>Using R/Rstudio</h2>
+<p>You should be able to find the <strong><code>Rstudio</code></strong> application in your computer’s <code>Application</code> or <code>Program</code> folder. Alternatively, a simple search for “Rstudio” using finder/spotlight or the Windows key should be able to locate “Rstudio”
+on your machine.</p>
+</div>
+</article>
+    <footer class="post-footer">
+      
+      <ul class="post-tags">
+        
+          <li><a href="https://mikewk.com/tags/install"><span class="tag">Install</span></a></li>
+        
+          <li><a href="https://mikewk.com/tags/rstudio"><span class="tag">Rstudio</span></a></li>
+        
+          <li><a href="https://mikewk.com/tags/r"><span class="tag">R</span></a></li>
+        
+      </ul>
+      
+      <p class="post-copyright">
+        © Michael W. Kearney 2018
+      </p>
+    </footer>
     
       <div id="disqus_thread"></div>
 <script type="application/javascript">
