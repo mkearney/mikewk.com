@@ -412,16 +412,14 @@ rt %&amp;gt;%
   unlist() %&amp;gt;%
   tfse::na_omit() %&amp;gt;%
   unique()
-#&amp;gt;  [1] &amp;quot;https://www.repidemicsconsortium.org/2018-10-18-RECON-NGO/&amp;quot;                          
-#&amp;gt;  [2] &amp;quot;https://mikewk.com/post/2018-10-18-my-r-bloggers-post/&amp;quot;                              
-#&amp;gt;  [3] &amp;quot;https://mailund.github.io/r-programmer-blog/2018/10/18/the-cost-of-pattern-matching/&amp;quot;
-#&amp;gt;  [4] &amp;quot;https://fronkonstin.com/2018/10/14/crochet-patterns/&amp;quot;                                
-#&amp;gt;  [5] &amp;quot;https://buff.ly/2C33L2m&amp;quot;                                                             
-#&amp;gt;  [6] &amp;quot;https://buff.ly/2QYHbfp&amp;quot;                                                             
-#&amp;gt;  [7] &amp;quot;https://www.biorxiv.org/content/early/2018/10/18/447284&amp;quot;                             
-#&amp;gt;  [8] &amp;quot;https://blog.rstudio.com/2018/10/18/shinytest-automated-testing-for-shiny-apps/&amp;quot;     
-#&amp;gt;  [9] &amp;quot;http://bit.ly/adhoc-se-statsd&amp;quot;                                                       
-#&amp;gt; [10] &amp;quot;http://bit.ly/2J22XMu&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+#&amp;gt; [1] &amp;quot;https://figshare.com/articles/RCCPII_Data/7928480&amp;quot;                     
+#&amp;gt; [2] &amp;quot;http://thug-r.life/post/2019-04-03-tale-of-three-assignment-operators/&amp;quot;
+#&amp;gt; [3] &amp;quot;https://buff.ly/2UHhohr&amp;quot;                                               
+#&amp;gt; [4] &amp;quot;http://bit.ly/learning-lab-07&amp;quot;                                         
+#&amp;gt; [5] &amp;quot;http://bit.ly/lstm-time-series&amp;quot;                                        
+#&amp;gt; [6] &amp;quot;https://tenet-rccpii.github.io/rccpii-2018/&amp;quot;                           
+#&amp;gt; [7] &amp;quot;https://carpentries.org/blog/2019/04/rccpii/&amp;quot;                          
+#&amp;gt; [8] &amp;quot;https://nemethc.com/post/2019-04-05-seattle-bike-trafic/&amp;quot;&lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div id=&#34;automating-a-website&#34; class=&#34;section level2&#34;&gt;
