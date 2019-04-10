@@ -1,0 +1,225 @@
+---
+title: "Faster code with Rcpp"
+author: kearneymw
+date: '2019-04-10'
+categories:
+  - rstats
+tags:
+  - R
+  - Rcpp
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE, 
+  comment = "#>", 
+  collapse = TRUE,
+  fig.show = "hide",
+  cache = TRUE
+)
+d <- tfse::read_RDS(here::here("content", "data", "twitter-networks.rds"))
+d <- tibble::as_tibble(d)
+library(magrittr)
+#options(width = 100)
+```
+
+Recently I was asked if I could add to [{rtweet}](https://rtweet.info) some basic functions for converting Twitter data into network data objects. I thought this was a reasonable request and a good opportunity for me to learn more about network analysis. But the task of converting Twitter data into network-friendly objects is something that has, at least for me, been really _slow and inefficient_. So, for the past several weeks, I've been slowly working toward _what I think believe a simple but efficient solution_. Hence, the purpose of this blog post is to document what I've done.
+
+## The problem
+
+The ultimate task at issue is *converting Twitter data<sup>1</sup> into a network or network-friendly data object*. Thus, the immediate problem is **quickly and efficiently unrolling the connections (e.g., _mentions_) `from` one user `to` zero or more other users**. In other words, the problem is figure out how to convert this recursive data frame:
+
+```{r, echo=FALSE}
+d
+```
+
+into a desired output (with `from` and `to`-like columns) that looks something like this:
+
+```{r, echo=2}
+unroll_connections2 <- function(x) {
+  ## initialize logical (TRUE) vector
+  kp <- !logical(nrow(x))
+
+  ## measure [and record] length of each 'to' field (list of character vector)
+  n <- lengths(x[[2]])
+  n1 <- which(n == 1)
+
+  ## if length == 1 & is.na(x[1])
+  kp[n1[vapply(x[[2]][n1], is.na, logical(1))]] <- FALSE
+
+  ## crate 'from' and 'to' vectors
+  from <- unlist(mapply(rep, x[[1]][kp], n[kp]), use.names = FALSE)
+  to <- unlist(x[[2]][kp], use.names = FALSE)
+
+  ## return as data frame
+  data.frame(
+    from = from,
+    to = to,
+    stringsAsFactors = FALSE
+  )
+}
+tibble::as_tibble(unroll_connections2(d))
+```
+
+
+## Pure R code (slowest)
+
+The first function I wrote to accomplish this task leveraged `data.frame` logic (_each column should be the same length_) to coerce the `from` column (`user_id`) to be of equal length as the `to` (`mentions_user_id`) column for each row of the input data set. It then collapses everything into a single data frame.
+
+```{r}
+unroll_connections1 <- function(.x) {
+  fun <- function(from, to) {
+    ## if NULL or 1 missing value then return empty tibble
+    if (length(to) == 0 || (length(to) == 1 && is.na(to[1]))) {
+      return(data.frame())
+    }
+    ## return as tibble
+    data.frame(from = from, to = unlist(to, use.names = FALSE),
+      stringsAsFactors = FALSE)
+  }
+  .x <- mapply(fun, .x[[1]], .x[[2]], USE.NAMES = FALSE)
+  do.call(rbind, .x)
+}
+```
+
+The above code is slow and inefficient because it calls `data.frame()` (and all its associated baggage) **for every row** of the input data.
+
+## Pure R code (faster)
+
+My next iteration was also written in pure R code. To minimize the effect of so many `data.frame()` calls, the function below calculates the number of times it needs to repeat the `from` value (to match the number of times `to` values appear) and then combines everything _at the end_ into a data frame. As the benchmarking results later on confirm, this function offers a **sizable speed up** over the original, `data.frame()`-heavy function!
+
+```{r}
+unroll_connections2 <- function(x) {
+  ## initialize logical (TRUE) vector
+  kp <- !logical(nrow(x))
+
+  ## measure [and record] length of each 'to' field (list of character vector)
+  n <- lengths(x[[2]])
+  n1 <- which(n == 1)
+
+  ## if length == 1 & is.na(x[1])
+  kp[n1[vapply(x[[2]][n1], is.na, logical(1))]] <- FALSE
+
+  ## crate 'from' and 'to' vectors
+  from <- unlist(mapply(rep, x[[1]][kp], n[kp]), use.names = FALSE)
+  to <- unlist(x[[2]][kp], use.names = FALSE)
+
+  ## return as data frame
+  data.frame(
+    from = from,
+    to = to,
+    stringsAsFactors = FALSE
+  )
+}
+```
+
+## Rcpp code (fastest)
+
+I was happy with the large speed up from `unroll_connections2()`, but I've also been trying to learn how to speed up my code with **c++**, so I decided to see what kind of additional speed up I could get via [{Rcpp}](https://www.rcpp.org).
+
+```{Rcpp}
+#include <Rcpp.h>
+
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+List unroll_connections3(CharacterVector from, std::vector<std::vector<std::string>> to) {
+  //# set size paramaeters (exclude NAs from the 'to'-based output count)
+  const int n = from.size();
+  int len = 0;
+  for (int i = 0; i < n; i++) {
+    if (to[i][0] != "NA") {
+      len += to[i].size();
+    }
+  }
+  //# use calculated lengths to initialize output character vectors 
+  CharacterVector from2(len);
+  CharacterVector to2(len);
+
+  //# for each value of the 'from' vector, create appropriately re-sized from2 
+  //# and to2 vectors
+  int ctr = 0;
+  for (int i = 0; i < n; i++) {
+    int nn = to[i].size();
+    for (int j = 0; j < nn; j++) {
+      if (j == 0) {
+        if (to[i][j] != "NA") {
+          from2[ctr] = from[i];
+          to2[ctr] = to[i][j];
+          ctr += 1;
+        }
+      } else {
+        from2[ctr] = from[i];
+        to2[ctr] = to[i][j];
+        ctr += 1;
+      }
+    }
+  }
+  //# combine the new [flat] vectors into a data frame (requires row names)
+  List df = List::create(_["from"] = from2, _["to"] = to2);
+  df.attr("class") = "data.frame";
+  df.attr("row.names") = seq(1, ctr);
+  return df;
+}
+```
+
+
+## `bench::mark()`
+
+To compare the three previously described functions, I've used the [{bench}](http://bench.r-lib.org/) package. The code and numeric results are printed below.
+
+```{r}
+## from and to vectors
+from <- d$user_id
+to <- d$mentions_user_id
+
+## perform bench mark
+m <- bench::mark(
+  unroll_connections1 = unroll_connections1(d),
+  unroll_connections2 = unroll_connections2(d),
+  unroll_connections3 = unroll_connections3(from, to),
+  relative = TRUE,
+  min_iterations = 100
+)
+
+## print results
+m %>%
+  dplyr::select(expression:n_gc) %>%
+  knitr::kable(digits = 2)
+```
+
+As you can see, the initial improvement from `unroll_connections1()` to `unroll_connections2()` was more than **60X**, which is great. But, thanks to the power of [{rcpp}](https://http://www.rcpp.org/), I was able to speed things up even more with an improvement from `unroll_connections2()` to `unroll_connections3()` of roughly **7X** or roughly **450X** compared to the original function!!
+
+```{r}
+## plot
+m %>%
+  dplyr::mutate(expression = factor(expression, levels = rev(expression))) %>%
+  ggplot2::autoplot(shape = 21, size = 2.5, color = "#333333aa") +
+  ggplot2::aes(fill = expression) +
+  dataviz::theme_mwk() +
+  ggplot2::theme(legend.position = "none",
+    plot.caption = ggplot2::element_text(family = "Roboto Condensed")) +
+  ggplot2::labs(x = NULL, y = "Time (mean task completion)",
+    title = "Benchmarking Twitter-to-network data wrangling functions",
+    subtitle = "Comparing base R and Rcpp functions for converting Twitter data into network-friendly objects",
+    caption = "unroll_connections1() and unroll_connections2() are written in base R; unroll_connections3() uses Rcpp") +
+  ggplot2::ggsave(here::here("content", "post", "img", "network-benchmark.png"),
+    width = 7, height = 5, units = "in")
+```
+
+
+<p style="align:center"> <img src="/img/network-benchmark.png"> </p>
+
+
+## Notes
+
+<sup>1</sup> Data I used to generate the example data set:
+
+```{r, eval=FALSE}
+## search for up to 200 #rstats tweets from verified users
+rt <- rtweet::search_tweets("#rstats filter:verified", n = 200)
+
+## select only the node (ID/screen name) variables
+d <- dplyr::select(d, user_id, mentions_user_id)
+```
+

@@ -1,0 +1,233 @@
+---
+title: "Faster code with Rcpp"
+author: kearneymw
+date: '2019-04-10'
+categories:
+  - rstats
+tags:
+  - R
+  - Rcpp
+---
+
+
+
+<p>Recently I was asked if I could add to <a href="https://rtweet.info">{rtweet}</a> some basic functions for converting Twitter data into network data objects. I thought this was a reasonable request and a good opportunity for me to learn more about network analysis. But the task of converting Twitter data into network-friendly objects is something that has, at least for me, been really <em>slow and inefficient</em>. So, for the past several weeks, I’ve been slowly working toward <em>what I think believe a simple but efficient solution</em>. Hence, the purpose of this blog post is to document what I’ve done.</p>
+<div id="the-problem" class="section level2">
+<h2>The problem</h2>
+<p>The ultimate task at issue is <em>converting Twitter data<sup>1</sup> into a network or network-friendly data object</em>. Thus, the immediate problem is <strong>quickly and efficiently unrolling the connections (e.g., <em>mentions</em>) <code>from</code> one user <code>to</code> zero or more other users</strong>. In other words, the problem is figure out how to convert this recursive data frame:</p>
+<pre><code>#&gt; # A tibble: 163 x 2
+#&gt;    user_id mentions_user_id
+#&gt;    &lt;chr&gt;   &lt;list&gt;          
+#&gt;  1 5685812 &lt;chr [1]&gt;       
+#&gt;  2 5685812 &lt;chr [2]&gt;       
+#&gt;  3 5685812 &lt;chr [1]&gt;       
+#&gt;  4 5685812 &lt;chr [1]&gt;       
+#&gt;  5 5685812 &lt;chr [2]&gt;       
+#&gt;  6 5685812 &lt;chr [1]&gt;       
+#&gt;  7 5685812 &lt;chr [1]&gt;       
+#&gt;  8 5685812 &lt;chr [1]&gt;       
+#&gt;  9 5685812 &lt;chr [1]&gt;       
+#&gt; 10 5685812 &lt;chr [1]&gt;       
+#&gt; # … with 153 more rows</code></pre>
+<p>into a desired output (with <code>from</code> and <code>to</code>-like columns) that looks something like this:</p>
+<pre class="r"><code>tibble::as_tibble(unroll_connections2(d))
+#&gt; # A tibble: 220 x 2
+#&gt;    from    to                 
+#&gt;    &lt;chr&gt;   &lt;chr&gt;              
+#&gt;  1 5685812 2973406683         
+#&gt;  2 5685812 215035672          
+#&gt;  3 5685812 1051975721885798402
+#&gt;  4 5685812 1015516068717170688
+#&gt;  5 5685812 2801252524         
+#&gt;  6 5685812 15184835           
+#&gt;  7 5685812 260399941          
+#&gt;  8 5685812 17581779           
+#&gt;  9 5685812 870078805381132288 
+#&gt; 10 5685812 4069028055         
+#&gt; # … with 210 more rows</code></pre>
+</div>
+<div id="pure-r-code-slowest" class="section level2">
+<h2>Pure R code (slowest)</h2>
+<p>The first function I wrote to accomplish this task leveraged <code>data.frame</code> logic (<em>each column should be the same length</em>) to coerce the <code>from</code> column (<code>user_id</code>) to be of equal length as the <code>to</code> (<code>mentions_user_id</code>) column for each row of the input data set. It then collapses everything into a single data frame.</p>
+<pre class="r"><code>unroll_connections1 &lt;- function(.x) {
+  fun &lt;- function(from, to) {
+    ## if NULL or 1 missing value then return empty tibble
+    if (length(to) == 0 || (length(to) == 1 &amp;&amp; is.na(to[1]))) {
+      return(data.frame())
+    }
+    ## return as tibble
+    data.frame(from = from, to = unlist(to, use.names = FALSE),
+      stringsAsFactors = FALSE)
+  }
+  .x &lt;- mapply(fun, .x[[1]], .x[[2]], USE.NAMES = FALSE)
+  do.call(rbind, .x)
+}</code></pre>
+<p>The above code is slow and inefficient because it calls <code>data.frame()</code> (and all its associated baggage) <strong>for every row</strong> of the input data.</p>
+</div>
+<div id="pure-r-code-faster" class="section level2">
+<h2>Pure R code (faster)</h2>
+<p>My next iteration was also written in pure R code. To minimize the effect of so many <code>data.frame()</code> calls, the function below calculates the number of times it needs to repeat the <code>from</code> value (to match the number of times <code>to</code> values appear) and then combines everything <em>at the end</em> into a data frame. As the benchmarking results later on confirm, this function offers a <strong>sizable speed up</strong> over the original, <code>data.frame()</code>-heavy function!</p>
+<pre class="r"><code>unroll_connections2 &lt;- function(x) {
+  ## initialize logical (TRUE) vector
+  kp &lt;- !logical(nrow(x))
+
+  ## measure [and record] length of each &#39;to&#39; field (list of character vector)
+  n &lt;- lengths(x[[2]])
+  n1 &lt;- which(n == 1)
+
+  ## if length == 1 &amp; is.na(x[1])
+  kp[n1[vapply(x[[2]][n1], is.na, logical(1))]] &lt;- FALSE
+
+  ## crate &#39;from&#39; and &#39;to&#39; vectors
+  from &lt;- unlist(mapply(rep, x[[1]][kp], n[kp]), use.names = FALSE)
+  to &lt;- unlist(x[[2]][kp], use.names = FALSE)
+
+  ## return as data frame
+  data.frame(
+    from = from,
+    to = to,
+    stringsAsFactors = FALSE
+  )
+}</code></pre>
+</div>
+<div id="rcpp-code-fastest" class="section level2">
+<h2>Rcpp code (fastest)</h2>
+<p>I was happy with the large speed up from <code>unroll_connections2()</code>, but I’ve also been trying to learn how to speed up my code with <strong>c++</strong>, so I decided to see what kind of additional speed up I could get via <a href="https://www.rcpp.org">{Rcpp}</a>.</p>
+<pre class="cpp"><code>#include &lt;Rcpp.h&gt;
+
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+List unroll_connections3(CharacterVector from, std::vector&lt;std::vector&lt;std::string&gt;&gt; to) {
+  //# set size paramaeters (exclude NAs from the &#39;to&#39;-based output count)
+  const int n = from.size();
+  int len = 0;
+  for (int i = 0; i &lt; n; i++) {
+    if (to[i][0] != &quot;NA&quot;) {
+      len += to[i].size();
+    }
+  }
+  //# use calculated lengths to initialize output character vectors 
+  CharacterVector from2(len);
+  CharacterVector to2(len);
+
+  //# for each value of the &#39;from&#39; vector, create appropriately re-sized from2 
+  //# and to2 vectors
+  int ctr = 0;
+  for (int i = 0; i &lt; n; i++) {
+    int nn = to[i].size();
+    for (int j = 0; j &lt; nn; j++) {
+      if (j == 0) {
+        if (to[i][j] != &quot;NA&quot;) {
+          from2[ctr] = from[i];
+          to2[ctr] = to[i][j];
+          ctr += 1;
+        }
+      } else {
+        from2[ctr] = from[i];
+        to2[ctr] = to[i][j];
+        ctr += 1;
+      }
+    }
+  }
+  //# combine the new [flat] vectors into a data frame (requires row names)
+  List df = List::create(_[&quot;from&quot;] = from2, _[&quot;to&quot;] = to2);
+  df.attr(&quot;class&quot;) = &quot;data.frame&quot;;
+  df.attr(&quot;row.names&quot;) = seq(1, ctr);
+  return df;
+}</code></pre>
+</div>
+<div id="benchmark" class="section level2">
+<h2><code>bench::mark()</code></h2>
+<p>To compare the three previously described functions, I’ve used the <a href="http://bench.r-lib.org/">{bench}</a> package. The code and numeric results are printed below.</p>
+<pre class="r"><code>## from and to vectors
+from &lt;- d$user_id
+to &lt;- d$mentions_user_id
+
+## perform bench mark
+m &lt;- bench::mark(
+  unroll_connections1 = unroll_connections1(d),
+  unroll_connections2 = unroll_connections2(d),
+  unroll_connections3 = unroll_connections3(from, to),
+  relative = TRUE,
+  min_iterations = 100
+)
+
+## print results
+m %&gt;%
+  dplyr::select(expression:n_gc) %&gt;%
+  knitr::kable(digits = 2)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">expression</th>
+<th align="right">min</th>
+<th align="right">mean</th>
+<th align="right">median</th>
+<th align="right">max</th>
+<th align="right">itr/sec</th>
+<th align="right">mem_alloc</th>
+<th align="right">n_gc</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">unroll_connections1</td>
+<td align="right">472.14</td>
+<td align="right">462.66</td>
+<td align="right">460.84</td>
+<td align="right">51.76</td>
+<td align="right">1.00</td>
+<td align="right">17.78</td>
+<td align="right">21</td>
+</tr>
+<tr class="even">
+<td align="left">unroll_connections2</td>
+<td align="right">7.19</td>
+<td align="right">7.08</td>
+<td align="right">6.85</td>
+<td align="right">1.00</td>
+<td align="right">65.32</td>
+<td align="right">631.74</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="left">unroll_connections3</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">1.00</td>
+<td align="right">1.26</td>
+<td align="right">462.66</td>
+<td align="right">1.00</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>As you can see, the initial improvement from <code>unroll_connections1()</code> to <code>unroll_connections2()</code> was more than <strong>60X</strong>, which is great. But, thanks to the power of <a href="https://http://www.rcpp.org/">{rcpp}</a>, I was able to speed things up even more with an improvement from <code>unroll_connections2()</code> to <code>unroll_connections3()</code> of roughly <strong>7X</strong> or roughly <strong>450X</strong> compared to the original function!!</p>
+<pre class="r"><code>## plot
+m %&gt;%
+  dplyr::mutate(expression = factor(expression, levels = rev(expression))) %&gt;%
+  ggplot2::autoplot(shape = 21, size = 2.5, color = &quot;#333333aa&quot;) +
+  ggplot2::aes(fill = expression) +
+  dataviz::theme_mwk() +
+  ggplot2::theme(legend.position = &quot;none&quot;,
+    plot.caption = ggplot2::element_text(family = &quot;Roboto Condensed&quot;)) +
+  ggplot2::labs(x = NULL, y = &quot;Time (mean task completion)&quot;,
+    title = &quot;Benchmarking Twitter-to-network data wrangling functions&quot;,
+    subtitle = &quot;Comparing base R and Rcpp functions for converting Twitter data into network-friendly objects&quot;,
+    caption = &quot;unroll_connections1() and unroll_connections2() are written in base R; unroll_connections3() uses Rcpp&quot;) +
+  ggplot2::ggsave(here::here(&quot;content&quot;, &quot;post&quot;, &quot;img&quot;, &quot;network-benchmark.png&quot;),
+    width = 7, height = 5, units = &quot;in&quot;)</code></pre>
+<p style="align:center">
+<img src="/img/network-benchmark.png">
+</p>
+</div>
+<div id="notes" class="section level2">
+<h2>Notes</h2>
+<p><sup>1</sup> Data I used to generate the example data set:</p>
+<pre class="r"><code>## search for up to 200 #rstats tweets from verified users
+rt &lt;- rtweet::search_tweets(&quot;#rstats filter:verified&quot;, n = 200)
+
+## select only the node (ID/screen name) variables
+d &lt;- dplyr::select(d, user_id, mentions_user_id)</code></pre>
+</div>

@@ -7,10 +7,243 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
-    <lastBuildDate>Fri, 19 Oct 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 10 Apr 2019 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
+    
+
+    <item>
+      <title>Faster code with Rcpp</title>
+      <link>/post/2019-04-10-faster-code-with-rcpp/</link>
+      <pubDate>Wed, 10 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2019-04-10-faster-code-with-rcpp/</guid>
+      <description>
+
+
+&lt;p&gt;Recently I was asked if I could add to &lt;a href=&#34;https://rtweet.info&#34;&gt;{rtweet}&lt;/a&gt; some basic functions for converting Twitter data into network data objects. I thought this was a reasonable request and a good opportunity for me to learn more about network analysis. But the task of converting Twitter data into network-friendly objects is something that has, at least for me, been really &lt;em&gt;slow and inefficient&lt;/em&gt;. So, for the past several weeks, I’ve been slowly working toward &lt;em&gt;what I think believe a simple but efficient solution&lt;/em&gt;. Hence, the purpose of this blog post is to document what I’ve done.&lt;/p&gt;
+&lt;div id=&#34;the-problem&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;The problem&lt;/h2&gt;
+&lt;p&gt;The ultimate task at issue is &lt;em&gt;converting Twitter data&lt;sup&gt;1&lt;/sup&gt; into a network or network-friendly data object&lt;/em&gt;. Thus, the immediate problem is &lt;strong&gt;quickly and efficiently unrolling the connections (e.g., &lt;em&gt;mentions&lt;/em&gt;) &lt;code&gt;from&lt;/code&gt; one user &lt;code&gt;to&lt;/code&gt; zero or more other users&lt;/strong&gt;. In other words, the problem is figure out how to convert this recursive data frame:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#&amp;gt; # A tibble: 163 x 2
+#&amp;gt;    user_id mentions_user_id
+#&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;list&amp;gt;          
+#&amp;gt;  1 5685812 &amp;lt;chr [1]&amp;gt;       
+#&amp;gt;  2 5685812 &amp;lt;chr [2]&amp;gt;       
+#&amp;gt;  3 5685812 &amp;lt;chr [1]&amp;gt;       
+#&amp;gt;  4 5685812 &amp;lt;chr [1]&amp;gt;       
+#&amp;gt;  5 5685812 &amp;lt;chr [2]&amp;gt;       
+#&amp;gt;  6 5685812 &amp;lt;chr [1]&amp;gt;       
+#&amp;gt;  7 5685812 &amp;lt;chr [1]&amp;gt;       
+#&amp;gt;  8 5685812 &amp;lt;chr [1]&amp;gt;       
+#&amp;gt;  9 5685812 &amp;lt;chr [1]&amp;gt;       
+#&amp;gt; 10 5685812 &amp;lt;chr [1]&amp;gt;       
+#&amp;gt; # … with 153 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;into a desired output (with &lt;code&gt;from&lt;/code&gt; and &lt;code&gt;to&lt;/code&gt;-like columns) that looks something like this:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tibble::as_tibble(unroll_connections2(d))
+#&amp;gt; # A tibble: 220 x 2
+#&amp;gt;    from    to                 
+#&amp;gt;    &amp;lt;chr&amp;gt;   &amp;lt;chr&amp;gt;              
+#&amp;gt;  1 5685812 2973406683         
+#&amp;gt;  2 5685812 215035672          
+#&amp;gt;  3 5685812 1051975721885798402
+#&amp;gt;  4 5685812 1015516068717170688
+#&amp;gt;  5 5685812 2801252524         
+#&amp;gt;  6 5685812 15184835           
+#&amp;gt;  7 5685812 260399941          
+#&amp;gt;  8 5685812 17581779           
+#&amp;gt;  9 5685812 870078805381132288 
+#&amp;gt; 10 5685812 4069028055         
+#&amp;gt; # … with 210 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;pure-r-code-slowest&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Pure R code (slowest)&lt;/h2&gt;
+&lt;p&gt;The first function I wrote to accomplish this task leveraged &lt;code&gt;data.frame&lt;/code&gt; logic (&lt;em&gt;each column should be the same length&lt;/em&gt;) to coerce the &lt;code&gt;from&lt;/code&gt; column (&lt;code&gt;user_id&lt;/code&gt;) to be of equal length as the &lt;code&gt;to&lt;/code&gt; (&lt;code&gt;mentions_user_id&lt;/code&gt;) column for each row of the input data set. It then collapses everything into a single data frame.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;unroll_connections1 &amp;lt;- function(.x) {
+  fun &amp;lt;- function(from, to) {
+    ## if NULL or 1 missing value then return empty tibble
+    if (length(to) == 0 || (length(to) == 1 &amp;amp;&amp;amp; is.na(to[1]))) {
+      return(data.frame())
+    }
+    ## return as tibble
+    data.frame(from = from, to = unlist(to, use.names = FALSE),
+      stringsAsFactors = FALSE)
+  }
+  .x &amp;lt;- mapply(fun, .x[[1]], .x[[2]], USE.NAMES = FALSE)
+  do.call(rbind, .x)
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The above code is slow and inefficient because it calls &lt;code&gt;data.frame()&lt;/code&gt; (and all its associated baggage) &lt;strong&gt;for every row&lt;/strong&gt; of the input data.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;pure-r-code-faster&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Pure R code (faster)&lt;/h2&gt;
+&lt;p&gt;My next iteration was also written in pure R code. To minimize the effect of so many &lt;code&gt;data.frame()&lt;/code&gt; calls, the function below calculates the number of times it needs to repeat the &lt;code&gt;from&lt;/code&gt; value (to match the number of times &lt;code&gt;to&lt;/code&gt; values appear) and then combines everything &lt;em&gt;at the end&lt;/em&gt; into a data frame. As the benchmarking results later on confirm, this function offers a &lt;strong&gt;sizable speed up&lt;/strong&gt; over the original, &lt;code&gt;data.frame()&lt;/code&gt;-heavy function!&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;unroll_connections2 &amp;lt;- function(x) {
+  ## initialize logical (TRUE) vector
+  kp &amp;lt;- !logical(nrow(x))
+
+  ## measure [and record] length of each &amp;#39;to&amp;#39; field (list of character vector)
+  n &amp;lt;- lengths(x[[2]])
+  n1 &amp;lt;- which(n == 1)
+
+  ## if length == 1 &amp;amp; is.na(x[1])
+  kp[n1[vapply(x[[2]][n1], is.na, logical(1))]] &amp;lt;- FALSE
+
+  ## crate &amp;#39;from&amp;#39; and &amp;#39;to&amp;#39; vectors
+  from &amp;lt;- unlist(mapply(rep, x[[1]][kp], n[kp]), use.names = FALSE)
+  to &amp;lt;- unlist(x[[2]][kp], use.names = FALSE)
+
+  ## return as data frame
+  data.frame(
+    from = from,
+    to = to,
+    stringsAsFactors = FALSE
+  )
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;rcpp-code-fastest&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Rcpp code (fastest)&lt;/h2&gt;
+&lt;p&gt;I was happy with the large speed up from &lt;code&gt;unroll_connections2()&lt;/code&gt;, but I’ve also been trying to learn how to speed up my code with &lt;strong&gt;c++&lt;/strong&gt;, so I decided to see what kind of additional speed up I could get via &lt;a href=&#34;https://www.rcpp.org&#34;&gt;{Rcpp}&lt;/a&gt;.&lt;/p&gt;
+&lt;pre class=&#34;cpp&#34;&gt;&lt;code&gt;#include &amp;lt;Rcpp.h&amp;gt;
+
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+List unroll_connections3(CharacterVector from, std::vector&amp;lt;std::vector&amp;lt;std::string&amp;gt;&amp;gt; to) {
+  //# set size paramaeters (exclude NAs from the &amp;#39;to&amp;#39;-based output count)
+  const int n = from.size();
+  int len = 0;
+  for (int i = 0; i &amp;lt; n; i++) {
+    if (to[i][0] != &amp;quot;NA&amp;quot;) {
+      len += to[i].size();
+    }
+  }
+  //# use calculated lengths to initialize output character vectors 
+  CharacterVector from2(len);
+  CharacterVector to2(len);
+
+  //# for each value of the &amp;#39;from&amp;#39; vector, create appropriately re-sized from2 
+  //# and to2 vectors
+  int ctr = 0;
+  for (int i = 0; i &amp;lt; n; i++) {
+    int nn = to[i].size();
+    for (int j = 0; j &amp;lt; nn; j++) {
+      if (j == 0) {
+        if (to[i][j] != &amp;quot;NA&amp;quot;) {
+          from2[ctr] = from[i];
+          to2[ctr] = to[i][j];
+          ctr += 1;
+        }
+      } else {
+        from2[ctr] = from[i];
+        to2[ctr] = to[i][j];
+        ctr += 1;
+      }
+    }
+  }
+  //# combine the new [flat] vectors into a data frame (requires row names)
+  List df = List::create(_[&amp;quot;from&amp;quot;] = from2, _[&amp;quot;to&amp;quot;] = to2);
+  df.attr(&amp;quot;class&amp;quot;) = &amp;quot;data.frame&amp;quot;;
+  df.attr(&amp;quot;row.names&amp;quot;) = seq(1, ctr);
+  return df;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;benchmark&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;&lt;code&gt;bench::mark()&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;To compare the three previously described functions, I’ve used the &lt;a href=&#34;http://bench.r-lib.org/&#34;&gt;{bench}&lt;/a&gt; package. The code and numeric results are printed below.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## from and to vectors
+from &amp;lt;- d$user_id
+to &amp;lt;- d$mentions_user_id
+
+## perform bench mark
+m &amp;lt;- bench::mark(
+  unroll_connections1 = unroll_connections1(d),
+  unroll_connections2 = unroll_connections2(d),
+  unroll_connections3 = unroll_connections3(from, to),
+  relative = TRUE,
+  min_iterations = 100
+)
+
+## print results
+m %&amp;gt;%
+  dplyr::select(expression:n_gc) %&amp;gt;%
+  knitr::kable(digits = 2)&lt;/code&gt;&lt;/pre&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr class=&#34;header&#34;&gt;
+&lt;th align=&#34;left&#34;&gt;expression&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;min&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mean&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;median&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;max&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;itr/sec&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;mem_alloc&lt;/th&gt;
+&lt;th align=&#34;right&#34;&gt;n_gc&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;unroll_connections1&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;472.14&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;462.66&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;460.84&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;51.76&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.00&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;17.78&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;21&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;even&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;unroll_connections2&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;7.19&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;7.08&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6.85&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.00&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;65.32&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;631.74&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&#34;odd&#34;&gt;
+&lt;td align=&#34;left&#34;&gt;unroll_connections3&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.00&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.00&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.00&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.26&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;462.66&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1.00&lt;/td&gt;
+&lt;td align=&#34;right&#34;&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;As you can see, the initial improvement from &lt;code&gt;unroll_connections1()&lt;/code&gt; to &lt;code&gt;unroll_connections2()&lt;/code&gt; was more than &lt;strong&gt;60X&lt;/strong&gt;, which is great. But, thanks to the power of &lt;a href=&#34;https://http://www.rcpp.org/&#34;&gt;{rcpp}&lt;/a&gt;, I was able to speed things up even more with an improvement from &lt;code&gt;unroll_connections2()&lt;/code&gt; to &lt;code&gt;unroll_connections3()&lt;/code&gt; of roughly &lt;strong&gt;7X&lt;/strong&gt; or roughly &lt;strong&gt;450X&lt;/strong&gt; compared to the original function!!&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## plot
+m %&amp;gt;%
+  dplyr::mutate(expression = factor(expression, levels = rev(expression))) %&amp;gt;%
+  ggplot2::autoplot(shape = 21, size = 2.5, color = &amp;quot;#333333aa&amp;quot;) +
+  ggplot2::aes(fill = expression) +
+  dataviz::theme_mwk() +
+  ggplot2::theme(legend.position = &amp;quot;none&amp;quot;,
+    plot.caption = ggplot2::element_text(family = &amp;quot;Roboto Condensed&amp;quot;)) +
+  ggplot2::labs(x = NULL, y = &amp;quot;Time (mean task completion)&amp;quot;,
+    title = &amp;quot;Benchmarking Twitter-to-network data wrangling functions&amp;quot;,
+    subtitle = &amp;quot;Comparing base R and Rcpp functions for converting Twitter data into network-friendly objects&amp;quot;,
+    caption = &amp;quot;unroll_connections1() and unroll_connections2() are written in base R; unroll_connections3() uses Rcpp&amp;quot;) +
+  ggplot2::ggsave(here::here(&amp;quot;content&amp;quot;, &amp;quot;post&amp;quot;, &amp;quot;img&amp;quot;, &amp;quot;network-benchmark.png&amp;quot;),
+    width = 7, height = 5, units = &amp;quot;in&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+&lt;p style=&#34;align:center&#34;&gt;
+&lt;img src=&#34;/img/network-benchmark.png&#34;&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;notes&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;Notes&lt;/h2&gt;
+&lt;p&gt;&lt;sup&gt;1&lt;/sup&gt; Data I used to generate the example data set:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## search for up to 200 #rstats tweets from verified users
+rt &amp;lt;- rtweet::search_tweets(&amp;quot;#rstats filter:verified&amp;quot;, n = 200)
+
+## select only the node (ID/screen name) variables
+d &amp;lt;- dplyr::select(d, user_id, mentions_user_id)&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
 
     <item>
@@ -19,7 +252,10 @@
       <pubDate>Fri, 19 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018-10-19-installing-r-and-studio/</guid>
-      <description>&lt;p&gt;This post describes how to download and perform a basic local install of R
+      <description>
+
+
+&lt;p&gt;This post describes how to download and perform a basic local install of R
 and Rstudio. The instructions should work for both macOS and Windows users. Although
 not required, installation tends to work best when operating systems are
 up-to-date. At the time of writing, this means R/Rstudio work best with
@@ -95,7 +331,10 @@ on your machine.&lt;/p&gt;
       <pubDate>Thu, 18 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018-10-18-my-r-bloggers-post/</guid>
-      <description>&lt;p&gt;I have long been a fan of &lt;a href=&#34;https://r-bloggers.com&#34;&gt;R-bloggers&lt;/a&gt;, a content
+      <description>
+
+
+&lt;p&gt;I have long been a fan of &lt;a href=&#34;https://r-bloggers.com&#34;&gt;R-bloggers&lt;/a&gt;, a content
 aggregating site focused on blog posts about R. It serves a useful
 purpose&lt;sup&gt;1&lt;/sup&gt; and has considerable reach.&lt;sup&gt;2&lt;/sup&gt; But in the first
 version of this blog post, I actually wrote a lengthy critique of the site where
@@ -234,7 +473,10 @@ Twitter followers, etc.&lt;/p&gt;
       <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018-09-20-labelling-dataviz/</guid>
-      <description>&lt;p&gt;I still remember how hard it was to learn &lt;a href=&#34;https://ggplot2.tidyverse.org&#34;&gt;{ggplot2}&lt;/a&gt;
+      <description>
+
+
+&lt;p&gt;I still remember how hard it was to learn &lt;a href=&#34;https://ggplot2.tidyverse.org&#34;&gt;{ggplot2}&lt;/a&gt;
 after only knowing a little about R&lt;sup&gt;1&lt;/sup&gt;. Sure, the plots seemed pretty.
 But compared to the ways I had used R before, &lt;code&gt;{ggplot2}&lt;/code&gt;’s syntax seemed almost
 counter-intuitive. Its pipe-like &lt;code&gt;+&lt;/code&gt; workflow–building layer-by-layer–
@@ -387,7 +629,10 @@ generate some simple plots via &lt;code&gt;base::plot()&lt;/code&gt; and &lt;cod
       <pubDate>Mon, 17 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</guid>
-      <description>&lt;p&gt;A popular workflow in R uses &lt;a href=&#34;https://dplyr.tidyverse.org&#34;&gt;{dplyr}&lt;/a&gt; to &lt;code&gt;group_by()&lt;/code&gt;
+      <description>
+
+
+&lt;p&gt;A popular workflow in R uses &lt;a href=&#34;https://dplyr.tidyverse.org&#34;&gt;{dplyr}&lt;/a&gt; to &lt;code&gt;group_by()&lt;/code&gt;
 and then &lt;code&gt;summarise()&lt;/code&gt;&lt;sup&gt;1&lt;/sup&gt; variables.
 It’s an intuitive and easy way to aggregate and describe data, especially along
 multiple dimensions. The cost of being both powerful and user-friendly,
