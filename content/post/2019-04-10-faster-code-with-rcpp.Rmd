@@ -20,7 +20,6 @@ knitr::opts_chunk$set(
 d <- tfse::read_RDS(here::here("content", "data", "twitter-networks.rds"))
 d <- tibble::as_tibble(d)
 library(magrittr)
-#options(width = 100)
 ```
 
 Recently I was asked if I could add to [{rtweet}](https://rtweet.info) some basic functions for converting Twitter data into network data objects. I thought this was a reasonable request and a good opportunity for me to learn more about network analysis. But the task of converting Twitter data into network-friendly objects is something that has, at least for me, been really _slow and inefficient_. So, for the past several weeks, I've been slowly working toward _what I think believe a simple but efficient solution_. Hence, the purpose of this blog post is to document what I've done.
@@ -192,9 +191,8 @@ As you can see, the initial improvement from `unroll_connections1()` to `unroll_
 
 ```{r}
 ## plot
-m %>%
-  dplyr::mutate(expression = factor(expression, levels = rev(expression))) %>%
-  ggplot2::autoplot(shape = 21, size = 2.5, color = "#333333aa") +
+m$expression <- factor(m$expression, levels = rev(m$expression))
+bench:::autoplot.bench_mark(m, shape = 21, size = 2.5, color = "#333333aa") +
   ggplot2::aes(fill = expression) +
   dataviz::theme_mwk() +
   ggplot2::theme(legend.position = "none",
@@ -204,7 +202,11 @@ m %>%
     subtitle = "Comparing base R and Rcpp functions for converting Twitter data into network-friendly objects",
     caption = "unroll_connections1() and unroll_connections2() are written in base R; unroll_connections3() uses Rcpp") +
   ggplot2::ggsave(here::here("content", "post", "img", "network-benchmark.png"),
-    width = 7, height = 5, units = "in")
+    width = 7, height = 4, units = "in")
+```
+
+```{r, include=FALSE}
+file.copy("content/post/img/network-benchmark.png", "static/img/", overwrite = TRUE)
 ```
 
 

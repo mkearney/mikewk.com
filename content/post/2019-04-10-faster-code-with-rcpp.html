@@ -205,9 +205,8 @@ m %&gt;%
 </table>
 <p>As you can see, the initial improvement from <code>unroll_connections1()</code> to <code>unroll_connections2()</code> was more than <strong>60X</strong>, which is great. But, thanks to the power of <a href="https://http://www.rcpp.org/">{rcpp}</a>, I was able to speed things up even more with an improvement from <code>unroll_connections2()</code> to <code>unroll_connections3()</code> of roughly <strong>7X</strong> or roughly <strong>450X</strong> compared to the original function!!</p>
 <pre class="r"><code>## plot
-m %&gt;%
-  dplyr::mutate(expression = factor(expression, levels = rev(expression))) %&gt;%
-  ggplot2::autoplot(shape = 21, size = 2.5, color = &quot;#333333aa&quot;) +
+m$expression &lt;- factor(m$expression, levels = rev(m$expression))
+bench:::autoplot.bench_mark(m, shape = 21, size = 2.5, color = &quot;#333333aa&quot;) +
   ggplot2::aes(fill = expression) +
   dataviz::theme_mwk() +
   ggplot2::theme(legend.position = &quot;none&quot;,
@@ -217,7 +216,7 @@ m %&gt;%
     subtitle = &quot;Comparing base R and Rcpp functions for converting Twitter data into network-friendly objects&quot;,
     caption = &quot;unroll_connections1() and unroll_connections2() are written in base R; unroll_connections3() uses Rcpp&quot;) +
   ggplot2::ggsave(here::here(&quot;content&quot;, &quot;post&quot;, &quot;img&quot;, &quot;network-benchmark.png&quot;),
-    width = 7, height = 5, units = &quot;in&quot;)</code></pre>
+    width = 7, height = 4, units = &quot;in&quot;)</code></pre>
 <p style="align:center">
 <img src="/img/network-benchmark.png">
 </p>

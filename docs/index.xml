@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Michael W. Kearney</title>
@@ -216,9 +215,8 @@ m %&amp;gt;%
 &lt;/table&gt;
 &lt;p&gt;As you can see, the initial improvement from &lt;code&gt;unroll_connections1()&lt;/code&gt; to &lt;code&gt;unroll_connections2()&lt;/code&gt; was more than &lt;strong&gt;60X&lt;/strong&gt;, which is great. But, thanks to the power of &lt;a href=&#34;https://http://www.rcpp.org/&#34;&gt;{rcpp}&lt;/a&gt;, I was able to speed things up even more with an improvement from &lt;code&gt;unroll_connections2()&lt;/code&gt; to &lt;code&gt;unroll_connections3()&lt;/code&gt; of roughly &lt;strong&gt;7X&lt;/strong&gt; or roughly &lt;strong&gt;450X&lt;/strong&gt; compared to the original function!!&lt;/p&gt;
 &lt;pre class=&#34;r&#34;&gt;&lt;code&gt;## plot
-m %&amp;gt;%
-  dplyr::mutate(expression = factor(expression, levels = rev(expression))) %&amp;gt;%
-  ggplot2::autoplot(shape = 21, size = 2.5, color = &amp;quot;#333333aa&amp;quot;) +
+m$expression &amp;lt;- factor(m$expression, levels = rev(m$expression))
+bench:::autoplot.bench_mark(m, shape = 21, size = 2.5, color = &amp;quot;#333333aa&amp;quot;) +
   ggplot2::aes(fill = expression) +
   dataviz::theme_mwk() +
   ggplot2::theme(legend.position = &amp;quot;none&amp;quot;,
@@ -228,7 +226,7 @@ m %&amp;gt;%
     subtitle = &amp;quot;Comparing base R and Rcpp functions for converting Twitter data into network-friendly objects&amp;quot;,
     caption = &amp;quot;unroll_connections1() and unroll_connections2() are written in base R; unroll_connections3() uses Rcpp&amp;quot;) +
   ggplot2::ggsave(here::here(&amp;quot;content&amp;quot;, &amp;quot;post&amp;quot;, &amp;quot;img&amp;quot;, &amp;quot;network-benchmark.png&amp;quot;),
-    width = 7, height = 5, units = &amp;quot;in&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
+    width = 7, height = 4, units = &amp;quot;in&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
 &lt;img src=&#34;/img/network-benchmark.png&#34;&gt;
 &lt;/p&gt;

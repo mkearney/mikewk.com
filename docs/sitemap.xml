@@ -11,69 +11,14 @@
   </url>
   
   <url>
+    <loc>/categories/</loc>
+    <lastmod>2019-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>/post/2019-04-10-faster-code-with-rcpp/</loc>
     <lastmod>2019-04-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/2018-10-19-installing-r-and-studio/</loc>
-    <lastmod>2018-10-19T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/2018-10-18-my-r-bloggers-post/</loc>
-    <lastmod>2018-10-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/2018-09-20-labelling-dataviz/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</loc>
-    <lastmod>2018-09-17T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>/tags/blogdown/</loc>
-    <lastmod>2018-10-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/data-scribers/</loc>
-    <lastmod>2018-10-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/dataviz/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/ggplot2/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/ggrepel/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/install/</loc>
-    <lastmod>2018-10-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -95,13 +40,13 @@
   </url>
   
   <url>
-    <loc>/tags/r-bloggers/</loc>
-    <lastmod>2018-10-18T00:00:00+00:00</lastmod>
+    <loc>/tags/rcpp/</loc>
+    <lastmod>2019-04-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/rcpp/</loc>
+    <loc>/tags/</loc>
     <lastmod>2019-04-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -113,9 +58,8 @@
   </url>
   
   <url>
-    <loc>/tags/rstats/</loc>
-    <lastmod>2018-10-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>/post/2018-10-19-installing-r-and-studio/</loc>
+    <lastmod>2018-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -125,9 +69,66 @@
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>/tags/install/</loc>
+    <lastmod>2018-10-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/2018-10-18-my-r-bloggers-post/</loc>
+    <lastmod>2018-10-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/blogdown/</loc>
     <lastmod>2018-10-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/data-scribers/</loc>
+    <lastmod>2018-10-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/r-bloggers/</loc>
+    <lastmod>2018-10-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/rstats/</loc>
+    <lastmod>2018-10-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/2018-09-20-labelling-dataviz/</loc>
+    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>/tags/dataviz/</loc>
+    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/ggplot2/</loc>
+    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/tags/ggrepel/</loc>
+    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</loc>
+    <lastmod>2018-09-17T00:00:00+00:00</lastmod>
   </url>
   
 </urlset>
