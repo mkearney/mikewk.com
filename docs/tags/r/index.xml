@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>R on Michael W. Kearney</title>
-    <link>/tags/r/</link>
+    <link>https://mikewk.com/tags/r/</link>
     <description>Recent content in R on Michael W. Kearney</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
     <lastBuildDate>Wed, 10 Apr 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/r/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mikewk.com/tags/r/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Faster code with Rcpp</title>
-      <link>/post/2019-04-10-faster-code-with-rcpp/</link>
+      <link>https://mikewk.com/post/2019-04-10-faster-code-with-rcpp/</link>
       <pubDate>Wed, 10 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019-04-10-faster-code-with-rcpp/</guid>
+      <guid>https://mikewk.com/post/2019-04-10-faster-code-with-rcpp/</guid>
       <description>Recently I was asked if I could add to {rtweet} some basic functions for converting Twitter data into network data objects. I thought this was a reasonable request and a good opportunity for me to learn more about network analysis. But the task of converting Twitter data into network-friendly objects is something that has, at least for me, been really slow and inefficient. So, for the past several weeks, I’ve been slowly working toward what I think believe a simple but efficient solution.</description>
     </item>
     
     <item>
       <title>Installing R and Studio</title>
-      <link>/post/2018-10-19-installing-r-and-studio/</link>
+      <link>https://mikewk.com/post/2018-10-19-installing-r-and-studio/</link>
       <pubDate>Fri, 19 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018-10-19-installing-r-and-studio/</guid>
+      <guid>https://mikewk.com/post/2018-10-19-installing-r-and-studio/</guid>
       <description>This post describes how to download and perform a basic local install of R and Rstudio. The instructions should work for both macOS and Windows users. Although not required, installation tends to work best when operating systems are up-to-date. At the time of writing, this means R/Rstudio work best with macOS High Sierra and Windows 10.
 R vs Rstudio R is a statistical computing language/environment. It is distinct from Rstudio, which is an integrated development environment (IDE) or high- powered graphical user interface (GUI) optimized for working with the R language.</description>
     </item>

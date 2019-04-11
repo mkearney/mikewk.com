@@ -25,7 +25,7 @@
     <meta name="twitter:title" content="Tick marks, variable names, and ggplot2" />
     <meta name="twitter:description" content="A popular workflow in R uses {dplyr} to group_by() and then summarise()1 variables. It’s an intuitive and easy way to aggregate and describe data, especially along multiple dimensions. The cost of being both powerful and user-friendly, however, is its arguably inconvenient default method for assigning names to summarized values. As the code illustrates below, users can provide their own names when using summarize().
 ## explicitly named summarize variable mtcars %&amp;gt;% group_by(cyl) %&amp;gt;% summarize(mpg = mean(mpg)) #&amp;gt; # A tibble: 3 x 2 #&amp;gt; cyl mpg #&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; #&amp;gt; 1 4 26." />
-    <meta name="twitter:image" content="/img/avatar.jpg" />
+    <meta name="twitter:image" content="https://mikewk.com/img/avatar.jpg" />
   
 
 
@@ -34,8 +34,8 @@
 <meta name="generator" content="Hugo 0.55.0" />
 
 
-<link rel="canonical" href="/post/2018-09-17-tick-marks-var-names-and-ggplot2/" />
-<link rel="alternative" href="/index.xml" title="Michael W. Kearney" type="application/atom+xml" />
+<link rel="canonical" href="https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/" />
+<link rel="alternative" href="https://mikewk.com/index.xml" title="Michael W. Kearney" type="application/atom+xml" />
 
 
 <meta name="renderer" content="webkit" />
@@ -60,22 +60,22 @@
 <meta name='msapplication-navbutton-color' content="#5fbf5e" />
 <meta name="msapplication-TileColor" content="#5fbf5e" />
 <meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
-<link rel="icon" href="/img/favicon.ico" />
-<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png" />
-<link rel="icon" sizes="192x192" href="/img/touch-icon-android.png" />
-<link rel="apple-touch-icon" href="/img/touch-icon-apple.png" />
-<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5fbf5e" />
+<link rel="icon" href="https://mikewk.com/img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="https://mikewk.com/img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="https://mikewk.com/img/favicon-32x32.png" />
+<link rel="icon" sizes="192x192" href="https://mikewk.com/img/touch-icon-android.png" />
+<link rel="apple-touch-icon" href="https://mikewk.com/img/touch-icon-apple.png" />
+<link rel="mask-icon" href="https://mikewk.com/img/safari-pinned-tab.svg" color="#5fbf5e" />
 
 
 
 <link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
 
-<link rel="stylesheet" href="/css/bundle.css" />
-<link rel="stylesheet" href="/highlight/styles/atom-one-light.css" />
+<link rel="stylesheet" href="https://mikewk.com/css/bundle.css" />
+<link rel="stylesheet" href="https://mikewk.com/highlight/styles/atom-one-light.css" />
 
 
-<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="https://mikewk.com/css/custom.css">
 
 
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700|Source+Code+Pro" rel="stylesheet">
@@ -113,7 +113,7 @@
     
     
   <header class="site-header">
-  <a class="avatar_link" href="/"><img class="avatar" src="/img/aintnoseats.jpeg" alt="Avatar"></a>
+  <a class="avatar_link" href="https://mikewk.com/"><img class="avatar" src="https://mikewk.com/img/aintnoseats.jpeg" alt="Avatar"></a>
   
   <h2 class="title">Michael W. Kearney</h2>
   
@@ -131,7 +131,7 @@
       
       
       
-        <li class="menu-item  is-active"><a href="/">Home</a></li>
+        <li class="menu-item  is-active"><a href="https://mikewk.com/">Home</a></li>
       
         <li class="menu-item "><a href="https://cv.mikewk.com">CV</a></li>
       
@@ -196,7 +196,7 @@
       
 
       <li class="social-item">
-        <a href="/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+        <a href="https://mikewk.com/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
       </li>
 
     </ul>
@@ -367,7 +367,7 @@ mtcars %&gt;%
 #&gt; Warning: Removed 3 rows containing missing values (geom_point).
 #&gt; Warning: Removed 3 rows containing missing values (geom_path).</code></pre>
 <p style="align:center">
-<img src="/img/empty-plot.png">
+<img src="https://mikewk.com/img/empty-plot.png">
 </p>
 <p>The result is a handful of warnings and an empty plot. The above code fails
 because it tries to calculate mean of <code>mpg</code>, which, again, doesn’t exist in the
@@ -385,7 +385,7 @@ mtcars %&gt;%
   geom_line() + 
   my_save(&quot;img/static-y.png&quot;)</code></pre>
 <p style="align:center">
-<img src="/img/static-y.png">
+<img src="https://mikewk.com/img/static-y.png">
 </p>
 <p>This time we get a plot and no warnings, but it’s clearly not right. It shows
 every <code>y</code> value is exactly the same, but it seems far fetched to think the
@@ -432,7 +432,7 @@ mtcars %&gt;%
   geom_line() + 
   my_save(&quot;img/tick-marks.png&quot;)</code></pre>
 <p style="align:center">
-<img src="/img/tick-marks.png">
+<img src="https://mikewk.com/img/tick-marks.png">
 </p>
 <p>Of course, most audiences don’t really want to see expression text on a plot,
 so we can improve this plot by adding some better labels and a custom theme via
@@ -448,7 +448,7 @@ mtcars %&gt;%
   my_labs() + 
   my_save(&quot;img/with-labs.png&quot;)</code></pre>
 <p style="align:center">
-<img src="/img/with-labs.png">
+<img src="https://mikewk.com/img/with-labs.png">
 </p>
 </div>
 <div id="notes" class="section level2">
@@ -461,16 +461,16 @@ are interchangeable.</p>
       
       <ul class="post-tags">
         
-          <li><a href="/tags/ggplot2"><span class="tag">Ggplot2</span></a></li>
+          <li><a href="https://mikewk.com/tags/ggplot2"><span class="tag">Ggplot2</span></a></li>
         
-          <li><a href="/tags/dataviz"><span class="tag">Dataviz</span></a></li>
+          <li><a href="https://mikewk.com/tags/dataviz"><span class="tag">Dataviz</span></a></li>
         
-          <li><a href="/tags/ggrepel"><span class="tag">Ggrepel</span></a></li>
+          <li><a href="https://mikewk.com/tags/ggrepel"><span class="tag">Ggrepel</span></a></li>
         
       </ul>
       
       <p class="post-copyright">
-        © Michael W. Kearney 2018This post was published <strong>205</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © Michael W. Kearney 2018This post was published <strong>206</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     
@@ -508,7 +508,7 @@ are interchangeable.</p>
 <script async
         src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-<script src="/highlight/highlight.pack.js"></script>
+<script src="https://mikewk.com/highlight/highlight.pack.js"></script>
 
 <script>hljs.initHighlightingOnLoad();</script>
 
@@ -534,8 +534,8 @@ are interchangeable.</p>
   });
 </script>
 
-<script src="/js/bundle.js"></script>
-<script src="/highlight/highlight.pack.js"></script>
+<script src="https://mikewk.com/js/bundle.js"></script>
+<script src="https://mikewk.com/highlight/highlight.pack.js"></script>
 
 
 <script type="application/javascript">
