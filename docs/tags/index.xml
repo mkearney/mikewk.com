@@ -2,121 +2,121 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Michael W. Kearney</title>
-    <link>/tags/</link>
+    <link>https://mikewk.com/tags/</link>
     <description>Recent content in Tags on Michael W. Kearney</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
     <lastBuildDate>Tue, 23 Apr 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mikewk.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>R</title>
-      <link>/tags/r/</link>
+      <link>https://mikewk.com/tags/r/</link>
       <pubDate>Tue, 23 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/r/</guid>
+      <guid>https://mikewk.com/tags/r/</guid>
       <description></description>
     </item>
     
     <item>
       <title>tidyverse</title>
-      <link>/tags/tidyverse/</link>
+      <link>https://mikewk.com/tags/tidyverse/</link>
       <pubDate>Tue, 23 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/tidyverse/</guid>
+      <guid>https://mikewk.com/tags/tidyverse/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Rcpp</title>
-      <link>/tags/rcpp/</link>
+      <link>https://mikewk.com/tags/rcpp/</link>
       <pubDate>Wed, 10 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/tags/rcpp/</guid>
+      <guid>https://mikewk.com/tags/rcpp/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Rstudio</title>
-      <link>/tags/rstudio/</link>
+      <link>https://mikewk.com/tags/rstudio/</link>
       <pubDate>Fri, 19 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/rstudio/</guid>
+      <guid>https://mikewk.com/tags/rstudio/</guid>
       <description></description>
     </item>
     
     <item>
       <title>install</title>
-      <link>/tags/install/</link>
+      <link>https://mikewk.com/tags/install/</link>
       <pubDate>Fri, 19 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/install/</guid>
+      <guid>https://mikewk.com/tags/install/</guid>
       <description></description>
     </item>
     
     <item>
       <title>blogdown</title>
-      <link>/tags/blogdown/</link>
+      <link>https://mikewk.com/tags/blogdown/</link>
       <pubDate>Thu, 18 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/blogdown/</guid>
+      <guid>https://mikewk.com/tags/blogdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>data-scribers</title>
-      <link>/tags/data-scribers/</link>
+      <link>https://mikewk.com/tags/data-scribers/</link>
       <pubDate>Thu, 18 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/data-scribers/</guid>
+      <guid>https://mikewk.com/tags/data-scribers/</guid>
       <description></description>
     </item>
     
     <item>
       <title>r-bloggers</title>
-      <link>/tags/r-bloggers/</link>
+      <link>https://mikewk.com/tags/r-bloggers/</link>
       <pubDate>Thu, 18 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/r-bloggers/</guid>
+      <guid>https://mikewk.com/tags/r-bloggers/</guid>
       <description></description>
     </item>
     
     <item>
       <title>rstats</title>
-      <link>/tags/rstats/</link>
+      <link>https://mikewk.com/tags/rstats/</link>
       <pubDate>Thu, 18 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/rstats/</guid>
+      <guid>https://mikewk.com/tags/rstats/</guid>
       <description></description>
     </item>
     
     <item>
       <title>dataviz</title>
-      <link>/tags/dataviz/</link>
+      <link>https://mikewk.com/tags/dataviz/</link>
       <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/dataviz/</guid>
+      <guid>https://mikewk.com/tags/dataviz/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ggplot2</title>
-      <link>/tags/ggplot2/</link>
+      <link>https://mikewk.com/tags/ggplot2/</link>
       <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/ggplot2/</guid>
+      <guid>https://mikewk.com/tags/ggplot2/</guid>
       <description></description>
     </item>
     
     <item>
       <title>ggrepel</title>
-      <link>/tags/ggrepel/</link>
+      <link>https://mikewk.com/tags/ggrepel/</link>
       <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/tags/ggrepel/</guid>
+      <guid>https://mikewk.com/tags/ggrepel/</guid>
       <description></description>
     </item>
     

@@ -22,7 +22,13 @@ options(tibble.print_max = 5)
 
 I think it's fair to say that most academics who learn about R do so in the process of training or applying quantitative research methods. As a consequence, knowledge of R among academics tends to be limited to core (base) R packages (R Core Team, 2018) and a small handful of speciality statistical packages, e.g., {lavaan}, {lme4}, {MASS}, {car}, etc. With this in mind, the goal of this post is to provide an overview of three things to know beyond base R.
 
-A more appropriate title for this post could be, "A quick introduction to the tidyverse," as all of the following things to know beyond base R come from the [{tidyverse}](https://tidyverse.org)–a collection of high-powered, consistent, and easy-to-use packages developed by a number of thoughtful and talented R developers. But users don't need to know know everything about the tidyverse to reap the benefits of it. However, if you're interested in a more formal/thorough introduction to the tidyverse, I would strongly encourage you to checkout [R for Data Science by Garrett Groleman and Hadley Wickham](https://r4ds.had.co.nz/).
+A more appropriate title for this post could be, "A quick introduction to the tidyverse," as all of the following things to know beyond base R come from the [{tidyverse}](https://tidyverse.org)–a collection of high-powered, consistent, and easy-to-use packages developed by a number of thoughtful and talented R developers, so this should really be considered an exceptionally brief introduction to parts of the tidyverse. But users don't need to know know everything about the tidyverse to reap the benefits of it. However, if you're interested in a more formal/thorough introduction to the tidyverse, I would strongly encourage you to checkout [R for Data Science by Garrett Groleman and Hadley Wickham](https://r4ds.had.co.nz/).
+
+For those of you who still might be hestitant about moving beyond base R, consider the plot below, which shows the download counts of {tidyverse} packages compared to several well-known and highly-regarded statistical packages.
+
+<p style="align:center"> <img src="/img/download-counts.png"> </p>
+
+This plot hopefully demonstrates two things. First, that a lot of people use (and therefore test, troubleshoot, and write documentation for) tidyverse packages. Second, that use of tidyverse packages is not merely a fad or momentary trend. Indeed, compared to widely used statistical packages, there is a considerably higher download rate among tidyverse packages (even above and beyond the general uptick in overall R usage).
 
 ## 1. The pipe
 

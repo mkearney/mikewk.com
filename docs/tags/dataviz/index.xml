@@ -2,32 +2,32 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>dataviz on Michael W. Kearney</title>
-    <link>/tags/dataviz/</link>
+    <link>https://mikewk.com/tags/dataviz/</link>
     <description>Recent content in dataviz on Michael W. Kearney</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
     <lastBuildDate>Thu, 20 Sep 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/dataviz/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mikewk.com/tags/dataviz/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Labelling dataviz</title>
-      <link>/post/2018-09-20-labelling-dataviz/</link>
+      <link>https://mikewk.com/post/2018-09-20-labelling-dataviz/</link>
       <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018-09-20-labelling-dataviz/</guid>
+      <guid>https://mikewk.com/post/2018-09-20-labelling-dataviz/</guid>
       <description>I still remember how hard it was to learn {ggplot2} after only knowing a little about R1. Sure, the plots seemed pretty. But compared to the ways I had used R before, {ggplot2}’s syntax seemed almost counter-intuitive. Its pipe-like + workflow–building layer-by-layer– was like nothing I had ever used before. Not to mention, I was unfamiliar with central terms of art like “geoms” and “aesthetics”.
 But then again…the plots were really pretty.</description>
     </item>
     
     <item>
       <title>Tick marks, variable names, and ggplot2</title>
-      <link>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</link>
+      <link>https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/</link>
       <pubDate>Mon, 17 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</guid>
+      <guid>https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/</guid>
       <description>A popular workflow in R uses {dplyr} to group_by() and then summarise()1 variables. It’s an intuitive and easy way to aggregate and describe data, especially along multiple dimensions. The cost of being both powerful and user-friendly, however, is its arguably inconvenient default method for assigning names to summarized values. As the code illustrates below, users can provide their own names when using summarize().
 ## explicitly named summarize variable mtcars %&amp;gt;% group_by(cyl) %&amp;gt;% summarize(mpg = mean(mpg)) #&amp;gt; # A tibble: 3 x 2 #&amp;gt; cyl mpg #&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; #&amp;gt; 1 4 26.</description>
     </item>

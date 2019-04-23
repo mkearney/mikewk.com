@@ -12,7 +12,12 @@ tags:
 
 
 <p>I think it’s fair to say that most academics who learn about R do so in the process of training or applying quantitative research methods. As a consequence, knowledge of R among academics tends to be limited to core (base) R packages (R Core Team, 2018) and a small handful of speciality statistical packages, e.g., {lavaan}, {lme4}, {MASS}, {car}, etc. With this in mind, the goal of this post is to provide an overview of three things to know beyond base R.</p>
-<p>A more appropriate title for this post could be, “A quick introduction to the tidyverse,” as all of the following things to know beyond base R come from the <a href="https://tidyverse.org">{tidyverse}</a>–a collection of high-powered, consistent, and easy-to-use packages developed by a number of thoughtful and talented R developers. But users don’t need to know know everything about the tidyverse to reap the benefits of it. However, if you’re interested in a more formal/thorough introduction to the tidyverse, I would strongly encourage you to checkout <a href="https://r4ds.had.co.nz/">R for Data Science by Garrett Groleman and Hadley Wickham</a>.</p>
+<p>A more appropriate title for this post could be, “A quick introduction to the tidyverse,” as all of the following things to know beyond base R come from the <a href="https://tidyverse.org">{tidyverse}</a>–a collection of high-powered, consistent, and easy-to-use packages developed by a number of thoughtful and talented R developers, so this should really be considered an exceptionally brief introduction to parts of the tidyverse. But users don’t need to know know everything about the tidyverse to reap the benefits of it. However, if you’re interested in a more formal/thorough introduction to the tidyverse, I would strongly encourage you to checkout <a href="https://r4ds.had.co.nz/">R for Data Science by Garrett Groleman and Hadley Wickham</a>.</p>
+<p>For those of you who still might be hestitant about moving beyond base R, consider the plot below, which shows the download counts of {tidyverse} packages compared to several well-known and highly-regarded statistical packages.</p>
+<p style="align:center">
+<img src="/img/download-counts.png">
+</p>
+<p>This plot hopefully demonstrates two things. First, that a lot of people use (and therefore test, troubleshoot, and write documentation for) tidyverse packages. Second, that use of tidyverse packages is not merely a fad or momentary trend. Indeed, compared to widely used statistical packages, there is a considerably higher download rate among tidyverse packages (even above and beyond the general uptick in overall R usage).</p>
 <div id="the-pipe" class="section level2">
 <h2>1. The pipe</h2>
 <p>The first thing to know beyond base R is <strong>the pipe</strong>. The <em>pipe</em> refers to the <code>%&gt;%</code> operator from the <a href="https://magrittr.tidyverse.org">{magrittr}</a> package.</p>
@@ -56,13 +61,13 @@ tags:
   z = sample(letters, 100, replace = TRUE)
 )
 #&gt; # A tibble: 100 x 3
-#&gt;        x      y z    
-#&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;
-#&gt; 1 -0.361 -1.39  o    
-#&gt; 2 -0.496  1.60  b    
-#&gt; 3  1.07  -0.568 z    
-#&gt; 4 -0.818  0.874 y    
-#&gt; 5 -0.529  0.109 o    
+#&gt;       x      y z    
+#&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;
+#&gt; 1 0.138  0.851 u    
+#&gt; 2 0.894 -0.295 m    
+#&gt; 3 0.377  1.61  u    
+#&gt; 4 0.345 -0.332 r    
+#&gt; 5 0.508  1.24  m    
 #&gt; # … with 95 more rows</code></pre>
 <p>You hopefully noticed in the printing of the two previous code chunks that tibbles print out a lot prettier than normal data frames. Each observations is limited to a single line (no horizontal scrolling or wrapping). Not all rows are printed by default. And the printout also includes meta information about the classes of variables and the number of rows and columns and in the data set.</p>
 <p>If you were really paying attention, you may have also noticed the <code>z</code> variable in the tibble built from scratch was stored (by default) as a <code>character</code> vector and not a <code>factor</code>. This is another important difference in tibbles compared to data frames. Tibbles are lazy, which is this case is useful for avoiding join or mutate errors later on related to a limited set of observed factor levels.</p>

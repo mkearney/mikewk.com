@@ -3,142 +3,142 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>/about/</loc>
+    <loc>https://mikewk.com/about/</loc>
   </url>
   
   <url>
-    <loc>/links/</loc>
+    <loc>https://mikewk.com/links/</loc>
   </url>
   
   <url>
-    <loc>/categories/</loc>
+    <loc>https://mikewk.com/categories/</loc>
     <lastmod>2019-04-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/</loc>
+    <loc>https://mikewk.com/</loc>
     <lastmod>2019-04-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/</loc>
+    <loc>https://mikewk.com/post/</loc>
     <lastmod>2019-04-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/r/</loc>
+    <loc>https://mikewk.com/tags/r/</loc>
     <lastmod>2019-04-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/</loc>
+    <loc>https://mikewk.com/tags/</loc>
     <lastmod>2019-04-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/2019-04-23-three-things-to-know-beyond-base-r/</loc>
+    <loc>https://mikewk.com/post/2019-04-23-three-things-to-know-beyond-base-r/</loc>
     <lastmod>2019-04-23T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/categories/rstats/</loc>
-    <lastmod>2019-04-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/tidyverse/</loc>
+    <loc>https://mikewk.com/categories/rstats/</loc>
     <lastmod>2019-04-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/2019-04-10-faster-code-with-rcpp/</loc>
+    <loc>https://mikewk.com/tags/tidyverse/</loc>
+    <lastmod>2019-04-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mikewk.com/post/2019-04-10-faster-code-with-rcpp/</loc>
     <lastmod>2019-04-10T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/rcpp/</loc>
+    <loc>https://mikewk.com/tags/rcpp/</loc>
     <lastmod>2019-04-10T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/2018-10-19-installing-r-and-studio/</loc>
+    <loc>https://mikewk.com/post/2018-10-19-installing-r-and-studio/</loc>
     <lastmod>2018-10-19T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/rstudio/</loc>
-    <lastmod>2018-10-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/install/</loc>
+    <loc>https://mikewk.com/tags/rstudio/</loc>
     <lastmod>2018-10-19T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/2018-10-18-my-r-bloggers-post/</loc>
+    <loc>https://mikewk.com/tags/install/</loc>
+    <lastmod>2018-10-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mikewk.com/post/2018-10-18-my-r-bloggers-post/</loc>
     <lastmod>2018-10-18T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/blogdown/</loc>
+    <loc>https://mikewk.com/tags/blogdown/</loc>
     <lastmod>2018-10-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/data-scribers/</loc>
+    <loc>https://mikewk.com/tags/data-scribers/</loc>
     <lastmod>2018-10-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/r-bloggers/</loc>
+    <loc>https://mikewk.com/tags/r-bloggers/</loc>
     <lastmod>2018-10-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/tags/rstats/</loc>
+    <loc>https://mikewk.com/tags/rstats/</loc>
     <lastmod>2018-10-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/2018-09-20-labelling-dataviz/</loc>
+    <loc>https://mikewk.com/post/2018-09-20-labelling-dataviz/</loc>
     <lastmod>2018-09-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>/tags/dataviz/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/ggplot2/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>/tags/ggrepel/</loc>
+    <loc>https://mikewk.com/tags/dataviz/</loc>
     <lastmod>2018-09-20T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</loc>
+    <loc>https://mikewk.com/tags/ggplot2/</loc>
+    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mikewk.com/tags/ggrepel/</loc>
+    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/</loc>
     <lastmod>2018-09-17T00:00:00+00:00</lastmod>
   </url>
   

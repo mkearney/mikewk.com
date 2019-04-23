@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>tidyverse on Michael W. Kearney</title>
-    <link>/tags/tidyverse/</link>
+    <link>https://mikewk.com/tags/tidyverse/</link>
     <description>Recent content in tidyverse on Michael W. Kearney</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
     <lastBuildDate>Tue, 23 Apr 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://mikewk.com/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Three things to know beyond base R</title>
-      <link>/post/2019-04-23-three-things-to-know-beyond-base-r/</link>
+      <link>https://mikewk.com/post/2019-04-23-three-things-to-know-beyond-base-r/</link>
       <pubDate>Tue, 23 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019-04-23-three-things-to-know-beyond-base-r/</guid>
+      <guid>https://mikewk.com/post/2019-04-23-three-things-to-know-beyond-base-r/</guid>
       <description>I think it’s fair to say that most academics who learn about R do so in the process of training or applying quantitative research methods. As a consequence, knowledge of R among academics tends to be limited to core (base) R packages (R Core Team, 2018) and a small handful of speciality statistical packages, e.g., {lavaan}, {lme4}, {MASS}, {car}, etc. With this in mind, the goal of this post is to provide an overview of three things to know beyond base R.</description>
     </item>
     

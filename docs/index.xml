@@ -1,28 +1,33 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Michael W. Kearney</title>
-    <link>/</link>
+    <link>https://mikewk.com/</link>
     <description>Recent content on Michael W. Kearney</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
     <lastBuildDate>Tue, 23 Apr 2019 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://mikewk.com/index.xml" rel="self" type="application/rss+xml" />
     
     
 
     <item>
       <title>Three things to know beyond base R</title>
-      <link>/post/2019-04-23-three-things-to-know-beyond-base-r/</link>
+      <link>https://mikewk.com/post/2019-04-23-three-things-to-know-beyond-base-r/</link>
       <pubDate>Tue, 23 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019-04-23-three-things-to-know-beyond-base-r/</guid>
+      <guid>https://mikewk.com/post/2019-04-23-three-things-to-know-beyond-base-r/</guid>
       <description>
 
 
 &lt;p&gt;I think it’s fair to say that most academics who learn about R do so in the process of training or applying quantitative research methods. As a consequence, knowledge of R among academics tends to be limited to core (base) R packages (R Core Team, 2018) and a small handful of speciality statistical packages, e.g., {lavaan}, {lme4}, {MASS}, {car}, etc. With this in mind, the goal of this post is to provide an overview of three things to know beyond base R.&lt;/p&gt;
-&lt;p&gt;A more appropriate title for this post could be, “A quick introduction to the tidyverse,” as all of the following things to know beyond base R come from the &lt;a href=&#34;https://tidyverse.org&#34;&gt;{tidyverse}&lt;/a&gt;–a collection of high-powered, consistent, and easy-to-use packages developed by a number of thoughtful and talented R developers. But users don’t need to know know everything about the tidyverse to reap the benefits of it. However, if you’re interested in a more formal/thorough introduction to the tidyverse, I would strongly encourage you to checkout &lt;a href=&#34;https://r4ds.had.co.nz/&#34;&gt;R for Data Science by Garrett Groleman and Hadley Wickham&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A more appropriate title for this post could be, “A quick introduction to the tidyverse,” as all of the following things to know beyond base R come from the &lt;a href=&#34;https://tidyverse.org&#34;&gt;{tidyverse}&lt;/a&gt;–a collection of high-powered, consistent, and easy-to-use packages developed by a number of thoughtful and talented R developers, so this should really be considered an exceptionally brief introduction to parts of the tidyverse. But users don’t need to know know everything about the tidyverse to reap the benefits of it. However, if you’re interested in a more formal/thorough introduction to the tidyverse, I would strongly encourage you to checkout &lt;a href=&#34;https://r4ds.had.co.nz/&#34;&gt;R for Data Science by Garrett Groleman and Hadley Wickham&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For those of you who still might be hestitant about moving beyond base R, consider the plot below, which shows the download counts of {tidyverse} packages compared to several well-known and highly-regarded statistical packages.&lt;/p&gt;
+&lt;p style=&#34;align:center&#34;&gt;
+&lt;img src=&#34;https://mikewk.com/img/download-counts.png&#34;&gt;
+&lt;/p&gt;
+&lt;p&gt;This plot hopefully demonstrates two things. First, that a lot of people use (and therefore test, troubleshoot, and write documentation for) tidyverse packages. Second, that use of tidyverse packages is not merely a fad or momentary trend. Indeed, compared to widely used statistical packages, there is a considerably higher download rate among tidyverse packages (even above and beyond the general uptick in overall R usage).&lt;/p&gt;
 &lt;div id=&#34;the-pipe&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;1. The pipe&lt;/h2&gt;
 &lt;p&gt;The first thing to know beyond base R is &lt;strong&gt;the pipe&lt;/strong&gt;. The &lt;em&gt;pipe&lt;/em&gt; refers to the &lt;code&gt;%&amp;gt;%&lt;/code&gt; operator from the &lt;a href=&#34;https://magrittr.tidyverse.org&#34;&gt;{magrittr}&lt;/a&gt; package.&lt;/p&gt;
@@ -66,13 +71,13 @@
   z = sample(letters, 100, replace = TRUE)
 )
 #&amp;gt; # A tibble: 100 x 3
-#&amp;gt;        x      y z    
-#&amp;gt;    &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;
-#&amp;gt; 1 -0.361 -1.39  o    
-#&amp;gt; 2 -0.496  1.60  b    
-#&amp;gt; 3  1.07  -0.568 z    
-#&amp;gt; 4 -0.818  0.874 y    
-#&amp;gt; 5 -0.529  0.109 o    
+#&amp;gt;       x      y z    
+#&amp;gt;   &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;
+#&amp;gt; 1 0.138  0.851 u    
+#&amp;gt; 2 0.894 -0.295 m    
+#&amp;gt; 3 0.377  1.61  u    
+#&amp;gt; 4 0.345 -0.332 r    
+#&amp;gt; 5 0.508  1.24  m    
 #&amp;gt; # … with 95 more rows&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;You hopefully noticed in the printing of the two previous code chunks that tibbles print out a lot prettier than normal data frames. Each observations is limited to a single line (no horizontal scrolling or wrapping). Not all rows are printed by default. And the printout also includes meta information about the classes of variables and the number of rows and columns and in the data set.&lt;/p&gt;
 &lt;p&gt;If you were really paying attention, you may have also noticed the &lt;code&gt;z&lt;/code&gt; variable in the tibble built from scratch was stored (by default) as a &lt;code&gt;character&lt;/code&gt; vector and not a &lt;code&gt;factor&lt;/code&gt;. This is another important difference in tibbles compared to data frames. Tibbles are lazy, which is this case is useful for avoiding join or mutate errors later on related to a limited set of observed factor levels.&lt;/p&gt;
@@ -149,10 +154,10 @@
 
     <item>
       <title>Faster code with Rcpp</title>
-      <link>/post/2019-04-10-faster-code-with-rcpp/</link>
+      <link>https://mikewk.com/post/2019-04-10-faster-code-with-rcpp/</link>
       <pubDate>Wed, 10 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019-04-10-faster-code-with-rcpp/</guid>
+      <guid>https://mikewk.com/post/2019-04-10-faster-code-with-rcpp/</guid>
       <description>
 
 
@@ -363,7 +368,7 @@ bench:::autoplot.bench_mark(m, shape = 21, size = 2.5, color = &amp;quot;#333333
   ggplot2::ggsave(here::here(&amp;quot;content&amp;quot;, &amp;quot;post&amp;quot;, &amp;quot;img&amp;quot;, &amp;quot;network-benchmark.png&amp;quot;),
     width = 7, height = 4, units = &amp;quot;in&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;/img/network-benchmark.png&#34;&gt;
+&lt;img src=&#34;https://mikewk.com/img/network-benchmark.png&#34;&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;notes&#34; class=&#34;section level2&#34;&gt;
@@ -381,10 +386,10 @@ d &amp;lt;- dplyr::select(d, user_id, mentions_user_id)&lt;/code&gt;&lt;/pre&gt;
 
     <item>
       <title>Installing R and Studio</title>
-      <link>/post/2018-10-19-installing-r-and-studio/</link>
+      <link>https://mikewk.com/post/2018-10-19-installing-r-and-studio/</link>
       <pubDate>Fri, 19 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018-10-19-installing-r-and-studio/</guid>
+      <guid>https://mikewk.com/post/2018-10-19-installing-r-and-studio/</guid>
       <description>
 
 
@@ -407,14 +412,14 @@ Consequently, you’ll need to install &lt;em&gt;both&lt;/em&gt; R &lt;em&gt;and
 computing language/environment:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;Go to the CRAN (Collective R Archive Network) website: &lt;a href=&#34;https://cran.r-project.org/&#34; class=&#34;uri&#34;&gt;https://cran.r-project.org/&lt;/a&gt;
-&lt;img src=&#39;/img/install-r2.png&#39;&gt;&lt;/li&gt;
+&lt;img src=&#39;https://mikewk.com/img/install-r2.png&#39;&gt;&lt;/li&gt;
 &lt;li&gt;Click on the appropriate operating system (Mac or Windows) to navigate to download page.&lt;/li&gt;
 &lt;li&gt;Download the most recent version of R.
 &lt;ul&gt;
 &lt;li&gt;If Mac, select the first &lt;code&gt;.pkg&lt;/code&gt; file listed in the “files” section. At time of writing, this is version &lt;strong&gt;&lt;code&gt;R-3.5.1.pkg&lt;/code&gt;&lt;/strong&gt;.
-&lt;img src=&#39;/img/install-r-mac.png&#39;&gt;&lt;/li&gt;
+&lt;img src=&#39;https://mikewk.com/img/install-r-mac.png&#39;&gt;&lt;/li&gt;
 &lt;li&gt;If Windows, select the bold, underline link written as &lt;strong&gt;‘install R for the first time’&lt;/strong&gt;.
-&lt;img src=&#39;/img/install-r-windows.png&#39;&gt;&lt;/li&gt;
+&lt;img src=&#39;https://mikewk.com/img/install-r-windows.png&#39;&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Double click (run) the downloaded file (check your &lt;code&gt;Downloads&lt;/code&gt; folder). Click yes through prompts to install like any other program (default values should be okay). You &lt;em&gt;may&lt;/em&gt; get a warning about the source of the download being unkown. Do whatever you can to allow the installation to continue—I promise the R pkg file is safe!&lt;/li&gt;
 &lt;/ol&gt;
@@ -428,7 +433,7 @@ automatically call and allow interactive use of R.&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;Go to the free download location on Rstudio’s website: &lt;a href=&#34;https://www.rstudio.com/products/rstudio/download/#download&#34; class=&#34;uri&#34;&gt;https://www.rstudio.com/products/rstudio/download/#download&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Select one of the highlighted options that corresponds with your computer’s operating system (Mac or PC)
-&lt;img src=&#39;/img/install-rstudio2.png&#39;&gt;&lt;/li&gt;
+&lt;img src=&#39;https://mikewk.com/img/install-rstudio2.png&#39;&gt;&lt;/li&gt;
 &lt;li&gt;Double (run) click the downloaded file (check &lt;code&gt;Downloads&lt;/code&gt; folder). Click yes through prompts to install like any other program (the defaults should be fine). You may get a warning about the source of the download being unkown. Do whatever you can to allow the installation to continue—I promise the R pkg file is safe!&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;For an actual demonstration of installing R and Rstudio using these
@@ -460,10 +465,10 @@ on your machine.&lt;/p&gt;
 
     <item>
       <title>My R-bloggers post</title>
-      <link>/post/2018-10-18-my-r-bloggers-post/</link>
+      <link>https://mikewk.com/post/2018-10-18-my-r-bloggers-post/</link>
       <pubDate>Thu, 18 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018-10-18-my-r-bloggers-post/</guid>
+      <guid>https://mikewk.com/post/2018-10-18-my-r-bloggers-post/</guid>
       <description>
 
 
@@ -491,7 +496,7 @@ explanation straight from R-bloggers’
 &lt;a href=&#34;https://www.r-bloggers.com/about/&#34;&gt;about section&lt;/a&gt;:&lt;/p&gt;
 &lt;figure&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img style=&#34;max-width:600px&#34; src=&#34;/img/r-bloggers-what.png&#34; &gt;
+&lt;img style=&#34;max-width:600px&#34; src=&#34;https://mikewk.com/img/r-bloggers-what.png&#34; &gt;
 &lt;/p&gt;
 &lt;figcaption&gt;
 Figure: Screen shot of R-bloggers description/operation
@@ -500,7 +505,7 @@ Figure: Screen shot of R-bloggers description/operation
 &lt;p&gt;And here’s the explanation of what R-bloggers offers to bloggers:&lt;/p&gt;
 &lt;figure&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img style=&#34;max-width:600px&#34; src=&#34;/img/r-bloggers-contribution.png&#34; &gt;
+&lt;img style=&#34;max-width:600px&#34; src=&#34;https://mikewk.com/img/r-bloggers-contribution.png&#34; &gt;
 &lt;/p&gt;
 &lt;figcaption&gt;
 Figure: Screen shot of R-bloggers contribution description
@@ -600,10 +605,10 @@ Twitter followers, etc.&lt;/p&gt;
 
     <item>
       <title>Labelling dataviz</title>
-      <link>/post/2018-09-20-labelling-dataviz/</link>
+      <link>https://mikewk.com/post/2018-09-20-labelling-dataviz/</link>
       <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018-09-20-labelling-dataviz/</guid>
+      <guid>https://mikewk.com/post/2018-09-20-labelling-dataviz/</guid>
       <description>
 
 
@@ -697,12 +702,12 @@ and great visualizations is labelling.&lt;/p&gt;
 &lt;p&gt;In my last post, for example, the first successful plot of &lt;code&gt;mpg&lt;/code&gt; by &lt;code&gt;cyl&lt;/code&gt; was
 only &lt;em&gt;okay&lt;/em&gt;–it’s a little bland and it uses an actual expression for an axis title.&lt;/p&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;/img/tick-marks.png&#34;&gt;
+&lt;img src=&#34;https://mikewk.com/img/tick-marks.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;But then I replaced the expression and added a custom theme and a few more labels,
 and I think it started to border on being &lt;em&gt;good&lt;/em&gt;.&lt;/p&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;/img/with-labs.png&#34;&gt;
+&lt;img src=&#34;https://mikewk.com/img/with-labs.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;The combination of style changes and labels clearly made a big difference but, still,
 I don’t think the above plot is mind-blowing or overly impressive.&lt;/p&gt;
@@ -734,7 +739,7 @@ mtcars %&amp;gt;%
   scale_fill_manual(values = c(&amp;quot;#efd0ef&amp;quot;, &amp;quot;#d0efd0&amp;quot;, &amp;quot;#d0daef&amp;quot;)) +
   my_save(&amp;quot;img/tick-marks-final.png&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;/img/tick-marks-final.png&#34;&gt;
+&lt;img src=&#34;https://mikewk.com/img/tick-marks-final.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;As you can see in the code chunk above, I also added some additional noise to
 the &lt;code&gt;cyl&lt;/code&gt; variable to help out &lt;code&gt;{ggrepel}&lt;/code&gt;’s spacing algorithm. The approach
@@ -756,10 +761,10 @@ generate some simple plots via &lt;code&gt;base::plot()&lt;/code&gt; and &lt;cod
 
     <item>
       <title>Tick marks, variable names, and ggplot2</title>
-      <link>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</link>
+      <link>https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/</link>
       <pubDate>Mon, 17 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</guid>
+      <guid>https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/</guid>
       <description>
 
 
@@ -919,7 +924,7 @@ mtcars %&amp;gt;%
 #&amp;gt; Warning: Removed 3 rows containing missing values (geom_point).
 #&amp;gt; Warning: Removed 3 rows containing missing values (geom_path).&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;/img/empty-plot.png&#34;&gt;
+&lt;img src=&#34;https://mikewk.com/img/empty-plot.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;The result is a handful of warnings and an empty plot. The above code fails
 because it tries to calculate mean of &lt;code&gt;mpg&lt;/code&gt;, which, again, doesn’t exist in the
@@ -937,7 +942,7 @@ mtcars %&amp;gt;%
   geom_line() + 
   my_save(&amp;quot;img/static-y.png&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;/img/static-y.png&#34;&gt;
+&lt;img src=&#34;https://mikewk.com/img/static-y.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;This time we get a plot and no warnings, but it’s clearly not right. It shows
 every &lt;code&gt;y&lt;/code&gt; value is exactly the same, but it seems far fetched to think the
@@ -984,7 +989,7 @@ mtcars %&amp;gt;%
   geom_line() + 
   my_save(&amp;quot;img/tick-marks.png&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;/img/tick-marks.png&#34;&gt;
+&lt;img src=&#34;https://mikewk.com/img/tick-marks.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;Of course, most audiences don’t really want to see expression text on a plot,
 so we can improve this plot by adding some better labels and a custom theme via
@@ -1000,7 +1005,7 @@ mtcars %&amp;gt;%
   my_labs() + 
   my_save(&amp;quot;img/with-labs.png&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;/img/with-labs.png&#34;&gt;
+&lt;img src=&#34;https://mikewk.com/img/with-labs.png&#34;&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;notes&#34; class=&#34;section level2&#34;&gt;
