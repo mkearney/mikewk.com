@@ -7,20 +7,18 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
-    <lastBuildDate>Sat, 20 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 23 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/tags/tidyverse/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Ten things to know beyond base R</title>
-      <link>/post/2019-04-20-ten-things-to-know-beyond-base-r/</link>
-      <pubDate>Sat, 20 Apr 2019 00:00:00 +0000</pubDate>
+      <title>Three things to know beyond base R</title>
+      <link>/post/2019-04-23-three-things-to-know-beyond-base-r/</link>
+      <pubDate>Tue, 23 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/2019-04-20-ten-things-to-know-beyond-base-r/</guid>
-      <description>1. The pipe The pipe refers to the %&amp;gt;% operator from the {magrittr} package.
-library(magrittr) It may seem complicated at first, but what the pipe does is actually quite simple. That is, it allows users to write linear code. To illustrate use of the pipe, consider the following code that takes the mean of the log of three numbers:
-mean(log(c(1, 3, 9))) #&amp;gt; [1] 1.098612 Notice how the numbers c(1, 3, 9) are nested inside the log() function, which is then nested inside the mean() function?</description>
+      <guid>/post/2019-04-23-three-things-to-know-beyond-base-r/</guid>
+      <description>I think it’s fair to say that most academics who learn about R do so in the process of training or applying quantitative research methods. As a consequence, knowledge of R among academics tends to be limited to core (base) R packages (R Core Team, 2018) and a small handful of speciality statistical packages, e.g., {lavaan}, {lme4}, {MASS}, {car}, etc. With this in mind, the goal of this post is to provide an overview of three things to know beyond base R.</description>
     </item>
     
   </channel>

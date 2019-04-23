@@ -1,0 +1,126 @@
+---
+title: "Three things to know beyond base R"
+author: kearneymw
+date: '2019-04-23'
+categories:
+  - rstats
+tags:
+  - R
+  - tidyverse
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE, 
+  comment = "#>", 
+  collapse = TRUE,
+  fig.show = "hide"
+)
+options(tibble.print_min = 5)
+options(tibble.print_max = 5)
+```
+
+I think it's fair to say that most academics who learn about R do so in the process of training or applying quantitative research methods. As a consequence, knowledge of R among academics tends to be limited to core (base) R packages (R Core Team, 2018) and a small handful of speciality statistical packages, e.g., {lavaan}, {lme4}, {MASS}, {car}, etc. With this in mind, the goal of this post is to provide an overview of three things to know beyond base R.
+
+A more appropriate title for this post could be, "A quick introduction to the tidyverse," as all of the following things to know beyond base R come from the [{tidyverse}](https://tidyverse.org)–a collection of high-powered, consistent, and easy-to-use packages developed by a number of thoughtful and talented R developers. But users don't need to know know everything about the tidyverse to reap the benefits of it. However, if you're interested in a more formal/thorough introduction to the tidyverse, I would strongly encourage you to checkout [R for Data Science by Garrett Groleman and Hadley Wickham](https://r4ds.had.co.nz/).
+
+## 1. The pipe
+
+The first thing to know beyond base R is **the pipe**. The _pipe_ refers to the `%>%` operator from the [{magrittr}](https://magrittr.tidyverse.org) package.
+
+```{r}
+library(magrittr)
+```
+
+It may seem complicated at first, but what the pipe does is actually quite simple. That is, **it allows users to write linear code**. To illustrate use of the pipe, consider the following code that takes the mean of the log of three numbers:
+
+```{r}
+mean(log(c(1, 3, 9)))
+```
+
+Notice how the numbers `c(1, 3, 9)` are nested inside `log()`, which is then nested inside `mean()`? If you're reading the code from left-to-right, it means the _functions are performed in reverse order from how they are written_. If we broke the code down into its three functions, we would actually expect the order of operations to proceed as follows:
+
+1. Concacenate numbers into vector `c(...)`
+1. Log the numeric vector `log(...)`
+1. Estimate the mean of the logged numeric vector `mean(...)`
+
+With this order in mind, now consider the following _piped code_, which takes a numeric vector `c(1, 3, 9)`, calculates the `log()`, and then estimates the `mean()`. Hopefully you notice that, in contrast to the nested code above, the code below is linear; in other words, the code appears in the same order (moving from left to right) as the operations are performed.
+
+```{r}
+c(1, 3, 9) %>% log() %>% mean()
+```
+
+As a convention designed to make piped code even _easier_ to read, users are encouraged to place each piped statement on its own line. So the code above should be rewritten as follows:
+
+```{r}
+c(1, 3, 9) %>%
+  log() %>%
+  mean()
+```
+
+
+## 2. The tibble
+
+R is my favorite programming language because nearly everyone who uses it either works with **data frames** or is extremely familiar with them. With all of the use and attention, it is hardly surprising that there would be some improvements to the traditional `data.frame`, which is why **the tibble** is the second thing to know beyond base R. The _tibble_ refers to a data frame-like class produced by the [{tibble}](https://tibble.tidyverse.org) package. Tibbles (class `tbl_df`) are essentially a special variant of data frames that have desirable properties for printing and joining. And because they also inherit the `data.frame` class, they also behave like data frames 99.9% (and, seriously, I wouldn't worry about the 0.1%).
+
+As the code illustrates below, it's easy to convert nearly any data frame into a tibble via `tibble::as_tibble()`:
+
+```{r}
+(mtcars <- tibble::as_tibble(mtcars))
+```
+
+It's also possible to create tibbles directly via `tibble::tibble(...)`, e.g.,
+
+```{r}
+tibble::tibble(
+  x = rnorm(100),
+  y = rnorm(100),
+  z = sample(letters, 100, replace = TRUE)
+)
+```
+
+You hopefully noticed in the printing of the two previous code chunks that tibbles print out a lot prettier than normal data frames. Each observations is limited to a single line (no horizontal scrolling or wrapping). Not all rows are printed by default. And the printout also includes meta information about the classes of variables and the number of rows and columns and in the data set.
+
+If you were really paying attention, you may have also noticed the `z` variable in the tibble built from scratch was stored (by default) as a `character` vector and not a `factor`. This is another important difference in tibbles compared to data frames. Tibbles are lazy, which is this case is useful for avoiding join or mutate errors later on related to a limited set of observed factor levels.
+
+## 3. Select, filter, arrange, and mutate
+
+If I could only use one package beyond base R, it'd probably be [{dplyr}](https://dplyr.tidyverse.org), which is why key **dplyr** functions are the third thing to learn beyond base R. Compared to base R, the beauty of these {dplyr} functions is that they feature consistent design principles, easily work with non-standard evaluation (i.e., you don't have to put quotes around variable names), and even leverage c++ behind the scenes for improved performance.
+
+{dplyr} has [tons of useful features](https://dplyr.tidyverse.org/reference/index.html), but its fundamental building blocks allow users to **select columns**,
+
+```{r}
+dplyr::select(mtcars, cyl, wt, mpg, gear)
+```
+
+**mutate columns** (i.e., transform, add),
+
+```{r}
+mtcars %>%
+  dplyr::mutate(mpg_per_cyl = mpg / cyl,
+    car = row.names(datasets::mtcars)) %>%
+  dplyr::select(car, mpg, cyl, mpg_per_cyl)
+```
+
+**filter rows**,
+
+```{r}
+dplyr::filter(mtcars, cyl == 4, mpg >= 10)
+```
+
+and **arrange rows**.
+
+```{r}
+dplyr::arrange(mtcars, dplyr::desc(mpg))
+```
+
+Chain these {dplyr} functions together with the pipe operator `%>%` to achieve linear/tidyverse-style coding excellence.
+
+```{r}
+mtcars %>%
+  dplyr::filter(gear == 4) %>%
+  dplyr::mutate(wt_mpg = wt / mpg) %>%
+  dplyr::select(cyl, wt, mpg, wt_mpg) %>%
+  dplyr::arrange(wt_mpg)
+```
+

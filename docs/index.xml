@@ -1,23 +1,158 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Michael W. Kearney</title>
-    <link>https://mikewk.com/</link>
+    <link>/</link>
     <description>Recent content on Michael W. Kearney</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
-    <lastBuildDate>Wed, 10 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 23 Apr 2019 00:00:00 +0000</lastBuildDate>
     
-        <atom:link href="https://mikewk.com/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     
     
 
     <item>
+      <title>Three things to know beyond base R</title>
+      <link>/post/2019-04-23-three-things-to-know-beyond-base-r/</link>
+      <pubDate>Tue, 23 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2019-04-23-three-things-to-know-beyond-base-r/</guid>
+      <description>
+
+
+&lt;p&gt;I think it’s fair to say that most academics who learn about R do so in the process of training or applying quantitative research methods. As a consequence, knowledge of R among academics tends to be limited to core (base) R packages (R Core Team, 2018) and a small handful of speciality statistical packages, e.g., {lavaan}, {lme4}, {MASS}, {car}, etc. With this in mind, the goal of this post is to provide an overview of three things to know beyond base R.&lt;/p&gt;
+&lt;p&gt;A more appropriate title for this post could be, “A quick introduction to the tidyverse,” as all of the following things to know beyond base R come from the &lt;a href=&#34;https://tidyverse.org&#34;&gt;{tidyverse}&lt;/a&gt;–a collection of high-powered, consistent, and easy-to-use packages developed by a number of thoughtful and talented R developers. But users don’t need to know know everything about the tidyverse to reap the benefits of it. However, if you’re interested in a more formal/thorough introduction to the tidyverse, I would strongly encourage you to checkout &lt;a href=&#34;https://r4ds.had.co.nz/&#34;&gt;R for Data Science by Garrett Groleman and Hadley Wickham&lt;/a&gt;.&lt;/p&gt;
+&lt;div id=&#34;the-pipe&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;1. The pipe&lt;/h2&gt;
+&lt;p&gt;The first thing to know beyond base R is &lt;strong&gt;the pipe&lt;/strong&gt;. The &lt;em&gt;pipe&lt;/em&gt; refers to the &lt;code&gt;%&amp;gt;%&lt;/code&gt; operator from the &lt;a href=&#34;https://magrittr.tidyverse.org&#34;&gt;{magrittr}&lt;/a&gt; package.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;library(magrittr)&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It may seem complicated at first, but what the pipe does is actually quite simple. That is, &lt;strong&gt;it allows users to write linear code&lt;/strong&gt;. To illustrate use of the pipe, consider the following code that takes the mean of the log of three numbers:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mean(log(c(1, 3, 9)))
+#&amp;gt; [1] 1.098612&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Notice how the numbers &lt;code&gt;c(1, 3, 9)&lt;/code&gt; are nested inside &lt;code&gt;log()&lt;/code&gt;, which is then nested inside &lt;code&gt;mean()&lt;/code&gt;? If you’re reading the code from left-to-right, it means the &lt;em&gt;functions are performed in reverse order from how they are written&lt;/em&gt;. If we broke the code down into its three functions, we would actually expect the order of operations to proceed as follows:&lt;/p&gt;
+&lt;ol style=&#34;list-style-type: decimal&#34;&gt;
+&lt;li&gt;Concacenate numbers into vector &lt;code&gt;c(...)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Log the numeric vector &lt;code&gt;log(...)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Estimate the mean of the logged numeric vector &lt;code&gt;mean(...)&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;With this order in mind, now consider the following &lt;em&gt;piped code&lt;/em&gt;, which takes a numeric vector &lt;code&gt;c(1, 3, 9)&lt;/code&gt;, calculates the &lt;code&gt;log()&lt;/code&gt;, and then estimates the &lt;code&gt;mean()&lt;/code&gt;. Hopefully you notice that, in contrast to the nested code above, the code below is linear; in other words, the code appears in the same order (moving from left to right) as the operations are performed.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;c(1, 3, 9) %&amp;gt;% log() %&amp;gt;% mean()
+#&amp;gt; [1] 1.098612&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As a convention designed to make piped code even &lt;em&gt;easier&lt;/em&gt; to read, users are encouraged to place each piped statement on its own line. So the code above should be rewritten as follows:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;c(1, 3, 9) %&amp;gt;%
+  log() %&amp;gt;%
+  mean()
+#&amp;gt; [1] 1.098612&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;the-tibble&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;2. The tibble&lt;/h2&gt;
+&lt;p&gt;R is my favorite programming language because nearly everyone who uses it either works with &lt;strong&gt;data frames&lt;/strong&gt; or is extremely familiar with them. With all of the use and attention, it is hardly surprising that there would be some improvements to the traditional &lt;code&gt;data.frame&lt;/code&gt;, which is why &lt;strong&gt;the tibble&lt;/strong&gt; is the second thing to know beyond base R. The &lt;em&gt;tibble&lt;/em&gt; refers to a data frame-like class produced by the &lt;a href=&#34;https://tibble.tidyverse.org&#34;&gt;{tibble}&lt;/a&gt; package. Tibbles (class &lt;code&gt;tbl_df&lt;/code&gt;) are essentially a special variant of data frames that have desirable properties for printing and joining. And because they also inherit the &lt;code&gt;data.frame&lt;/code&gt; class, they also behave like data frames 99.9% (and, seriously, I wouldn’t worry about the 0.1%).&lt;/p&gt;
+&lt;p&gt;As the code illustrates below, it’s easy to convert nearly any data frame into a tibble via &lt;code&gt;tibble::as_tibble()&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;(mtcars &amp;lt;- tibble::as_tibble(mtcars))
+#&amp;gt; # A tibble: 32 x 11
+#&amp;gt;     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+#&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
+#&amp;gt; 1  21       6   160   110  3.9   2.62  16.5     0     1     4     4
+#&amp;gt; 2  21       6   160   110  3.9   2.88  17.0     0     1     4     4
+#&amp;gt; 3  22.8     4   108    93  3.85  2.32  18.6     1     1     4     1
+#&amp;gt; 4  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1
+#&amp;gt; 5  18.7     8   360   175  3.15  3.44  17.0     0     0     3     2
+#&amp;gt; # … with 27 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It’s also possible to create tibbles directly via &lt;code&gt;tibble::tibble(...)&lt;/code&gt;, e.g.,&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;tibble::tibble(
+  x = rnorm(100),
+  y = rnorm(100),
+  z = sample(letters, 100, replace = TRUE)
+)
+#&amp;gt; # A tibble: 100 x 3
+#&amp;gt;        x      y z    
+#&amp;gt;    &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;
+#&amp;gt; 1 -0.361 -1.39  o    
+#&amp;gt; 2 -0.496  1.60  b    
+#&amp;gt; 3  1.07  -0.568 z    
+#&amp;gt; 4 -0.818  0.874 y    
+#&amp;gt; 5 -0.529  0.109 o    
+#&amp;gt; # … with 95 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;You hopefully noticed in the printing of the two previous code chunks that tibbles print out a lot prettier than normal data frames. Each observations is limited to a single line (no horizontal scrolling or wrapping). Not all rows are printed by default. And the printout also includes meta information about the classes of variables and the number of rows and columns and in the data set.&lt;/p&gt;
+&lt;p&gt;If you were really paying attention, you may have also noticed the &lt;code&gt;z&lt;/code&gt; variable in the tibble built from scratch was stored (by default) as a &lt;code&gt;character&lt;/code&gt; vector and not a &lt;code&gt;factor&lt;/code&gt;. This is another important difference in tibbles compared to data frames. Tibbles are lazy, which is this case is useful for avoiding join or mutate errors later on related to a limited set of observed factor levels.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id=&#34;select-filter-arrange-and-mutate&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;3. Select, filter, arrange, and mutate&lt;/h2&gt;
+&lt;p&gt;If I could only use one package beyond base R, it’d probably be &lt;a href=&#34;https://dplyr.tidyverse.org&#34;&gt;{dplyr}&lt;/a&gt;, which is why key &lt;strong&gt;dplyr&lt;/strong&gt; functions are the third thing to learn beyond base R. Compared to base R, the beauty of these {dplyr} functions is that they feature consistent design principles, easily work with non-standard evaluation (i.e., you don’t have to put quotes around variable names), and even leverage c++ behind the scenes for improved performance.&lt;/p&gt;
+&lt;p&gt;{dplyr} has &lt;a href=&#34;https://dplyr.tidyverse.org/reference/index.html&#34;&gt;tons of useful features&lt;/a&gt;, but its fundamental building blocks allow users to &lt;strong&gt;select columns&lt;/strong&gt;,&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dplyr::select(mtcars, cyl, wt, mpg, gear)
+#&amp;gt; # A tibble: 32 x 4
+#&amp;gt;     cyl    wt   mpg  gear
+#&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
+#&amp;gt; 1     6  2.62  21       4
+#&amp;gt; 2     6  2.88  21       4
+#&amp;gt; 3     4  2.32  22.8     4
+#&amp;gt; 4     6  3.22  21.4     3
+#&amp;gt; 5     8  3.44  18.7     3
+#&amp;gt; # … with 27 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;mutate columns&lt;/strong&gt; (i.e., transform, add),&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars %&amp;gt;%
+  dplyr::mutate(mpg_per_cyl = mpg / cyl,
+    car = row.names(datasets::mtcars)) %&amp;gt;%
+  dplyr::select(car, mpg, cyl, mpg_per_cyl)
+#&amp;gt; # A tibble: 32 x 4
+#&amp;gt;   car                 mpg   cyl mpg_per_cyl
+#&amp;gt;   &amp;lt;chr&amp;gt;             &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;       &amp;lt;dbl&amp;gt;
+#&amp;gt; 1 Mazda RX4          21       6        3.5 
+#&amp;gt; 2 Mazda RX4 Wag      21       6        3.5 
+#&amp;gt; 3 Datsun 710         22.8     4        5.7 
+#&amp;gt; 4 Hornet 4 Drive     21.4     6        3.57
+#&amp;gt; 5 Hornet Sportabout  18.7     8        2.34
+#&amp;gt; # … with 27 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;strong&gt;filter rows&lt;/strong&gt;,&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dplyr::filter(mtcars, cyl == 4, mpg &amp;gt;= 10)
+#&amp;gt; # A tibble: 11 x 11
+#&amp;gt;     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+#&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
+#&amp;gt; 1  22.8     4 108      93  3.85  2.32  18.6     1     1     4     1
+#&amp;gt; 2  24.4     4 147.     62  3.69  3.19  20       1     0     4     2
+#&amp;gt; 3  22.8     4 141.     95  3.92  3.15  22.9     1     0     4     2
+#&amp;gt; 4  32.4     4  78.7    66  4.08  2.2   19.5     1     1     4     1
+#&amp;gt; 5  30.4     4  75.7    52  4.93  1.62  18.5     1     1     4     2
+#&amp;gt; # … with 6 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;and &lt;strong&gt;arrange rows&lt;/strong&gt;.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;dplyr::arrange(mtcars, dplyr::desc(mpg))
+#&amp;gt; # A tibble: 32 x 11
+#&amp;gt;     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
+#&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
+#&amp;gt; 1  33.9     4  71.1    65  4.22  1.84  19.9     1     1     4     1
+#&amp;gt; 2  32.4     4  78.7    66  4.08  2.2   19.5     1     1     4     1
+#&amp;gt; 3  30.4     4  75.7    52  4.93  1.62  18.5     1     1     4     2
+#&amp;gt; 4  30.4     4  95.1   113  3.77  1.51  16.9     1     1     5     2
+#&amp;gt; 5  27.3     4  79      66  4.08  1.94  18.9     1     1     4     1
+#&amp;gt; # … with 27 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Chain these {dplyr} functions together with the pipe operator &lt;code&gt;%&amp;gt;%&lt;/code&gt; to achieve linear/tidyverse-style coding excellence.&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;mtcars %&amp;gt;%
+  dplyr::filter(gear == 4) %&amp;gt;%
+  dplyr::mutate(wt_mpg = wt / mpg) %&amp;gt;%
+  dplyr::select(cyl, wt, mpg, wt_mpg) %&amp;gt;%
+  dplyr::arrange(wt_mpg)
+#&amp;gt; # A tibble: 12 x 4
+#&amp;gt;     cyl    wt   mpg wt_mpg
+#&amp;gt;   &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;  &amp;lt;dbl&amp;gt;
+#&amp;gt; 1     4  1.62  30.4 0.0531
+#&amp;gt; 2     4  1.84  33.9 0.0541
+#&amp;gt; 3     4  2.2   32.4 0.0679
+#&amp;gt; 4     4  1.94  27.3 0.0709
+#&amp;gt; 5     4  2.32  22.8 0.102 
+#&amp;gt; # … with 7 more rows&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+
+    <item>
       <title>Faster code with Rcpp</title>
-      <link>https://mikewk.com/post/2019-04-10-faster-code-with-rcpp/</link>
+      <link>/post/2019-04-10-faster-code-with-rcpp/</link>
       <pubDate>Wed, 10 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://mikewk.com/post/2019-04-10-faster-code-with-rcpp/</guid>
+      <guid>/post/2019-04-10-faster-code-with-rcpp/</guid>
       <description>
 
 
@@ -228,7 +363,7 @@ bench:::autoplot.bench_mark(m, shape = 21, size = 2.5, color = &amp;quot;#333333
   ggplot2::ggsave(here::here(&amp;quot;content&amp;quot;, &amp;quot;post&amp;quot;, &amp;quot;img&amp;quot;, &amp;quot;network-benchmark.png&amp;quot;),
     width = 7, height = 4, units = &amp;quot;in&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;https://mikewk.com/img/network-benchmark.png&#34;&gt;
+&lt;img src=&#34;/img/network-benchmark.png&#34;&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;notes&#34; class=&#34;section level2&#34;&gt;
@@ -246,10 +381,10 @@ d &amp;lt;- dplyr::select(d, user_id, mentions_user_id)&lt;/code&gt;&lt;/pre&gt;
 
     <item>
       <title>Installing R and Studio</title>
-      <link>https://mikewk.com/post/2018-10-19-installing-r-and-studio/</link>
+      <link>/post/2018-10-19-installing-r-and-studio/</link>
       <pubDate>Fri, 19 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://mikewk.com/post/2018-10-19-installing-r-and-studio/</guid>
+      <guid>/post/2018-10-19-installing-r-and-studio/</guid>
       <description>
 
 
@@ -272,14 +407,14 @@ Consequently, you’ll need to install &lt;em&gt;both&lt;/em&gt; R &lt;em&gt;and
 computing language/environment:&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;Go to the CRAN (Collective R Archive Network) website: &lt;a href=&#34;https://cran.r-project.org/&#34; class=&#34;uri&#34;&gt;https://cran.r-project.org/&lt;/a&gt;
-&lt;img src=&#39;https://mikewk.com/img/install-r2.png&#39;&gt;&lt;/li&gt;
+&lt;img src=&#39;/img/install-r2.png&#39;&gt;&lt;/li&gt;
 &lt;li&gt;Click on the appropriate operating system (Mac or Windows) to navigate to download page.&lt;/li&gt;
 &lt;li&gt;Download the most recent version of R.
 &lt;ul&gt;
 &lt;li&gt;If Mac, select the first &lt;code&gt;.pkg&lt;/code&gt; file listed in the “files” section. At time of writing, this is version &lt;strong&gt;&lt;code&gt;R-3.5.1.pkg&lt;/code&gt;&lt;/strong&gt;.
-&lt;img src=&#39;https://mikewk.com/img/install-r-mac.png&#39;&gt;&lt;/li&gt;
+&lt;img src=&#39;/img/install-r-mac.png&#39;&gt;&lt;/li&gt;
 &lt;li&gt;If Windows, select the bold, underline link written as &lt;strong&gt;‘install R for the first time’&lt;/strong&gt;.
-&lt;img src=&#39;https://mikewk.com/img/install-r-windows.png&#39;&gt;&lt;/li&gt;
+&lt;img src=&#39;/img/install-r-windows.png&#39;&gt;&lt;/li&gt;
 &lt;/ul&gt;&lt;/li&gt;
 &lt;li&gt;Double click (run) the downloaded file (check your &lt;code&gt;Downloads&lt;/code&gt; folder). Click yes through prompts to install like any other program (default values should be okay). You &lt;em&gt;may&lt;/em&gt; get a warning about the source of the download being unkown. Do whatever you can to allow the installation to continue—I promise the R pkg file is safe!&lt;/li&gt;
 &lt;/ol&gt;
@@ -293,7 +428,7 @@ automatically call and allow interactive use of R.&lt;/p&gt;
 &lt;ol style=&#34;list-style-type: decimal&#34;&gt;
 &lt;li&gt;Go to the free download location on Rstudio’s website: &lt;a href=&#34;https://www.rstudio.com/products/rstudio/download/#download&#34; class=&#34;uri&#34;&gt;https://www.rstudio.com/products/rstudio/download/#download&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;Select one of the highlighted options that corresponds with your computer’s operating system (Mac or PC)
-&lt;img src=&#39;https://mikewk.com/img/install-rstudio2.png&#39;&gt;&lt;/li&gt;
+&lt;img src=&#39;/img/install-rstudio2.png&#39;&gt;&lt;/li&gt;
 &lt;li&gt;Double (run) click the downloaded file (check &lt;code&gt;Downloads&lt;/code&gt; folder). Click yes through prompts to install like any other program (the defaults should be fine). You may get a warning about the source of the download being unkown. Do whatever you can to allow the installation to continue—I promise the R pkg file is safe!&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;For an actual demonstration of installing R and Rstudio using these
@@ -325,10 +460,10 @@ on your machine.&lt;/p&gt;
 
     <item>
       <title>My R-bloggers post</title>
-      <link>https://mikewk.com/post/2018-10-18-my-r-bloggers-post/</link>
+      <link>/post/2018-10-18-my-r-bloggers-post/</link>
       <pubDate>Thu, 18 Oct 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://mikewk.com/post/2018-10-18-my-r-bloggers-post/</guid>
+      <guid>/post/2018-10-18-my-r-bloggers-post/</guid>
       <description>
 
 
@@ -356,7 +491,7 @@ explanation straight from R-bloggers’
 &lt;a href=&#34;https://www.r-bloggers.com/about/&#34;&gt;about section&lt;/a&gt;:&lt;/p&gt;
 &lt;figure&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img style=&#34;max-width:600px&#34; src=&#34;https://mikewk.com/img/r-bloggers-what.png&#34; &gt;
+&lt;img style=&#34;max-width:600px&#34; src=&#34;/img/r-bloggers-what.png&#34; &gt;
 &lt;/p&gt;
 &lt;figcaption&gt;
 Figure: Screen shot of R-bloggers description/operation
@@ -365,7 +500,7 @@ Figure: Screen shot of R-bloggers description/operation
 &lt;p&gt;And here’s the explanation of what R-bloggers offers to bloggers:&lt;/p&gt;
 &lt;figure&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img style=&#34;max-width:600px&#34; src=&#34;https://mikewk.com/img/r-bloggers-contribution.png&#34; &gt;
+&lt;img style=&#34;max-width:600px&#34; src=&#34;/img/r-bloggers-contribution.png&#34; &gt;
 &lt;/p&gt;
 &lt;figcaption&gt;
 Figure: Screen shot of R-bloggers contribution description
@@ -465,10 +600,10 @@ Twitter followers, etc.&lt;/p&gt;
 
     <item>
       <title>Labelling dataviz</title>
-      <link>https://mikewk.com/post/2018-09-20-labelling-dataviz/</link>
+      <link>/post/2018-09-20-labelling-dataviz/</link>
       <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://mikewk.com/post/2018-09-20-labelling-dataviz/</guid>
+      <guid>/post/2018-09-20-labelling-dataviz/</guid>
       <description>
 
 
@@ -562,12 +697,12 @@ and great visualizations is labelling.&lt;/p&gt;
 &lt;p&gt;In my last post, for example, the first successful plot of &lt;code&gt;mpg&lt;/code&gt; by &lt;code&gt;cyl&lt;/code&gt; was
 only &lt;em&gt;okay&lt;/em&gt;–it’s a little bland and it uses an actual expression for an axis title.&lt;/p&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;https://mikewk.com/img/tick-marks.png&#34;&gt;
+&lt;img src=&#34;/img/tick-marks.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;But then I replaced the expression and added a custom theme and a few more labels,
 and I think it started to border on being &lt;em&gt;good&lt;/em&gt;.&lt;/p&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;https://mikewk.com/img/with-labs.png&#34;&gt;
+&lt;img src=&#34;/img/with-labs.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;The combination of style changes and labels clearly made a big difference but, still,
 I don’t think the above plot is mind-blowing or overly impressive.&lt;/p&gt;
@@ -599,7 +734,7 @@ mtcars %&amp;gt;%
   scale_fill_manual(values = c(&amp;quot;#efd0ef&amp;quot;, &amp;quot;#d0efd0&amp;quot;, &amp;quot;#d0daef&amp;quot;)) +
   my_save(&amp;quot;img/tick-marks-final.png&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;https://mikewk.com/img/tick-marks-final.png&#34;&gt;
+&lt;img src=&#34;/img/tick-marks-final.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;As you can see in the code chunk above, I also added some additional noise to
 the &lt;code&gt;cyl&lt;/code&gt; variable to help out &lt;code&gt;{ggrepel}&lt;/code&gt;’s spacing algorithm. The approach
@@ -621,10 +756,10 @@ generate some simple plots via &lt;code&gt;base::plot()&lt;/code&gt; and &lt;cod
 
     <item>
       <title>Tick marks, variable names, and ggplot2</title>
-      <link>https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/</link>
+      <link>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</link>
       <pubDate>Mon, 17 Sep 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/</guid>
+      <guid>/post/2018-09-17-tick-marks-var-names-and-ggplot2/</guid>
       <description>
 
 
@@ -784,7 +919,7 @@ mtcars %&amp;gt;%
 #&amp;gt; Warning: Removed 3 rows containing missing values (geom_point).
 #&amp;gt; Warning: Removed 3 rows containing missing values (geom_path).&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;https://mikewk.com/img/empty-plot.png&#34;&gt;
+&lt;img src=&#34;/img/empty-plot.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;The result is a handful of warnings and an empty plot. The above code fails
 because it tries to calculate mean of &lt;code&gt;mpg&lt;/code&gt;, which, again, doesn’t exist in the
@@ -802,7 +937,7 @@ mtcars %&amp;gt;%
   geom_line() + 
   my_save(&amp;quot;img/static-y.png&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;https://mikewk.com/img/static-y.png&#34;&gt;
+&lt;img src=&#34;/img/static-y.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;This time we get a plot and no warnings, but it’s clearly not right. It shows
 every &lt;code&gt;y&lt;/code&gt; value is exactly the same, but it seems far fetched to think the
@@ -849,7 +984,7 @@ mtcars %&amp;gt;%
   geom_line() + 
   my_save(&amp;quot;img/tick-marks.png&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;https://mikewk.com/img/tick-marks.png&#34;&gt;
+&lt;img src=&#34;/img/tick-marks.png&#34;&gt;
 &lt;/p&gt;
 &lt;p&gt;Of course, most audiences don’t really want to see expression text on a plot,
 so we can improve this plot by adding some better labels and a custom theme via
@@ -865,7 +1000,7 @@ mtcars %&amp;gt;%
   my_labs() + 
   my_save(&amp;quot;img/with-labs.png&amp;quot;)&lt;/code&gt;&lt;/pre&gt;
 &lt;p style=&#34;align:center&#34;&gt;
-&lt;img src=&#34;https://mikewk.com/img/with-labs.png&#34;&gt;
+&lt;img src=&#34;/img/with-labs.png&#34;&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;div id=&#34;notes&#34; class=&#34;section level2&#34;&gt;
