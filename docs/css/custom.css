@@ -338,3 +338,67 @@ font-weight: bold;
 .post-entry .post-summary {
   max-width: 1000px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pre {
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0 2px 3px 1px,
+    rgba(0, 0, 0, 0.1) 0 1px 3px 1px,
+    rgba(0, 0, 0, 0.2) 0 1px 1px -1px;
+  font-size: .75em;
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.33em;
+  font-family: "Fira Code", Consolas, Monaco, Menlo, Inconsolata, monospace;
+}
+div.sourceCode {
+  overflow: visible;
+}
+pre.sourceCode {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+code span.co, .co {
+  color: #828f96;
+}
+
+code span.ot, .ot {
+  color: #ddaa00;
+}
+
+
+
+.post-content blockquote {
+  box-shadow:
+    rgba(0, 0, 0, 0.1) 0 2px 3px 1px,
+    rgba(0, 0, 0, 0.1) 0 1px 3px 1px,
+    rgba(0, 0, 0, 0.2) 0 1px 1px -1px;
+    background-color: #f3f4f5;
+    border-left: 0px solid #dbdbdb;
+    padding: .0125em 1rem;
+    margin: 2rem 0;
+    color: #666;
+}
+
+.post-content blockquote strong {
+  font-weight: bold;
+  color: #555;
+}
+.post-content blockquote code {
+  color: #c69;
+}
