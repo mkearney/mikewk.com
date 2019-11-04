@@ -11,33 +11,8 @@
   </url>
   
   <url>
-    <loc>https://mikewk.com/categories/</loc>
-    <lastmod>2019-04-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://mikewk.com/</loc>
-    <lastmod>2019-04-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://mikewk.com/post/</loc>
-    <lastmod>2019-04-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://mikewk.com/tags/r/</loc>
-    <lastmod>2019-04-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://mikewk.com/tags/</loc>
-    <lastmod>2019-04-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
+    <loc>https://mikewk.com/post/2019-05-01-writing-r-package/</loc>
+    <lastmod>2019-05-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -46,26 +21,8 @@
   </url>
   
   <url>
-    <loc>https://mikewk.com/categories/rstats/</loc>
-    <lastmod>2019-04-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://mikewk.com/tags/tidyverse/</loc>
-    <lastmod>2019-04-23T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://mikewk.com/post/2019-04-10-faster-code-with-rcpp/</loc>
     <lastmod>2019-04-10T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://mikewk.com/tags/rcpp/</loc>
-    <lastmod>2019-04-10T00:00:00+00:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -74,20 +31,18 @@
   </url>
   
   <url>
-    <loc>https://mikewk.com/tags/rstudio/</loc>
-    <lastmod>2018-10-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://mikewk.com/tags/install/</loc>
-    <lastmod>2018-10-19T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://mikewk.com/post/2018-10-18-my-r-bloggers-post/</loc>
     <lastmod>2018-10-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikewk.com/post/2018-09-20-labelling-dataviz/</loc>
+    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/</loc>
+    <lastmod>2018-09-17T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -97,26 +52,14 @@
   </url>
   
   <url>
+    <loc>https://mikewk.com/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://mikewk.com/tags/data-scribers/</loc>
     <lastmod>2018-10-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://mikewk.com/tags/r-bloggers/</loc>
-    <lastmod>2018-10-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://mikewk.com/tags/rstats/</loc>
-    <lastmod>2018-10-18T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://mikewk.com/post/2018-09-20-labelling-dataviz/</loc>
-    <lastmod>2018-09-20T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -138,8 +81,69 @@
   </url>
   
   <url>
-    <loc>https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/</loc>
-    <lastmod>2018-09-17T00:00:00+00:00</lastmod>
+    <loc>https://mikewk.com/tags/install/</loc>
+    <lastmod>2018-10-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mikewk.com/</loc>
+    <lastmod>2019-05-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mikewk.com/post/</loc>
+    <lastmod>2019-05-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mikewk.com/tags/r/</loc>
+    <lastmod>2019-05-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mikewk.com/tags/r-bloggers/</loc>
+    <lastmod>2018-10-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mikewk.com/tags/rcpp/</loc>
+    <lastmod>2019-04-10T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mikewk.com/categories/rstats/</loc>
+    <lastmod>2019-05-01T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mikewk.com/tags/rstats/</loc>
+    <lastmod>2018-10-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mikewk.com/tags/rstudio/</loc>
+    <lastmod>2018-10-19T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mikewk.com/tags/</loc>
+    <lastmod>2018-10-18T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mikewk.com/tags/tidyverse/</loc>
+    <lastmod>2019-04-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
 </urlset>

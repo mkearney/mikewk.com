@@ -29,7 +29,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.55.3" />
+<meta name="generator" content="Hugo 0.40.1" />
 
 
 <link rel="canonical" href="https://mikewk.com/post/2019-04-10-faster-code-with-rcpp/" />
@@ -210,10 +210,7 @@
       <h1 class="post-title">Faster code with Rcpp</h1>
       <p class="post-meta">@kearneymw · Apr 10, 2019 · 6 min read</p>
     </header>
-    <article class="post-content">
-
-
-<p>Recently I was asked if I could add to <a href="https://rtweet.info">{rtweet}</a> some basic functions for converting Twitter data into network data objects. I thought this was a reasonable request and a good opportunity for me to learn more about network analysis. But the task of converting Twitter data into network-friendly objects is something that has, at least for me, been really <em>slow and inefficient</em>. So, for the past several weeks, I’ve been slowly working toward <em>what I think believe a simple but efficient solution</em>. Hence, the purpose of this blog post is to document what I’ve done.</p>
+    <article class="post-content"><p>Recently I was asked if I could add to <a href="https://rtweet.info">{rtweet}</a> some basic functions for converting Twitter data into network data objects. I thought this was a reasonable request and a good opportunity for me to learn more about network analysis. But the task of converting Twitter data into network-friendly objects is something that has, at least for me, been really <em>slow and inefficient</em>. So, for the past several weeks, I’ve been slowly working toward <em>what I think believe a simple but efficient solution</em>. Hence, the purpose of this blog post is to document what I’ve done.</p>
 <div id="the-problem" class="section level2">
 <h2>The problem</h2>
 <p>The ultimate task at issue is <em>converting Twitter data<sup>1</sup> into a network or network-friendly data object</em>. Thus, the immediate problem is <strong>quickly and efficiently unrolling the connections (e.g., <em>mentions</em>) <code>from</code> one user <code>to</code> zero or more other users</strong>. In other words, the problem is figure out how to convert this recursive data frame:</p>
@@ -444,12 +441,12 @@ d &lt;- dplyr::select(d, user_id, mentions_user_id)</code></pre>
       </ul>
       
       <p class="post-copyright">
-        © Michael W. Kearney 2018
+        © Michael W. Kearney 2018This post was published <strong>208</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     
       <div id="disqus_thread"></div>
-<script type="application/javascript">
+<script>
     var disqus_config = function () {
     
     
@@ -512,16 +509,12 @@ d &lt;- dplyr::select(d, user_id, mentions_user_id)</code></pre>
 <script src="https://mikewk.com/highlight/highlight.pack.js"></script>
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-	ga('create', 'UA-64959413-1', 'auto');
-	
-	ga('send', 'pageview');
-}
+<script>
+window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ga('create', 'UA-64959413-1', 'auto');
+ga('send', 'pageview');
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script async src='//www.google-analytics.com/analytics.js'></script>
 
 
 

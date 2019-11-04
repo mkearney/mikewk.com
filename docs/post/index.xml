@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
-    <lastBuildDate>Tue, 23 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 01 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://mikewk.com/post/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Write an R package from scratch to CRAN</title>
+      <link>https://mikewk.com/post/2019-05-01-writing-r-package/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mikewk.com/post/2019-05-01-writing-r-package/</guid>
+      <description>On the topic of how to write an R package, there are already several well-established tools (e.g., the {devtools} and {usethis} packages) and comprehensive guides (e.g., Writing R Extensions by R Core Team and R packages by Hadley Wickham). But the biggest obstacle to writing one’s first R package isn’t the availability of tools or comprehensive guides on the subject. It’s the perceived difficulty of it. Fortunately, there are several demystifying blog posts on the subject!</description>
+    </item>
     
     <item>
       <title>Three things to know beyond base R</title>

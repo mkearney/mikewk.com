@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Michael W. Kearney</title>
@@ -6,10 +7,112 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© Michael W. Kearney 2018</copyright>
-    <lastBuildDate>Tue, 23 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 01 May 2019 00:00:00 +0000</lastBuildDate>
     
         <atom:link href="https://mikewk.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+
+    <item>
+      <title>Write an R package from scratch to CRAN</title>
+      <link>https://mikewk.com/post/2019-05-01-writing-r-package/</link>
+      <pubDate>Wed, 01 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://mikewk.com/post/2019-05-01-writing-r-package/</guid>
+      <description>&lt;p&gt;On the topic of &lt;em&gt;how to write an R package&lt;/em&gt;, there are already several well-established tools (e.g., the &lt;a href=&#34;https://devtools.r-lib.org/&#34;&gt;{devtools}&lt;/a&gt; and &lt;a href=&#34;https://usethis.r-lib.org/&#34;&gt;{usethis}&lt;/a&gt; packages) and comprehensive guides (e.g., &lt;a href=&#34;https://cran.r-project.org/doc/manuals/r-release/R-exts.html&#34;&gt;Writing R Extensions by R Core Team&lt;/a&gt; and &lt;a href=&#34;http://r-pkgs.had.co.nz/&#34;&gt;R packages by Hadley Wickham&lt;/a&gt;). But &lt;strong&gt;the biggest obstacle to writing one’s first R package isn’t the availability of tools or comprehensive guides on the subject. It’s the perceived difficulty of it&lt;/strong&gt;. Fortunately, there are several demystifying blog posts on the subject!&lt;/p&gt;
+&lt;p&gt;One of the first (and probably most famous) posts is by &lt;a href=&#34;https://twitter.com/hspter&#34;&gt;Hilary Parker&lt;/a&gt;, who was nice enough to not only provide a timeless guide to writing an R package but also to identify, number, and title the exact steps in the process:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h3 id=&#34;writing-an-r-package-from-scratch-by-hilary-parker&#34;&gt;&lt;a href=&#34;https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/&#34;&gt;Writing an R package from Scratch&lt;/a&gt; by &lt;a href=&#34;https://twitter.com/hspter&#34;&gt;Hilary Parker&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Step 0&lt;/strong&gt;: Packages you will need &lt;code&gt;c(&#34;devtools&#34;, &#34;roxygen&#34;)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 1&lt;/strong&gt;: Create your package directory &lt;code&gt;create(&#34;cats&#34;)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 2&lt;/strong&gt;: Add functions &lt;code&gt;cat_fun &amp;lt;- function(...)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 3&lt;/strong&gt;: Add documentation &lt;code&gt;#&#39; @param&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 4&lt;/strong&gt;: Process your documentation &lt;code&gt;devtools::document()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 5&lt;/strong&gt;: Install! &lt;code&gt;devtools::install()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;These steps still hold up today, but like most things related to software development, they don’t incorporate the newest and best tools. For that, you can turn a post by &lt;a href=&#34;https://twitter.com/tomwestlake121&#34;&gt;Tomas Westlake&lt;/a&gt;, who provided an updated take on Hilary’s initial post, and, thankfully, also followed the aforementioned step-centric format:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h3 id=&#34;writing-an-r-package-from-scratch-by-tomas-westlake&#34;&gt;&lt;a href=&#34;https://r-mageddon.netlify.com/post/writing-an-r-package-from-scratch/&#34;&gt;Writing an R package from Scratch&lt;/a&gt; by &lt;a href=&#34;https://twitter.com/tomwestlake121&#34;&gt;Tomas Westlake&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Step 0&lt;/strong&gt;: Packages we need &lt;code&gt;c(&#34;devtools&#34;, &#34;roxygen2&#34;, &#34;usethis&#34;)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 1&lt;/strong&gt;: Creating the package &lt;code&gt;usethis::create_package()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 2&lt;/strong&gt;: Adding functions &lt;code&gt;usethis::use_r()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 3&lt;/strong&gt;: Adding function documentation &lt;code&gt;devtools::document()&lt;/code&gt; and &lt;code&gt;devtools::install()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 4&lt;/strong&gt;: Editing your Description &lt;code&gt;use_cc0_license(&#34;First Last&#34;)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 5&lt;/strong&gt;: Add package documentation &lt;code&gt;usethis::use_package_doc()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 6&lt;/strong&gt;: Adding a Git repo &lt;code&gt;usethis::use_git()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 7&lt;/strong&gt;: Uploading to GitHub &lt;code&gt;usethis::use_github()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 8&lt;/strong&gt;: Adding a Readme &lt;code&gt;usethis::use_readme_rmd()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Step 9&lt;/strong&gt;: Adding a logo &lt;code&gt;usethis::use_logo()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;In addition to these &lt;em&gt;step-by-step&lt;/em&gt;/&lt;em&gt;how-to&lt;/em&gt; posts on writing an R package, there is also a fantastic post by &lt;a href=&#34;https://twitter.com/hvitfeldt&#34;&gt;Emil Hvitfedt&lt;/a&gt; on the additional tasks associated with testing, documenting, and maintaining packages:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h3 id=&#34;usethis-workflow-for-package-development-by-emil-hvitfedt&#34;&gt;&lt;a href=&#34;https://www.hvitfeldt.me/blog/usethis-workflow-for-package-development/&#34;&gt;usethis workflow for package development&lt;/a&gt; by &lt;a href=&#34;https://twitter.com/hvitfeldt&#34;&gt;Emil Hvitfedt&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Before creation &lt;code&gt;available::available()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Creating minimal functional package &lt;code&gt;usethis::create_package()&lt;/code&gt; &lt;code&gt;usethis::use_git()&lt;/code&gt; &lt;code&gt;usethis::use_github()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;One time modifications &lt;code&gt;usethis::use_mit_license()&lt;/code&gt; &lt;code&gt;usethis::use_gpl3_license()&lt;/code&gt; &lt;code&gt;usethis::use_apl2_license()&lt;/code&gt; &lt;code&gt;usethis::use_cc0_license()&lt;/code&gt; &lt;code&gt;usethis::use_readme_rmd()&lt;/code&gt; &lt;code&gt;usethis::use_travis()&lt;/code&gt; &lt;code&gt;usethis::use_appveyor()&lt;/code&gt; &lt;code&gt;usethis::use_coverage(type = c(&#34;codecov&#34;))&lt;/code&gt; &lt;code&gt;use_testthat()&lt;/code&gt; &lt;code&gt;use_spell_check()&lt;/code&gt; &lt;code&gt;use_data_raw()&lt;/code&gt; &lt;code&gt;use_news_md()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Multiple time modifications &lt;code&gt;usr_r()&lt;/code&gt; &lt;code&gt;use_test(&#34;function_name&#34;)&lt;/code&gt; &lt;code&gt;use_package(&#34;dplyr&#34;)&lt;/code&gt; &lt;code&gt;use_vignette(&#34;How to do this cool analysis&#34;)&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Before every commit (restart, document, check)&lt;/li&gt;
+&lt;li&gt;Before every release &lt;code&gt;use_version()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;as well as an excellent bigger-picture post by &lt;a href=&#34;https://twitter.com/ma_salmon&#34;&gt;Maëlle Salmon&lt;/a&gt; about what goes into &lt;em&gt;good&lt;/em&gt; &lt;strong&gt;open-science&lt;/strong&gt; R packages:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;h3 id=&#34;how-to-develop-good-r-packages-for-open-science-by-maelle-salmon&#34;&gt;&lt;a href=&#34;https://masalmon.eu/2017/12/11/goodrpackages/&#34;&gt;How to develop good R packages (for open science)&lt;/a&gt; by &lt;a href=&#34;https://twitter.com/ma_salmon&#34;&gt;Maëlle Salmon&lt;/a&gt;&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Should your package even exist?&lt;/li&gt;
+&lt;li&gt;What should your package contain exactly?&lt;/li&gt;
+&lt;li&gt;What will your package be called?&lt;/li&gt;
+&lt;li&gt;Where should your package live?&lt;/li&gt;
+&lt;li&gt;How to check your package automatically&lt;/li&gt;
+&lt;li&gt;Bring the package to its users and get feedback&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;As far as going from 0-60 on writing an R package, it’s really tough to improve on these posts.&lt;/p&gt;
+&lt;div id=&#34;mwk&#34; class=&#34;section level2&#34;&gt;
+&lt;h2&gt;mwk&lt;/h2&gt;
+&lt;div id=&#34;step-0-required-packages&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Step 0: Required packages&lt;/h3&gt;
+&lt;p&gt;Make sure you have the following packages installed:&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;install.packages(c(&amp;quot;devtools&amp;quot;, &amp;quot;roxygen2&amp;quot;, &amp;quot;usethis&amp;quot;, &amp;quot;pkgdown&amp;quot;))&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-1-create&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Step 1: Create&lt;/h3&gt;
+&lt;p&gt;Create the package/directory&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;usethis::create_package()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Make it an R project&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;usethis::use_rstudio()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-2-description&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Step 2: DESCRIPTION&lt;/h3&gt;
+&lt;p&gt;Add a license&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;usethis::use_mit_license()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Add dependencies&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;usethis::use_package()
+usethis::use_pipe()&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div id=&#34;step-3-functiondata&#34; class=&#34;section level3&#34;&gt;
+&lt;h3&gt;Step 3: Function/data&lt;/h3&gt;
+&lt;p&gt;Add some functions and/or data&lt;/p&gt;
+&lt;pre class=&#34;r&#34;&gt;&lt;code&gt;usethis::use_fun()
+usethis::use_data()&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Make sure to document them, i.e., &lt;code&gt;#&#39; @param&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Step 4: Documentation &lt;code&gt;usethis::use_package_doc()&lt;/code&gt; &lt;code&gt;usethis::use_news_md()&lt;/code&gt; &lt;code&gt;usethis::use_readme_rmd()&lt;/code&gt; &lt;code&gt;usethis::use_vignette()&lt;/code&gt; &lt;code&gt;usethis::use_logo()&lt;/code&gt; &lt;code&gt;usethis::use_lifecycle_logo()&lt;/code&gt; &lt;code&gt;usethis::use_cran_logo()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Step 5: Build &lt;code&gt;devtools::document()&lt;/code&gt; &lt;code&gt;devtools::install()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Step 6: Tests &lt;code&gt;usethis::use_testthat()&lt;/code&gt; &lt;code&gt;usethis::use_test()&lt;/code&gt; &lt;code&gt;usethis::use_coverage(type = c(&#34;codecov&#34;))&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Step 7: Continuous-Integration &lt;code&gt;usethis::use_travis()&lt;/code&gt; &lt;code&gt;usethis::use_appveyor()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Step 8: Website &lt;code&gt;pkgdown::build_site()&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Step 9: Git/Github &lt;code&gt;usethis::use_git()&lt;/code&gt; &lt;code&gt;usethis::use_github()&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+</description>
+    </item>
     
 
     <item>
@@ -18,10 +121,7 @@
       <pubDate>Tue, 23 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://mikewk.com/post/2019-04-23-three-things-to-know-beyond-base-r/</guid>
-      <description>
-
-
-&lt;p&gt;I think it’s fair to say that most academics who learn about R do so in the process of training or applying quantitative research methods. As a consequence, knowledge of R among academics tends to be limited to core (base) R packages (R Core Team, 2018) and a small handful of speciality statistical packages, e.g., {lavaan}, {lme4}, {MASS}, {car}, etc. With this in mind, the goal of this post is to provide an overview of three things to know beyond base R.&lt;/p&gt;
+      <description>&lt;p&gt;I think it’s fair to say that most academics who learn about R do so in the process of training or applying quantitative research methods. As a consequence, knowledge of R among academics tends to be limited to core (base) R packages (R Core Team, 2018) and a small handful of speciality statistical packages, e.g., {lavaan}, {lme4}, {MASS}, {car}, etc. With this in mind, the goal of this post is to provide an overview of three things to know beyond base R.&lt;/p&gt;
 &lt;p&gt;A more appropriate title for this post could be, “A quick introduction to the tidyverse,” as all of the following things to know beyond base R come from the &lt;a href=&#34;https://tidyverse.org&#34;&gt;{tidyverse}&lt;/a&gt;–a collection of high-powered, consistent, and easy-to-use packages developed by a number of thoughtful and talented R developers, so this should really be considered an exceptionally brief introduction to parts of the tidyverse. But users don’t need to know know everything about the tidyverse to reap the benefits of it. However, if you’re interested in a more formal/thorough introduction to the tidyverse, I would strongly encourage you to checkout &lt;a href=&#34;https://r4ds.had.co.nz/&#34;&gt;R for Data Science by Garrett Groleman and Hadley Wickham&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;For those of you who still might be hestitant about moving beyond base R, consider the plot below, which shows the download counts of {tidyverse} packages compared to several well-known and highly-regarded statistical packages.&lt;/p&gt;
 &lt;p style=&#34;align:center&#34;&gt;
@@ -158,10 +258,7 @@
       <pubDate>Wed, 10 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://mikewk.com/post/2019-04-10-faster-code-with-rcpp/</guid>
-      <description>
-
-
-&lt;p&gt;Recently I was asked if I could add to &lt;a href=&#34;https://rtweet.info&#34;&gt;{rtweet}&lt;/a&gt; some basic functions for converting Twitter data into network data objects. I thought this was a reasonable request and a good opportunity for me to learn more about network analysis. But the task of converting Twitter data into network-friendly objects is something that has, at least for me, been really &lt;em&gt;slow and inefficient&lt;/em&gt;. So, for the past several weeks, I’ve been slowly working toward &lt;em&gt;what I think believe a simple but efficient solution&lt;/em&gt;. Hence, the purpose of this blog post is to document what I’ve done.&lt;/p&gt;
+      <description>&lt;p&gt;Recently I was asked if I could add to &lt;a href=&#34;https://rtweet.info&#34;&gt;{rtweet}&lt;/a&gt; some basic functions for converting Twitter data into network data objects. I thought this was a reasonable request and a good opportunity for me to learn more about network analysis. But the task of converting Twitter data into network-friendly objects is something that has, at least for me, been really &lt;em&gt;slow and inefficient&lt;/em&gt;. So, for the past several weeks, I’ve been slowly working toward &lt;em&gt;what I think believe a simple but efficient solution&lt;/em&gt;. Hence, the purpose of this blog post is to document what I’ve done.&lt;/p&gt;
 &lt;div id=&#34;the-problem&#34; class=&#34;section level2&#34;&gt;
 &lt;h2&gt;The problem&lt;/h2&gt;
 &lt;p&gt;The ultimate task at issue is &lt;em&gt;converting Twitter data&lt;sup&gt;1&lt;/sup&gt; into a network or network-friendly data object&lt;/em&gt;. Thus, the immediate problem is &lt;strong&gt;quickly and efficiently unrolling the connections (e.g., &lt;em&gt;mentions&lt;/em&gt;) &lt;code&gt;from&lt;/code&gt; one user &lt;code&gt;to&lt;/code&gt; zero or more other users&lt;/strong&gt;. In other words, the problem is figure out how to convert this recursive data frame:&lt;/p&gt;
@@ -390,10 +487,7 @@ d &amp;lt;- dplyr::select(d, user_id, mentions_user_id)&lt;/code&gt;&lt;/pre&gt;
       <pubDate>Fri, 19 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://mikewk.com/post/2018-10-19-installing-r-and-studio/</guid>
-      <description>
-
-
-&lt;p&gt;This post describes how to download and perform a basic local install of R
+      <description>&lt;p&gt;This post describes how to download and perform a basic local install of R
 and Rstudio. The instructions should work for both macOS and Windows users. Although
 not required, installation tends to work best when operating systems are
 up-to-date. At the time of writing, this means R/Rstudio work best with
@@ -469,10 +563,7 @@ on your machine.&lt;/p&gt;
       <pubDate>Thu, 18 Oct 2018 00:00:00 +0000</pubDate>
       
       <guid>https://mikewk.com/post/2018-10-18-my-r-bloggers-post/</guid>
-      <description>
-
-
-&lt;p&gt;I have long been a fan of &lt;a href=&#34;https://r-bloggers.com&#34;&gt;R-bloggers&lt;/a&gt;, a content
+      <description>&lt;p&gt;I have long been a fan of &lt;a href=&#34;https://r-bloggers.com&#34;&gt;R-bloggers&lt;/a&gt;, a content
 aggregating site focused on blog posts about R. It serves a useful
 purpose&lt;sup&gt;1&lt;/sup&gt; and has considerable reach.&lt;sup&gt;2&lt;/sup&gt; But in the first
 version of this blog post, I actually wrote a lengthy critique of the site where
@@ -609,10 +700,7 @@ Twitter followers, etc.&lt;/p&gt;
       <pubDate>Thu, 20 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://mikewk.com/post/2018-09-20-labelling-dataviz/</guid>
-      <description>
-
-
-&lt;p&gt;I still remember how hard it was to learn &lt;a href=&#34;https://ggplot2.tidyverse.org&#34;&gt;{ggplot2}&lt;/a&gt;
+      <description>&lt;p&gt;I still remember how hard it was to learn &lt;a href=&#34;https://ggplot2.tidyverse.org&#34;&gt;{ggplot2}&lt;/a&gt;
 after only knowing a little about R&lt;sup&gt;1&lt;/sup&gt;. Sure, the plots seemed pretty.
 But compared to the ways I had used R before, &lt;code&gt;{ggplot2}&lt;/code&gt;’s syntax seemed almost
 counter-intuitive. Its pipe-like &lt;code&gt;+&lt;/code&gt; workflow–building layer-by-layer–
@@ -765,10 +853,7 @@ generate some simple plots via &lt;code&gt;base::plot()&lt;/code&gt; and &lt;cod
       <pubDate>Mon, 17 Sep 2018 00:00:00 +0000</pubDate>
       
       <guid>https://mikewk.com/post/2018-09-17-tick-marks-var-names-and-ggplot2/</guid>
-      <description>
-
-
-&lt;p&gt;A popular workflow in R uses &lt;a href=&#34;https://dplyr.tidyverse.org&#34;&gt;{dplyr}&lt;/a&gt; to &lt;code&gt;group_by()&lt;/code&gt;
+      <description>&lt;p&gt;A popular workflow in R uses &lt;a href=&#34;https://dplyr.tidyverse.org&#34;&gt;{dplyr}&lt;/a&gt; to &lt;code&gt;group_by()&lt;/code&gt;
 and then &lt;code&gt;summarise()&lt;/code&gt;&lt;sup&gt;1&lt;/sup&gt; variables.
 It’s an intuitive and easy way to aggregate and describe data, especially along
 multiple dimensions. The cost of being both powerful and user-friendly,
