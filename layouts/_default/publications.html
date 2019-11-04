@@ -4,12 +4,25 @@
 
 {{ define "main" }}
   {{ partial "header.html" . }}
-<section class="main links-list">
+  <section class="main post-detail">
+    <header class="post-header">
+      <h1 class="post-title">{{ .Title }}</h1>
+    </header>
+    <article class="post-content">
 
-<h2>2019</h2>
-  <a href="./1021105joss01829.pdf"><h3>rtweet: Collecting and analyzing Twitter data, <i>Journal of Open Source Software</i>.</h3></a>
-  <a href="./clpm.pdf"><h3>Cross-Lagged Panel Models, <i>Sage Encyclopedia of Communication Research Methods</i>.</h3></a>
+<h3>2019</h3>
+  <ul>
+    <li><a href="./1021105joss01829.pdf">rtweet: Collecting and analyzing Twitter data,
+      <i>Journal of Open Source Software</i>.
+      </a></li>
+    <li><a href="./clpm.pdf">Cross Lagged Panel Models,
+      <i>Sage Encyclopedia of Communication Research Methods</i>.
+      </a></li>
+  </ul>
 
+
+    </article>
   </section>
+
   {{ partial "footer.html" . }}
 {{ end }}
