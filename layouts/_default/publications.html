@@ -1,0 +1,15 @@
+{{ define "title" }}
+  {{ .Title }} | {{ if isset .Site.Params "seotitle" }}{{ .Site.Params.seotitle }}{{ else }}{{ .Site.Title }}{{ end }}
+{{ end }}
+
+{{ define "main" }}
+  {{ partial "header.html" . }}
+<section class="main links-list">
+
+<h2>2019</h2>
+  <a href="./1021105joss01829.pdf"><h3>rtweet: Collecting and analyzing Twitter data, <i>Journal of Open Source Software</i>.</h3></a>
+  <a href="./clpm.pdf"><h3>Cross-Lagged Panel Models, <i>Sage Encyclopedia of Communication Research Methods</i>.</h3></a>
+
+  </section>
+  {{ partial "footer.html" . }}
+{{ end }}
