@@ -15,15 +15,17 @@
 
   
   <meta name="author" content="kearneymw" />
-  <meta name="description" content="On the topic of how to write an R package, there are already several well-established tools (e.g., the {devtools} and {usethis} packages) and comprehensive guides (e.g., Writing R Extensions by R Core Team and R packages by Hadley Wickham). But the biggest obstacle to writing one’s first R package isn’t the availability of tools or comprehensive guides on the subject. It’s the perceived difficulty of it. Fortunately, there are several demystifying blog posts on the subject!" />
+  <meta name="description" content="Given widespread availability of tools and comprehensive guides already published on the subject, it’s clear to me the biggest obstacle to writing one’s first R package is its perceived difficulty. And since every new blog post reshines the light on the amazing resources that already exist, I’ve written yet another blog post about how to write an R package.
+Useful Tools and Guides for Creating R Packages On the topic of how to write an R package, there are already several well-established tools (e." />
 
   
   
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@kearneymw" />
     <meta name="twitter:title" content="Write an R package from scratch to CRAN" />
-    <meta name="twitter:description" content="On the topic of how to write an R package, there are already several well-established tools (e.g., the {devtools} and {usethis} packages) and comprehensive guides (e.g., Writing R Extensions by R Core Team and R packages by Hadley Wickham). But the biggest obstacle to writing one’s first R package isn’t the availability of tools or comprehensive guides on the subject. It’s the perceived difficulty of it. Fortunately, there are several demystifying blog posts on the subject!" />
-    <meta name="twitter:image" content="https://mikewk.com/img/avatar.jpg" />
+    <meta name="twitter:description" content="Given widespread availability of tools and comprehensive guides already published on the subject, it’s clear to me the biggest obstacle to writing one’s first R package is its perceived difficulty. And since every new blog post reshines the light on the amazing resources that already exist, I’ve written yet another blog post about how to write an R package.
+Useful Tools and Guides for Creating R Packages On the topic of how to write an R package, there are already several well-established tools (e." />
+    <meta name="twitter:image" content="/img/avatar.jpg" />
   
 
 
@@ -32,8 +34,8 @@
 <meta name="generator" content="Hugo 0.40.1" />
 
 
-<link rel="canonical" href="https://mikewk.com/post/2019-05-01-writing-r-package/" />
-<link rel="alternative" href="https://mikewk.com/index.xml" title="Michael W. Kearney" type="application/atom+xml" />
+<link rel="canonical" href="../../post/2019-05-01-writing-r-package/" />
+<link rel="alternative" href="../../index.xml" title="Michael W. Kearney" type="application/atom+xml" />
 
 
 <meta name="renderer" content="webkit" />
@@ -58,22 +60,22 @@
 <meta name='msapplication-navbutton-color' content="#5fbf5e" />
 <meta name="msapplication-TileColor" content="#5fbf5e" />
 <meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
-<link rel="icon" href="https://mikewk.com/img/favicon.ico" />
-<link rel="icon" type="image/png" sizes="16x16" href="https://mikewk.com/img/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="https://mikewk.com/img/favicon-32x32.png" />
-<link rel="icon" sizes="192x192" href="https://mikewk.com/img/touch-icon-android.png" />
-<link rel="apple-touch-icon" href="https://mikewk.com/img/touch-icon-apple.png" />
-<link rel="mask-icon" href="https://mikewk.com/img/safari-pinned-tab.svg" color="#5fbf5e" />
+<link rel="icon" href="../../img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
+<link rel="icon" sizes="192x192" href="../../img/touch-icon-android.png" />
+<link rel="apple-touch-icon" href="../../img/touch-icon-apple.png" />
+<link rel="mask-icon" href="../../img/safari-pinned-tab.svg" color="#5fbf5e" />
 
 
 
 <link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
 
-<link rel="stylesheet" href="https://mikewk.com/css/bundle.css" />
-<link rel="stylesheet" href="https://mikewk.com/highlight/styles/atom-one-light.css" />
+<link rel="stylesheet" href="../../css/bundle.css" />
+<link rel="stylesheet" href="../../highlight/styles/atom-one-light.css" />
 
 
-<link rel="stylesheet" href="https://mikewk.com/css/custom.css">
+<link rel="stylesheet" href="../../css/custom.css">
 
 
 <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700|Source+Code+Pro" rel="stylesheet">
@@ -111,7 +113,7 @@
     
     
   <header class="site-header">
-  <a class="avatar_link" href="https://mikewk.com/"><img class="avatar" src="https://mikewk.com/img/aintnoseats.jpeg" alt="Avatar"></a>
+  <a class="avatar_link" href="../../"><img class="avatar" src="../../img/aintnoseats.jpeg" alt="Avatar"></a>
   
   <h2 class="title">Michael W. Kearney</h2>
   
@@ -129,11 +131,11 @@
       
       
       
-        <li class="menu-item  is-active"><a href="https://mikewk.com/">Home</a></li>
+        <li class="menu-item  is-active"><a href="../../">Home</a></li>
       
-        <li class="menu-item "><a href="https://mikewk.com/about/">About</a></li>
+        <li class="menu-item "><a href="../../about/">About</a></li>
       
-        <li class="menu-item "><a href="https://mikewk.com/publications/">Publications</a></li>
+        <li class="menu-item "><a href="../../publications/">Publications</a></li>
       
         <li class="menu-item "><a href="https://cv.mikewk.com">CV</a></li>
       
@@ -198,7 +200,7 @@
       
 
       <li class="social-item">
-        <a href="https://mikewk.com/index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+        <a href="../../index.xml"><span class="icon icon-rss" title="RSS"></span></a>
       </li>
 
     </ul>
@@ -208,10 +210,13 @@
   <section class="main post-detail">
     <header class="post-header">
       <h1 class="post-title">Write an R package from scratch to CRAN</h1>
-      <p class="post-meta">@kearneymw · May 1, 2019 · 3 min read</p>
+      <p class="post-meta">@kearneymw · May 1, 2019 · 4 min read</p>
     </header>
-    <article class="post-content"><p>On the topic of <em>how to write an R package</em>, there are already several well-established tools (e.g., the <a href="https://devtools.r-lib.org/">{devtools}</a> and <a href="https://usethis.r-lib.org/">{usethis}</a> packages) and comprehensive guides (e.g., <a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html">Writing R Extensions by R Core Team</a> and <a href="http://r-pkgs.had.co.nz/">R packages by Hadley Wickham</a>). But <strong>the biggest obstacle to writing one’s first R package isn’t the availability of tools or comprehensive guides on the subject. It’s the perceived difficulty of it</strong>. Fortunately, there are several demystifying blog posts on the subject!</p>
-<p>One of the first (and probably most famous) posts is by <a href="https://twitter.com/hspter">Hilary Parker</a>, who was nice enough to not only provide a timeless guide to writing an R package but also to identify, number, and title the exact steps in the process:</p>
+    <article class="post-content"><p>Given widespread availability of tools and comprehensive guides already published on the subject, it’s clear to me <strong><em>the biggest obstacle to writing one’s first R package is its</em></strong> <strong>perceived difficulty</strong>. And since every new blog post reshines the light on the amazing resources that already exist, I’ve written yet another blog post about <em>how to write an R package.</em></p>
+<div id="useful-tools-and-guides-for-creating-r-packages" class="section level2">
+<h2>Useful Tools and Guides for Creating R Packages</h2>
+<p>On the topic of <em>how to write an R package</em>, there are already several well-established tools (e.g., the <a href="https://devtools.r-lib.org/">{devtools}</a> and <a href="https://usethis.r-lib.org/">{usethis}</a> packages) and comprehensive guides (e.g., <a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html">Writing R Extensions by R Core Team</a> and <a href="http://r-pkgs.had.co.nz/">R packages by Hadley Wickham</a>). There are even several demystifying blog posts on the subject!</p>
+<p>One of the first (and probably most famous) blog posts is by <a href="https://twitter.com/hspter">Hilary Parker</a>, who was nice enough to not only provide a timeless guide on writing an R package but also identify, number, and title the exact steps in the process:</p>
 <blockquote>
 <h3 id="writing-an-r-package-from-scratch-by-hilary-parker"><a href="https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/">Writing an R package from Scratch</a> by <a href="https://twitter.com/hspter">Hilary Parker</a></h3>
 <ul>
@@ -223,7 +228,7 @@
 <li><strong>Step 5</strong>: Install! <code>devtools::install()</code></li>
 </ul>
 </blockquote>
-<p>These steps still hold up today, but like most things related to software development, they don’t incorporate the newest and best tools. For that, you can turn a post by <a href="https://twitter.com/tomwestlake121">Tomas Westlake</a>, who provided an updated take on Hilary’s initial post, and, thankfully, also followed the aforementioned step-centric format:</p>
+<p>The steps outlined above by Hilary Parker still essentially hold true today, but like most things related to software development, they don’t incorporate the newest (and in this case I think best) tools. For that, you can turn the post written by <a href="https://twitter.com/tomwestlake121">Tomas Westlake</a>, which in addition to adding a few more steps (up to 10 steps instead of 6) also provides more timely references to useful developer tools:</p>
 <blockquote>
 <h3 id="writing-an-r-package-from-scratch-by-tomas-westlake"><a href="https://r-mageddon.netlify.com/post/writing-an-r-package-from-scratch/">Writing an R package from Scratch</a> by <a href="https://twitter.com/tomwestlake121">Tomas Westlake</a></h3>
 <ul>
@@ -239,7 +244,7 @@
 <li><strong>Step 9</strong>: Adding a logo <code>usethis::use_logo()</code></li>
 </ul>
 </blockquote>
-<p>In addition to these <em>step-by-step</em>/<em>how-to</em> posts on writing an R package, there is also a fantastic post by <a href="https://twitter.com/hvitfeldt">Emil Hvitfedt</a> on the additional tasks associated with testing, documenting, and maintaining packages:</p>
+<p>In addition to these <em>step-by-step</em>/<em>how-to</em> posts on how to write an R package, there is also a fantastic blog post written by <a href="https://twitter.com/hvitfeldt">Emil Hvitfedt</a> on some additional tasks associated with testing, documenting, and maintaining R packages:</p>
 <blockquote>
 <h3 id="usethis-workflow-for-package-development-by-emil-hvitfedt"><a href="https://www.hvitfeldt.me/blog/usethis-workflow-for-package-development/">usethis workflow for package development</a> by <a href="https://twitter.com/hvitfeldt">Emil Hvitfedt</a></h3>
 <ul>
@@ -251,19 +256,21 @@
 <li>Before every release <code>use_version()</code></li>
 </ul>
 </blockquote>
-<p>as well as an excellent bigger-picture post by <a href="https://twitter.com/ma_salmon">Maëlle Salmon</a> about what goes into <em>good</em> <strong>open-science</strong> R packages:</p>
+<p>as well as an excellent evaluative blog post written by <a href="https://twitter.com/ma_salmon">Maëlle Salmon</a> about what goes into <em>good</em> <strong>open-science</strong> R packages:</p>
 <blockquote>
-<h3 id="how-to-develop-good-r-packages-for-open-science-by-maelle-salmon"><a href="https://masalmon.eu/2017/12/11/goodrpackages/">How to develop good R packages (for open science)</a> by <a href="https://twitter.com/ma_salmon">Maëlle Salmon</a></h3>
+<h3 id="how-to-develop-good-r-packages-for-open-science-by-maëlle-salmon"><a href="https://masalmon.eu/2017/12/11/goodrpackages/">How to develop good R packages (for open science)</a> by <a href="https://twitter.com/ma_salmon">Maëlle Salmon</a></h3>
 <ul>
 <li>Should your package even exist?</li>
 <li>What should your package contain exactly?</li>
-<li>What will your package be called?</li>
+<li>What will your package be called? <code>available::available()</code></li>
+<li>How to build an R package? <a href="https://ropensci.github.io/dev_guide">rOpenSci Developer Guide</a></li>
 <li>Where should your package live?</li>
-<li>How to check your package automatically</li>
-<li>Bring the package to its users and get feedback</li>
+<li>How to check your package automatically <code>devtools::check()</code> <code>styler::style()</code></li>
+<li>Bring the package to its users and get feedback <code>citation()</code> <a href="http://joss.theoj.org/">Journal of Open Source Software</a></li>
 </ul>
 </blockquote>
-<p>As far as going from 0-60 on writing an R package, it’s really tough to improve on these posts.</p>
+<p>If the goal is to provide guidance on how to go from zero to sixty on writing an R package, it’s really tough to improve on these posts.</p>
+</div>
 <div id="mwk" class="section level2">
 <h2>mwk</h2>
 <div id="step-0-required-packages" class="section level3">
@@ -307,12 +314,12 @@ usethis::use_data()</code></pre>
       
       <ul class="post-tags">
         
-          <li><a href="https://mikewk.com/tags/r"><span class="tag">R</span></a></li>
+          <li><a href="../../tags/r"><span class="tag">R</span></a></li>
         
       </ul>
       
       <p class="post-copyright">
-        © Michael W. Kearney 2018This post was published <strong>187</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
+        © Michael W. Kearney 2018This post was published <strong>202</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
       </p>
     </footer>
     
@@ -350,7 +357,7 @@ usethis::use_data()</code></pre>
 <script async
         src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-<script src="https://mikewk.com/highlight/highlight.pack.js"></script>
+<script src="../../highlight/highlight.pack.js"></script>
 
 <script>hljs.initHighlightingOnLoad();</script>
 
@@ -376,8 +383,8 @@ usethis::use_data()</code></pre>
   });
 </script>
 
-<script src="https://mikewk.com/js/bundle.js"></script>
-<script src="https://mikewk.com/highlight/highlight.pack.js"></script>
+<script src="../../js/bundle.js"></script>
+<script src="../../highlight/highlight.pack.js"></script>
 
 
 <script>
