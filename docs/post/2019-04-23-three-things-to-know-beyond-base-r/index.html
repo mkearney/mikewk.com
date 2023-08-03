@@ -1,249 +1,355 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
-  <meta charset="utf-8" />
+    <meta charset="utf-8" />
 
-  
-  <title>Three things to know beyond base R</title>
 
-  
-  
+    <title>Three things to know beyond base R</title>
 
 
 
 
-  
-  <meta name="author" content="kearneymw" />
-  <meta name="description" content="I think it’s fair to say that most academics who learn about R do so in the process of training or applying quantitative research methods. As a consequence, knowledge of R among academics tends to be limited to core (base) R packages (R Core Team, 2018) and a small handful of speciality statistical packages, e.g., {lavaan}, {lme4}, {MASS}, {car}, etc. With this in mind, the goal of this post is to provide an overview of three things to know beyond base R." />
 
-  
-  
+
+
+
+    <meta name="author" content="kearneymw" />
+    <meta name="description"
+        content="I think it’s fair to say that most academics who learn about R do so in the process of training or applying quantitative research methods. As a consequence, knowledge of R among academics tends to be limited to core (base) R packages (R Core Team, 2018) and a small handful of speciality statistical packages, e.g., {lavaan}, {lme4}, {MASS}, {car}, etc. With this in mind, the goal of this post is to provide an overview of three things to know beyond base R." />
+
+
+
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:site" content="@kearneymw" />
     <meta name="twitter:title" content="Three things to know beyond base R" />
-    <meta name="twitter:description" content="I think it’s fair to say that most academics who learn about R do so in the process of training or applying quantitative research methods. As a consequence, knowledge of R among academics tends to be limited to core (base) R packages (R Core Team, 2018) and a small handful of speciality statistical packages, e.g., {lavaan}, {lme4}, {MASS}, {car}, etc. With this in mind, the goal of this post is to provide an overview of three things to know beyond base R." />
+    <meta name="twitter:description"
+        content="I think it’s fair to say that most academics who learn about R do so in the process of training or applying quantitative research methods. As a consequence, knowledge of R among academics tends to be limited to core (base) R packages (R Core Team, 2018) and a small handful of speciality statistical packages, e.g., {lavaan}, {lme4}, {MASS}, {car}, etc. With this in mind, the goal of this post is to provide an overview of three things to know beyond base R." />
     <meta name="twitter:image" content="/img/avatar.jpg" />
-  
-
-
-
-
-<meta name="generator" content="Hugo 0.40.1" />
-
-
-<link rel="canonical" href="../../post/2019-04-23-three-things-to-know-beyond-base-r/" />
-<link rel="alternative" href="../../index.xml" title="Michael W. Kearney" type="application/atom+xml" />
-
-
-<meta name="renderer" content="webkit" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<meta name="format-detection" content="telephone=no,email=no,adress=no" />
-<meta http-equiv="Cache-Control" content="no-transform" />
-
-
-<meta name="robots" content="index,follow" />
-<meta name="referrer" content="origin-when-cross-origin" />
-<meta name="google-site-verification" content="XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY" />
 
 
 
 
 
-
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<meta name="apple-mobile-web-app-title" content="Michael W. Kearney" />
-<meta name="msapplication-tooltip" content="Michael W. Kearney" />
-<meta name='msapplication-navbutton-color' content="#5fbf5e" />
-<meta name="msapplication-TileColor" content="#5fbf5e" />
-<meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
-<link rel="icon" href="../../img/favicon.ico" />
-<link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
-<link rel="icon" sizes="192x192" href="../../img/touch-icon-android.png" />
-<link rel="apple-touch-icon" href="../../img/touch-icon-apple.png" />
-<link rel="mask-icon" href="../../img/safari-pinned-tab.svg" color="#5fbf5e" />
+    <meta name="generator" content="Hugo 0.40.1" />
 
 
-
-<link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
-
-<link rel="stylesheet" href="../../css/bundle.css" />
-<link rel="stylesheet" href="../../highlight/styles/atom-one-light.css" />
-
-
-<link rel="stylesheet" href="../../css/custom.css">
+    <link rel="canonical"
+        href="../../post/2019-04-23-three-things-to-know-beyond-base-r/" />
+    <link rel="alternative" href="../../index.xml" title="Michael W. Kearney"
+        type="application/atom+xml" />
 
 
-<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700|Source+Code+Pro" rel="stylesheet">
+    <meta name="renderer" content="webkit" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="format-detection" content="telephone=no,email=no,adress=no" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
 
 
-  
-  <!--[if lt IE 9]>
+    <meta name="robots" content="index,follow" />
+    <meta name="referrer" content="origin-when-cross-origin" />
+    <meta name="google-site-verification"
+        content="XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY" />
+
+
+
+
+
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Michael W. Kearney" />
+    <meta name="msapplication-tooltip" content="Michael W. Kearney" />
+    <meta name='msapplication-navbutton-color' content="#5fbf5e" />
+    <meta name="msapplication-TileColor" content="#5fbf5e" />
+    <meta name="msapplication-TileImage"
+        content="/img/tile-image-windows.png" />
+    <link rel="icon" href="../../img/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16"
+        href="../../img/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32"
+        href="../../img/favicon-32x32.png" />
+    <link rel="icon" sizes="192x192" href="../../img/touch-icon-android.png" />
+    <link rel="apple-touch-icon" href="../../img/touch-icon-apple.png" />
+    <link rel="mask-icon" href="../../img/safari-pinned-tab.svg"
+        color="#5fbf5e" />
+
+
+
+    <link rel="stylesheet"
+        href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+
+    <link rel="stylesheet" href="../../css/bundle.css" />
+    <link rel="stylesheet" href="../../highlight/styles/atom-one-light.css" />
+
+
+    <link rel="stylesheet" href="../../css/custom.css">
+
+
+    <link
+        href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700|Source+Code+Pro"
+        rel="stylesheet">
+
+
+
+    <!--[if lt IE 9]>
     <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
   <![endif]-->
 
-<!--[if lte IE 11]>
+    <!--[if lte IE 11]>
     <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
   <![endif]-->
 
 
-<script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+    <script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
 
 
-<script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+    <script
+        src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
 
 
 </head>
-  <body>
-    
+
+<body>
+
     <div class="suspension">
-      <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
-      
-        
-        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
-        
-      
+        <a title="Go to top" class="to-top is-hide"><span
+                class="icon icon-up"></span></a>
+
+
+        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span
+                class="icon icon-comment"></span></a>
+
+
     </div>
-    
-    
-  <header class="site-header">
-  <a class="avatar_link" href="../../"><img class="avatar" src="../../img/aintnoseats.jpeg" alt="Avatar"></a>
-  
-  <h2 class="title">Michael W. Kearney</h2>
-  
-  <p class="subtitle">Assistant Professor<br>
-  School of Journalism<br>
-  Informatics Institute<br>
-  University of Missouri</p>
-  <button class="menu-toggle" type="button">
-    <span class="icon icon-menu"></span>
-  </button>
-  <nav class="site-menu collapsed">
-    <h2 class="offscreen">Main Menu</h2>
-    <ul class="menu-list">
-      
-      
-      
-      
-        <li class="menu-item  is-active"><a href="../../">Home</a></li>
-      
-        <li class="menu-item "><a href="../../about/">About</a></li>
-      
-        <li class="menu-item "><a href="../../publications/">Publications</a></li>
-      
-        <li class="menu-item "><a href="https://cv.mikewk.com">CV</a></li>
-      
-    </ul>
-  </nav>
-  <nav class="social-menu collapsed">
-    <h2 class="offscreen">Social Networks</h2>
-    <ul class="social-list">
 
-      
-      <li class="social-item">
-        <a href="mailto:kearneymw@missouri.edu" title="Email"><span class="icon icon-email"></span></a>
-      </li>
 
-      
-      <li class="social-item">
-        <a href="//github.com/mkearney" title="GitHub"><span class="icon icon-github"></span></a>
-      </li>
+    <header class="site-header">
+        <a class="avatar_link" href="../../"><img class="avatar"
+                src="../../img/aintnoseats.jpeg" alt="Avatar"></a>
 
-      <li class="social-item">
-        <a href="//twitter.com/kearneymw" title="Twitter"><span class="icon icon-twitter"></span></a>
-      </li>
+        <h2 class="title">Michael W. Kearney</h2>
 
-      <li class="social-item">
-        <a href="//www.facebook.com/mike.wayne.kearney" title="Facebook"><span class="icon icon-facebook"></span></a>
-      </li>
+        <p class="subtitle">Senior AI/Data Scientist<br>
+            NLP – Machine Learning<br>
+            Python – R – SQL – Bash – Git<br>
+            Responsible AI – Creative Solutions</p>
+        <button class="menu-toggle" type="button">
+            <span class="icon icon-menu"></span>
+        </button>
+        <nav class="site-menu collapsed">
+            <h2 class="offscreen">Main Menu</h2>
+            <ul class="menu-list">
 
-      
 
-      
 
-      
 
-      
+                <li class="menu-item  is-active"><a href="../../">Home</a></li>
 
-      
+                <li class="menu-item "><a href="../../about/">About</a></li>
 
-      
+                <li class="menu-item "><a
+                        href="../../publications/">Publications</a></li>
 
-      
+                <li class="menu-item "><a href="https://cv.mikewk.com">CV</a>
+                </li>
 
-      
+            </ul>
+        </nav>
+        <nav class="social-menu collapsed">
+            <h2 class="offscreen">Social Networks</h2>
+            <ul class="social-list">
 
-      
 
-      
+                <li class="social-item">
+                    <a href="mailto:kearneymw@missouri.edu" title="Email"><span
+                            class="icon icon-email"></span></a>
+                </li>
 
-      
 
-      
+                <li class="social-item">
+                    <a href="//github.com/mkearney" title="GitHub"><span
+                            class="icon icon-github"></span></a>
+                </li>
 
-      
+                <li class="social-item">
+                    <a href="//twitter.com/kearneymw" title="Twitter"><span
+                            class="icon icon-twitter"></span></a>
+                </li>
 
-      <li class="social-item">
-        <a href="//www.linkedin.com/in/mikewk" title="Linkedin"><span class="icon icon-linkedin"></span></a>
-      </li>
+                <li class="social-item">
+                    <a href="//www.facebook.com/mike.wayne.kearney"
+                        title="Facebook"><span
+                            class="icon icon-facebook"></span></a>
+                </li>
 
-      
 
-      
 
-      
 
-      <li class="social-item">
-        <a href="../../index.xml"><span class="icon icon-rss" title="RSS"></span></a>
-      </li>
 
-    </ul>
-  </nav>
-</header>
 
-  <section class="main post-detail">
-    <header class="post-header">
-      <h1 class="post-title">Three things to know beyond base R</h1>
-      <p class="post-meta">@kearneymw · Apr 23, 2019 · 8 min read</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <li class="social-item">
+                    <a href="//www.linkedin.com/in/mikewk"
+                        title="Linkedin"><span
+                            class="icon icon-linkedin"></span></a>
+                </li>
+
+
+
+
+
+
+
+                <li class="social-item">
+                    <a href="../../index.xml"><span class="icon icon-rss"
+                            title="RSS"></span></a>
+                </li>
+
+            </ul>
+        </nav>
     </header>
-    <article class="post-content"><p>I think it’s fair to say that most academics who learn about R do so in the process of training or applying quantitative research methods. As a consequence, knowledge of R among academics tends to be limited to core (base) R packages (R Core Team, 2018) and a small handful of speciality statistical packages, e.g., {lavaan}, {lme4}, {MASS}, {car}, etc. With this in mind, the goal of this post is to provide an overview of three things to know beyond base R.</p>
-<p>A more appropriate title for this post could be, “A quick introduction to the tidyverse,” as all of the following things to know beyond base R come from the <a href="https://tidyverse.org">{tidyverse}</a>–a collection of high-powered, consistent, and easy-to-use packages developed by a number of thoughtful and talented R developers, so this should really be considered an exceptionally brief introduction to parts of the tidyverse. But users don’t need to know know everything about the tidyverse to reap the benefits of it. However, if you’re interested in a more formal/thorough introduction to the tidyverse, I would strongly encourage you to checkout <a href="https://r4ds.had.co.nz/">R for Data Science by Garrett Groleman and Hadley Wickham</a>.</p>
-<p>For those of you who still might be hestitant about moving beyond base R, consider the plot below, which shows the download counts of {tidyverse} packages compared to several well-known and highly-regarded statistical packages.</p>
-<p style="align:center">
-<img src="../../img/download-counts.png">
-</p>
-<p>This plot hopefully demonstrates two things. First, that a lot of people use (and therefore test, troubleshoot, and write documentation for) tidyverse packages. Second, that use of tidyverse packages is not merely a fad or momentary trend. Indeed, compared to widely used statistical packages, there is a considerably higher download rate among tidyverse packages (even above and beyond the general uptick in overall R usage).</p>
-<div id="the-pipe" class="section level2">
-<h2>1. The pipe</h2>
-<p>The first thing to know beyond base R is <strong>the pipe</strong>. The <em>pipe</em> refers to the <code>%&gt;%</code> operator from the <a href="https://magrittr.tidyverse.org">{magrittr}</a> package.</p>
-<pre class="r"><code>library(magrittr)</code></pre>
-<p>It may seem complicated at first, but what the pipe does is actually quite simple. That is, <strong>it allows users to write linear code</strong>. To illustrate use of the pipe, consider the following code that takes the mean of the log of three numbers:</p>
-<pre class="r"><code>mean(log(c(1, 3, 9)))
+
+    <section class="main post-detail">
+        <header class="post-header">
+            <h1 class="post-title">Three things to know beyond base R</h1>
+            <p class="post-meta">@kearneymw · Apr 23, 2019 · 8 min read</p>
+        </header>
+        <article class="post-content">
+            <p>I think it’s fair to say that most academics who learn about R do
+                so in the process of training or applying quantitative research
+                methods. As a consequence, knowledge of R among academics tends
+                to be limited to core (base) R packages (R Core Team, 2018) and
+                a small handful of speciality statistical packages, e.g.,
+                {lavaan}, {lme4}, {MASS}, {car}, etc. With this in mind, the
+                goal of this post is to provide an overview of three things to
+                know beyond base R.</p>
+            <p>A more appropriate title for this post could be, “A quick
+                introduction to the tidyverse,” as all of the following things
+                to know beyond base R come from the <a
+                    href="https://tidyverse.org">{tidyverse}</a>–a collection of
+                high-powered, consistent, and easy-to-use packages developed by
+                a number of thoughtful and talented R developers, so this should
+                really be considered an exceptionally brief introduction to
+                parts of the tidyverse. But users don’t need to know know
+                everything about the tidyverse to reap the benefits of it.
+                However, if you’re interested in a more formal/thorough
+                introduction to the tidyverse, I would strongly encourage you to
+                checkout <a href="https://r4ds.had.co.nz/">R for Data Science by
+                    Garrett Groleman and Hadley Wickham</a>.</p>
+            <p>For those of you who still might be hestitant about moving beyond
+                base R, consider the plot below, which shows the download counts
+                of {tidyverse} packages compared to several well-known and
+                highly-regarded statistical packages.</p>
+            <p style="align:center">
+                <img src="../../img/download-counts.png">
+            </p>
+            <p>This plot hopefully demonstrates two things. First, that a lot of
+                people use (and therefore test, troubleshoot, and write
+                documentation for) tidyverse packages. Second, that use of
+                tidyverse packages is not merely a fad or momentary trend.
+                Indeed, compared to widely used statistical packages, there is a
+                considerably higher download rate among tidyverse packages (even
+                above and beyond the general uptick in overall R usage).</p>
+            <div id="the-pipe" class="section level2">
+                <h2>1. The pipe</h2>
+                <p>The first thing to know beyond base R is <strong>the
+                        pipe</strong>. The <em>pipe</em> refers to the
+                    <code>%&gt;%</code> operator from the <a
+                        href="https://magrittr.tidyverse.org">{magrittr}</a>
+                    package.
+                </p>
+                <pre class="r"><code>library(magrittr)</code></pre>
+                <p>It may seem complicated at first, but what the pipe does is
+                    actually quite simple. That is, <strong>it allows users to
+                        write linear code</strong>. To illustrate use of the
+                    pipe, consider the following code that takes the mean of the
+                    log of three numbers:</p>
+                <pre class="r"><code>mean(log(c(1, 3, 9)))
 #&gt; [1] 1.098612</code></pre>
-<p>Notice how the numbers <code>c(1, 3, 9)</code> are nested inside <code>log()</code>, which is then nested inside <code>mean()</code>? If you’re reading the code from left-to-right, it means the <em>functions are performed in reverse order from how they are written</em>. If we broke the code down into its three functions, we would actually expect the order of operations to proceed as follows:</p>
-<ol style="list-style-type: decimal">
-<li>Concacenate numbers into vector <code>c(...)</code></li>
-<li>Log the numeric vector <code>log(...)</code></li>
-<li>Estimate the mean of the logged numeric vector <code>mean(...)</code></li>
-</ol>
-<p>With this order in mind, now consider the following <em>piped code</em>, which takes a numeric vector <code>c(1, 3, 9)</code>, calculates the <code>log()</code>, and then estimates the <code>mean()</code>. Hopefully you notice that, in contrast to the nested code above, the code below is linear; in other words, the code appears in the same order (moving from left to right) as the operations are performed.</p>
-<pre class="r"><code>c(1, 3, 9) %&gt;% log() %&gt;% mean()
+                <p>Notice how the numbers <code>c(1, 3, 9)</code> are nested
+                    inside <code>log()</code>, which is then nested inside
+                    <code>mean()</code>? If you’re reading the code from
+                    left-to-right, it means the <em>functions are performed in
+                        reverse order from how they are written</em>. If we
+                    broke the code down into its three functions, we would
+                    actually expect the order of operations to proceed as
+                    follows:
+                </p>
+                <ol style="list-style-type: decimal">
+                    <li>Concacenate numbers into vector <code>c(...)</code></li>
+                    <li>Log the numeric vector <code>log(...)</code></li>
+                    <li>Estimate the mean of the logged numeric vector
+                        <code>mean(...)</code>
+                    </li>
+                </ol>
+                <p>With this order in mind, now consider the following <em>piped
+                        code</em>, which takes a numeric vector
+                    <code>c(1, 3, 9)</code>, calculates the <code>log()</code>,
+                    and then estimates the <code>mean()</code>. Hopefully you
+                    notice that, in contrast to the nested code above, the code
+                    below is linear; in other words, the code appears in the
+                    same order (moving from left to right) as the operations are
+                    performed.
+                </p>
+                <pre class="r"><code>c(1, 3, 9) %&gt;% log() %&gt;% mean()
 #&gt; [1] 1.098612</code></pre>
-<p>As a convention designed to make piped code even <em>easier</em> to read, users are encouraged to place each piped statement on its own line. So the code above should be rewritten as follows:</p>
-<pre class="r"><code>c(1, 3, 9) %&gt;%
+                <p>As a convention designed to make piped code even
+                    <em>easier</em> to read, users are encouraged to place each
+                    piped statement on its own line. So the code above should be
+                    rewritten as follows:
+                </p>
+                <pre class="r"><code>c(1, 3, 9) %&gt;%
   log() %&gt;%
   mean()
 #&gt; [1] 1.098612</code></pre>
-</div>
-<div id="the-tibble" class="section level2">
-<h2>2. The tibble</h2>
-<p>R is my favorite programming language because nearly everyone who uses it either works with <strong>data frames</strong> or is extremely familiar with them. With all of the use and attention, it is hardly surprising that there would be some improvements to the traditional <code>data.frame</code>, which is why <strong>the tibble</strong> is the second thing to know beyond base R. The <em>tibble</em> refers to a data frame-like class produced by the <a href="https://tibble.tidyverse.org">{tibble}</a> package. Tibbles (class <code>tbl_df</code>) are essentially a special variant of data frames that have desirable properties for printing and joining. And because they also inherit the <code>data.frame</code> class, they also behave like data frames 99.9% (and, seriously, I wouldn’t worry about the 0.1%).</p>
-<p>As the code illustrates below, it’s easy to convert nearly any data frame into a tibble via <code>tibble::as_tibble()</code>:</p>
-<pre class="r"><code>(mtcars &lt;- tibble::as_tibble(mtcars))
+            </div>
+            <div id="the-tibble" class="section level2">
+                <h2>2. The tibble</h2>
+                <p>R is my favorite programming language because nearly everyone
+                    who uses it either works with <strong>data frames</strong>
+                    or is extremely familiar with them. With all of the use and
+                    attention, it is hardly surprising that there would be some
+                    improvements to the traditional <code>data.frame</code>,
+                    which is why <strong>the tibble</strong> is the second thing
+                    to know beyond base R. The <em>tibble</em> refers to a data
+                    frame-like class produced by the <a
+                        href="https://tibble.tidyverse.org">{tibble}</a>
+                    package. Tibbles (class <code>tbl_df</code>) are essentially
+                    a special variant of data frames that have desirable
+                    properties for printing and joining. And because they also
+                    inherit the <code>data.frame</code> class, they also behave
+                    like data frames 99.9% (and, seriously, I wouldn’t worry
+                    about the 0.1%).</p>
+                <p>As the code illustrates below, it’s easy to convert nearly
+                    any data frame into a tibble via
+                    <code>tibble::as_tibble()</code>:
+                </p>
+                <pre class="r"><code>(mtcars &lt;- tibble::as_tibble(mtcars))
 #&gt; # A tibble: 32 x 11
 #&gt;     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 #&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -253,29 +359,55 @@
 #&gt; 4  21.4     6   258   110  3.08  3.22  19.4     1     0     3     1
 #&gt; 5  18.7     8   360   175  3.15  3.44  17.0     0     0     3     2
 #&gt; # … with 27 more rows</code></pre>
-<p>It’s also possible to create tibbles directly via <code>tibble::tibble(...)</code>, e.g.,</p>
-<pre class="r"><code>tibble::tibble(
+                <p>It’s also possible to create tibbles directly via
+                    <code>tibble::tibble(...)</code>, e.g.,
+                </p>
+                <pre class="r"><code>tibble::tibble(
   x = rnorm(100),
   y = rnorm(100),
   z = sample(letters, 100, replace = TRUE)
 )
 #&gt; # A tibble: 100 x 3
-#&gt;       x      y z    
+#&gt;       x      y z
 #&gt;   &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;
-#&gt; 1 0.138  0.851 u    
-#&gt; 2 0.894 -0.295 m    
-#&gt; 3 0.377  1.61  u    
-#&gt; 4 0.345 -0.332 r    
-#&gt; 5 0.508  1.24  m    
+#&gt; 1 0.138  0.851 u
+#&gt; 2 0.894 -0.295 m
+#&gt; 3 0.377  1.61  u
+#&gt; 4 0.345 -0.332 r
+#&gt; 5 0.508  1.24  m
 #&gt; # … with 95 more rows</code></pre>
-<p>You hopefully noticed in the printing of the two previous code chunks that tibbles print out a lot prettier than normal data frames. Each observations is limited to a single line (no horizontal scrolling or wrapping). Not all rows are printed by default. And the printout also includes meta information about the classes of variables and the number of rows and columns and in the data set.</p>
-<p>If you were really paying attention, you may have also noticed the <code>z</code> variable in the tibble built from scratch was stored (by default) as a <code>character</code> vector and not a <code>factor</code>. This is another important difference in tibbles compared to data frames. Tibbles are lazy, which is this case is useful for avoiding join or mutate errors later on related to a limited set of observed factor levels.</p>
-</div>
-<div id="select-filter-arrange-and-mutate" class="section level2">
-<h2>3. Select, filter, arrange, and mutate</h2>
-<p>If I could only use one package beyond base R, it’d probably be <a href="https://dplyr.tidyverse.org">{dplyr}</a>, which is why key <strong>dplyr</strong> functions are the third thing to learn beyond base R. Compared to base R, the beauty of these {dplyr} functions is that they feature consistent design principles, easily work with non-standard evaluation (i.e., you don’t have to put quotes around variable names), and even leverage c++ behind the scenes for improved performance.</p>
-<p>{dplyr} has <a href="https://dplyr.tidyverse.org/reference/index.html">tons of useful features</a>, but its fundamental building blocks allow users to <strong>select columns</strong>,</p>
-<pre class="r"><code>dplyr::select(mtcars, cyl, wt, mpg, gear)
+                <p>You hopefully noticed in the printing of the two previous
+                    code chunks that tibbles print out a lot prettier than
+                    normal data frames. Each observations is limited to a single
+                    line (no horizontal scrolling or wrapping). Not all rows are
+                    printed by default. And the printout also includes meta
+                    information about the classes of variables and the number of
+                    rows and columns and in the data set.</p>
+                <p>If you were really paying attention, you may have also
+                    noticed the <code>z</code> variable in the tibble built from
+                    scratch was stored (by default) as a <code>character</code>
+                    vector and not a <code>factor</code>. This is another
+                    important difference in tibbles compared to data frames.
+                    Tibbles are lazy, which is this case is useful for avoiding
+                    join or mutate errors later on related to a limited set of
+                    observed factor levels.</p>
+            </div>
+            <div id="select-filter-arrange-and-mutate" class="section level2">
+                <h2>3. Select, filter, arrange, and mutate</h2>
+                <p>If I could only use one package beyond base R, it’d probably
+                    be <a href="https://dplyr.tidyverse.org">{dplyr}</a>, which
+                    is why key <strong>dplyr</strong> functions are the third
+                    thing to learn beyond base R. Compared to base R, the beauty
+                    of these {dplyr} functions is that they feature consistent
+                    design principles, easily work with non-standard evaluation
+                    (i.e., you don’t have to put quotes around variable names),
+                    and even leverage c++ behind the scenes for improved
+                    performance.</p>
+                <p>{dplyr} has <a
+                        href="https://dplyr.tidyverse.org/reference/index.html">tons
+                        of useful features</a>, but its fundamental building
+                    blocks allow users to <strong>select columns</strong>,</p>
+                <pre class="r"><code>dplyr::select(mtcars, cyl, wt, mpg, gear)
 #&gt; # A tibble: 32 x 4
 #&gt;     cyl    wt   mpg  gear
 #&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -285,22 +417,22 @@
 #&gt; 4     6  3.22  21.4     3
 #&gt; 5     8  3.44  18.7     3
 #&gt; # … with 27 more rows</code></pre>
-<p><strong>mutate columns</strong> (i.e., transform, add),</p>
-<pre class="r"><code>mtcars %&gt;%
+                <p><strong>mutate columns</strong> (i.e., transform, add),</p>
+                <pre class="r"><code>mtcars %&gt;%
   dplyr::mutate(mpg_per_cyl = mpg / cyl,
     car = row.names(datasets::mtcars)) %&gt;%
   dplyr::select(car, mpg, cyl, mpg_per_cyl)
 #&gt; # A tibble: 32 x 4
 #&gt;   car                 mpg   cyl mpg_per_cyl
 #&gt;   &lt;chr&gt;             &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;
-#&gt; 1 Mazda RX4          21       6        3.5 
-#&gt; 2 Mazda RX4 Wag      21       6        3.5 
-#&gt; 3 Datsun 710         22.8     4        5.7 
+#&gt; 1 Mazda RX4          21       6        3.5
+#&gt; 2 Mazda RX4 Wag      21       6        3.5
+#&gt; 3 Datsun 710         22.8     4        5.7
 #&gt; 4 Hornet 4 Drive     21.4     6        3.57
 #&gt; 5 Hornet Sportabout  18.7     8        2.34
 #&gt; # … with 27 more rows</code></pre>
-<p><strong>filter rows</strong>,</p>
-<pre class="r"><code>dplyr::filter(mtcars, cyl == 4, mpg &gt;= 10)
+                <p><strong>filter rows</strong>,</p>
+                <pre class="r"><code>dplyr::filter(mtcars, cyl == 4, mpg &gt;= 10)
 #&gt; # A tibble: 11 x 11
 #&gt;     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 #&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -310,8 +442,8 @@
 #&gt; 4  32.4     4  78.7    66  4.08  2.2   19.5     1     1     4     1
 #&gt; 5  30.4     4  75.7    52  4.93  1.62  18.5     1     1     4     2
 #&gt; # … with 6 more rows</code></pre>
-<p>and <strong>arrange rows</strong>.</p>
-<pre class="r"><code>dplyr::arrange(mtcars, dplyr::desc(mpg))
+                <p>and <strong>arrange rows</strong>.</p>
+                <pre class="r"><code>dplyr::arrange(mtcars, dplyr::desc(mpg))
 #&gt; # A tibble: 32 x 11
 #&gt;     mpg   cyl  disp    hp  drat    wt  qsec    vs    am  gear  carb
 #&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
@@ -321,8 +453,11 @@
 #&gt; 4  30.4     4  95.1   113  3.77  1.51  16.9     1     1     5     2
 #&gt; 5  27.3     4  79      66  4.08  1.94  18.9     1     1     4     1
 #&gt; # … with 27 more rows</code></pre>
-<p>Chain these {dplyr} functions together with the pipe operator <code>%&gt;%</code> to achieve linear/tidyverse-style coding excellence.</p>
-<pre class="r"><code>mtcars %&gt;%
+                <p>Chain these {dplyr} functions together with the pipe operator
+                    <code>%&gt;%</code> to achieve linear/tidyverse-style coding
+                    excellence.
+                </p>
+                <pre class="r"><code>mtcars %&gt;%
   dplyr::filter(gear == 4) %&gt;%
   dplyr::mutate(wt_mpg = wt / mpg) %&gt;%
   dplyr::select(cyl, wt, mpg, wt_mpg) %&gt;%
@@ -334,64 +469,71 @@
 #&gt; 2     4  1.84  33.9 0.0541
 #&gt; 3     4  2.2   32.4 0.0679
 #&gt; 4     4  1.94  27.3 0.0709
-#&gt; 5     4  2.32  22.8 0.102 
+#&gt; 5     4  2.32  22.8 0.102
 #&gt; # … with 7 more rows</code></pre>
-</div>
-</article>
-    <footer class="post-footer">
-      
-      <ul class="post-tags">
-        
-          <li><a href="../../tags/r"><span class="tag">R</span></a></li>
-        
-          <li><a href="../../tags/tidyverse"><span class="tag">Tidyverse</span></a></li>
-        
-      </ul>
-      
-      <p class="post-copyright">
-        © Michael W. Kearney 2018This post was published <strong>210</strong> days ago, content in the post may be inaccurate, even wrong now, please take risk yourself.
-      </p>
+            </div>
+        </article>
+        <footer class="post-footer">
+
+            <ul class="post-tags">
+
+                <li><a href="../../tags/r"><span class="tag">R</span></a></li>
+
+                <li><a href="../../tags/tidyverse"><span
+                            class="tag">Tidyverse</span></a></li>
+
+            </ul>
+
+            <p class="post-copyright">
+                © Michael W. Kearney 2018This post was published
+                <strong>210</strong> days ago, content in the post may be
+                inaccurate, even wrong now, please take risk yourself.
+            </p>
+        </footer>
+
+        <div id="disqus_thread"></div>
+        <script>
+            var disqus_config = function () {
+
+
+
+            };
+            (function () {
+                if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+                    document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+                    return;
+                }
+                var d = document, s = d.createElement('script'); s.async = true;
+                s.src = '//' + "kearneymw" + '.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a
+                href="https://disqus.com/?ref_noscript">comments powered by
+                Disqus.</a></noscript>
+        <a href="https://disqus.com" class="dsq-brlink">comments powered by
+            <span class="logo-disqus">Disqus</span></a>
+
+
+    </section>
+    <footer class="site-footer">
+        <p>© 2017-2019 Michael W. Kearney</p>
+
     </footer>
-    
-      <div id="disqus_thread"></div>
-<script>
-    var disqus_config = function () {
-    
-    
-    
-    };
-    (function() {
-        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-            return;
-        }
-        var d = document, s = d.createElement('script'); s.async = true;
-        s.src = '//' + "kearneymw" + '.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-      
-    
-  </section>
-  <footer class="site-footer">
-  <p>© 2017-2019 Michael W. Kearney</p>
-  
-</footer>
 
 
 
-<script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
-<script async
+    <script async
+        src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+    <script async
         src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
-<script src="../../highlight/highlight.pack.js"></script>
+    <script src="../../highlight/highlight.pack.js"></script>
 
-<script>hljs.initHighlightingOnLoad();</script>
+    <script>hljs.initHighlightingOnLoad();</script>
 
-<script type="text/x-mathjax-config">
+    <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [['$','$'], ['\\(','\\)']],
@@ -404,7 +546,7 @@
     }
   });
 </script>
-<script type="text/x-mathjax-config">
+    <script type="text/x-mathjax-config">
   // Fix <code> tags after MathJax finishes running. This is a
   // hack to overcome a shortcoming of Markdown. Discussion at
   // https://github.com/mojombo/jekyll/issues/199
@@ -413,20 +555,21 @@
   });
 </script>
 
-<script src="../../js/bundle.js"></script>
-<script src="../../highlight/highlight.pack.js"></script>
+    <script src="../../js/bundle.js"></script>
+    <script src="../../highlight/highlight.pack.js"></script>
 
 
-<script>
-window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-ga('create', 'UA-64959413-1', 'auto');
-ga('send', 'pageview');
-</script>
-<script async src='//www.google-analytics.com/analytics.js'></script>
+    <script>
+        window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
+        ga('create', 'UA-64959413-1', 'auto');
+        ga('send', 'pageview');
+    </script>
+    <script async src='//www.google-analytics.com/analytics.js'></script>
 
 
 
 
 
-  </body>
+</body>
+
 </html>

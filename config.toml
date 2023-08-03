@@ -40,11 +40,11 @@ copyright = "© Michael W. Kearney 2018"
   author = "Michael W. Kearney, Ph.D."
   avatar = "/img/aintnoseats.jpeg"
   seotitle = "Michael W. Kearney"
-  subtitle1 = "Assistant Professor"
-  subtitle2 = "School of Journalism"
-  subtitle3 = "Informatics Institute"
-  subtitle4 = "University of Missouri"
-  description = "Personal website of Michael W. Kearney, assistant professor at Missouri School of Journalism and Missouri Informatics Institute"
+  subtitle1 = "Senior AI/Data Scientist"
+  subtitle2 = "NLP – Machine Learning"
+  subtitle3 = "Python – R – SQL – Bash – Git"
+  subtitle4 = "Responsible AI – Creative Solutions"
+  description = "Personal website of Michael W. Kearney, Senior AI/Data Scientist – NLP – Machine Learning and Missouri Python – R – SQL – Bash – Git"
   paginate = 10
 
   # Add custom assets with their paths relative to the static folder
@@ -61,4 +61,3 @@ copyright = "© Michael W. Kearney 2018"
   # Google Webmaster
   # https://www.google.com/webmasters/
   googleSiteVerification = "XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY"
-
