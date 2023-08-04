@@ -1,418 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-
-    <meta charset="utf-8" />
-
-
-    <title>
-        Category → rstats
-
-        | Michael W. Kearney
-    </title>
-
-
-
-
-
-
-
-
-    <meta name="author" content="Michael W. Kearney, Ph.D." />
-    <meta name="description"
-        content="Personal website of Michael W. Kearney, Senior AI/Data Scientist – NLP – Machine Learning and Missouri Python – R – SQL – Bash – Git" />
-
-
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@kearneymw" />
-    <meta name="twitter:title" content="Michael W. Kearney" />
-    <meta name="twitter:description"
-        content="Personal website of Michael W. Kearney, Senior AI/Data Scientist – NLP – Machine Learning and Missouri Python – R – SQL – Bash – Git" />
-    <meta name="twitter:image" content="/img/avatar.jpg" />
-
-
-
-
-    <meta name="generator" content="Hugo 0.40.1" />
-
-
-    <link rel="canonical" href="../../categories/rstats/" />
-    <link rel="alternative" href="../../index.xml" title="Michael W. Kearney"
-        type="application/atom+xml" />
-
-
-    <meta name="renderer" content="webkit" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="format-detection" content="telephone=no,email=no,adress=no" />
-    <meta http-equiv="Cache-Control" content="no-transform" />
-
-
-    <meta name="robots" content="index,follow" />
-    <meta name="referrer" content="origin-when-cross-origin" />
-    <meta name="google-site-verification"
-        content="XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY" />
-
-
-
-
-
-
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style"
-        content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Michael W. Kearney" />
-    <meta name="msapplication-tooltip" content="Michael W. Kearney" />
-    <meta name='msapplication-navbutton-color' content="#5fbf5e" />
-    <meta name="msapplication-TileColor" content="#5fbf5e" />
-    <meta name="msapplication-TileImage"
-        content="/img/tile-image-windows.png" />
-    <link rel="icon" href="../../img/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="../../img/favicon-16x16.png" />
-    <link rel="icon" type="image/png" sizes="32x32"
-        href="../../img/favicon-32x32.png" />
-    <link rel="icon" sizes="192x192" href="../../img/touch-icon-android.png" />
-    <link rel="apple-touch-icon" href="../../img/touch-icon-apple.png" />
-    <link rel="mask-icon" href="../../img/safari-pinned-tab.svg"
-        color="#5fbf5e" />
-
-
-
-    <link rel="stylesheet"
-        href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
-
-    <link rel="stylesheet" href="../../css/bundle.css" />
-    <link rel="stylesheet" href="../../highlight/styles/atom-one-light.css" />
-
-
-    <link rel="stylesheet" href="../../css/custom.css">
-
-
-    <link
-        href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700|Source+Code+Pro"
-        rel="stylesheet">
-
-
-
-    <!--[if lt IE 9]>
+    <head>
+        <meta charset="utf-8" />
+        <title> Category → rstats | Michael W. Kearney </title>
+        <meta name="author" content="Michael W. Kearney, Ph.D." />
+        <meta name="description"
+            content="Personal website of Michael W. Kearney, Senior AI/Data Scientist – NLP – Machine Learning – Responsible AI" />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@kearneymw" />
+        <meta name="twitter:title" content="Michael W. Kearney" />
+        <meta name="twitter:description"
+            content="Personal website of Michael W. Kearney, Senior AI/Data Scientist – NLP – Machine Learning – Responsible AI" />
+        <meta name="twitter:image" content="/img/avatar.jpg" />
+        <meta name="generator" content="Hugo 0.40.1" />
+        <link rel="canonical" href="../../categories/rstats/" />
+        <link rel="alternative" href="../../index.xml" title="Michael W. Kearney" type="application/atom+xml" />
+        <meta name="renderer" content="webkit" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="format-detection" content="telephone=no,email=no,adress=no" />
+        <meta http-equiv="Cache-Control" content="no-transform" />
+        <meta name="robots" content="index,follow" />
+        <meta name="referrer" content="origin-when-cross-origin" />
+        <meta name="google-site-verification" content="XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Michael W. Kearney" />
+        <meta name="msapplication-tooltip" content="Michael W. Kearney" />
+        <meta name='msapplication-navbutton-color' content="#5fbf5e" />
+        <meta name="msapplication-TileColor" content="#5fbf5e" />
+        <meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
+        <link rel="icon" href="../../img/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
+        <link rel="icon" sizes="192x192" href="../../img/touch-icon-android.png" />
+        <link rel="apple-touch-icon" href="../../img/touch-icon-apple.png" />
+        <link rel="mask-icon" href="../../img/safari-pinned-tab.svg" color="#5fbf5e" />
+        <link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+        <link rel="stylesheet" href="../../css/bundle.css" />
+        <link rel="stylesheet" href="../../highlight/styles/atom-one-light.css" />
+        <link rel="stylesheet" href="../../css/custom.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700|Source+Code+Pro" rel="stylesheet">
+        <!--[if lt IE 9]>
     <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
   <![endif]-->
-
-    <!--[if lte IE 11]>
+        <!--[if lte IE 11]>
     <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
   <![endif]-->
+        <script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+        <script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+    </head>
 
-
-    <script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
-
-
-    <script
-        src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
-
-
-</head>
-
-<body>
-
-    <div class="suspension">
-        <a title="Go to top" class="to-top is-hide"><span
-                class="icon icon-up"></span></a>
-
-    </div>
-
-
-    <header class="site-header">
-        <a class="avatar_link" href="../../"><img class="avatar"
-                src="../../img/aintnoseats.jpeg" alt="Avatar"></a>
-
-        <h2 class="title">Michael W. Kearney</h2>
-
-        <p class="subtitle">Senior AI/Data Scientist<br>
-            NLP – Machine Learning<br>
-            Python – R – SQL – Bash – Git<br>
-            Responsible AI – Creative Solutions</p>
-        <button class="menu-toggle" type="button">
-            <span class="icon icon-menu"></span>
-        </button>
-        <nav class="site-menu collapsed">
-            <h2 class="offscreen">Main Menu</h2>
-            <ul class="menu-list">
-
-
-
-
-                <li class="menu-item "><a href="../../">Home</a></li>
-
-                <li class="menu-item "><a href="../../about/">About</a></li>
-
-                <li class="menu-item "><a
-                        href="../../publications/">Publications</a></li>
-
-                <li class="menu-item "><a href="https://cv.mikewk.com">CV</a>
-                </li>
-
-            </ul>
-        </nav>
-        <nav class="social-menu collapsed">
-            <h2 class="offscreen">Social Networks</h2>
-            <ul class="social-list">
-
-
-                <li class="social-item">
-                    <a href="mailto:kearneymw@missouri.edu" title="Email"><span
-                            class="icon icon-email"></span></a>
-                </li>
-
-
-                <li class="social-item">
-                    <a href="//github.com/mkearney" title="GitHub"><span
-                            class="icon icon-github"></span></a>
-                </li>
-
-                <li class="social-item">
-                    <a href="//twitter.com/kearneymw" title="Twitter"><span
-                            class="icon icon-twitter"></span></a>
-                </li>
-
-                <li class="social-item">
-                    <a href="//www.facebook.com/mike.wayne.kearney"
-                        title="Facebook"><span
-                            class="icon icon-facebook"></span></a>
-                </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <li class="social-item">
-                    <a href="//www.linkedin.com/in/mikewk"
-                        title="Linkedin"><span
-                            class="icon icon-linkedin"></span></a>
-                </li>
-
-
-
-
-
-
-
-                <li class="social-item">
-                    <a href="../../index.xml"><span class="icon icon-rss"
-                            title="RSS"></span></a>
-                </li>
-
-            </ul>
-        </nav>
-    </header>
-
-    <section class="main post-list">
-        <header class="list-header offscreen">
-            <h2 class="list-label">Posts List</h2>
+    <body>
+        <div class="suspension">
+            <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+        </div>
+        <header class="site-header">
+            <a class="avatar_link" href="../../"><img class="avatar" src="../../img/aintnoseats.jpeg" alt="Avatar"></a>
+            <h2 class="title">Michael W. Kearney</h2>
+            <p class="subtitle">Senior AI/Data Scientist<br> NLP – Machine Learning<br> Responsible AI<br> Creative Solutions</p>
+            <button class="menu-toggle" type="button">
+                <span class="icon icon-menu"></span>
+            </button>
+            <nav class="site-menu collapsed">
+                <h2 class="offscreen">Main Menu</h2>
+                <ul class="menu-list">
+                    <li class="menu-item "><a href="../../">Home</a></li>
+                    <li class="menu-item "><a href="../../about/">About</a></li>
+                    <li class="menu-item "><a href="../../publications/">Publications</a></li>
+                    <li class="menu-item "><a href="https://cv.mikewk.com">CV</a>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="social-menu collapsed">
+                <h2 class="offscreen">Social Networks</h2>
+                <ul class="social-list">
+                    <li class="social-item">
+                        <a href="mailto:kearneymw@missouri.edu" title="Email"><span class="icon icon-email"></span></a>
+                    </li>
+                    <li class="social-item">
+                        <a href="//github.com/mkearney" title="GitHub"><span class="icon icon-github"></span></a>
+                    </li>
+                    <li class="social-item">
+                        <a href="//twitter.com/kearneymw" title="Twitter"><span class="icon icon-twitter"></span></a>
+                    </li>
+                    <li class="social-item">
+                        <a href="//www.facebook.com/mike.wayne.kearney" title="Facebook"><span class="icon icon-facebook"></span></a>
+                    </li>
+                    <li class="social-item">
+                        <a href="//www.linkedin.com/in/mikewk" title="Linkedin"><span class="icon icon-linkedin"></span></a>
+                    </li>
+                    <li class="social-item">
+                        <a href="../../index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+                    </li>
+                </ul>
+            </nav>
         </header>
-
-
-
-        <article class="post-entry">
-            <header class="post-header">
-                <h3 class="post-title"><a
-                        href="../../post/2019-04-23-three-things-to-know-beyond-base-r/"
-                        class="post-link">Three things to know beyond base R</a>
-                </h3>
-                <p class="post-meta">@kearneymw · Apr 23, 2019 · 8 min read</p>
+        <section class="main post-list">
+            <header class="list-header offscreen">
+                <h2 class="list-label">Posts List</h2>
             </header>
-
-            <p class="post-summary">I think it’s fair to say that most academics
-                who learn about R do so in the process of training or applying
-                quantitative research methods. As a consequence, knowledge of R
-                among academics tends to be limited to core (base) R packages (R
-                Core Team, 2018) and a small handful of speciality statistical
-                packages, e.g., {lavaan}, {lme4}, {MASS}, {car}, etc. With this
-                in mind, the goal of this post is to provide an overview of
-                three things to know beyond base R.</p>
-            <footer class="post-footer">
-                <a class="read-more"
-                    href="../../post/2019-04-23-three-things-to-know-beyond-base-r/">Read
-                    More →</a>
-            </footer>
-        </article>
-
-
-        <article class="post-entry">
-            <header class="post-header">
-                <h3 class="post-title"><a
-                        href="../../post/2019-04-10-faster-code-with-rcpp/"
-                        class="post-link">Faster code with Rcpp</a></h3>
-                <p class="post-meta">@kearneymw · Apr 10, 2019 · 6 min read</p>
-            </header>
-
-            <p class="post-summary">Recently I was asked if I could add to
-                {rtweet} some basic functions for converting Twitter data into
-                network data objects. I thought this was a reasonable request
-                and a good opportunity for me to learn more about network
-                analysis. But the task of converting Twitter data into
-                network-friendly objects is something that has, at least for me,
-                been really slow and inefficient. So, for the past several
-                weeks, I’ve been slowly working toward what I think believe a
-                simple but efficient solution.</p>
-            <footer class="post-footer">
-                <a class="read-more"
-                    href="../../post/2019-04-10-faster-code-with-rcpp/">Read
-                    More →</a>
-            </footer>
-        </article>
-
-
-        <article class="post-entry">
-            <header class="post-header">
-                <h3 class="post-title"><a
-                        href="../../post/2018-10-19-installing-r-and-studio/"
-                        class="post-link">Installing R and Studio</a></h3>
-                <p class="post-meta">@kearneymw · Oct 19, 2018 · 3 min read</p>
-            </header>
-
-            <p class="post-summary">This post describes how to download and
-                perform a basic local install of R and Rstudio. The instructions
-                should work for both macOS and Windows users. Although not
-                required, installation tends to work best when operating systems
-                are up-to-date. At the time of writing, this means R/Rstudio
-                work best with macOS High Sierra and Windows 10.
-                R vs Rstudio R is a statistical computing language/environment.
-                It is distinct from Rstudio, which is an integrated development
-                environment (IDE) or high- powered graphical user interface
-                (GUI) optimized for working with the R language.</p>
-            <footer class="post-footer">
-                <a class="read-more"
-                    href="../../post/2018-10-19-installing-r-and-studio/">Read
-                    More →</a>
-            </footer>
-        </article>
-
-
-        <article class="post-entry">
-            <header class="post-header">
-                <h3 class="post-title"><a
-                        href="../../post/2018-10-18-my-r-bloggers-post/"
-                        class="post-link">My R-bloggers post</a></h3>
-                <p class="post-meta">@kearneymw · Oct 18, 2018 · 4 min read</p>
-            </header>
-
-            <p class="post-summary">I have long been a fan of R-bloggers, a
-                content aggregating site focused on blog posts about R. It
-                serves a useful purpose1 and has considerable reach.2 But in the
-                first version of this blog post, I actually wrote a lengthy
-                critique of the site where I concluded with a not-so-blunt
-                suggestion that R-bloggers wasn’t as good as it should be. In
-                retrospect, and after pleasant exchange about a draft of the
-                post with Tal Galili (the creator and operator of R-bloggers), I
-                can confidently say my post was overly nit-picky and unrealistic
-                in my expectations for a benevolent blog-aggregating site like
-                R-bloggers.</p>
-            <footer class="post-footer">
-                <a class="read-more"
-                    href="../../post/2018-10-18-my-r-bloggers-post/">Read More
-                    →</a>
-            </footer>
-        </article>
-
-
-        <article class="post-entry">
-            <header class="post-header">
-                <h3 class="post-title"><a
-                        href="../../post/2018-09-20-labelling-dataviz/"
-                        class="post-link">Labelling dataviz</a></h3>
-                <p class="post-meta">@kearneymw · Sep 20, 2018 · 6 min read</p>
-            </header>
-
-            <p class="post-summary">I still remember how hard it was to learn
-                {ggplot2} after only knowing a little about R1. Sure, the plots
-                seemed pretty. But compared to the ways I had used R before,
-                {ggplot2}’s syntax seemed almost counter-intuitive. Its
-                pipe-like &#43; workflow–building layer-by-layer– was like
-                nothing I had ever used before. Not to mention, I was unfamiliar
-                with central terms of art like “geoms” and “aesthetics”.
-                But then again…the plots were really pretty.</p>
-            <footer class="post-footer">
-                <a class="read-more"
-                    href="../../post/2018-09-20-labelling-dataviz/">Read More
-                    →</a>
-            </footer>
-        </article>
-
-
-        <article class="post-entry">
-            <header class="post-header">
-                <h3 class="post-title"><a
-                        href="../../post/2018-09-17-tick-marks-var-names-and-ggplot2/"
-                        class="post-link">Tick marks, variable names, and
-                        ggplot2</a></h3>
-                <p class="post-meta">@kearneymw · Sep 17, 2018 · 8 min read</p>
-            </header>
-
-            <p class="post-summary">A popular workflow in R uses {dplyr} to
-                group_by() and then summarise()1 variables. It’s an intuitive
-                and easy way to aggregate and describe data, especially along
-                multiple dimensions. The cost of being both powerful and
-                user-friendly, however, is its arguably inconvenient default
-                method for assigning names to summarized values. As the code
-                illustrates below, users can provide their own names when using
-                summarize().
-                ## explicitly named summarize variable mtcars %&gt;%
-                group_by(cyl) %&gt;% summarize(mpg = mean(mpg)) #&gt; # A
-                tibble: 3 x 2 #&gt; cyl mpg #&gt; &lt;dbl&gt; &lt;dbl&gt; #&gt;
-                1 4 26.</p>
-            <footer class="post-footer">
-                <a class="read-more"
-                    href="../../post/2018-09-17-tick-marks-var-names-and-ggplot2/">Read
-                    More →</a>
-            </footer>
-        </article>
-
-
-
-
-    </section>
-    <footer class="site-footer">
-        <p>© 2017-2019 Michael W. Kearney</p>
-
-    </footer>
-
-
-
-    <script async
-        src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
-    <script async
-        src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    <script src="../../highlight/highlight.pack.js"></script>
-
-    <script>hljs.initHighlightingOnLoad();</script>
-
-    <script type="text/x-mathjax-config">
+            <article class="post-entry">
+                <header class="post-header">
+                    <h3 class="post-title"><a href="../../post/2019-04-23-three-things-to-know-beyond-base-r/" class="post-link">Three
+                            things to know beyond base R</a>
+                    </h3>
+                    <p class="post-meta">@kearneymw · Apr 23, 2019 · 8 min read</p>
+                </header>
+                <p class="post-summary">I think it’s fair to say that most academics who learn about R do so in the process of training or
+                    applying quantitative research methods. As a consequence, knowledge of R among academics tends to be limited to core
+                    (base) R packages (R Core Team, 2018) and a small handful of speciality statistical packages, e.g., {lavaan}, {lme4},
+                    {MASS}, {car}, etc. With this in mind, the goal of this post is to provide an overview of three things to know beyond
+                    base R.</p>
+                <footer class="post-footer">
+                    <a class="read-more" href="../../post/2019-04-23-three-things-to-know-beyond-base-r/">Read More →</a>
+                </footer>
+            </article>
+            <article class="post-entry">
+                <header class="post-header">
+                    <h3 class="post-title"><a href="../../post/2019-04-10-faster-code-with-rcpp/" class="post-link">Faster code with
+                            Rcpp</a></h3>
+                    <p class="post-meta">@kearneymw · Apr 10, 2019 · 6 min read</p>
+                </header>
+                <p class="post-summary">Recently I was asked if I could add to {rtweet} some basic functions for converting Twitter data
+                    into network data objects. I thought this was a reasonable request and a good opportunity for me to learn more about
+                    network analysis. But the task of converting Twitter data into network-friendly objects is something that has, at least
+                    for me, been really slow and inefficient. So, for the past several weeks, I’ve been slowly working toward what I think
+                    believe a simple but efficient solution.</p>
+                <footer class="post-footer">
+                    <a class="read-more" href="../../post/2019-04-10-faster-code-with-rcpp/">Read More →</a>
+                </footer>
+            </article>
+            <article class="post-entry">
+                <header class="post-header">
+                    <h3 class="post-title"><a href="../../post/2018-10-19-installing-r-and-studio/" class="post-link">Installing R and
+                            Studio</a></h3>
+                    <p class="post-meta">@kearneymw · Oct 19, 2018 · 3 min read</p>
+                </header>
+                <p class="post-summary">This post describes how to download and perform a basic local install of R and Rstudio. The
+                    instructions should work for both macOS and Windows users. Although not required, installation tends to work best when
+                    operating systems are up-to-date. At the time of writing, this means R/Rstudio work best with macOS High Sierra and
+                    Windows 10. R vs Rstudio R is a statistical computing language/environment. It is distinct from Rstudio, which is an
+                    integrated development environment (IDE) or high- powered graphical user interface (GUI) optimized for working with the
+                    R language.</p>
+                <footer class="post-footer">
+                    <a class="read-more" href="../../post/2018-10-19-installing-r-and-studio/">Read More →</a>
+                </footer>
+            </article>
+            <article class="post-entry">
+                <header class="post-header">
+                    <h3 class="post-title"><a href="../../post/2018-10-18-my-r-bloggers-post/" class="post-link">My R-bloggers post</a></h3>
+                    <p class="post-meta">@kearneymw · Oct 18, 2018 · 4 min read</p>
+                </header>
+                <p class="post-summary">I have long been a fan of R-bloggers, a content aggregating site focused on blog posts about R. It
+                    serves a useful purpose1 and has considerable reach.2 But in the first version of this blog post, I actually wrote a
+                    lengthy critique of the site where I concluded with a not-so-blunt suggestion that R-bloggers wasn’t as good as it
+                    should be. In retrospect, and after pleasant exchange about a draft of the post with Tal Galili (the creator and
+                    operator of R-bloggers), I can confidently say my post was overly nit-picky and unrealistic in my expectations for a
+                    benevolent blog-aggregating site like R-bloggers.</p>
+                <footer class="post-footer">
+                    <a class="read-more" href="../../post/2018-10-18-my-r-bloggers-post/">Read More →</a>
+                </footer>
+            </article>
+            <article class="post-entry">
+                <header class="post-header">
+                    <h3 class="post-title"><a href="../../post/2018-09-20-labelling-dataviz/" class="post-link">Labelling dataviz</a></h3>
+                    <p class="post-meta">@kearneymw · Sep 20, 2018 · 6 min read</p>
+                </header>
+                <p class="post-summary">I still remember how hard it was to learn {ggplot2} after only knowing a little about R1. Sure, the
+                    plots seemed pretty. But compared to the ways I had used R before, {ggplot2}’s syntax seemed almost counter-intuitive.
+                    Its pipe-like &#43; workflow–building layer-by-layer– was like nothing I had ever used before. Not to mention, I was
+                    unfamiliar with central terms of art like “geoms” and “aesthetics”. But then again…the plots were really pretty.</p>
+                <footer class="post-footer">
+                    <a class="read-more" href="../../post/2018-09-20-labelling-dataviz/">Read More →</a>
+                </footer>
+            </article>
+            <article class="post-entry">
+                <header class="post-header">
+                    <h3 class="post-title"><a href="../../post/2018-09-17-tick-marks-var-names-and-ggplot2/" class="post-link">Tick marks,
+                            variable names, and ggplot2</a></h3>
+                    <p class="post-meta">@kearneymw · Sep 17, 2018 · 8 min read</p>
+                </header>
+                <p class="post-summary">A popular workflow in R uses {dplyr} to group_by() and then summarise()1 variables. It’s an
+                    intuitive and easy way to aggregate and describe data, especially along multiple dimensions. The cost of being both
+                    powerful and user-friendly, however, is its arguably inconvenient default method for assigning names to summarized
+                    values. As the code illustrates below, users can provide their own names when using summarize(). ## explicitly named
+                    summarize variable mtcars %&gt;% group_by(cyl) %&gt;% summarize(mpg = mean(mpg)) #&gt; # A tibble: 3 x 2 #&gt; cyl mpg
+                    #&gt; &lt;dbl&gt; &lt;dbl&gt; #&gt; 1 4 26.</p>
+                <footer class="post-footer">
+                    <a class="read-more" href="../../post/2018-09-17-tick-marks-var-names-and-ggplot2/">Read More →</a>
+                </footer>
+            </article>
+        </section>
+        <footer class="site-footer">
+            <p>© 2017-2019 Michael W. Kearney</p>
+        </footer>
+        <script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+        <script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../highlight/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [['$','$'], ['\\(','\\)']],
@@ -425,7 +214,7 @@
     }
   });
 </script>
-    <script type="text/x-mathjax-config">
+        <script type="text/x-mathjax-config">
   // Fix <code> tags after MathJax finishes running. This is a
   // hack to overcome a shortcoming of Markdown. Discussion at
   // https://github.com/mojombo/jekyll/issues/199
@@ -433,22 +222,14 @@
     MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
   });
 </script>
-
-    <script src="../../js/bundle.js"></script>
-    <script src="../../highlight/highlight.pack.js"></script>
-
-
-    <script>
-        window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
-        ga('create', 'UA-64959413-1', 'auto');
-        ga('send', 'pageview');
-    </script>
-    <script async src='//www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-</body>
+        <script src="../../js/bundle.js"></script>
+        <script src="../../highlight/highlight.pack.js"></script>
+        <script>
+            window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
+            ga('create', 'UA-64959413-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <script async src='//www.google-analytics.com/analytics.js'></script>
+    </body>
 
 </html>

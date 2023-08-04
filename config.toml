@@ -42,9 +42,9 @@ copyright = "© Michael W. Kearney 2018"
   seotitle = "Michael W. Kearney"
   subtitle1 = "Senior AI/Data Scientist"
   subtitle2 = "NLP – Machine Learning"
-  subtitle3 = "Python – R – SQL – Bash – Git"
-  subtitle4 = "Responsible AI – Creative Solutions"
-  description = "Personal website of Michael W. Kearney, Senior AI/Data Scientist – NLP – Machine Learning and Missouri Python – R – SQL – Bash – Git"
+  subtitle3 = "Responsible AI"
+  subtitle4 = "Creative Solutions"
+  description = "Personal website of Michael W. Kearney, Senior AI/Data Scientist – NLP – Machine Learning – Responsible AI"
   paginate = 10
 
   # Add custom assets with their paths relative to the static folder

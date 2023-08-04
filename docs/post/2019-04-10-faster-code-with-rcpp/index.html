@@ -1,268 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-
-    <meta charset="utf-8" />
-
-
-    <title>Faster code with Rcpp</title>
-
-
-
-
-
-
-
-
-    <meta name="author" content="kearneymw" />
-    <meta name="description"
-        content="Recently I was asked if I could add to {rtweet} some basic functions for converting Twitter data into network data objects. I thought this was a reasonable request and a good opportunity for me to learn more about network analysis. But the task of converting Twitter data into network-friendly objects is something that has, at least for me, been really slow and inefficient. So, for the past several weeks, I’ve been slowly working toward what I think believe a simple but efficient solution." />
-
-
-
-    <meta name="twitter:card" content="summary" />
-    <meta name="twitter:site" content="@kearneymw" />
-    <meta name="twitter:title" content="Faster code with Rcpp" />
-    <meta name="twitter:description"
-        content="Recently I was asked if I could add to {rtweet} some basic functions for converting Twitter data into network data objects. I thought this was a reasonable request and a good opportunity for me to learn more about network analysis. But the task of converting Twitter data into network-friendly objects is something that has, at least for me, been really slow and inefficient. So, for the past several weeks, I’ve been slowly working toward what I think believe a simple but efficient solution." />
-    <meta name="twitter:image" content="/img/avatar.jpg" />
-
-
-
-
-
-    <meta name="generator" content="Hugo 0.40.1" />
-
-
-    <link rel="canonical" href="../../post/2019-04-10-faster-code-with-rcpp/" />
-    <link rel="alternative" href="../../index.xml" title="Michael W. Kearney"
-        type="application/atom+xml" />
-
-
-    <meta name="renderer" content="webkit" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="format-detection" content="telephone=no,email=no,adress=no" />
-    <meta http-equiv="Cache-Control" content="no-transform" />
-
-
-    <meta name="robots" content="index,follow" />
-    <meta name="referrer" content="origin-when-cross-origin" />
-    <meta name="google-site-verification"
-        content="XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY" />
-
-
-
-
-
-
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style"
-        content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Michael W. Kearney" />
-    <meta name="msapplication-tooltip" content="Michael W. Kearney" />
-    <meta name='msapplication-navbutton-color' content="#5fbf5e" />
-    <meta name="msapplication-TileColor" content="#5fbf5e" />
-    <meta name="msapplication-TileImage"
-        content="/img/tile-image-windows.png" />
-    <link rel="icon" href="../../img/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="16x16"
-        href="../../img/favicon-16x16.png" />
-    <link rel="icon" type="image/png" sizes="32x32"
-        href="../../img/favicon-32x32.png" />
-    <link rel="icon" sizes="192x192" href="../../img/touch-icon-android.png" />
-    <link rel="apple-touch-icon" href="../../img/touch-icon-apple.png" />
-    <link rel="mask-icon" href="../../img/safari-pinned-tab.svg"
-        color="#5fbf5e" />
-
-
-
-    <link rel="stylesheet"
-        href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
-
-    <link rel="stylesheet" href="../../css/bundle.css" />
-    <link rel="stylesheet" href="../../highlight/styles/atom-one-light.css" />
-
-
-    <link rel="stylesheet" href="../../css/custom.css">
-
-
-    <link
-        href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700|Source+Code+Pro"
-        rel="stylesheet">
-
-
-
-    <!--[if lt IE 9]>
+    <head>
+        <meta charset="utf-8" />
+        <title>Faster code with Rcpp</title>
+        <meta name="author" content="kearneymw" />
+        <meta name="description"
+            content="Recently I was asked if I could add to {rtweet} some basic functions for converting Twitter data into network data objects. I thought this was a reasonable request and a good opportunity for me to learn more about network analysis. But the task of converting Twitter data into network-friendly objects is something that has, at least for me, been really slow and inefficient. So, for the past several weeks, I’ve been slowly working toward what I think believe a simple but efficient solution." />
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:site" content="@kearneymw" />
+        <meta name="twitter:title" content="Faster code with Rcpp" />
+        <meta name="twitter:description"
+            content="Recently I was asked if I could add to {rtweet} some basic functions for converting Twitter data into network data objects. I thought this was a reasonable request and a good opportunity for me to learn more about network analysis. But the task of converting Twitter data into network-friendly objects is something that has, at least for me, been really slow and inefficient. So, for the past several weeks, I’ve been slowly working toward what I think believe a simple but efficient solution." />
+        <meta name="twitter:image" content="/img/avatar.jpg" />
+        <meta name="generator" content="Hugo 0.40.1" />
+        <link rel="canonical" href="../../post/2019-04-10-faster-code-with-rcpp/" />
+        <link rel="alternative" href="../../index.xml" title="Michael W. Kearney" type="application/atom+xml" />
+        <meta name="renderer" content="webkit" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta name="format-detection" content="telephone=no,email=no,adress=no" />
+        <meta http-equiv="Cache-Control" content="no-transform" />
+        <meta name="robots" content="index,follow" />
+        <meta name="referrer" content="origin-when-cross-origin" />
+        <meta name="google-site-verification" content="XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="Michael W. Kearney" />
+        <meta name="msapplication-tooltip" content="Michael W. Kearney" />
+        <meta name='msapplication-navbutton-color' content="#5fbf5e" />
+        <meta name="msapplication-TileColor" content="#5fbf5e" />
+        <meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
+        <link rel="icon" href="../../img/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
+        <link rel="icon" sizes="192x192" href="../../img/touch-icon-android.png" />
+        <link rel="apple-touch-icon" href="../../img/touch-icon-apple.png" />
+        <link rel="mask-icon" href="../../img/safari-pinned-tab.svg" color="#5fbf5e" />
+        <link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
+        <link rel="stylesheet" href="../../css/bundle.css" />
+        <link rel="stylesheet" href="../../highlight/styles/atom-one-light.css" />
+        <link rel="stylesheet" href="../../css/custom.css">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700|Source+Code+Pro" rel="stylesheet">
+        <!--[if lt IE 9]>
     <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
     <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
   <![endif]-->
-
-    <!--[if lte IE 11]>
+        <!--[if lte IE 11]>
     <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
   <![endif]-->
-
-
-    <script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
-
-
-    <script
-        src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
-
-
-</head>
-
-<body>
-
-    <div class="suspension">
-        <a title="Go to top" class="to-top is-hide"><span
-                class="icon icon-up"></span></a>
-
-
-        <a title="Go to comments" class="to-comment" href="#disqus_thread"><span
-                class="icon icon-comment"></span></a>
-
-
-    </div>
-
-
-    <header class="site-header">
-        <a class="avatar_link" href="../../"><img class="avatar"
-                src="../../img/aintnoseats.jpeg" alt="Avatar"></a>
-
-        <h2 class="title">Michael W. Kearney</h2>
-
-        <p class="subtitle">Senior AI/Data Scientist<br>
-            NLP – Machine Learning<br>
-            Python – R – SQL – Bash – Git<br>
-            Responsible AI – Creative Solutions</p>
-        <button class="menu-toggle" type="button">
-            <span class="icon icon-menu"></span>
-        </button>
-        <nav class="site-menu collapsed">
-            <h2 class="offscreen">Main Menu</h2>
-            <ul class="menu-list">
-
-
-
-
-                <li class="menu-item  is-active"><a href="../../">Home</a></li>
-
-                <li class="menu-item "><a href="../../about/">About</a></li>
-
-                <li class="menu-item "><a
-                        href="../../publications/">Publications</a></li>
-
-                <li class="menu-item "><a href="https://cv.mikewk.com">CV</a>
-                </li>
-
-            </ul>
-        </nav>
-        <nav class="social-menu collapsed">
-            <h2 class="offscreen">Social Networks</h2>
-            <ul class="social-list">
-
-
-                <li class="social-item">
-                    <a href="mailto:kearneymw@missouri.edu" title="Email"><span
-                            class="icon icon-email"></span></a>
-                </li>
-
-
-                <li class="social-item">
-                    <a href="//github.com/mkearney" title="GitHub"><span
-                            class="icon icon-github"></span></a>
-                </li>
-
-                <li class="social-item">
-                    <a href="//twitter.com/kearneymw" title="Twitter"><span
-                            class="icon icon-twitter"></span></a>
-                </li>
-
-                <li class="social-item">
-                    <a href="//www.facebook.com/mike.wayne.kearney"
-                        title="Facebook"><span
-                            class="icon icon-facebook"></span></a>
-                </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                <li class="social-item">
-                    <a href="//www.linkedin.com/in/mikewk"
-                        title="Linkedin"><span
-                            class="icon icon-linkedin"></span></a>
-                </li>
-
-
-
-
-
-
-
-                <li class="social-item">
-                    <a href="../../index.xml"><span class="icon icon-rss"
-                            title="RSS"></span></a>
-                </li>
-
-            </ul>
-        </nav>
-    </header>
-
-    <section class="main post-detail">
-        <header class="post-header">
-            <h1 class="post-title">Faster code with Rcpp</h1>
-            <p class="post-meta">@kearneymw · Apr 10, 2019 · 6 min read</p>
+        <script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
+        <script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
+    </head>
+
+    <body>
+        <div class="suspension">
+            <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
+            <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
+        </div>
+        <header class="site-header">
+            <a class="avatar_link" href="../../"><img class="avatar" src="../../img/aintnoseats.jpeg" alt="Avatar"></a>
+            <h2 class="title">Michael W. Kearney</h2>
+            <p class="subtitle">Senior AI/Data Scientist<br> NLP – Machine Learning<br> Responsible AI<br> Creative Solutions</p>
+            <button class="menu-toggle" type="button">
+                <span class="icon icon-menu"></span>
+            </button>
+            <nav class="site-menu collapsed">
+                <h2 class="offscreen">Main Menu</h2>
+                <ul class="menu-list">
+                    <li class="menu-item  is-active"><a href="../../">Home</a></li>
+                    <li class="menu-item "><a href="../../about/">About</a></li>
+                    <li class="menu-item "><a href="../../publications/">Publications</a></li>
+                    <li class="menu-item "><a href="https://cv.mikewk.com">CV</a>
+                    </li>
+                </ul>
+            </nav>
+            <nav class="social-menu collapsed">
+                <h2 class="offscreen">Social Networks</h2>
+                <ul class="social-list">
+                    <li class="social-item">
+                        <a href="mailto:kearneymw@missouri.edu" title="Email"><span class="icon icon-email"></span></a>
+                    </li>
+                    <li class="social-item">
+                        <a href="//github.com/mkearney" title="GitHub"><span class="icon icon-github"></span></a>
+                    </li>
+                    <li class="social-item">
+                        <a href="//twitter.com/kearneymw" title="Twitter"><span class="icon icon-twitter"></span></a>
+                    </li>
+                    <li class="social-item">
+                        <a href="//www.facebook.com/mike.wayne.kearney" title="Facebook"><span class="icon icon-facebook"></span></a>
+                    </li>
+                    <li class="social-item">
+                        <a href="//www.linkedin.com/in/mikewk" title="Linkedin"><span class="icon icon-linkedin"></span></a>
+                    </li>
+                    <li class="social-item">
+                        <a href="../../index.xml"><span class="icon icon-rss" title="RSS"></span></a>
+                    </li>
+                </ul>
+            </nav>
         </header>
-        <article class="post-content">
-            <p>Recently I was asked if I could add to <a
-                    href="https://rtweet.info">{rtweet}</a> some basic functions
-                for converting Twitter data into network data objects. I thought
-                this was a reasonable request and a good opportunity for me to
-                learn more about network analysis. But the task of converting
-                Twitter data into network-friendly objects is something that
-                has, at least for me, been really <em>slow and inefficient</em>.
-                So, for the past several weeks, I’ve been slowly working toward
-                <em>what I think believe a simple but efficient solution</em>.
-                Hence, the purpose of this blog post is to document what I’ve
-                done.
-            </p>
-            <div id="the-problem" class="section level2">
-                <h2>The problem</h2>
-                <p>The ultimate task at issue is <em>converting Twitter
-                        data<sup>1</sup> into a network or network-friendly data
-                        object</em>. Thus, the immediate problem is
-                    <strong>quickly and efficiently unrolling the connections
-                        (e.g., <em>mentions</em>) <code>from</code> one user
-                        <code>to</code> zero or more other users</strong>. In
-                    other words, the problem is figure out how to convert this
-                    recursive data frame:
-                </p>
-                <pre><code>#&gt; # A tibble: 163 x 2
+        <section class="main post-detail">
+            <header class="post-header">
+                <h1 class="post-title">Faster code with Rcpp</h1>
+                <p class="post-meta">@kearneymw · Apr 10, 2019 · 6 min read</p>
+            </header>
+            <article class="post-content">
+                <p>Recently I was asked if I could add to <a href="https://rtweet.info">{rtweet}</a> some basic functions for converting
+                    Twitter data into network data objects. I thought this was a reasonable request and a good opportunity for me to learn
+                    more about network analysis. But the task of converting Twitter data into network-friendly objects is something that
+                    has, at least for me, been really <em>slow and inefficient</em>. So, for the past several weeks, I’ve been slowly
+                    working toward <em>what I think believe a simple but efficient solution</em>. Hence, the purpose of this blog post is to
+                    document what I’ve done. </p>
+                <div id="the-problem" class="section level2">
+                    <h2>The problem</h2>
+                    <p>The ultimate task at issue is <em>converting Twitter data<sup>1</sup> into a network or network-friendly data
+                            object</em>. Thus, the immediate problem is <strong>quickly and efficiently unrolling the connections (e.g.,
+                            <em>mentions</em>) <code>from</code> one user <code>to</code> zero or more other users</strong>. In other words,
+                        the problem is figure out how to convert this recursive data frame: </p>
+                    <pre><code>#&gt; # A tibble: 163 x 2
 #&gt;    user_id mentions_user_id
 #&gt;    &lt;chr&gt;   &lt;list&gt;
 #&gt;  1 5685812 &lt;chr [1]&gt;
@@ -276,11 +131,8 @@
 #&gt;  9 5685812 &lt;chr [1]&gt;
 #&gt; 10 5685812 &lt;chr [1]&gt;
 #&gt; # … with 153 more rows</code></pre>
-                <p>into a desired output (with <code>from</code> and
-                    <code>to</code>-like columns) that looks something like
-                    this:
-                </p>
-                <pre class="r"><code>tibble::as_tibble(unroll_connections2(d))
+                    <p>into a desired output (with <code>from</code> and <code>to</code>-like columns) that looks something like this: </p>
+                    <pre class="r"><code>tibble::as_tibble(unroll_connections2(d))
 #&gt; # A tibble: 220 x 2
 #&gt;    from    to
 #&gt;    &lt;chr&gt;   &lt;chr&gt;
@@ -295,18 +147,14 @@
 #&gt;  9 5685812 870078805381132288
 #&gt; 10 5685812 4069028055
 #&gt; # … with 210 more rows</code></pre>
-            </div>
-            <div id="pure-r-code-slowest" class="section level2">
-                <h2>Pure R code (slowest)</h2>
-                <p>The first function I wrote to accomplish this task leveraged
-                    <code>data.frame</code> logic (<em>each column should be the
-                        same length</em>) to coerce the <code>from</code> column
-                    (<code>user_id</code>) to be of equal length as the
-                    <code>to</code> (<code>mentions_user_id</code>) column for
-                    each row of the input data set. It then collapses everything
-                    into a single data frame.
-                </p>
-                <pre class="r"><code>unroll_connections1 &lt;- function(.x) {
+                </div>
+                <div id="pure-r-code-slowest" class="section level2">
+                    <h2>Pure R code (slowest)</h2>
+                    <p>The first function I wrote to accomplish this task leveraged <code>data.frame</code> logic (<em>each column should be
+                            the same length</em>) to coerce the <code>from</code> column (<code>user_id</code>) to be of equal length as the
+                        <code>to</code> (<code>mentions_user_id</code>) column for each row of the input data set. It then collapses
+                        everything into a single data frame. </p>
+                    <pre class="r"><code>unroll_connections1 &lt;- function(.x) {
   fun &lt;- function(from, to) {
     ## if NULL or 1 missing value then return empty tibble
     if (length(to) == 0 || (length(to) == 1 &amp;&amp; is.na(to[1]))) {
@@ -319,23 +167,17 @@
   .x &lt;- mapply(fun, .x[[1]], .x[[2]], USE.NAMES = FALSE)
   do.call(rbind, .x)
 }</code></pre>
-                <p>The above code is slow and inefficient because it calls
-                    <code>data.frame()</code> (and all its associated baggage)
-                    <strong>for every row</strong> of the input data.
-                </p>
-            </div>
-            <div id="pure-r-code-faster" class="section level2">
-                <h2>Pure R code (faster)</h2>
-                <p>My next iteration was also written in pure R code. To
-                    minimize the effect of so many <code>data.frame()</code>
-                    calls, the function below calculates the number of times it
-                    needs to repeat the <code>from</code> value (to match the
-                    number of times <code>to</code> values appear) and then
-                    combines everything <em>at the end</em> into a data frame.
-                    As the benchmarking results later on confirm, this function
-                    offers a <strong>sizable speed up</strong> over the
-                    original, <code>data.frame()</code>-heavy function!</p>
-                <pre class="r"><code>unroll_connections2 &lt;- function(x) {
+                    <p>The above code is slow and inefficient because it calls <code>data.frame()</code> (and all its associated baggage)
+                        <strong>for every row</strong> of the input data. </p>
+                </div>
+                <div id="pure-r-code-faster" class="section level2">
+                    <h2>Pure R code (faster)</h2>
+                    <p>My next iteration was also written in pure R code. To minimize the effect of so many <code>data.frame()</code> calls,
+                        the function below calculates the number of times it needs to repeat the <code>from</code> value (to match the
+                        number of times <code>to</code> values appear) and then combines everything <em>at the end</em> into a data frame.
+                        As the benchmarking results later on confirm, this function offers a <strong>sizable speed up</strong> over the
+                        original, <code>data.frame()</code>-heavy function!</p>
+                    <pre class="r"><code>unroll_connections2 &lt;- function(x) {
   ## initialize logical (TRUE) vector
   kp &lt;- !logical(nrow(x))
 
@@ -357,17 +199,13 @@
     stringsAsFactors = FALSE
   )
 }</code></pre>
-            </div>
-            <div id="rcpp-code-fastest" class="section level2">
-                <h2>Rcpp code (fastest)</h2>
-                <p>I was happy with the large speed up from
-                    <code>unroll_connections2()</code>, but I’ve also been
-                    trying to learn how to speed up my code with
-                    <strong>c++</strong>, so I decided to see what kind of
-                    additional speed up I could get via <a
-                        href="https://www.rcpp.org">{Rcpp}</a>.
-                </p>
-                <pre class="cpp"><code>#include &lt;Rcpp.h&gt;
+                </div>
+                <div id="rcpp-code-fastest" class="section level2">
+                    <h2>Rcpp code (fastest)</h2>
+                    <p>I was happy with the large speed up from <code>unroll_connections2()</code>, but I’ve also been trying to learn how
+                        to speed up my code with <strong>c++</strong>, so I decided to see what kind of additional speed up I could get via
+                        <a href="https://www.rcpp.org">{Rcpp}</a>. </p>
+                    <pre class="cpp"><code>#include &lt;Rcpp.h&gt;
 
 using namespace Rcpp;
 
@@ -410,13 +248,12 @@ List unroll_connections3(CharacterVector from, std::vector&lt;std::vector&lt;std
   df.attr(&quot;row.names&quot;) = seq(1, ctr);
   return df;
 }</code></pre>
-            </div>
-            <div id="benchmark" class="section level2">
-                <h2><code>bench::mark()</code></h2>
-                <p>To compare the three previously described functions, I’ve
-                    used the <a href="http://bench.r-lib.org/">{bench}</a>
-                    package. The code and numeric results are printed below.</p>
-                <pre class="r"><code>## from and to vectors
+                </div>
+                <div id="benchmark" class="section level2">
+                    <h2><code>bench::mark()</code></h2>
+                    <p>To compare the three previously described functions, I’ve used the <a href="http://bench.r-lib.org/">{bench}</a>
+                        package. The code and numeric results are printed below.</p>
+                    <pre class="r"><code>## from and to vectors
 from &lt;- d$user_id
 to &lt;- d$mentions_user_id
 
@@ -433,64 +270,58 @@ m &lt;- bench::mark(
 m %&gt;%
   dplyr::select(expression:n_gc) %&gt;%
   knitr::kable(digits = 2)</code></pre>
-                <table>
-                    <thead>
-                        <tr class="header">
-                            <th align="left">expression</th>
-                            <th align="right">min</th>
-                            <th align="right">mean</th>
-                            <th align="right">median</th>
-                            <th align="right">max</th>
-                            <th align="right">itr/sec</th>
-                            <th align="right">mem_alloc</th>
-                            <th align="right">n_gc</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr class="odd">
-                            <td align="left">unroll_connections1</td>
-                            <td align="right">472.14</td>
-                            <td align="right">462.66</td>
-                            <td align="right">460.84</td>
-                            <td align="right">51.76</td>
-                            <td align="right">1.00</td>
-                            <td align="right">17.78</td>
-                            <td align="right">21</td>
-                        </tr>
-                        <tr class="even">
-                            <td align="left">unroll_connections2</td>
-                            <td align="right">7.19</td>
-                            <td align="right">7.08</td>
-                            <td align="right">6.85</td>
-                            <td align="right">1.00</td>
-                            <td align="right">65.32</td>
-                            <td align="right">631.74</td>
-                            <td align="right">6</td>
-                        </tr>
-                        <tr class="odd">
-                            <td align="left">unroll_connections3</td>
-                            <td align="right">1.00</td>
-                            <td align="right">1.00</td>
-                            <td align="right">1.00</td>
-                            <td align="right">1.26</td>
-                            <td align="right">462.66</td>
-                            <td align="right">1.00</td>
-                            <td align="right">1</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p>As you can see, the initial improvement from
-                    <code>unroll_connections1()</code> to
-                    <code>unroll_connections2()</code> was more than
-                    <strong>60X</strong>, which is great. But, thanks to the
-                    power of <a href="https://http://www.rcpp.org/">{rcpp}</a>,
-                    I was able to speed things up even more with an improvement
-                    from <code>unroll_connections2()</code> to
-                    <code>unroll_connections3()</code> of roughly
-                    <strong>7X</strong> or roughly <strong>450X</strong>
-                    compared to the original function!!
-                </p>
-                <pre class="r"><code>## plot
+                    <table>
+                        <thead>
+                            <tr class="header">
+                                <th align="left">expression</th>
+                                <th align="right">min</th>
+                                <th align="right">mean</th>
+                                <th align="right">median</th>
+                                <th align="right">max</th>
+                                <th align="right">itr/sec</th>
+                                <th align="right">mem_alloc</th>
+                                <th align="right">n_gc</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="odd">
+                                <td align="left">unroll_connections1</td>
+                                <td align="right">472.14</td>
+                                <td align="right">462.66</td>
+                                <td align="right">460.84</td>
+                                <td align="right">51.76</td>
+                                <td align="right">1.00</td>
+                                <td align="right">17.78</td>
+                                <td align="right">21</td>
+                            </tr>
+                            <tr class="even">
+                                <td align="left">unroll_connections2</td>
+                                <td align="right">7.19</td>
+                                <td align="right">7.08</td>
+                                <td align="right">6.85</td>
+                                <td align="right">1.00</td>
+                                <td align="right">65.32</td>
+                                <td align="right">631.74</td>
+                                <td align="right">6</td>
+                            </tr>
+                            <tr class="odd">
+                                <td align="left">unroll_connections3</td>
+                                <td align="right">1.00</td>
+                                <td align="right">1.00</td>
+                                <td align="right">1.00</td>
+                                <td align="right">1.26</td>
+                                <td align="right">462.66</td>
+                                <td align="right">1.00</td>
+                                <td align="right">1</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p>As you can see, the initial improvement from <code>unroll_connections1()</code> to <code>unroll_connections2()</code>
+                        was more than <strong>60X</strong>, which is great. But, thanks to the power of <a
+                            href="https://http://www.rcpp.org/">{rcpp}</a>, I was able to speed things up even more with an improvement from
+                        <code>unroll_connections2()</code> to <code>unroll_connections3()</code> of roughly <strong>7X</strong> or roughly
+                        <strong>450X</strong> compared to the original function!! </p>
+                    <pre class="r"><code>## plot
 m$expression &lt;- factor(m$expression, levels = rev(m$expression))
 bench:::autoplot.bench_mark(m, shape = 21, size = 2.5, color = &quot;#333333aa&quot;) +
   ggplot2::aes(fill = expression) +
@@ -503,82 +334,59 @@ bench:::autoplot.bench_mark(m, shape = 21, size = 2.5, color = &quot;#333333aa&q
     caption = &quot;unroll_connections1() and unroll_connections2() are written in base R; unroll_connections3() uses Rcpp&quot;) +
   ggplot2::ggsave(here::here(&quot;content&quot;, &quot;post&quot;, &quot;img&quot;, &quot;network-benchmark.png&quot;),
     width = 7, height = 4, units = &quot;in&quot;)</code></pre>
-                <p style="align:center">
-                    <img src="../../img/network-benchmark.png">
-                </p>
-            </div>
-            <div id="notes" class="section level2">
-                <h2>Notes</h2>
-                <p><sup>1</sup> Data I used to generate the example data set:
-                </p>
-                <pre class="r"><code>## search for up to 200 #rstats tweets from verified users
+                    <p style="align:center">
+                        <img src="../../img/network-benchmark.png">
+                    </p>
+                </div>
+                <div id="notes" class="section level2">
+                    <h2>Notes</h2>
+                    <p><sup>1</sup> Data I used to generate the example data set: </p>
+                    <pre class="r"><code>## search for up to 200 #rstats tweets from verified users
 rt &lt;- rtweet::search_tweets(&quot;#rstats filter:verified&quot;, n = 200)
 
 ## select only the node (ID/screen name) variables
 d &lt;- dplyr::select(d, user_id, mentions_user_id)</code></pre>
-            </div>
-        </article>
-        <footer class="post-footer">
+                </div>
+            </article>
+            <footer class="post-footer">
+                <ul class="post-tags">
+                    <li><a href="../../tags/r"><span class="tag">R</span></a></li>
+                    <li><a href="../../tags/rcpp"><span class="tag">Rcpp</span></a>
+                    </li>
+                </ul>
+                <p class="post-copyright"> © Michael W. Kearney 2018This post was published <strong>223</strong> days ago, content in the
+                    post may be inaccurate, even wrong now, please take risk yourself. </p>
+            </footer>
+            <div id="disqus_thread"></div>
+            <script>
+                var disqus_config = function () {
 
-            <ul class="post-tags">
 
-                <li><a href="../../tags/r"><span class="tag">R</span></a></li>
 
-                <li><a href="../../tags/rcpp"><span class="tag">Rcpp</span></a>
-                </li>
-
-            </ul>
-
-            <p class="post-copyright">
-                © Michael W. Kearney 2018This post was published
-                <strong>223</strong> days ago, content in the post may be
-                inaccurate, even wrong now, please take risk yourself.
-            </p>
+                };
+                (function () {
+                    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+                        document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+                        return;
+                    }
+                    var d = document, s = d.createElement('script'); s.async = true;
+                    s.src = '//' + "kearneymw" + '.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
+                    Disqus.</a></noscript>
+            <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </section>
+        <footer class="site-footer">
+            <p>© 2017-2019 Michael W. Kearney</p>
         </footer>
-
-        <div id="disqus_thread"></div>
-        <script>
-            var disqus_config = function () {
-
-
-
-            };
-            (function () {
-                if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-                    document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-                    return;
-                }
-                var d = document, s = d.createElement('script'); s.async = true;
-                s.src = '//' + "kearneymw" + '.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-            })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a
-                href="https://disqus.com/?ref_noscript">comments powered by
-                Disqus.</a></noscript>
-        <a href="https://disqus.com" class="dsq-brlink">comments powered by
-            <span class="logo-disqus">Disqus</span></a>
-
-
-    </section>
-    <footer class="site-footer">
-        <p>© 2017-2019 Michael W. Kearney</p>
-
-    </footer>
-
-
-
-    <script async
-        src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
-    <script async
-        src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-
-    <script src="../../highlight/highlight.pack.js"></script>
-
-    <script>hljs.initHighlightingOnLoad();</script>
-
-    <script type="text/x-mathjax-config">
+        <script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
+        <script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script src="../../highlight/highlight.pack.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        <script type="text/x-mathjax-config">
   MathJax.Hub.Config({
     tex2jax: {
       inlineMath: [['$','$'], ['\\(','\\)']],
@@ -591,7 +399,7 @@ d &lt;- dplyr::select(d, user_id, mentions_user_id)</code></pre>
     }
   });
 </script>
-    <script type="text/x-mathjax-config">
+        <script type="text/x-mathjax-config">
   // Fix <code> tags after MathJax finishes running. This is a
   // hack to overcome a shortcoming of Markdown. Discussion at
   // https://github.com/mojombo/jekyll/issues/199
@@ -599,22 +407,14 @@ d &lt;- dplyr::select(d, user_id, mentions_user_id)</code></pre>
     MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
   });
 </script>
-
-    <script src="../../js/bundle.js"></script>
-    <script src="../../highlight/highlight.pack.js"></script>
-
-
-    <script>
-        window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
-        ga('create', 'UA-64959413-1', 'auto');
-        ga('send', 'pageview');
-    </script>
-    <script async src='//www.google-analytics.com/analytics.js'></script>
-
-
-
-
-
-</body>
+        <script src="../../js/bundle.js"></script>
+        <script src="../../highlight/highlight.pack.js"></script>
+        <script>
+            window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
+            ga('create', 'UA-64959413-1', 'auto');
+            ga('send', 'pageview');
+        </script>
+        <script async src='//www.google-analytics.com/analytics.js'></script>
+    </body>
 
 </html>
