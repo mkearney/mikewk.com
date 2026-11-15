@@ -1,0 +1,4 @@
+<p class="post-meta">
+  {{- with .Params.author }}@{{ . }} &bull; {{ end -}}
+  <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2, 2006" }}</time> &bull; {{ .ReadingTime }} min read
+</p>

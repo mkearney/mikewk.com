@@ -1,63 +1,83 @@
-baseURL = "https://mikewk.com"
+baseURL = "https://mikewk.com/"
 languageCode = "en"
 title = "Michael W. Kearney"
-theme = "hugo-nuo"
-enableRobotsTXT = true
-pygmentsuseclasses = true
-PygmentsCodeFences = true
-canonifyurls = true
 publishDir = "docs"
+enableRobotsTXT = true
+summaryLength = 50
+copyright = "Michael W. Kearney"
+
+# R Markdown sources are rendered to .html by blogdown; Hugo only needs the output.
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
-# Disqus Username
-disqusShortname = "kearneymw"
-
-# Google Analytics UA number
-googleAnalytics = "UA-64959413-1"
-
-# Copyright of your post
-copyright = "© Michael W. Kearney 2018"
+[pagination]
+  pagerSize = 10
 
 [taxonomies]
   category = "categories"
   tag = "tags"
 
-# Initial site menu, you can extend menu with content.
+[markup.goldmark.renderer]
+  # Posts rendered by blogdown contain raw HTML.
+  unsafe = true
+
+[markup.highlight]
+  # Code is highlighted client-side with highlight.js.
+  codeFences = false
+
+[services.disqus]
+  shortname = "kearneymw"
+
 [[menu.main]]
   name = "Home"
-  weight = 10
   identifier = "home"
   url = "/"
+  weight = 10
 
- [[menu.main]]
-   name = "CV"
-   weight = 40
-   identifier = "cv"
-   url = "https://cv.mikewk.com"
+[[menu.main]]
+  name = "About"
+  identifier = "about"
+  pageRef = "/about"
+  weight = 20
 
-# Add your own params here
+[[menu.main]]
+  name = "Publications"
+  identifier = "publications"
+  pageRef = "/publications"
+  weight = 30
+
+[[menu.main]]
+  name = "CV"
+  identifier = "cv"
+  url = "https://cv.mikewk.com"
+  weight = 40
+
 [params]
   author = "Michael W. Kearney, Ph.D."
   avatar = "/img/aintnoseats.jpeg"
-  seotitle = "Michael W. Kearney"
-  subtitle1 = "Senior AI/Data Scientist"
-  subtitle2 = "NLP – Machine Learning"
-  subtitle3 = "Responsible AI"
-  subtitle4 = "Creative Solutions"
+  shareImage = "/img/avatar.jpg"
+  subtitle = ["Senior AI/Data Scientist", "NLP – Machine Learning", "Responsible AI", "Creative Solutions"]
   description = "Personal website of Michael W. Kearney, Senior AI/Data Scientist – NLP – Machine Learning – Responsible AI"
-  paginate = 10
-
-  # Add custom assets with their paths relative to the static folder
-  custom_css = ["css/custom.css"]
-  custom_js  = ["highlight/highlight.pack.js"]
-
-  # Choose your social networks
-  email = "kearneymw@missouri.edu"
-  github = "mkearney"
-  twitter = "kearneymw"
-  linkedin = "mikewk"
-  facebook = "mike.wayne.kearney"
-
-  # Google Webmaster
-  # https://www.google.com/webmasters/
+  themeColor = "#5fbf5e"
   googleSiteVerification = "XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY"
+
+  # Social links, rendered in this order in the sidebar. `icon` maps to the iconfont classes in css/bundle.css.
+  [[params.social]]
+    name = "Email"
+    icon = "email"
+    url = "mailto:kearneymw@missouri.edu"
+  [[params.social]]
+    name = "GitHub"
+    icon = "github"
+    url = "https://github.com/mkearney"
+  [[params.social]]
+    name = "Twitter"
+    icon = "twitter"
+    url = "https://twitter.com/kearneymw"
+  [[params.social]]
+    name = "Facebook"
+    icon = "facebook"
+    url = "https://www.facebook.com/mike.wayne.kearney"
+  [[params.social]]
+    name = "LinkedIn"
+    icon = "linkedin"
+    url = "https://www.linkedin.com/in/mikewk"

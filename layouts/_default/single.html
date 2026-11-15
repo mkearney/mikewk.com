@@ -1,0 +1,23 @@
+{{ define "main" }}
+<div class="post">
+  <header class="post-header">
+    <h1 class="post-title">{{ .Title }}</h1>
+    {{ if eq .Section "post" }}{{ partial "post-meta.html" . }}{{ end }}
+  </header>
+  <article class="post-content">
+    {{ .Content }}
+  </article>
+  {{ if eq .Section "post" }}
+  <footer class="post-footer">
+    {{ with .GetTerms "tags" }}
+    <ul class="post-tags">
+      {{ range . }}<li><a href="{{ .RelPermalink }}"><span class="tag">{{ .LinkTitle }}</span></a></li>{{ end }}
+    </ul>
+    {{ end }}
+  </footer>
+  {{ if and site.Config.Services.Disqus.Shortname (ne .Params.comments false) }}
+    {{ template "_internal/disqus.html" . }}
+  {{ end }}
+  {{ end }}
+</div>
+{{ end }}

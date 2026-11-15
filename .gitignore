@@ -1,6 +1,15 @@
+# R
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+
+# Hugo
+/resources/
+/public/
+.hugo_build.lock
+
+# Data used to knit posts (kept local)
+/content/data/
+
 .DS_Store
-blogdown

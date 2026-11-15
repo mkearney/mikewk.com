@@ -1,0 +1,10 @@
+<article class="post-entry">
+  <header class="post-header">
+    <h2 class="post-title"><a href="{{ .RelPermalink }}" class="post-link">{{ .Title }}</a></h2>
+    {{ partial "post-meta.html" . }}
+  </header>
+  <p class="post-summary">{{ .Summary | plainify | htmlUnescape }}</p>
+  <footer class="post-footer">
+    <a class="read-more" href="{{ .RelPermalink }}">Read More →</a>
+  </footer>
+</article>

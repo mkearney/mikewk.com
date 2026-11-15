@@ -1,257 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Installing R and Studio | Michael W. Kearney</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="kearneymw">
+<meta name="description" content="This post describes how to download and perform a basic local install of R and Rstudio. The instructions should work for both macOS and Windows users. Although not required, installation tends to work best when operating systems are up-to-date. At the time of writing, this means R/Rstudio work best …">
+<meta name="theme-color" content="#5fbf5e">
+<meta name="google-site-verification" content="XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY">
 
-    <head>
-        <meta charset="utf-8" />
-        <title>Installing R and Studio</title>
-        <meta name="author" content="kearneymw" />
-        <meta name="description"
-            content="This post describes how to download and perform a basic local install of R and Rstudio. The instructions should work for both macOS and Windows users. Although not required, installation tends to work best when operating systems are up-to-date. At the time of writing, this means R/Rstudio work best with macOS High Sierra and Windows 10.
-R vs Rstudio R is a statistical computing language/environment. It is distinct from Rstudio, which is an integrated development environment (IDE) or high- powered graphical user interface (GUI) optimized for working with the R language." />
-        <meta name="twitter:card" content="summary" />
-        <meta name="twitter:site" content="@kearneymw" />
-        <meta name="twitter:title" content="Installing R and Studio" />
-        <meta name="twitter:description"
-            content="This post describes how to download and perform a basic local install of R and Rstudio. The instructions should work for both macOS and Windows users. Although not required, installation tends to work best when operating systems are up-to-date. At the time of writing, this means R/Rstudio work best with macOS High Sierra and Windows 10.
-R vs Rstudio R is a statistical computing language/environment. It is distinct from Rstudio, which is an integrated development environment (IDE) or high- powered graphical user interface (GUI) optimized for working with the R language." />
-        <meta name="twitter:image" content="/img/avatar.jpg" />
-        <meta name="generator" content="Hugo 0.40.1" />
-        <link rel="canonical" href="../../post/2018-10-19-installing-r-and-studio/" />
-        <link rel="alternative" href="../../index.xml" title="Michael W. Kearney" type="application/atom+xml" />
-        <meta name="renderer" content="webkit" />
-        <meta name="viewport" content="width=device-width,initial-scale=1" />
-        <meta name="format-detection" content="telephone=no,email=no,adress=no" />
-        <meta http-equiv="Cache-Control" content="no-transform" />
-        <meta name="robots" content="index,follow" />
-        <meta name="referrer" content="origin-when-cross-origin" />
-        <meta name="google-site-verification" content="XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="Michael W. Kearney" />
-        <meta name="msapplication-tooltip" content="Michael W. Kearney" />
-        <meta name='msapplication-navbutton-color' content="#5fbf5e" />
-        <meta name="msapplication-TileColor" content="#5fbf5e" />
-        <meta name="msapplication-TileImage" content="/img/tile-image-windows.png" />
-        <link rel="icon" href="../../img/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
-        <link rel="icon" sizes="192x192" href="../../img/touch-icon-android.png" />
-        <link rel="apple-touch-icon" href="../../img/touch-icon-apple.png" />
-        <link rel="mask-icon" href="../../img/safari-pinned-tab.svg" color="#5fbf5e" />
-        <link rel="stylesheet" href="//cdn.bootcss.com/video.js/6.2.8/alt/video-js-cdn.min.css" />
-        <link rel="stylesheet" href="../../css/bundle.css" />
-        <link rel="stylesheet" href="../../highlight/styles/atom-one-light.css" />
-        <link rel="stylesheet" href="../../css/custom.css">
-        <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700|Source+Code+Pro" rel="stylesheet">
-        <!--[if lt IE 9]>
-    <script src="//cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-    <script src="//cdn.bootcss.com/video.js/6.2.8/ie8/videojs-ie8.min.js"></script>
-  <![endif]-->
-        <!--[if lte IE 11]>
-    <script src="//cdn.bootcss.com/classlist/1.1.20170427/classList.min.js"></script>
-  <![endif]-->
-        <script src="//cdn.bootcss.com/object-fit-images/3.2.3/ofi.min.js"></script>
-        <script src="//cdn.bootcss.com/smooth-scroll/12.1.4/js/smooth-scroll.polyfills.min.js"></script>
-    </head>
-
-    <body>
-        <div class="suspension">
-            <a title="Go to top" class="to-top is-hide"><span class="icon icon-up"></span></a>
-            <a title="Go to comments" class="to-comment" href="#disqus_thread"><span class="icon icon-comment"></span></a>
-        </div>
-        <header class="site-header">
-            <a class="avatar_link" href="../../"><img class="avatar" src="../../img/aintnoseats.jpeg" alt="Avatar"></a>
-            <h2 class="title">Michael W. Kearney</h2>
-            <p class="subtitle">Senior AI/Data Scientist<br> NLP – Machine Learning<br> Responsible AI<br> Creative Solutions</p>
-            <button class="menu-toggle" type="button">
-                <span class="icon icon-menu"></span>
-            </button>
-            <nav class="site-menu collapsed">
-                <h2 class="offscreen">Main Menu</h2>
-                <ul class="menu-list">
-                    <li class="menu-item  is-active"><a href="../../">Home</a></li>
-                    <li class="menu-item "><a href="../../about/">About</a></li>
-                    <li class="menu-item "><a href="../../publications/">Publications</a></li>
-                    <li class="menu-item "><a href="https://cv.mikewk.com">CV</a>
-                    </li>
-                </ul>
-            </nav>
-            <nav class="social-menu collapsed">
-                <h2 class="offscreen">Social Networks</h2>
-                <ul class="social-list">
-                    <li class="social-item">
-                        <a href="mailto:kearneymw@missouri.edu" title="Email"><span class="icon icon-email"></span></a>
-                    </li>
-                    <li class="social-item">
-                        <a href="//github.com/mkearney" title="GitHub"><span class="icon icon-github"></span></a>
-                    </li>
-                    <li class="social-item">
-                        <a href="//twitter.com/kearneymw" title="Twitter"><span class="icon icon-twitter"></span></a>
-                    </li>
-                    <li class="social-item">
-                        <a href="//www.facebook.com/mike.wayne.kearney" title="Facebook"><span class="icon icon-facebook"></span></a>
-                    </li>
-                    <li class="social-item">
-                        <a href="//www.linkedin.com/in/mikewk" title="Linkedin"><span class="icon icon-linkedin"></span></a>
-                    </li>
-                    <li class="social-item">
-                        <a href="../../index.xml"><span class="icon icon-rss" title="RSS"></span></a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-        <section class="main post-detail">
-            <header class="post-header">
-                <h1 class="post-title">Installing R and Studio</h1>
-                <p class="post-meta">@kearneymw · Oct 19, 2018 · 3 min read</p>
-            </header>
-            <article class="post-content">
-                <p>This post describes how to download and perform a basic local install of R and Rstudio. The instructions should work for
-                    both macOS and Windows users. Although not required, installation tends to work best when operating systems are
-                    up-to-date. At the time of writing, this means R/Rstudio work best with macOS High Sierra and Windows 10.</p>
-                <div id="r-vs-rstudio" class="section level2">
-                    <h2>R vs Rstudio</h2>
-                    <p><strong>R</strong> is a statistical computing language/environment. It <strong>is distinct from Rstudio</strong>,
-                        which is an integrated development environment (IDE) or high- powered graphical user interface (GUI) optimized for
-                        working with the R language. In other words, R is the engine, and Rstudio is the interface. Consequently, you’ll
-                        need to install <em>both</em> R <em>and</em> Rstudio. </p>
-                </div>
-                <div id="download-and-install-r" class="section level2">
-                    <h2>Download and install R</h2>
-                    <p>Use the following instructions to download and install the R statistical computing language/environment:</p>
-                    <ol style="list-style-type: decimal">
-                        <li>Go to the CRAN (Collective R Archive Network) website: <a href="https://cran.r-project.org/"
-                                class="uri">https://cran.r-project.org/</a>
-                            <img src='../../img/install-r2.png'>
-                        </li>
-                        <li>Click on the appropriate operating system (Mac or Windows) to navigate to download page.</li>
-                        <li>Download the most recent version of R. <ul>
-                                <li>If Mac, select the first <code>.pkg</code> file listed in the “files” section. At time of writing, this
-                                    is version <strong><code>R-3.5.1.pkg</code></strong>. <img src='../../img/install-r-mac.png'>
-                                </li>
-                                <li>If Windows, select the bold, underline link written as <strong>‘install R for the first time’</strong>.
-                                    <img src='../../img/install-r-windows.png'>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>Double click (run) the downloaded file (check your <code>Downloads</code> folder). Click yes through prompts to
-                            install like any other program (default values should be okay). You <em>may</em> get a warning about the source
-                            of the download being unkown. Do whatever you can to allow the installation to continue—I promise the R pkg file
-                            is safe! </li>
-                    </ol>
-                </div>
-                <div id="download-and-install-rstudio" class="section level2">
-                    <h2>Download and install Rstudio</h2>
-                    <p>Rstudio is an integrated development environment (IDE) that makes it easy to use R. Once both R and Rstudio are
-                        installed, I’d actually recommend ignoring the actual “R” program and instead only open and use Rstudio, which will
-                        automatically call and allow interactive use of R.</p>
-                    <ol style="list-style-type: decimal">
-                        <li>Go to the free download location on Rstudio’s website: <a
-                                href="https://www.rstudio.com/products/rstudio/download/#download"
-                                class="uri">https://www.rstudio.com/products/rstudio/download/#download</a>
-                        </li>
-                        <li>Select one of the highlighted options that corresponds with your computer’s operating system (Mac or PC) <img
-                                src='../../img/install-rstudio2.png'>
-                        </li>
-                        <li>Double (run) click the downloaded file (check <code>Downloads</code> folder). Click yes through prompts to
-                            install like any other program (the defaults should be fine). You may get a warning about the source of the
-                            download being unkown. Do whatever you can to allow the installation to continue—I promise the R pkg file is
-                            safe! </li>
-                    </ol>
-                    <p>For an actual demonstration of installing R and Rstudio using these instructions, see the appropriate video for your
-                        operating system below.</p>
-                    <div id="download-and-install-r-rstudio-on-a-mac" class="section level3">
-                        <h3>Download and install R &amp; Rstudio on a Mac</h3>
-                        <div style="text-align: center;">
-                            <iframe width="560" height="315" src="https://www.youtube.com/embed/K9ByVDx0eRM" frameborder="0"
-                                allow="autoplay; encrypted-media" allowfullscreen>
-                            </iframe>
-                        </div>
-                    </div>
-                </div>
-                <div id="download-and-install-r-rstudio-on-a-pc-windows" class="section level2">
-                    <h2>Download and install R &amp; Rstudio on a PC (Windows)</h2>
-                    <div style="text-align: center;">
-                        <iframe width="560" height="315" src="https://www.youtube.com/embed/8INfvKR4uqw" frameborder="0"
-                            allow="autoplay; encrypted-media" allowfullscreen>
-                        </iframe>
-                        <div>
-                        </div>
-                        <div id="using-rrstudio" class="section level2">
-                            <h2>Using R/Rstudio</h2>
-                            <p>You should be able to find the <strong><code>Rstudio</code></strong> application in your computer’s
-                                <code>Application</code> or <code>Program</code> folder. Alternatively, a simple search for “Rstudio” using
-                                finder/spotlight or the Windows key should be able to locate “Rstudio” on your machine. </p>
-                        </div>
-            </article>
-            <footer class="post-footer">
-                <ul class="post-tags">
-                    <li><a href="../../tags/install"><span class="tag">Install</span></a></li>
-                    <li><a href="../../tags/rstudio"><span class="tag">Rstudio</span></a></li>
-                    <li><a href="../../tags/r"><span class="tag">R</span></a></li>
-                </ul>
-                <p class="post-copyright"> © Michael W. Kearney 2018This post was published <strong>396</strong> days ago, content in the
-                    post may be inaccurate, even wrong now, please take risk yourself. </p>
-            </footer>
-            <div id="disqus_thread"></div>
-            <script>
-                var disqus_config = function () {
+<link rel="canonical" href="https://mikewk.com/post/2018-10-19-installing-r-and-studio/">
+<link rel="alternate" type="application/rss+xml" href="https://mikewk.com/index.xml" title="Michael W. Kearney">
 
 
+<meta property="og:type" content="article">
+<meta property="og:title" content="Installing R and Studio">
+<meta property="og:description" content="This post describes how to download and perform a basic local install of R and Rstudio. The instructions should work for both macOS and Windows users. Although not required, installation tends to work best when operating systems are up-to-date. At the time of writing, this means R/Rstudio work best …">
+<meta property="og:url" content="https://mikewk.com/post/2018-10-19-installing-r-and-studio/">
+<meta property="og:image" content="https://mikewk.com/img/avatar.jpg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@kearneymw">
 
-                };
-                (function () {
-                    if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
-                        document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
-                        return;
-                    }
-                    var d = document, s = d.createElement('script'); s.async = true;
-                    s.src = '//' + "kearneymw" + '.disqus.com/embed.js';
-                    s.setAttribute('data-timestamp', +new Date());
-                    (d.head || d.body).appendChild(s);
-                })();
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by
-                    Disqus.</a></noscript>
-            <a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
-        </section>
-        <footer class="site-footer">
-            <p>© 2017-2019 Michael W. Kearney</p>
-        </footer>
-        <script async src="//cdn.bootcss.com/video.js/6.2.8/alt/video.novtt.min.js"></script>
-        <script async src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script src="../../highlight/highlight.pack.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script>
-        <script type="text/x-mathjax-config">
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [['$','$'], ['\\(','\\)']],
-      displayMath: [['$$','$$'], ['\[','\]']],
-      processEscapes: true,
-      processEnvironments: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-      TeX: { equationNumbers: { autoNumber: "AMS" },
-      extensions: ["AMSmath.js", "AMSsymbols.js"] }
-    }
-  });
+
+<link rel="icon" href="/img/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+<link rel="icon" sizes="192x192" href="/img/touch-icon-android.png">
+<link rel="apple-touch-icon" href="/img/touch-icon-apple.png">
+<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5fbf5e">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<link rel="stylesheet" href="/css/bundle.css">
+<link rel="stylesheet" href="/highlight/styles/atom-one-light.css">
+<link rel="stylesheet" href="/css/custom.css">
+
+</head>
+<body>
+  <header class="site-header">
+  <a class="avatar_link" href="/"><img class="avatar" src="/img/aintnoseats.jpeg" alt="Michael W. Kearney"></a>
+  <p class="title">Michael W. Kearney</p>
+  <p class="subtitle">Senior AI/Data Scientist<br>NLP – Machine Learning<br>Responsible AI<br>Creative Solutions</p>
+  <button class="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+    <span class="icon icon-menu"></span>
+  </button>
+  <nav class="site-menu collapsed" aria-label="Main menu">
+    <ul class="menu-list">
+      <li class="menu-item is-active"><a href="/" aria-current="page">Home</a></li>
+      <li class="menu-item"><a href="/about/">About</a></li>
+      <li class="menu-item"><a href="/publications/">Publications</a></li>
+      <li class="menu-item"><a href="https://cv.mikewk.com">CV</a></li>
+    </ul>
+  </nav>
+  <nav class="social-menu collapsed" aria-label="Social links">
+    <ul class="social-list">
+      <li class="social-item"><a href="mailto:kearneymw@missouri.edu" title="Email" aria-label="Email"><span class="icon icon-email"></span></a></li>
+      <li class="social-item"><a href="https://github.com/mkearney" title="GitHub" aria-label="GitHub" rel="me noopener"><span class="icon icon-github"></span></a></li>
+      <li class="social-item"><a href="https://twitter.com/kearneymw" title="Twitter" aria-label="Twitter" rel="me noopener"><span class="icon icon-twitter"></span></a></li>
+      <li class="social-item"><a href="https://www.facebook.com/mike.wayne.kearney" title="Facebook" aria-label="Facebook" rel="me noopener"><span class="icon icon-facebook"></span></a></li>
+      <li class="social-item"><a href="https://www.linkedin.com/in/mikewk" title="LinkedIn" aria-label="LinkedIn" rel="me noopener"><span class="icon icon-linkedin"></span></a></li>
+      <li class="social-item"><a href="/index.xml" title="RSS" aria-label="RSS feed"><span class="icon icon-rss"></span></a></li>
+    </ul>
+  </nav>
+</header>
+
+  <main class="main post-detail">
+    
+<div class="post">
+  <header class="post-header">
+    <h1 class="post-title">Installing R and Studio</h1>
+    <p class="post-meta">@kearneymw &bull; <time datetime="2018-10-19">Oct 19, 2018</time> &bull; 3 min read
+</p>
+
+  </header>
+  <article class="post-content">
+    
+
+
+<p>This post describes how to download and perform a basic local install of R
+and Rstudio. The instructions should work for both macOS and Windows users. Although
+not required, installation tends to work best when operating systems are
+up-to-date. At the time of writing, this means R/Rstudio work best with
+macOS High Sierra and Windows 10.</p>
+<div id="r-vs-rstudio" class="section level2">
+<h2>R vs Rstudio</h2>
+<p><strong>R</strong> is a statistical computing language/environment. It <strong>is distinct from
+Rstudio</strong>, which is an integrated development environment (IDE) or high-
+powered graphical user interface (GUI) optimized for working with the R
+language. In other words, R is the engine, and Rstudio is the interface.
+Consequently, you’ll need to install <em>both</em> R <em>and</em> Rstudio.</p>
+</div>
+<div id="download-and-install-r" class="section level2">
+<h2>Download and install R</h2>
+<p>Use the following instructions to download and install the R statistical
+computing language/environment:</p>
+<ol style="list-style-type: decimal">
+<li>Go to the CRAN (Collective R Archive Network) website: <a href="https://cran.r-project.org/" class="uri">https://cran.r-project.org/</a>
+<img src='/img/install-r2.png'></li>
+<li>Click on the appropriate operating system (Mac or Windows) to navigate to download page.</li>
+<li>Download the most recent version of R.
+<ul>
+<li>If Mac, select the first <code>.pkg</code> file listed in the “files” section. At time of writing, this is version <strong><code>R-3.5.1.pkg</code></strong>.
+<img src='/img/install-r-mac.png'></li>
+<li>If Windows, select the bold, underline link written as <strong>‘install R for the first time’</strong>.
+<img src='/img/install-r-windows.png'></li>
+</ul></li>
+<li>Double click (run) the downloaded file (check your <code>Downloads</code> folder). Click yes through prompts to install like any other program (default values should be okay). You <em>may</em> get a warning about the source of the download being unkown. Do whatever you can to allow the installation to continue—I promise the R pkg file is safe!</li>
+</ol>
+</div>
+<div id="download-and-install-rstudio" class="section level2">
+<h2>Download and install Rstudio</h2>
+<p>Rstudio is an integrated development environment (IDE) that makes it easy to
+use R. Once both R and Rstudio are installed, I’d actually recommend ignoring
+the actual “R” program and instead only open and use Rstudio, which will
+automatically call and allow interactive use of R.</p>
+<ol style="list-style-type: decimal">
+<li>Go to the free download location on Rstudio’s website: <a href="https://www.rstudio.com/products/rstudio/download/#download" class="uri">https://www.rstudio.com/products/rstudio/download/#download</a></li>
+<li>Select one of the highlighted options that corresponds with your computer’s operating system (Mac or PC)
+<img src='/img/install-rstudio2.png'></li>
+<li>Double (run) click the downloaded file (check <code>Downloads</code> folder). Click yes through prompts to install like any other program (the defaults should be fine). You may get a warning about the source of the download being unkown. Do whatever you can to allow the installation to continue—I promise the R pkg file is safe!</li>
+</ol>
+<p>For an actual demonstration of installing R and Rstudio using these
+instructions, see the appropriate video for your operating system below.</p>
+<div id="download-and-install-r-rstudio-on-a-mac" class="section level3">
+<h3>Download and install R &amp; Rstudio on a Mac</h3>
+<div style="text-align: center;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/K9ByVDx0eRM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+</div>
+</div>
+</div>
+<div id="download-and-install-r-rstudio-on-a-pc-windows" class="section level2">
+<h2>Download and install R &amp; Rstudio on a PC (Windows)</h2>
+<div style="text-align: center;">
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8INfvKR4uqw" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+</iframe>
+<div>
+
+</div>
+<div id="using-rrstudio" class="section level2">
+<h2>Using R/Rstudio</h2>
+<p>You should be able to find the <strong><code>Rstudio</code></strong> application in your computer’s <code>Application</code> or <code>Program</code> folder. Alternatively, a simple search for “Rstudio” using finder/spotlight or the Windows key should be able to locate “Rstudio”
+on your machine.</p>
+</div>
+
+  </article>
+  
+  <footer class="post-footer">
+    
+    <ul class="post-tags">
+      <li><a href="/tags/install/"><span class="tag">Install</span></a></li><li><a href="/tags/rstudio/"><span class="tag">Rstudio</span></a></li><li><a href="/tags/r/"><span class="tag">R</span></a></li>
+    </ul>
+    
+  </footer>
+  
+    <div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "kearneymw" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
 </script>
-        <script type="text/x-mathjax-config">
-  // Fix <code> tags after MathJax finishes running. This is a
-  // hack to overcome a shortcoming of Markdown. Discussion at
-  // https://github.com/mojombo/jekyll/issues/199
-  MathJax.Hub.Queue(() => {
-    MathJax.Hub.getAllJax().map(v => v.SourceElement().parentNode.className += ' has-jax');
-  });
-</script>
-        <script src="../../js/bundle.js"></script>
-        <script src="../../highlight/highlight.pack.js"></script>
-        <script>
-            window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
-            ga('create', 'UA-64959413-1', 'auto');
-            ga('send', 'pageview');
-        </script>
-        <script async src='//www.google-analytics.com/analytics.js'></script>
-    </body>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+  
+  
+</div>
 
+  </main>
+  <footer class="site-footer">
+  <p>© 2017–2026 Michael W. Kearney</p>
+</footer>
+
+<a title="Back to top" class="to-top is-hide" href="#"><span class="icon icon-up"></span></a>
+<script src="/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+<script src="/js/site.js"></script>
+
+</body>
 </html>
