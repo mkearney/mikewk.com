@@ -3,7 +3,7 @@
   <header class="page-head">
     {{ if eq .Kind "term" }}<p class="eyebrow"><a href="{{ .Parent.RelPermalink }}">{{ .Data.Plural | humanize }}</a></p>{{ end }}
     <h1>{{ if eq .Section "post" }}Writing{{ else }}{{ .Title }}{{ end }}</h1>
-    {{ if eq .Section "post" }}<p class="page-lede">Notes on AI agents, R and data science.</p>{{ end }}
+    {{ if eq .Section "post" }}<p class="page-lede">Notes on AI agents, R, and data science.</p>{{ end }}
   </header>
   {{ partial "post-list.html" (dict "page" . "pages" .RegularPages) }}
 </div>

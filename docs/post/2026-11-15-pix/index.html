@@ -5,7 +5,7 @@
   <title>pix: an AI agent that publishes one chart a day · Michael W. Kearney</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="kearneymw">
-<meta name="description" content="Every morning at 8:05 Eastern, a Claude Code scheduled task starts a fresh session, reads a brief I wrote, and publishes one visual analysis of the world to pix. It picks the topic, finds and downloads the data, writes the analysis in Python, draws the chart, writes a short post and pushes it all to …">
+<meta name="description" content="Every morning at 8:05 Eastern, a Claude Code scheduled task starts a fresh session, reads a brief I wrote, and publishes one visual analysis of the world to pix. It picks the topic, finds and downloads the data, writes the analysis in Python, draws the chart, writes a short post, and pushes it all …">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#121413" media="(prefers-color-scheme: dark)">
@@ -17,7 +17,7 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Michael W. Kearney">
 <meta property="og:title" content="pix: an AI agent that publishes one chart a day">
-<meta property="og:description" content="Every morning at 8:05 Eastern, a Claude Code scheduled task starts a fresh session, reads a brief I wrote, and publishes one visual analysis of the world to pix. It picks the topic, finds and downloads the data, writes the analysis in Python, draws the chart, writes a short post and pushes it all to …">
+<meta property="og:description" content="Every morning at 8:05 Eastern, a Claude Code scheduled task starts a fresh session, reads a brief I wrote, and publishes one visual analysis of the world to pix. It picks the topic, finds and downloads the data, writes the analysis in Python, draws the chart, writes a short post, and pushes it all …">
 <meta property="og:url" content="https://mikewk.com/post/2026-11-15-pix/">
 <meta property="og:image" content="https://mikewk.com/img/avatar.jpg">
 <meta name="twitter:card" content="summary">
@@ -74,8 +74,8 @@
   </header>
 
   <div class="prose">
-    <p>Every morning at 8:05 Eastern, a Claude Code scheduled task starts a fresh session, reads a brief I wrote, and publishes one visual analysis of the world to <a href="https://github.com/mkearney/pix">pix</a>. It picks the topic, finds and downloads the data, writes the analysis in Python, draws the chart, writes a short post and pushes it all to GitHub. Nobody touches it in between.</p>
-<figure><img src="/post/2026-11-15-pix/cocoa_hu13113369200281363629.png" alt="World coffee and cocoa output, harvested area and yield since the late 1980s, and the share of output growth that came from new land for the 21 biggest crops" width="1400" height="1983" loading="lazy" decoding="async"><figcaption>No. 7, from November 14: since the late 1980s, 88% of the growth in world cocoa output came from new land. For coffee it was 18%.</figcaption></figure><p>The first entry went up on November 8. A few from the first week:</p>
+    <p>Every morning at 8:05 Eastern, a Claude Code scheduled task starts a fresh session, reads a brief I wrote, and publishes one visual analysis of the world to <a href="https://github.com/mkearney/pix">pix</a>. It picks the topic, finds and downloads the data, writes the analysis in Python, draws the chart, writes a short post, and pushes it all to GitHub. Nobody touches it in between.</p>
+<figure><img src="/post/2026-11-15-pix/cocoa_hu13113369200281363629.png" alt="World coffee and cocoa output, harvested area, and yield since the late 1980s, and the share of output growth that came from new land for the 21 biggest crops" width="1400" height="1983" loading="lazy" decoding="async"><figcaption>No. 7, from November 14: since the late 1980s, 88% of the growth in world cocoa output came from new land. For coffee it was 18%.</figcaption></figure><p>The first entry went up on November 8. A few from the first week:</p>
 <ul>
 <li><a href="https://github.com/mkearney/pix/blob/main/archive/2026-11-08-quake-energy/post.md">Four earthquakes released half this century&rsquo;s quake energy</a>. Of 3,996 magnitude 6+ quakes since 2000, the top four released 49% of the energy.</li>
 <li><a href="https://github.com/mkearney/pix/blob/main/archive/2026-11-11-clocks-run-fast/post.md">The world&rsquo;s clocks run fast</a>. For most people the sun peaks after noon, not at it. 38% see it at 12:30 or later.</li>
@@ -84,14 +84,14 @@
 <h2 id="the-brief-is-the-product">The brief is the product</h2>
 <p>Most of the work went into <code>CLAUDE.md</code>, the standing brief the agent reads every morning. The model already knows how to use pandas and matplotlib. What it needs is taste, written down.</p>
 <p>So the brief asks for one claim per post, stated as a sentence with a verb (&ldquo;The world&rsquo;s clocks run fast&rdquo;), not a topic label (&ldquo;Time zones of the world&rdquo;). It lists the routes to an original angle: a question nobody asks, the agent&rsquo;s own computation rather than a replotted chart, a re-weighting (count people, not countries), or a join of two datasets that rarely meet. And it has a first-idea test: if this is the first topic a newsroom or an AI would pick, drop it or push the angle two steps further.</p>
-<p>The easy way for a model to be interesting is to be interesting in the most average way possible. Two of the first five posts were shaped &ldquo;X% of people&hellip;&rdquo;, so the brief now calls that out as the house habit, and every entry has to declare a claim type (share, concentration, gap, reversal, crossover and a few others), with limits on how often any one type can repeat.</p>
+<p>The easy way for a model to be interesting is to be interesting in the most average way possible. Two of the first five posts were shaped &ldquo;X% of people&hellip;&rdquo;, so the brief now calls that out as the house habit, and every entry has to declare a claim type (share, concentration, gap, reversal, crossover, and a few others), with limits on how often any one type can repeat.</p>
 <h2 id="make-the-checks-executable">Make the checks executable</h2>
 <p>Asking a model to be original doesn&rsquo;t do much on its own. Before writing any analysis code, the agent has to run at least five web searches, name the closest existing take, say what its version adds, and write down what a smart reader would naively predict. That goes in a <code>prior_art.md</code> file, and <code>scripts/publish.py</code> refuses to publish an entry without one.</p>
 <p>Accuracy works the same way. Every number in a post has to come from the output of the entry&rsquo;s <code>analysis.py</code>, which is saved next to the raw data, so each analysis reruns offline and anyone can check the work.</p>
 <h2 id="one-house-style">One house style</h2>
-<p>The charts share a style called Plate: a printed plate read on a screen. Warm paper, black ink, one vermilion colour for the thing to look at, and crop marks in the corners, with Instrument Serif headlines, Inter for words and IBM Plex Mono for numbers. It lives in one Python module, so the agent assembles a chart from parts (<code>plate()</code>, <code>masthead()</code>, <code>headline()</code>, <code>panel()</code>, <code>footer()</code>) instead of fighting matplotlib&rsquo;s defaults every morning. The plate stays the same while the chart form changes from day to day.</p>
+<p>The charts share a style called Plate: a printed plate read on a screen. Warm paper, black ink, one vermilion colour for the thing to look at, and crop marks in the corners, with Instrument Serif headlines, Inter for words, and IBM Plex Mono for numbers. It lives in one Python module, so the agent assembles a chart from parts (<code>plate()</code>, <code>masthead()</code>, <code>headline()</code>, <code>panel()</code>, <code>footer()</code>) instead of fighting matplotlib&rsquo;s defaults every morning. The plate stays the same while the chart form changes from day to day.</p>
 <h2 id="a-voice">A voice</h2>
-<p>The brief also says how to write: first person, point first, numbers second, at most one dry line per post. It bans a list of words (striking, notably, delve, tapestry and friends), em dashes and section headers like &ldquo;Key takeaways&rdquo;. It&rsquo;s a small thing, but it&rsquo;s most of the difference between something that reads like a person and something that reads like a press release.</p>
+<p>The brief also says how to write: first person, point first, numbers second, at most one dry line per post. It bans a list of words (striking, notably, delve, tapestry, and friends), em dashes, and section headers like &ldquo;Key takeaways&rdquo;. It&rsquo;s a small thing, but it&rsquo;s most of the difference between something that reads like a person and something that reads like a press release.</p>
 <p>Everything is public: the brief, the style module, and the code and data behind every chart. The <a href="https://github.com/mkearney/pix/tree/main/archive">archive</a> has every entry so far.</p>
 
   </div>

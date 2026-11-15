@@ -85,19 +85,19 @@ Each brief has three parts: up to five top …">
 <h2 id="scripts-for-facts-the-model-for-judgment">Scripts for facts, the model for judgment</h2>
 <p>The split that works: anything that is a lookup is a script, and anything that needs judgment is the model.</p>
 <ul>
-<li><code>headlines.py</code> pulls Google News Top Stories plus its U.S., World, Business and Tech sections, in Google&rsquo;s order, with the outlets covering each story. Position and outlet count are a decent proxy for how big a story is, so a story from a single outlet needs a good reason to lead.</li>
+<li><code>headlines.py</code> pulls Google News Top Stories plus its U.S., World, Business, and Tech sections, in Google&rsquo;s order, with the outlets covering each story. Position and outlet count are a decent proxy for how big a story is, so a story from a single outlet needs a good reason to lead.</li>
 <li><code>markets.py</code> gets index changes and the 10-year Treasury yield from FRED, works out which trading session to report, and handles weekends and holidays. At 8:23 FRED usually has the Dow and Nasdaq but not yet the S&amp;P 500 or the 10-year, so the script marks those as missing, and only those get filled in from web search.</li>
-<li><code>viral.py</code> reads the day&rsquo;s top Reddit posts from public RSS (Reddit&rsquo;s JSON endpoints are blocked from cloud servers), plus Bluesky trending topics, Google Trends and Wikipedia&rsquo;s most-read pages as signals of what people are talking about.</li>
+<li><code>viral.py</code> reads the day&rsquo;s top Reddit posts from public RSS (Reddit&rsquo;s JSON endpoints are blocked from cloud servers), plus Bluesky trending topics, Google Trends, and Wikipedia&rsquo;s most-read pages as signals of what people are talking about.</li>
 </ul>
-<p>The model reads all of that, decides what matters, checks it and writes.</p>
+<p>The model reads all of that, decides what matters, checks it, and writes.</p>
 <h2 id="rules-for-the-usual-failures">Rules for the usual failures</h2>
 <p>A daily summary goes wrong in predictable ways, so the rules target those directly.</p>
-<p><strong>Repeats.</strong> Each run reads the last seven days of briefs first. A story comes back only with a material development (a decision, vote, ruling, resignation or casualty count), its headline marked &ldquo;(update)&rdquo;, and it says only what&rsquo;s new. Reaction and analysis don&rsquo;t count. A slow news day means fewer stories, not old ones.</p>
+<p><strong>Repeats.</strong> Each run reads the last seven days of briefs first. A story comes back only with a material development (a decision, vote, ruling, resignation, or casualty count), its headline marked &ldquo;(update)&rdquo;, and it says only what&rsquo;s new. Reaction and analysis don&rsquo;t count. A slow news day means fewer stories, not old ones.</p>
 <p><strong>Accuracy.</strong> Every top story is checked against a second search on a major outlet, and stories found only on aggregators or blogs are dropped or labeled unconfirmed. Event dates are checked, not article dates. When sources disagree on a number, the most precise primary source wins.</p>
-<p><strong>Tone.</strong> Plain, neutral, short sentences. No opinion, hype or filler. Every sentence carries a fact.</p>
+<p><strong>Tone.</strong> Plain, neutral, short sentences. No opinion, hype, or filler. Every sentence carries a fact.</p>
 <h2 id="the-rules-live-in-a-file">The rules live in a file</h2>
 <p>The requirements are in <a href="https://github.com/mkearney/daily/blob/main/BRIEF.md"><code>BRIEF.md</code></a> as 21 numbered rules, and the scheduled task&rsquo;s prompt implements them. The file&rsquo;s first line says to change both together. Numbered rules make it easy to say exactly what went wrong when a brief misses, and to fix it in one place.</p>
-<p>The whole thing is three small Python scripts, a file of rules and a schedule. The <a href="https://github.com/mkearney/daily">repo</a> has all of it, along with every brief so far.</p>
+<p>The whole thing is three small Python scripts, a file of rules, and a schedule. The <a href="https://github.com/mkearney/daily">repo</a> has all of it, along with every brief so far.</p>
 
   </div>
 

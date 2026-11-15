@@ -3,7 +3,7 @@
 [[projects]]
 name = "pix"
 kind = "AI agent"
-summary = "One visual analysis of the world, every day. A scheduled Claude Code agent picks a question, finds the data, runs the analysis in Python and publishes a chart in a consistent house style."
+summary = "One visual analysis of the world, every day. A scheduled Claude Code agent picks a question, finds the data, runs the analysis in Python, and publishes a chart in a consistent house style."
 tags = ["Claude Code", "Python", "Data viz"]
   [[projects.links]]
   label = "Code"
@@ -15,7 +15,7 @@ tags = ["Claude Code", "Python", "Data viz"]
 [[projects]]
 name = "daily"
 kind = "AI agent"
-summary = "A five-minute morning news brief, researched, fact-checked and written by an agent. Small scripts gather headlines, market data and viral posts; the model decides what matters."
+summary = "A five-minute morning news brief, researched, fact-checked, and written by an agent. Small scripts gather headlines, market data, and viral posts; the model decides what matters."
 tags = ["Claude Code", "Python", "News"]
   [[projects.links]]
   label = "Code"
