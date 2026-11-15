@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>daily: a five-minute news brief written by an agent · Michael W. Kearney</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="kearneymw">
+<meta name="description" content="Every morning at 8:23 Eastern, a Claude Code scheduled task researches and writes a news brief, commits it to daily, and sends a notification to my phone. The repo’s front page is always today’s brief, and every earlier one is archived under briefs/.
+Each brief has three parts: up to five top …">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121413" media="(prefers-color-scheme: dark)">
+<meta name="google-site-verification" content="XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY">
+
+<link rel="canonical" href="https://mikewk.com/post/2026-11-14-daily/">
+<link rel="alternate" type="application/rss+xml" href="https://mikewk.com/index.xml" title="Michael W. Kearney">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Michael W. Kearney">
+<meta property="og:title" content="daily: a five-minute news brief written by an agent">
+<meta property="og:description" content="Every morning at 8:23 Eastern, a Claude Code scheduled task researches and writes a news brief, commits it to daily, and sends a notification to my phone. The repo’s front page is always today’s brief, and every earlier one is archived under briefs/.
+Each brief has three parts: up to five top …">
+<meta property="og:url" content="https://mikewk.com/post/2026-11-14-daily/">
+<meta property="og:image" content="https://mikewk.com/img/avatar.jpg">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="/img/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+<link rel="icon" sizes="192x192" href="/img/touch-icon-android.png">
+<link rel="apple-touch-icon" href="/img/touch-icon-apple.png">
+
+
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<link rel="stylesheet" href="/css/main.min.af88d1101503518a5fc09a28f153cc5b07e1b1ee73ee4a52a334ad51b281aa90.css" integrity="sha256-r4jREBUDUYpfwJoo8VPMWwfhse5z7kpSozStUbKBqpA=">
+
+</head>
+<body class="kind-page page-2026-11-14-daily">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/">Michael W. Kearney</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="/post/" aria-current="page">Writing</a></li>
+        <li><a href="/projects/">Projects</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="https://cv.mikewk.com">CV</a></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M4.22 4.22l1.77 1.77M18.01 18.01l1.77 1.77M1.5 12H4M20 12h2.5M4.22 19.78l1.77-1.77M18.01 5.99l1.77-1.77"/></svg>
+    </button>
+  </div>
+</header>
+
+  <main id="content">
+    
+
+<article class="wrap narrow">
+  <header class="page-head">
+    <p class="eyebrow"><a href="/post/">Writing</a></p>
+    <h1>daily: a five-minute news brief written by an agent</h1>
+    
+    <p class="post-meta">
+      <time datetime="2026-11-14">November 14, 2026</time>
+      <span aria-hidden="true">·</span> 3 min read
+    </p>
+    
+  </header>
+
+  <div class="prose">
+    <p>Every morning at 8:23 Eastern, a Claude Code scheduled task researches and writes a news brief, commits it to <a href="https://github.com/mkearney/daily">daily</a>, and sends a notification to my phone. The repo&rsquo;s front page is always today&rsquo;s brief, and every earlier one is archived under <code>briefs/</code>.</p>
+<p>Each brief has three parts: up to five top stories, one line of market numbers, and a few things going viral. It&rsquo;s meant to be read on a phone in under five minutes, which works out to about 3 KB of Markdown. Here&rsquo;s part of Saturday&rsquo;s:</p>
+<blockquote>
+<p><strong>Nationwide ground stop cancels 7,000+ flights.</strong> The FAA halted all US departures for about four hours Friday after communication problems at several air traffic control centers. Flights resumed after 8:15 p.m. ET.</p>
+<p><strong>Markets · Fri Nov 13:</strong> S&amp;P 500 <strong>−0.4%</strong> · Nasdaq <strong>−0.9%</strong> · Dow <strong>+0.1%</strong> · 10-yr 5.15% (+5 bp)</p>
+</blockquote>
+<h2 id="scripts-for-facts-the-model-for-judgment">Scripts for facts, the model for judgment</h2>
+<p>The split that works: anything that is a lookup is a script, and anything that needs judgment is the model.</p>
+<ul>
+<li><code>headlines.py</code> pulls Google News Top Stories plus its U.S., World, Business and Tech sections, in Google&rsquo;s order, with the outlets covering each story. Position and outlet count are a decent proxy for how big a story is, so a story from a single outlet needs a good reason to lead.</li>
+<li><code>markets.py</code> gets index changes and the 10-year Treasury yield from FRED, works out which trading session to report, and handles weekends and holidays. At 8:23 FRED usually has the Dow and Nasdaq but not yet the S&amp;P 500 or the 10-year, so the script marks those as missing, and only those get filled in from web search.</li>
+<li><code>viral.py</code> reads the day&rsquo;s top Reddit posts from public RSS (Reddit&rsquo;s JSON endpoints are blocked from cloud servers), plus Bluesky trending topics, Google Trends and Wikipedia&rsquo;s most-read pages as signals of what people are talking about.</li>
+</ul>
+<p>The model reads all of that, decides what matters, checks it and writes.</p>
+<h2 id="rules-for-the-usual-failures">Rules for the usual failures</h2>
+<p>A daily summary goes wrong in predictable ways, so the rules target those directly.</p>
+<p><strong>Repeats.</strong> Each run reads the last seven days of briefs first. A story comes back only with a material development (a decision, vote, ruling, resignation or casualty count), its headline marked &ldquo;(update)&rdquo;, and it says only what&rsquo;s new. Reaction and analysis don&rsquo;t count. A slow news day means fewer stories, not old ones.</p>
+<p><strong>Accuracy.</strong> Every top story is checked against a second search on a major outlet, and stories found only on aggregators or blogs are dropped or labeled unconfirmed. Event dates are checked, not article dates. When sources disagree on a number, the most precise primary source wins.</p>
+<p><strong>Tone.</strong> Plain, neutral, short sentences. No opinion, hype or filler. Every sentence carries a fact.</p>
+<h2 id="the-rules-live-in-a-file">The rules live in a file</h2>
+<p>The requirements are in <a href="https://github.com/mkearney/daily/blob/main/BRIEF.md"><code>BRIEF.md</code></a> as 21 numbered rules, and the scheduled task&rsquo;s prompt implements them. The file&rsquo;s first line says to change both together. Numbered rules make it easy to say exactly what went wrong when a brief misses, and to fix it in one place.</p>
+<p>The whole thing is three small Python scripts, a file of rules and a schedule. The <a href="https://github.com/mkearney/daily">repo</a> has all of it, along with every brief so far.</p>
+
+  </div>
+
+  
+  <footer class="post-footer">
+    
+    <ul class="tag-list" aria-label="Tags">
+      <li><a href="/tags/ai-agents/">AI Agents</a></li><li><a href="/tags/claude-code/">Claude Code</a></li><li><a href="/tags/python/">Python</a></li>
+    </ul>
+    
+    <nav class="post-nav" aria-label="More posts">
+      <a class="post-nav-prev" href="/post/2026-11-15-pix/"><span>Newer</span>pix: an AI agent that publishes one chart a day</a>
+      <a class="post-nav-next" href="/post/2019-04-23-three-things-to-know-beyond-base-r/"><span>Older</span>Three things to know beyond base R</a>
+    </nav>
+  </footer>
+  
+  <section class="comments"><div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "kearneymw" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></section>
+  
+  
+</article>
+
+  </main>
+  <footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>© 2017–2026 Michael W. Kearney</p>
+    <ul class="footer-links">
+      <li><a href="mailto:mike.wayne.kearney@gmail.com">Email</a></li>
+      <li><a href="https://github.com/mkearney" rel="me noopener">GitHub</a></li>
+      <li><a href="https://scholar.google.com/citations?user=j3EZl3MAAAAJ" rel="me noopener">Google Scholar</a></li>
+      <li><a href="https://twitter.com/kearneymw" rel="me noopener">Twitter</a></li>
+      <li><a href="https://www.facebook.com/mike.wayne.kearney" rel="me noopener">Facebook</a></li>
+      <li><a href="https://www.linkedin.com/in/mikewk" rel="me noopener">LinkedIn</a></li>
+      <li><a href="/index.xml">RSS</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+<script src="/js/site.min.04165c836cb5aa56941428fdd34730ba9abc98fa40942250828e346d09ee4f63.js" integrity="sha256-BBZcg2y1qlaUFCj900cwupq8mPpAlCJQgo40bQnuT2M=" defer></script>
+
+</body>
+</html>

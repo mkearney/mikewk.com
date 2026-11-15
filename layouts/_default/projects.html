@@ -1,0 +1,10 @@
+{{ define "main" }}
+<div class="wrap block">
+  <header class="page-head">
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.lede }}<p class="page-lede">{{ . }}</p>{{ end }}
+  </header>
+  {{ partial "project-cards.html" . }}
+  {{ with .Content }}<div class="prose projects-note">{{ . }}</div>{{ end }}
+</div>
+{{ end }}

@@ -20,6 +20,10 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   # Posts rendered by blogdown contain raw HTML.
   unsafe = true
 
+[markup.goldmark.parser]
+  # Let standalone images render as <figure> rather than inside <p>.
+  wrapStandAloneImageWithinParagraph = false
+
 [markup.highlight]
   # Code is highlighted client-side with highlight.js.
   codeFences = false
@@ -34,9 +38,9 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   weight = 10
 
 [[menu.main]]
-  name = "Publications"
-  identifier = "publications"
-  pageRef = "/publications"
+  name = "Projects"
+  identifier = "projects"
+  pageRef = "/projects"
   weight = 20
 
 [[menu.main]]
@@ -55,15 +59,15 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   author = "Michael W. Kearney, Ph.D."
   avatar = "/img/aintnoseats.jpeg"
   shareImage = "/img/avatar.jpg"
-  role = "Senior AI/Data Scientist"
+  role = "Principal Data Scientist at Meijer"
   focus = ["Natural language processing", "Machine learning", "Responsible AI", "Creative solutions"]
-  description = "Personal website of Michael W. Kearney, Senior AI/Data Scientist – NLP – Machine Learning – Responsible AI"
+  description = "Michael W. Kearney is a Principal Data Scientist at Meijer working on machine learning, NLP and AI agents."
   googleSiteVerification = "XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY"
 
   # Social links, shown in this order in the footer.
   [[params.social]]
     name = "Email"
-    url = "mailto:kearneymw@missouri.edu"
+    url = "mailto:mike.wayne.kearney@gmail.com"
   [[params.social]]
     name = "GitHub"
     url = "https://github.com/mkearney"

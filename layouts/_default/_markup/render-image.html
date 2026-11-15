@@ -1,0 +1,14 @@
+{{- /* Resize images stored with a post and wrap titled images in a figure. */ -}}
+{{- $src := .Destination -}}
+{{- $w := "" }}{{ $h := "" -}}
+{{- with .Page.Resources.Get .Destination -}}
+  {{- $img := . -}}
+  {{- if gt .Width 1400 }}{{ $img = .Resize "1400x" }}{{ end -}}
+  {{- $src = $img.RelPermalink }}{{ $w = $img.Width }}{{ $h = $img.Height -}}
+{{- end -}}
+{{- $tag := printf "<img src=%q alt=%q%s loading=\"lazy\" decoding=\"async\">" $src .Text (cond (ne $w "") (printf " width=\"%d\" height=\"%d\"" $w $h) "") -}}
+{{- if .Title -}}
+<figure>{{ $tag | safeHTML }}<figcaption>{{ .Title | markdownify }}</figcaption></figure>
+{{- else -}}
+{{ $tag | safeHTML }}
+{{- end -}}

@@ -1,0 +1,14 @@
+<ul class="project-grid">
+  {{ range site.Data.projects.projects }}
+  {{ $main := index .links 0 }}
+  <li class="project-card">
+    <p class="project-kind">{{ .kind }}</p>
+    <h3><a href="{{ $main.url }}">{{ .name }}</a></h3>
+    <p class="project-summary">{{ .summary }}</p>
+    <ul class="project-tags">{{ range .tags }}<li>{{ . }}</li>{{ end }}</ul>
+    <p class="project-links">
+      {{ range .links }}<a href="{{ if hasPrefix .url "/" }}{{ .url | relURL }}{{ else }}{{ .url }}{{ end }}">{{ .label }}</a>{{ end }}
+    </p>
+  </li>
+  {{ end }}
+</ul>

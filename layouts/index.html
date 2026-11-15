@@ -9,9 +9,17 @@
   </ul>
   <p class="hero-actions">
     <a class="button button-primary" href="https://cv.mikewk.com/cv.pdf">Download CV</a>
-    <a class="button" href="{{ "publications/" | relURL }}">Publications</a>
+    <a class="button" href="{{ "projects/" | relURL }}">Projects</a>
     <a class="button" href="{{ "about/" | relURL }}">About me</a>
   </p>
+</section>
+
+<section class="wrap block">
+  <header class="section-head">
+    <h2>Projects</h2>
+    <a href="{{ "projects/" | relURL }}">All projects →</a>
+  </header>
+  {{ partial "project-cards.html" . }}
 </section>
 
 {{ $posts := where site.RegularPages "Section" "post" }}
