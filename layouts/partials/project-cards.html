@@ -1,5 +1,8 @@
+{{- /* Pass (dict "limit" N) to show only the first N projects. */ -}}
+{{- $items := site.Data.projects.projects -}}
+{{- if reflect.IsMap . }}{{ with .limit }}{{ $items = first . $items }}{{ end }}{{ end -}}
 <ul class="project-grid">
-  {{ range site.Data.projects.projects }}
+  {{ range $items }}
   {{ $main := index .links 0 }}
   <li class="project-card">
     <p class="project-kind">{{ .kind }}</p>

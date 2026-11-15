@@ -25,6 +25,15 @@ tags = ["Claude Code", "Python", "News"]
   url = "/post/2026-11-14-daily/"
 
 [[projects]]
+name = "ai-dev-stack"
+kind = "Guide"
+summary = "An opinionated record of what a data scientist's tech stack should be under three sets of constraints: enterprise Databricks, an early-stage startup, and open-source freelancing. Every pick traces back to a shared scoring rubric, so you can disagree with a score instead of a vibe."
+tags = ["Data science", "Tooling", "AI coding agents"]
+  [[projects.links]]
+  label = "Read it"
+  url = "https://github.com/mkearney/ai-dev-stack"
+
+[[projects]]
 name = "rtweet"
 kind = "R package"
 summary = "An R client for collecting and analyzing Twitter data, widely used in research and teaching. Now maintained by rOpenSci."
@@ -44,3 +53,15 @@ tags = ["R", "Machine learning", "xgboost"]
   [[projects.links]]
   label = "Code"
   url = "https://github.com/mkearney/tweetbotornot2"
+
+[[projects]]
+name = "resist_oped"
+kind = "Text analysis"
+summary = "In 2018 I compared the anonymous New York Times op-ed from inside the Trump White House with tweets from Cabinet members to see whose writing it most resembled. The author, revealed in 2020, was a DHS official who wasn't among the accounts compared."
+tags = ["R", "NLP", "Text similarity"]
+  [[projects.links]]
+  label = "Code"
+  url = "https://github.com/mkearney/resist_oped"
+  [[projects.links]]
+  label = "Method"
+  url = "https://github.com/mkearney/resist_oped/blob/master/resist-oped-text-similarity.md"

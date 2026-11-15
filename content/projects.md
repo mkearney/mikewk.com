@@ -1,7 +1,7 @@
 ---
 title: "Projects"
 layout: "projects"
-lede: "Things I've built: recent AI agents that do useful work on a schedule, and open-source R packages from my research years."
+lede: "Things I've built: recent AI agents that do useful work on a schedule, open-source R packages, and text analysis from my research years."
 aliases: ["/publications/"]
 comments: false
 ---

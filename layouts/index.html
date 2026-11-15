@@ -19,7 +19,7 @@
     <h2>Projects</h2>
     <a href="{{ "projects/" | relURL }}">All projects →</a>
   </header>
-  {{ partial "project-cards.html" . }}
+  {{ partial "project-cards.html" (dict "limit" 4) }}
 </section>
 
 {{ $posts := where site.RegularPages "Section" "post" }}
