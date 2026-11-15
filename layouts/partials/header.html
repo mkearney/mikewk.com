@@ -1,29 +1,20 @@
 <header class="site-header">
-  <a class="avatar_link" href="{{ "/" | relURL }}"><img class="avatar" src="{{ site.Params.avatar | relURL }}" alt="{{ site.Title }}"></a>
-  {{ if .IsHome }}<h1 class="title">{{ site.Title }}</h1>{{ else }}<p class="title">{{ site.Title }}</p>{{ end }}
-  <p class="subtitle">{{ delimit site.Params.subtitle "<br>" | safeHTML }}</p>
-  <button class="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
-    <span class="icon icon-menu"></span>
-  </button>
-  <nav class="site-menu collapsed" aria-label="Main menu">
-    <ul class="menu-list">
-      {{- $current := . }}
-      {{- range site.Menus.main }}
-        {{- $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
-        {{- /* Posts and taxonomy pages belong under "Home". */}}
-        {{- if and (eq .Identifier "home") (or $current.IsHome (eq $current.Section "post") (in (slice "taxonomy" "term") $current.Kind)) }}{{ $active = true }}{{ end }}
-      <li class="menu-item{{ if $active }} is-active{{ end }}"><a href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
-      {{- end }}
-    </ul>
-  </nav>
-  <nav class="social-menu collapsed" aria-label="Social links">
-    <ul class="social-list">
-      {{- range site.Params.social }}
-      <li class="social-item"><a href="{{ .url }}" title="{{ .name }}" aria-label="{{ .name }}"{{ if hasPrefix .url "http" }} rel="me noopener"{{ end }}><span class="icon icon-{{ .icon }}"></span></a></li>
-      {{- end }}
-      {{- with site.Home.OutputFormats.Get "rss" }}
-      <li class="social-item"><a href="{{ .RelPermalink }}" title="RSS" aria-label="RSS feed"><span class="icon icon-rss"></span></a></li>
-      {{- end }}
-    </ul>
-  </nav>
+  <div class="wrap header-inner">
+    <a class="brand" href="{{ "/" | relURL }}"{{ if .IsHome }} aria-current="page"{{ end }}>{{ site.Title }}</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        {{- $current := . }}
+        {{- range site.Menus.main }}
+          {{- $active := or ($current.IsMenuCurrent "main" .) ($current.HasMenuCurrent "main" .) }}
+          {{- /* Posts and tag pages live under "Writing". */}}
+          {{- if and (eq .Identifier "writing") (or (eq $current.Section "post") (in (slice "taxonomy" "term") $current.Kind)) }}{{ $active = true }}{{ end }}
+        <li><a href="{{ .URL }}"{{ if $active }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+        {{- end }}
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M4.22 4.22l1.77 1.77M18.01 18.01l1.77 1.77M1.5 12H4M20 12h2.5M4.22 19.78l1.77-1.77M18.01 5.99l1.77-1.77"/></svg>
+    </button>
+  </div>
 </header>

@@ -28,21 +28,21 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   shortname = "kearneymw"
 
 [[menu.main]]
-  name = "Home"
-  identifier = "home"
-  url = "/"
+  name = "Writing"
+  identifier = "writing"
+  pageRef = "/post"
   weight = 10
-
-[[menu.main]]
-  name = "About"
-  identifier = "about"
-  pageRef = "/about"
-  weight = 20
 
 [[menu.main]]
   name = "Publications"
   identifier = "publications"
   pageRef = "/publications"
+  weight = 20
+
+[[menu.main]]
+  name = "About"
+  identifier = "about"
+  pageRef = "/about"
   weight = 30
 
 [[menu.main]]
@@ -55,29 +55,27 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   author = "Michael W. Kearney, Ph.D."
   avatar = "/img/aintnoseats.jpeg"
   shareImage = "/img/avatar.jpg"
-  subtitle = ["Senior AI/Data Scientist", "NLP – Machine Learning", "Responsible AI", "Creative Solutions"]
+  role = "Senior AI/Data Scientist"
+  focus = ["Natural language processing", "Machine learning", "Responsible AI", "Creative solutions"]
   description = "Personal website of Michael W. Kearney, Senior AI/Data Scientist – NLP – Machine Learning – Responsible AI"
-  themeColor = "#5fbf5e"
   googleSiteVerification = "XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY"
 
-  # Social links, rendered in this order in the sidebar. `icon` maps to the iconfont classes in css/bundle.css.
+  # Social links, shown in this order in the footer.
   [[params.social]]
     name = "Email"
-    icon = "email"
     url = "mailto:kearneymw@missouri.edu"
   [[params.social]]
     name = "GitHub"
-    icon = "github"
     url = "https://github.com/mkearney"
   [[params.social]]
+    name = "Google Scholar"
+    url = "https://scholar.google.com/citations?user=j3EZl3MAAAAJ"
+  [[params.social]]
     name = "Twitter"
-    icon = "twitter"
     url = "https://twitter.com/kearneymw"
   [[params.social]]
     name = "Facebook"
-    icon = "facebook"
     url = "https://www.facebook.com/mike.wayne.kearney"
   [[params.social]]
     name = "LinkedIn"
-    icon = "linkedin"
     url = "https://www.linkedin.com/in/mikewk"

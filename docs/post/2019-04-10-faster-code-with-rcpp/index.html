@@ -2,80 +2,78 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Faster code with Rcpp | Michael W. Kearney</title>
+  <title>Faster code with Rcpp · Michael W. Kearney</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="kearneymw">
 <meta name="description" content="Recently I was asked if I could add to {rtweet} some basic functions for converting Twitter data into network data objects. I thought this was a reasonable request and a good opportunity for me to learn more about network analysis. But the task of converting Twitter data into network-friendly …">
-<meta name="theme-color" content="#5fbf5e">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#121413" media="(prefers-color-scheme: dark)">
 <meta name="google-site-verification" content="XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY">
 
 <link rel="canonical" href="https://mikewk.com/post/2019-04-10-faster-code-with-rcpp/">
 <link rel="alternate" type="application/rss+xml" href="https://mikewk.com/index.xml" title="Michael W. Kearney">
 
-
 <meta property="og:type" content="article">
+<meta property="og:site_name" content="Michael W. Kearney">
 <meta property="og:title" content="Faster code with Rcpp">
 <meta property="og:description" content="Recently I was asked if I could add to {rtweet} some basic functions for converting Twitter data into network data objects. I thought this was a reasonable request and a good opportunity for me to learn more about network analysis. But the task of converting Twitter data into network-friendly …">
 <meta property="og:url" content="https://mikewk.com/post/2019-04-10-faster-code-with-rcpp/">
 <meta property="og:image" content="https://mikewk.com/img/avatar.jpg">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:site" content="@kearneymw">
-
 
 <link rel="icon" href="/img/favicon.ico">
 <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
 <link rel="icon" sizes="192x192" href="/img/touch-icon-android.png">
 <link rel="apple-touch-icon" href="/img/touch-icon-apple.png">
-<link rel="mask-icon" href="/img/safari-pinned-tab.svg" color="#5fbf5e">
 
+
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&display=swap">
-<link rel="stylesheet" href="/css/bundle.css">
-<link rel="stylesheet" href="/highlight/styles/atom-one-light.css">
-<link rel="stylesheet" href="/css/custom.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<link rel="stylesheet" href="/css/main.min.0cbab086628a2afff42e3613637350863577794f69bc0dafe44caf5a82b5d1b0.css" integrity="sha256-DLqwhmKKKv/0LjYTY3NQhjV3eU9pvA2v5EyvWoK10bA=">
 
 </head>
-<body>
+<body class="kind-page page-2019-04-10-faster-code-with-rcpp">
+  <a class="skip-link" href="#content">Skip to content</a>
   <header class="site-header">
-  <a class="avatar_link" href="/"><img class="avatar" src="/img/aintnoseats.jpeg" alt="Michael W. Kearney"></a>
-  <p class="title">Michael W. Kearney</p>
-  <p class="subtitle">Senior AI/Data Scientist<br>NLP – Machine Learning<br>Responsible AI<br>Creative Solutions</p>
-  <button class="menu-toggle" type="button" aria-label="Toggle menu" aria-expanded="false">
-    <span class="icon icon-menu"></span>
-  </button>
-  <nav class="site-menu collapsed" aria-label="Main menu">
-    <ul class="menu-list">
-      <li class="menu-item is-active"><a href="/" aria-current="page">Home</a></li>
-      <li class="menu-item"><a href="/about/">About</a></li>
-      <li class="menu-item"><a href="/publications/">Publications</a></li>
-      <li class="menu-item"><a href="https://cv.mikewk.com">CV</a></li>
-    </ul>
-  </nav>
-  <nav class="social-menu collapsed" aria-label="Social links">
-    <ul class="social-list">
-      <li class="social-item"><a href="mailto:kearneymw@missouri.edu" title="Email" aria-label="Email"><span class="icon icon-email"></span></a></li>
-      <li class="social-item"><a href="https://github.com/mkearney" title="GitHub" aria-label="GitHub" rel="me noopener"><span class="icon icon-github"></span></a></li>
-      <li class="social-item"><a href="https://twitter.com/kearneymw" title="Twitter" aria-label="Twitter" rel="me noopener"><span class="icon icon-twitter"></span></a></li>
-      <li class="social-item"><a href="https://www.facebook.com/mike.wayne.kearney" title="Facebook" aria-label="Facebook" rel="me noopener"><span class="icon icon-facebook"></span></a></li>
-      <li class="social-item"><a href="https://www.linkedin.com/in/mikewk" title="LinkedIn" aria-label="LinkedIn" rel="me noopener"><span class="icon icon-linkedin"></span></a></li>
-      <li class="social-item"><a href="/index.xml" title="RSS" aria-label="RSS feed"><span class="icon icon-rss"></span></a></li>
-    </ul>
-  </nav>
+  <div class="wrap header-inner">
+    <a class="brand" href="/">Michael W. Kearney</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="/post/" aria-current="page">Writing</a></li>
+        <li><a href="/publications/">Publications</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="https://cv.mikewk.com">CV</a></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M4.22 4.22l1.77 1.77M18.01 18.01l1.77 1.77M1.5 12H4M20 12h2.5M4.22 19.78l1.77-1.77M18.01 5.99l1.77-1.77"/></svg>
+    </button>
+  </div>
 </header>
 
-  <main class="main post-detail">
+  <main id="content">
     
-<div class="post">
-  <header class="post-header">
-    <h1 class="post-title">Faster code with Rcpp</h1>
-    <p class="post-meta">@kearneymw &bull; <time datetime="2019-04-10">Apr 10, 2019</time> &bull; 6 min read
-</p>
 
+<article class="wrap narrow">
+  <header class="page-head">
+    <p class="eyebrow"><a href="/post/">Writing</a></p>
+    <h1>Faster code with Rcpp</h1>
+    
+    <p class="post-meta">
+      <time datetime="2019-04-10">April 10, 2019</time>
+      <span aria-hidden="true">·</span> 6 min read
+    </p>
+    
   </header>
-  <article class="post-content">
+
+  <div class="prose">
     
 
 
@@ -299,17 +297,22 @@ rt &lt;- rtweet::search_tweets(&quot;#rstats filter:verified&quot;, n = 200)
 d &lt;- dplyr::select(d, user_id, mentions_user_id)</code></pre>
 </div>
 
-  </article>
+  </div>
+
   
   <footer class="post-footer">
     
-    <ul class="post-tags">
-      <li><a href="/tags/r/"><span class="tag">R</span></a></li><li><a href="/tags/rcpp/"><span class="tag">Rcpp</span></a></li>
+    <ul class="tag-list" aria-label="Tags">
+      <li><a href="/tags/r/">R</a></li><li><a href="/tags/rcpp/">Rcpp</a></li>
     </ul>
     
+    <nav class="post-nav" aria-label="More posts">
+      <a class="post-nav-prev" href="/post/2019-04-23-three-things-to-know-beyond-base-r/"><span>Newer</span>Three things to know beyond base R</a>
+      <a class="post-nav-next" href="/post/2018-10-19-installing-r-and-studio/"><span>Older</span>Installing R and Studio</a>
+    </nav>
   </footer>
   
-    <div id="disqus_thread"></div>
+  <section class="comments"><div id="disqus_thread"></div>
 <script>
     window.disqus_config = function () {
     
@@ -328,22 +331,33 @@ d &lt;- dplyr::select(d, user_id, mentions_user_id)</code></pre>
     })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></section>
   
   
-</div>
+</article>
 
   </main>
   <footer class="site-footer">
-  <p>© 2017–2026 Michael W. Kearney</p>
+  <div class="wrap footer-inner">
+    <p>© 2017–2026 Michael W. Kearney</p>
+    <ul class="footer-links">
+      <li><a href="mailto:kearneymw@missouri.edu">Email</a></li>
+      <li><a href="https://github.com/mkearney" rel="me noopener">GitHub</a></li>
+      <li><a href="https://scholar.google.com/citations?user=j3EZl3MAAAAJ" rel="me noopener">Google Scholar</a></li>
+      <li><a href="https://twitter.com/kearneymw" rel="me noopener">Twitter</a></li>
+      <li><a href="https://www.facebook.com/mike.wayne.kearney" rel="me noopener">Facebook</a></li>
+      <li><a href="https://www.linkedin.com/in/mikewk" rel="me noopener">LinkedIn</a></li>
+      <li><a href="/index.xml">RSS</a></li>
+    </ul>
+  </div>
 </footer>
 
-<a title="Back to top" class="to-top is-hide" href="#"><span class="icon icon-up"></span></a>
 <script src="/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
 
-<script src="/js/site.js"></script>
+
+<script src="/js/site.min.04165c836cb5aa56941428fdd34730ba9abc98fa40942250828e346d09ee4f63.js" integrity="sha256-BBZcg2y1qlaUFCj900cwupq8mPpAlCJQgo40bQnuT2M=" defer></script>
 
 </body>
 </html>

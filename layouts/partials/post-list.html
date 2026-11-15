@@ -1,15 +1,11 @@
 {{- /* Expects a dict with "page" (the current page) and "pages" (the pages to list). */ -}}
 {{ $paginator := .page.Paginate .pages.ByDate.Reverse }}
-{{ range $paginator.Pages }}
-  {{ .Render "summary" }}
-{{ else }}
-  <p>There's nothing here yet.</p>
-{{ end }}
+<ul class="post-list">
+  {{ range $paginator.Pages }}{{ partial "post-item.html" . }}{{ else }}<li>Nothing here yet.</li>{{ end }}
+</ul>
 {{ if gt $paginator.TotalPages 1 }}
-<footer class="list-footer">
-  <nav class="pagination" aria-label="Pagination">
-    {{ with $paginator.Prev }}<a class="pagination-previous" href="{{ .URL }}">← Newer Posts</a>{{ end }}
-    {{ with $paginator.Next }}<a class="pagination-next" href="{{ .URL }}">Older Posts →</a>{{ end }}
-  </nav>
-</footer>
+<nav class="pager" aria-label="Pagination">
+  {{ with $paginator.Prev }}<a href="{{ .URL }}">← Newer</a>{{ end }}
+  {{ with $paginator.Next }}<a class="pager-next" href="{{ .URL }}">Older →</a>{{ end }}
+</nav>
 {{ end }}

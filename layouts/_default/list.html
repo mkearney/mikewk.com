@@ -1,7 +1,10 @@
-{{ define "main-class" }}post-list{{ end }}
 {{ define "main" }}
-<header class="post-header">
-  <h1 class="post-title">{{ if eq .Kind "term" }}{{ .Data.Singular | humanize }}: {{ end }}{{ .Title }}</h1>
-</header>
-{{ partial "post-list.html" (dict "page" . "pages" .RegularPages) }}
+<div class="wrap block">
+  <header class="page-head">
+    {{ if eq .Kind "term" }}<p class="eyebrow"><a href="{{ .Parent.RelPermalink }}">{{ .Data.Plural | humanize }}</a></p>{{ end }}
+    <h1>{{ if eq .Section "post" }}Writing{{ else }}{{ .Title }}{{ end }}</h1>
+    {{ if eq .Section "post" }}<p class="page-lede">Notes on R, data science, and research software.</p>{{ end }}
+  </header>
+  {{ partial "post-list.html" (dict "page" . "pages" .RegularPages) }}
+</div>
 {{ end }}

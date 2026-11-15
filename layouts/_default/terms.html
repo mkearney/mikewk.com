@@ -1,12 +1,10 @@
 {{ define "main" }}
-<header class="post-header">
-  <h1 class="post-title">{{ .Title }}</h1>
-</header>
-<article class="post-content">
-  <ul>
+<div class="wrap block">
+  <header class="page-head"><h1>{{ .Title }}</h1></header>
+  <ul class="tag-list tag-list-large">
     {{ range .Data.Terms.Alphabetical }}
-    <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }}</a> ({{ .Count }})</li>
+    <li><a href="{{ .Page.RelPermalink }}">{{ .Page.Title }} <span>{{ .Count }}</span></a></li>
     {{ end }}
   </ul>
-</article>
+</div>
 {{ end }}

@@ -1,23 +1,36 @@
 {{ define "main" }}
-<div class="post">
-  <header class="post-header">
-    <h1 class="post-title">{{ .Title }}</h1>
-    {{ if eq .Section "post" }}{{ partial "post-meta.html" . }}{{ end }}
+{{ $isPost := eq .Section "post" }}
+<article class="wrap narrow">
+  <header class="page-head">
+    {{ if $isPost }}<p class="eyebrow"><a href="{{ "post/" | relURL }}">Writing</a></p>{{ end }}
+    <h1>{{ .Title }}</h1>
+    {{ if $isPost }}
+    <p class="post-meta">
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      <span aria-hidden="true">·</span> {{ .ReadingTime }} min read
+    </p>
+    {{ end }}
   </header>
-  <article class="post-content">
+
+  <div class="prose">
     {{ .Content }}
-  </article>
-  {{ if eq .Section "post" }}
+  </div>
+
+  {{ if $isPost }}
   <footer class="post-footer">
     {{ with .GetTerms "tags" }}
-    <ul class="post-tags">
-      {{ range . }}<li><a href="{{ .RelPermalink }}"><span class="tag">{{ .LinkTitle }}</span></a></li>{{ end }}
+    <ul class="tag-list" aria-label="Tags">
+      {{ range . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
     </ul>
     {{ end }}
+    <nav class="post-nav" aria-label="More posts">
+      {{ with .NextInSection }}<a class="post-nav-prev" href="{{ .RelPermalink }}"><span>Newer</span>{{ .Title }}</a>{{ end }}
+      {{ with .PrevInSection }}<a class="post-nav-next" href="{{ .RelPermalink }}"><span>Older</span>{{ .Title }}</a>{{ end }}
+    </nav>
   </footer>
   {{ if and site.Config.Services.Disqus.Shortname (ne .Params.comments false) }}
-    {{ template "_internal/disqus.html" . }}
+  <section class="comments">{{ template "_internal/disqus.html" . }}</section>
   {{ end }}
   {{ end }}
-</div>
+</article>
 {{ end }}

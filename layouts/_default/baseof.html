@@ -2,12 +2,13 @@
 <html lang="{{ site.LanguageCode | default "en" }}">
 <head>
   <meta charset="utf-8">
-  <title>{{ block "title" . }}{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} | {{ site.Title }}{{ end }}{{ end }}</title>
+  <title>{{ block "title" . }}{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}{{ end }}</title>
   {{ partial "head.html" . }}
 </head>
-<body>
+<body class="kind-{{ .Kind }}{{ with .File }} page-{{ .ContentBaseName | urlize }}{{ end }}">
+  <a class="skip-link" href="#content">Skip to content</a>
   {{ partial "header.html" . }}
-  <main class="main {{ block "main-class" . }}post-detail{{ end }}">
+  <main id="content">
     {{ block "main" . }}{{ end }}
   </main>
   {{ partial "footer.html" . }}

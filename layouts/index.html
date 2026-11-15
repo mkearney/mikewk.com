@@ -1,5 +1,27 @@
-{{ define "main-class" }}post-list{{ end }}
 {{ define "main" }}
-<h2 class="offscreen">All Posts</h2>
-{{ partial "post-list.html" (dict "page" . "pages" (where site.RegularPages "Section" "post")) }}
+<section class="wrap hero">
+  <img class="hero-avatar" src="{{ site.Params.avatar | relURL }}" alt="" width="88" height="88">
+  <h1 class="hero-title">{{ site.Title }}</h1>
+  <p class="hero-role">{{ site.Params.role }}</p>
+  <div class="hero-intro">{{ .Content }}</div>
+  <ul class="focus-list" aria-label="Focus areas">
+    {{ range site.Params.focus }}<li>{{ . }}</li>{{ end }}
+  </ul>
+  <p class="hero-actions">
+    <a class="button button-primary" href="https://cv.mikewk.com/cv.pdf">Download CV</a>
+    <a class="button" href="{{ "publications/" | relURL }}">Publications</a>
+    <a class="button" href="{{ "about/" | relURL }}">About me</a>
+  </p>
+</section>
+
+{{ $posts := where site.RegularPages "Section" "post" }}
+<section class="wrap block">
+  <header class="section-head">
+    <h2>Writing</h2>
+    <a href="{{ "post/" | relURL }}">All posts →</a>
+  </header>
+  <ul class="post-list">
+    {{ range first 4 $posts.ByDate.Reverse }}{{ partial "post-item.html" . }}{{ end }}
+  </ul>
+</section>
 {{ end }}

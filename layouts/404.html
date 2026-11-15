@@ -1,8 +1,9 @@
-{{ define "title" }}Page not found | {{ site.Title }}{{ end }}
+{{ define "title" }}Page not found · {{ site.Title }}{{ end }}
 {{ define "main" }}
-<div class="not-found">
-  <p class="error-emoji">(˚Δ˚)b</p>
-  <p class="error-text">Sorry, that page doesn't exist.</p>
-  <p class="error-link"><a href="{{ "/" | relURL }}">Back to the home page →</a></p>
+<div class="wrap narrow not-found">
+  <p class="eyebrow">404</p>
+  <h1>That page doesn't exist.</h1>
+  <p>It may have moved, or the link may be out of date.</p>
+  <p><a class="button button-primary" href="{{ "/" | relURL }}">Go to the home page</a></p>
 </div>
 {{ end }}

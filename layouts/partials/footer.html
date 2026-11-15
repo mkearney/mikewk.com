@@ -1,8 +1,17 @@
 <footer class="site-footer">
-  <p>© 2017–{{ now.Year }} {{ site.Copyright | default site.Title }}</p>
+  <div class="wrap footer-inner">
+    <p>© 2017–{{ now.Year }} {{ site.Copyright | default site.Title }}</p>
+    <ul class="footer-links">
+      {{- range site.Params.social }}
+      <li><a href="{{ .url }}"{{ if hasPrefix .url "http" }} rel="me noopener"{{ end }}>{{ .name }}</a></li>
+      {{- end }}
+      {{- with site.Home.OutputFormats.Get "rss" }}
+      <li><a href="{{ .RelPermalink }}">RSS</a></li>
+      {{- end }}
+    </ul>
+  </div>
 </footer>
-{{ if .IsPage }}
-<a title="Back to top" class="to-top is-hide" href="#"><span class="icon icon-up"></span></a>
+{{ if and .IsPage (eq .Section "post") }}
 <script src="{{ "highlight/highlight.pack.js" | relURL }}"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 {{ end }}
@@ -10,4 +19,5 @@
 <script>window.MathJax = { tex: { inlineMath: [['$', '$'], ['\\(', '\\)']] } };</script>
 <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
 {{ end }}
-<script src="{{ "js/site.js" | relURL }}"></script>
+{{ $js := resources.Get "js/site.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
