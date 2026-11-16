@@ -1,4 +1,4 @@
-// Light/dark theme toggle. The saved choice is applied early by an inline script in <head>.
+// Light/dark theme toggle. Light is the default; dark is opt-in. The saved choice is applied early by an inline script in <head>.
 (function () {
   "use strict";
   var root = document.documentElement;
@@ -6,8 +6,7 @@
   if (!button) return;
 
   function current() {
-    if (root.dataset.theme) return root.dataset.theme;
-    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    return root.dataset.theme === "dark" ? "dark" : "light";
   }
 
   button.addEventListener("click", function () {
