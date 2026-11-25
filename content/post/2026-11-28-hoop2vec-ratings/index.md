@@ -12,30 +12,22 @@ build:
   publishResources: false
 ---
 
-Illinois is the best team in college basketball right now, by about five points. That's according to [hoop2vec](https://mkearney.github.io/hoop2vec/), which gives every Division I team a number called Power. Illinois is at +42.0. Houston is next at +37.2, and Arkansas Pine Bluff is last at −33.4.
+Most college basketball ratings come down to one number per team. On [hoop2vec](https://mkearney.github.io/hoop2vec/) that number is called Power, and right now Illinois leads at +42.0, about five points ahead of Houston. Arkansas Pine Bluff is last at −33.4.
 
 ![The top of the Illinois team page on hoop2vec, showing Power, adjusted offense and defense, tempo, and win chances](illinois.png "Illinois's team page as of November 25.")
 
-## What the number means
+Power is how many points per 100 possessions a team would beat an average Division I team by on a neutral floor, so zero is average. A possession is one trip down the court, ending when the other team gets the ball, and a typical game has about 70 for each side. That makes +42 worth about 29 points against an average team in a normal game.
 
-Power is how many points per 100 possessions a team would beat an average D-I team by on a neutral floor. A possession is one trip down the court that ends when the other team gets the ball. A typical game has about 70 of them for each team. So +42 means Illinois would beat an average team by about 29 points in a normal game. Zero is average.
-
-Counting per 100 possessions takes pace out of it. A fast team that wins 90 to 70 and a slow team that wins 60 to 40 both won by 20. The slow team did it with fewer chances, so it was the more dominant team per trip.
-
-The team pages put Power in more familiar terms too. Illinois would beat an average D-I team 96 percent of the time on a neutral floor. Against a typical top-25 team, it would win 71 percent of the time.
+Counting per possession takes pace out of it. A slow team that wins 60 to 40 and a fast team that wins 90 to 70 both won by 20, but the slow team did it with fewer chances. The team pages also turn Power into odds. Illinois would beat an average team 96 percent of the time on a neutral floor, and a typical top-25 team 71 percent of the time.
 
 ## Where it comes from
 
-There are three ratings underneath Power. The first is adjusted efficiency: points scored and allowed per 100 possessions, adjusted for who you played and where. It's recalculated from scratch every day, and recent games count a little more. Illinois scores 131.5 points per 100 possessions against an average defense, which is the best in the country.
+Underneath Power are three ratings. The first is adjusted efficiency, the approach Ken Pomeroy made famous: points scored and allowed per 100 possessions, adjusted for opponent and venue. hoop2vec recalculates it from scratch every day and gives recent games a little more weight. By that measure Illinois has the best offense in the country, scoring 131.5 points per 100 possessions against an average defense.
 
-The second is a dynamic rating. It updates after every game and keeps track of how sure it is. Early in the season it leans on last year's team and how much of the roster came back. The third is Elo, the system chess uses, which mostly cares about who won. It's there as a baseline.
+The second is a dynamic rating that updates after every game and keeps track of how sure it is. Early in the season it leans on last year's team and how much of the roster came back. The third is Elo, the system chess uses, which is mostly there as a baseline.
 
-Those three ratings feed the game model, the same one that makes the game forecasts. So do player data, injuries, and a bunch of box score stats. To get Power, I ask that model how each team would do on a neutral floor against each of the top 100 teams. Then I shift the scale so an average team lands at zero.
+Those three feed the game model, the same one that makes the forecasts, along with player data, injuries, and a bunch of box score stats. To get Power, I ask that model how each team would do on a neutral floor against each of the top 100 teams, then shift the scale so an average team lands at zero. Measuring against good opponents keeps a team from padding its number on bad ones. Beating the 350th-best team by 40 doesn't say much about March.
 
-The top-100 part is deliberate. Beating the 350th-best team by 40 doesn't tell you much about how a team will do in March. Measuring everyone against good opponents keeps a team from padding its number on bad ones.
+The ratings page also has strength of schedule, which is the average Power of the teams you've played. Florida is 6-1 against the 12th-toughest schedule in the country. UCLA is 6-0 against the 315th. The records look about the same until you see who they came against.
 
-## Schedule
-
-The ratings page also lists strength of schedule. It's the average Power of the teams you've played, so zero means an average D-I schedule. Florida is 6-1 against a schedule that ranks 12th. UCLA is 6-0 against one that ranks 315th. The ratings adjust for both, which is part of why Florida is fifth and UCLA is ninth.
-
-It's still November, and most teams have played four to seven games. The dynamic rating reports its own uncertainty, and right now Illinois's is about plus or minus five points. That's about the gap between first and second.
+It's November, and most teams have played four to seven games, so all of this will move. Illinois's dynamic rating comes with an uncertainty of about five points either way, which is roughly its whole lead over Houston.

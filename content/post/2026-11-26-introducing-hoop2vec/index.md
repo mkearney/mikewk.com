@@ -13,24 +13,26 @@ build:
   publishResources: false
 ---
 
-[hoop2vec](https://mkearney.github.io/hoop2vec/) is a men's college basketball site I built this fall. It rates all 365 Division I teams, forecasts every game, and updates itself every morning during the season. Everything on it comes from free public data, and it's free to use.
+[hoop2vec](https://mkearney.github.io/hoop2vec/) is a men's college basketball site I built this fall. It rates all 365 Division I teams, forecasts every game, and updates itself every morning during the season, all from free public data.
 
 ![The hoop2vec ratings page, with Illinois, Houston, and Connecticut at the top](ratings.png "The Ratings page as of November 25.")
 
-The site has eight tabs. Ratings ranks every team, and Players does the same for about 4,900 players. Prospects estimates who'll get drafted into the NBA and who'll last once they're there. Bracket projects the 2027 NCAA tournament and gives each team's odds of reaching each round. Games has forecasts for upcoming games, and Matchup Lab lets you set up any game yourself. Styles describes how each team plays, and Method explains how it all works.
+There are team and player ratings, a projected 2027 bracket, NBA draft projections, and a Matchup Lab where you can pit any two teams against each other at any site. There are also pages on how each team plays and on how the whole thing works. I'll write about each part over the next couple of weeks.
 
-The name is a nod to word2vec, a method that learns a list of numbers for each word based on the words that show up around it. I liked the idea of doing that for teams and players. hoop2vec doesn't actually use word2vec or anything like it, at least not yet. I kept the name anyway.
+The name is a nod to word2vec, a method that learns a list of numbers for each word based on the words around it. I liked the idea of doing that for teams and players. hoop2vec doesn't actually use word2vec or anything like it, at least not yet. I kept the name anyway.
+
+## Why college basketball
+
+I went to graduate school at the University of Kansas. I tutored players on the men's and women's basketball teams and went to a bunch of games. I live in Michigan now, and I still crave Free State Brewing Company and Burger Stand about once a week. That's most of why I care about college basketball as much as I do. It also means my favorite team is the correct favorite team.
+
+I've been building models for it on and off for about ten years, going back to a college basketball dataset I put on data.world. I've tried to predict upsets. I've tried strange hybrids of Bayesian models, latent variable models, Elo, XGBoost, and a transformer fine-tuned on press coverage. A few of them filled out my brackets. I usually compared them against KenPom, and mostly what I learned is how simple and effective KenPom is. The site still looks like it's from the 90s, though, and I've always thought there was room for small innovations and features built around that approach. That's a lot of what hoop2vec is.
 
 ## How it got built
 
-I've been doing some version of this for a long time. About ten years ago I put a college basketball dataset on data.world. Since then I've built a handful of rating models and used them to fill out my own brackets. None of them made it past my laptop.
+From about 2014 to 2020 I was making things all the time and sharing most of them, a lot of it on Twitter. Some of it was academic and some of it was just for fun. Then COVID hit, I had my first kid, and I changed careers. Now there are two young kids at home, and side projects pretty much stopped.
 
-From about 2014 to 2020 I made a lot of things and shared most of them, mostly on Twitter. Some were academic and some were just for fun. Then came COVID, my first kid, and a career change. There are two kids at home now, and side projects pretty much stopped.
+What's different now is that I can do this kind of work from my phone. I describe what I want to Claude Code, it writes the code, and I read what it did and push back. Most of hoop2vec got built that way, a few minutes at a time.
 
-What changed is that I can do this kind of work from my phone. I describe what I want to Claude Code, it writes the code, and I read it and push back. Most of hoop2vec was built that way, a few minutes at a time.
+It started as two separate projects. On the first, I described what I wanted and how I thought it should be done, then gave Claude Code license to build it and propose improvements. The second I directed much more strictly, iterating on what I thought would work. Then I merged the good ideas from both into hoop2vec, keeping whichever piece tested better where they overlapped.
 
-hoop2vec started as two separate projects. For the first, I described what I wanted and how I thought it should work, then gave Claude Code license to build it and propose improvements. The second I directed much more closely, trying the things I thought would work and keeping what did. Then I merged the good ideas from both. Where the two overlapped, I kept whichever piece tested better, and in a few places I combined them.
-
-I don't love working this way. I like control, and I like knowing how every piece works down to the details. I have less of that here than I'd want. But I've spent a lot of years learning what makes an analysis good or bad, and this lets me put that to use much faster than I could by typing it all myself. Without it, I'd have one more rating model on my laptop.
-
-Over the next couple of weeks I'll write a short post about each part of the site. The first one covers the ratings.
+I'm not very happy about working this way. I like control, and I like knowing how every piece works. I have less of that here than I'd want. But I've spent years building up expertise in analytics and data science, and this gives me a way to use it much faster than I could by typing everything myself. Without it, hoop2vec wouldn't exist.

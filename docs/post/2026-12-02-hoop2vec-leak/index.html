@@ -5,7 +5,7 @@
   <title>The hoop2vec model that was too good · Michael W. Kearney</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="kearneymw">
-<meta name="description" content="When you test a basketball model on past seasons, you pretend it’s the morning of each game and ask what the model would have said. The hard part is making sure it only knows what someone could have known that morning. If anything from later sneaks in, the model looks better than it is. This is …">
+<meta name="description" content="Everyone who works with data leaks it eventually. Leakage is when a model gets to see information it wouldn’t have had at the moment it’s supposed to be predicting, and it’s very easy to do by accident. When you test a basketball model on past seasons, you pretend it’s the morning of each game. The …">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#fbfaf7">
 <meta name="google-site-verification" content="XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY">
@@ -16,7 +16,7 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Michael W. Kearney">
 <meta property="og:title" content="The hoop2vec model that was too good">
-<meta property="og:description" content="When you test a basketball model on past seasons, you pretend it’s the morning of each game and ask what the model would have said. The hard part is making sure it only knows what someone could have known that morning. If anything from later sneaks in, the model looks better than it is. This is …">
+<meta property="og:description" content="Everyone who works with data leaks it eventually. Leakage is when a model gets to see information it wouldn’t have had at the moment it’s supposed to be predicting, and it’s very easy to do by accident. When you test a basketball model on past seasons, you pretend it’s the morning of each game. The …">
 <meta property="og:url" content="https://mikewk.com/post/2026-12-02-hoop2vec-leak/">
 <meta property="og:image" content="https://mikewk.com/img/avatar.jpg">
 <meta name="twitter:card" content="summary">
@@ -73,16 +73,11 @@
   </header>
 
   <div class="prose">
-    <p>When you test a basketball model on past seasons, you pretend it&rsquo;s the morning of each game and ask what the model would have said. The hard part is making sure it only knows what someone could have known that morning. If anything from later sneaks in, the model looks better than it is. This is called leakage, and it&rsquo;s easy to cause without noticing.</p>
-<p>An early version of <a href="https://mkearney.github.io/hoop2vec/">hoop2vec</a> had a leak. In testing, it beat the betting lines on NCAA tournament games. A model built on free public data shouldn&rsquo;t be able to do that. Sportsbooks have all the same data and a lot more reason to get it right. So I went looking for what the model knew that it shouldn&rsquo;t.</p>
-<h2 id="where-it-was">Where it was</h2>
-<p>The leak was in a player stat. The stat gives every player a rating for every game, an estimate of how much he helped his team that night. To make those ratings fair, it adjusts for how good his team and the opponent are. It does that using each team&rsquo;s rating from the end of the season.</p>
-<p>That&rsquo;s fine for looking back on a season, which is what the stat is meant for. It&rsquo;s a problem for predicting one. Add up a team&rsquo;s player ratings in November and you get a number that partly knows how good the team will be in March.</p>
-<p>The effect was large. On its own, that one number beat the betting line in every season I checked, ten out of ten. Nothing that simple should beat a sportsbook even once.</p>
-<h2 id="the-fix">The fix</h2>
-<p>The fix was to redo the player ratings using only what was known before each game. hoop2vec now adjusts each player&rsquo;s game against the team ratings from that morning instead of the ones from the end of the season. After the change, the same number lost to the betting line in all ten seasons.</p>
-<p>The full model got worse too. Its tournament forecasts went from beating the betting lines to trailing them slightly. That&rsquo;s where an honest public-data model should be.</p>
-<p>When a model built on public data beats the market now, I check it for leaks before I check anything else.</p>
+    <p>Everyone who works with data leaks it eventually. Leakage is when a model gets to see information it wouldn&rsquo;t have had at the moment it&rsquo;s supposed to be predicting, and it&rsquo;s very easy to do by accident. When you test a basketball model on past seasons, you pretend it&rsquo;s the morning of each game. The hard part is making sure the model only knows what someone could have known that morning. If anything from later sneaks in, the model looks better than it really is.</p>
+<p>An early version of <a href="https://mkearney.github.io/hoop2vec/">hoop2vec</a> had a leak. In testing, it beat the betting lines on NCAA tournament games, which a model built on free public data shouldn&rsquo;t be able to do. Sportsbooks have the same data and a lot more reason to get it right. That&rsquo;s what sent me looking.</p>
+<p>The leak was in a player stat that rates every player for every game, an estimate of how much he helped his team that night. To make those ratings fair, the stat adjusts for how good his team and the opponent are, and it does that using each team&rsquo;s rating from the end of the season. That&rsquo;s fine for looking back on a season, which is what the stat is meant for. It&rsquo;s a problem for predicting one. Add up a team&rsquo;s player ratings in November and you get a number that partly knows how good the team will be in March.</p>
+<p>On its own, that one number beat the betting line in all ten seasons I checked. Once I redid the player ratings using only the team ratings from the morning of each game, the same number lost to the line in all ten. The full model got worse too. Its tournament forecasts went from beating the betting lines to trailing them slightly, which is about where an honest public-data model should be.</p>
+<p>If you&rsquo;re early in a data science career, this is the part worth taking seriously. You&rsquo;ll leak data at some point. What matters is taking steps to avoid it, checking for it when results look too good, and being honest about it when it happens.</p>
 
   </div>
 

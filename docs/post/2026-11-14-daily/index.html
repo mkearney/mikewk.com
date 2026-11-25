@@ -5,8 +5,8 @@
   <title>daily: a five-minute news brief written by an agent · Michael W. Kearney</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="kearneymw">
-<meta name="description" content="Every morning at 8:23 Eastern, a Claude Code scheduled task researches and writes a news brief. It commits the brief to daily and sends a notification to my phone. The repo’s front page is always today’s brief, and older ones are archived under briefs/.
-Each brief has up to five top stories, one …">
+<meta name="description" content="Every morning at 8:23 Eastern, a Claude Code scheduled task researches and writes a news brief, commits it to daily, and sends a notification to my phone. The repo’s front page is always today’s brief, and older ones are archived under briefs/.
+Each brief has up to five top stories, one line of …">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#fbfaf7">
 <meta name="google-site-verification" content="XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY">
@@ -17,8 +17,8 @@ Each brief has up to five top stories, one …">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Michael W. Kearney">
 <meta property="og:title" content="daily: a five-minute news brief written by an agent">
-<meta property="og:description" content="Every morning at 8:23 Eastern, a Claude Code scheduled task researches and writes a news brief. It commits the brief to daily and sends a notification to my phone. The repo’s front page is always today’s brief, and older ones are archived under briefs/.
-Each brief has up to five top stories, one …">
+<meta property="og:description" content="Every morning at 8:23 Eastern, a Claude Code scheduled task researches and writes a news brief, commits it to daily, and sends a notification to my phone. The repo’s front page is always today’s brief, and older ones are archived under briefs/.
+Each brief has up to five top stories, one line of …">
 <meta property="og:url" content="https://mikewk.com/post/2026-11-14-daily/">
 <meta property="og:image" content="https://mikewk.com/img/avatar.jpg">
 <meta name="twitter:card" content="summary">
@@ -75,23 +75,23 @@ Each brief has up to five top stories, one …">
   </header>
 
   <div class="prose">
-    <p>Every morning at 8:23 Eastern, a Claude Code scheduled task researches and writes a news brief. It commits the brief to <a href="https://github.com/mkearney/daily">daily</a> and sends a notification to my phone. The repo&rsquo;s front page is always today&rsquo;s brief, and older ones are archived under <code>briefs/</code>.</p>
+    <p>Every morning at 8:23 Eastern, a Claude Code scheduled task researches and writes a news brief, commits it to <a href="https://github.com/mkearney/daily">daily</a>, and sends a notification to my phone. The repo&rsquo;s front page is always today&rsquo;s brief, and older ones are archived under <code>briefs/</code>.</p>
 <p>Each brief has up to five top stories, one line of market numbers, and a few things going viral. It&rsquo;s meant to take under five minutes to read on a phone, which works out to about 3 KB of Markdown. Here&rsquo;s part of Saturday&rsquo;s:</p>
 <blockquote>
 <p><strong>Nationwide ground stop cancels 7,000+ flights.</strong> The FAA halted all US departures for about four hours Friday after communication problems at several air traffic control centers. Flights resumed after 8:15 p.m. ET.</p>
 <p><strong>Markets · Fri Nov 13:</strong> S&amp;P 500 <strong>−0.4%</strong> · Nasdaq <strong>−0.9%</strong> · Dow <strong>+0.1%</strong> · 10-yr 5.15% (+5 bp)</p>
 </blockquote>
 <h2 id="scripts-and-judgment">Scripts and judgment</h2>
-<p>The split that works is simple. Anything that&rsquo;s a lookup goes in a script, and anything that needs judgment goes to the model. There are three scripts.</p>
+<p>The split that works is simple: anything that&rsquo;s a lookup goes in a script, and anything that needs judgment goes to the model. There are three scripts.</p>
 <p>The first, <code>headlines.py</code>, pulls Google News Top Stories plus its U.S., World, Business, and Tech sections. It keeps Google&rsquo;s order and the list of outlets covering each story. Position and outlet count are a decent proxy for how big a story is, so a story from a single outlet needs a good reason to lead.</p>
-<p>The second, <code>markets.py</code>, gets index changes and the 10-year Treasury yield from FRED. It works out which trading session to report and handles weekends and holidays. At 8:23, FRED usually has the Dow and Nasdaq but not yet the S&amp;P 500 or the 10-year. The script marks those two as missing, and only those get filled in from web search.</p>
+<p>The second, <code>markets.py</code>, gets index changes and the 10-year Treasury yield from FRED. It works out which trading session to report and handles weekends and holidays. At 8:23 FRED usually has the Dow and Nasdaq but not yet the S&amp;P 500 or the 10-year, so the script marks those two as missing and only those get filled in from web search.</p>
 <p>The third, <code>viral.py</code>, reads the day&rsquo;s top Reddit posts from public RSS (Reddit blocks its JSON endpoints from cloud servers). It also checks Bluesky trending topics, Google Trends, and Wikipedia&rsquo;s most-read pages for what people are talking about.</p>
 <p>The model reads all of that, decides what matters, checks it, and writes.</p>
 <h2 id="rules-for-the-usual-failures">Rules for the usual failures</h2>
-<p>A daily summary goes wrong in predictable ways, and the rules go after those directly. There are three main ones.</p>
+<p>A daily summary goes wrong in a few predictable ways, and the rules go after each one directly.</p>
 <p>The first is repeats. Each run reads the last seven days of briefs before it starts. A story comes back only if something material happened, like a decision, a vote, a ruling, a resignation, or a new casualty count. Its headline gets marked &ldquo;(update),&rdquo; and it says only what&rsquo;s new. Reaction and analysis don&rsquo;t count. A slow news day means fewer stories, not old ones.</p>
 <p>The second is accuracy. Every top story gets checked against a second search on a major outlet. Stories found only on aggregators or blogs are dropped or labeled unconfirmed. The agent checks the date of the event, not the date of the article. When sources disagree on a number, the most precise primary source wins.</p>
-<p>The third is tone. The brief asks for plain, neutral, short sentences, with no opinion or hype. Every sentence has to carry a fact.</p>
+<p>The third is tone. The brief asks for plain, neutral, short sentences with no opinion or hype, and every sentence has to carry a fact.</p>
 <h2 id="the-rules-live-in-a-file">The rules live in a file</h2>
 <p>The requirements are in <a href="https://github.com/mkearney/daily/blob/main/BRIEF.md"><code>BRIEF.md</code></a> as 21 numbered rules, and the scheduled task&rsquo;s prompt carries them out. The file&rsquo;s first line says to change both together. Numbered rules make it easy to say exactly what went wrong when a brief misses, and to fix it in one place.</p>
 <p>The whole thing is three small Python scripts, a file of rules, and a schedule. The <a href="https://github.com/mkearney/daily">repo</a> has all of it, along with every brief so far.</p>
