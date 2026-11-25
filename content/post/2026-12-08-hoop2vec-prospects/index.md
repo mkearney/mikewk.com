@@ -12,7 +12,7 @@ tags:
   - machine learning
 ---
 
-I've always thought the eye test was worth something. Not just for seeing a player's skills, but for seeing how competitive they are and what their drive is like. I knew Marcus Smart and Christian Braun were going to play hard at the next level. I could tell Trae Young was going to be a difficult talent to fit around, and that Andrew Wiggins didn't have the killer instinct you'd want. That's all fun. But for the most part, who gets drafted and who sticks in the pros can be modeled with reasonable accuracy.
+I've always thought the eye test was worth something. Not just for seeing a player's skills, but for seeing how competitive they are and what their drive is like. I knew Marcus Smart and Christian Braun were going to play hard at the next level. I could tell Trae Young was going to be a difficult talent to fit around, and that Andrew Wiggins didn't have the killer instinct you'd want. But for the most part, who gets drafted and who sticks in the pros can be modeled with reasonable accuracy.
 
 The college sites on [hoop2vec](https://mkearney.github.io/hoop2vec/) have a Prospects page that runs two of those models on every player: NBA prospects on the men's site and WNBA prospects on the women's.
 
@@ -32,4 +32,4 @@ Pro teams are still better at this than I am, in both leagues. For players who w
 
 Each prospect also gets comps. A separate model learns how college stats turn into pro stats over a player's first few seasons, then finds past college players at the same stage whose projected pro profile is closest, and shows what they became. Some things carry over better than others. On the men's side, rebounding, blocks, assists, and how many threes a player takes translate well. Shooting efficiency and overall impact translate much less.
 
-None of this is hard to show. ESPN, KenPom, or Sports Reference could offer this kind of detail in a way that's easy to use. They also have years of existing pages and habits to work around, and I got to start from scratch.
+ESPN, KenPom, or Sports Reference could show this kind of detail in a way that's easy to use. They have years of existing pages to work around, and I got to start from scratch.

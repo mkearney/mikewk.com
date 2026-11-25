@@ -26,7 +26,7 @@ Each league gets its own model, fitted on its own play-by-play. The pros have fe
 
 ## The cards
 
-Each card lists strengths, vulnerabilities, and matchup notes. They don't always agree with each other, which is part of what makes them fun to read. A defense that takes away transition chances but gives up a lot of threes can list run-and-gun offenses as both a favorable matchup and a risky one. Those teams want to run, and they also want to shoot threes.
+Each card lists strengths, vulnerabilities, and matchup notes. They don't always agree with each other. A defense that takes away transition chances but gives up a lot of threes can list run-and-gun offenses as both a favorable matchup and a risky one. Those teams want to run, and they also want to shoot threes.
 
 Early in a season, most cards are marked low confidence and still lean partly on the previous season.
 

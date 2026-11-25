@@ -12,7 +12,7 @@ tags:
   - WNBA
 ---
 
-College basketball ends in a single-elimination tournament. The pros play a long regular season and then a run of playoff series. [hoop2vec](https://mkearney.github.io/hoop2vec/) forecasts both, and they need pretty different math.
+College basketball ends in a single-elimination tournament. The pros play a long regular season and then a run of playoff series. [hoop2vec](https://mkearney.github.io/hoop2vec/) forecasts both, and they work pretty differently.
 
 ## The NCAA tournaments
 
@@ -24,9 +24,9 @@ I've spent a lot of time over the years trying to predict upsets. One approach w
 
 It fills out a bracket two ways. Most likely takes the favorite in every game. Pool-optimal is built for a pool that scores rounds 1, 2, 4, 8, 16, and 32 points, so it picks the likeliest champion first and works backward from there.
 
-Winning a pool takes more than being right. You also want to be right when the other people in your pool are wrong. hoop2vec doesn't know what your coworkers are picking, so it can't help with that part.
+In a pool you also want to be right when the other people in it are wrong. hoop2vec doesn't know what your coworkers are picking, so it can't help with that part.
 
-March is also just hard to predict. In 936 past men's tournament games, every reasonable model I tested landed within noise of the others, including a plain efficiency rating. A single tournament is 75 games, which isn't nearly enough to tell good models apart.
+Tournament games are hard to predict, too. In 936 past men's tournament games, every reasonable model I tested landed within noise of the others, including a plain efficiency rating. A single tournament is 75 games, which isn't nearly enough to tell good models apart.
 
 ## The pro playoffs
 

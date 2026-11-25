@@ -5,7 +5,7 @@
   <title>hoop2vec brackets and playoffs · Michael W. Kearney</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="kearneymw">
-<meta name="description" content="College basketball ends in a single-elimination tournament. The pros play a long regular season and then a run of playoff series. hoop2vec forecasts both, and they need pretty different math.
+<meta name="description" content="College basketball ends in a single-elimination tournament. The pros play a long regular season and then a run of playoff series. hoop2vec forecasts both, and they work pretty differently.
 The NCAA tournaments The men’s and women’s NCAA tournaments now have 76 teams each, with a 12-game Opening …">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#fbfaf7">
@@ -17,7 +17,7 @@ The NCAA tournaments The men’s and women’s NCAA tournaments now have 76 team
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Michael W. Kearney">
 <meta property="og:title" content="hoop2vec brackets and playoffs">
-<meta property="og:description" content="College basketball ends in a single-elimination tournament. The pros play a long regular season and then a run of playoff series. hoop2vec forecasts both, and they need pretty different math.
+<meta property="og:description" content="College basketball ends in a single-elimination tournament. The pros play a long regular season and then a run of playoff series. hoop2vec forecasts both, and they work pretty differently.
 The NCAA tournaments The men’s and women’s NCAA tournaments now have 76 teams each, with a 12-game Opening …">
 <meta property="og:url" content="https://mikewk.com/post/2026-12-10-hoop2vec-bracket/">
 <meta property="og:image" content="https://mikewk.com/img/avatar.jpg">
@@ -43,7 +43,7 @@ The NCAA tournaments The men’s and women’s NCAA tournaments now have 76 team
   <a class="skip-link" href="#content">Skip to content</a>
   <header class="site-header">
   <div class="wrap header-inner">
-    <a class="brand" href="/">Michael W. Kearney</a>
+    <a class="brand" href="/">mikewk.com</a>
     <nav class="site-nav" aria-label="Main">
       <ul>
         <li><a href="/post/" aria-current="page">Writing</a></li>
@@ -69,20 +69,20 @@ The NCAA tournaments The men’s and women’s NCAA tournaments now have 76 team
     
     <p class="post-meta">
       <time datetime="2026-12-10">December 10, 2026</time>
-      <span aria-hidden="true">·</span> 4 min read
+      <span aria-hidden="true">·</span> 3 min read
     </p>
     
   </header>
 
   <div class="prose">
-    <p>College basketball ends in a single-elimination tournament. The pros play a long regular season and then a run of playoff series. <a href="https://mkearney.github.io/hoop2vec/">hoop2vec</a> forecasts both, and they need pretty different math.</p>
+    <p>College basketball ends in a single-elimination tournament. The pros play a long regular season and then a run of playoff series. <a href="https://mkearney.github.io/hoop2vec/">hoop2vec</a> forecasts both, and they work pretty differently.</p>
 <h2 id="the-ncaa-tournaments">The NCAA tournaments</h2>
 <p>The men&rsquo;s and women&rsquo;s NCAA tournaments now have 76 teams each, with a 12-game Opening Round before the usual round of 64. Until Selection Sunday, hoop2vec projects the field. Each conference&rsquo;s automatic bid goes to its tournament champion, or to its highest-rated team until that tournament is played, and at-large bids and seeds follow Power, the site&rsquo;s team rating. After Selection Sunday the real bracket replaces the projection automatically. The two tournaments are set up differently, too. In the women&rsquo;s tournament, the top 16 seeds host the first two rounds on their own campuses, so the model counts home court where the men&rsquo;s version uses neutral sites.</p>
 <p>Most bracket models simulate the tournament thousands of times and count how often each team wins. hoop2vec works out the odds exactly. It has a win probability for every possible game, including each team&rsquo;s travel to that game&rsquo;s site, so it can calculate each team&rsquo;s chances round by round without any simulation noise. In the men&rsquo;s tournament, even the best team usually has well under a 50 percent chance to win the whole thing, since it has to win six games in a row against good teams. The women&rsquo;s game has bigger gaps between the top teams and everyone else, so a women&rsquo;s favorite can get a lot closer to even.</p>
 <p>I&rsquo;ve spent a lot of time over the years trying to predict upsets. One approach was to predict how many upsets would happen in a round, given the matchups, and then force that many of the most likely ones into my picks. hoop2vec doesn&rsquo;t do anything like that. Its picks come straight from the probabilities.</p>
 <p>It fills out a bracket two ways. Most likely takes the favorite in every game. Pool-optimal is built for a pool that scores rounds 1, 2, 4, 8, 16, and 32 points, so it picks the likeliest champion first and works backward from there.</p>
-<p>Winning a pool takes more than being right. You also want to be right when the other people in your pool are wrong. hoop2vec doesn&rsquo;t know what your coworkers are picking, so it can&rsquo;t help with that part.</p>
-<p>March is also just hard to predict. In 936 past men&rsquo;s tournament games, every reasonable model I tested landed within noise of the others, including a plain efficiency rating. A single tournament is 75 games, which isn&rsquo;t nearly enough to tell good models apart.</p>
+<p>In a pool you also want to be right when the other people in it are wrong. hoop2vec doesn&rsquo;t know what your coworkers are picking, so it can&rsquo;t help with that part.</p>
+<p>Tournament games are hard to predict, too. In 936 past men&rsquo;s tournament games, every reasonable model I tested landed within noise of the others, including a plain efficiency rating. A single tournament is 75 games, which isn&rsquo;t nearly enough to tell good models apart.</p>
 <h2 id="the-pro-playoffs">The pro playoffs</h2>
 <p>The NBA and WNBA sites have a Playoffs page instead of a bracket. Before the playoffs start, there&rsquo;s still a lot of regular season left to play, so hoop2vec plays it out 10,000 times, with each game priced by the game model at its actual arena. Each simulated season also shifts every team&rsquo;s strength by a random amount, sized from how much ratings have moved in past seasons between that point and the end. That&rsquo;s a big shift in November and a small one in April.</p>
 <p>From there it applies the tiebreakers, the NBA&rsquo;s play-in, and the playoff format for each league. Each series is solved exactly from two numbers: the better seed&rsquo;s chance to win a game at home and on the road. That works from any series score, so the same code covers the regular season, the playoffs in progress, and a finished season.</p>

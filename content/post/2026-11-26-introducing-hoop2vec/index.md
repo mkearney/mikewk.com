@@ -21,9 +21,11 @@ The name is a nod to word2vec, a method that learns a list of numbers for each w
 
 ## Why basketball
 
-I went to graduate school at the University of Kansas. I tutored players on the men's and women's basketball teams and went to a bunch of games. I live in Michigan now, and I still crave Free State Brewing Company and Burger Stand about once a week. That's most of why I care about college basketball as much as I do. It also means my favorite team is the correct favorite team.
+I used to be a big San Antonio Spurs fan, starting with David Robinson and going through the Tim Duncan years. Then I went to graduate school at the University of Kansas, where I tutored players on the men's and women's basketball teams and went to a bunch of games. I live in Michigan now, and I still crave Free State Brewing Company and Burger Stand about once a week. My favorite college team is the correct favorite team. These days I like pretty much all basketball.
 
-I've been building models for it on and off for about ten years, going back to a college basketball dataset I put on data.world. I've tried to predict upsets. I've tried strange hybrids of Bayesian models, latent variable models, Elo, XGBoost, and a transformer fine-tuned on press coverage. A few of them filled out my brackets. I usually compared them against KenPom, and mostly what I learned is how simple and effective KenPom is. The site still looks like it's from the 90s, though, and I've always thought there was room for small innovations and features built around that approach. That's a lot of what hoop2vec is.
+Most of my modeling has been on men's college basketball, on and off for about ten years, going back to a college basketball dataset I put on data.world. I've tried to predict upsets. I've tried strange hybrids of Bayesian models, latent variable models, Elo, XGBoost, and a transformer fine-tuned on press coverage. A few of them filled out my brackets. I usually compared them against KenPom, and mostly what I learned is how simple and effective KenPom is. The site still looks like it's from the 90s, though.
+
+I've always wanted a free site that shows advanced stats and is easy to get around, and for every league, not just men's college basketball. That's what hoop2vec is trying to be.
 
 ## How it got built
 
@@ -33,4 +35,4 @@ What's different now is that I can do this kind of work from my phone. I describ
 
 It started as two separate men's college projects. On the first, I described what I wanted and how I thought it should be done, then gave Claude Code license to build it and propose improvements. The second I directed much more strictly, iterating on what I thought would work. Then I merged the good ideas from both into hoop2vec, keeping whichever piece tested better where they overlapped. Once that worked, I carried the same approach over to the women's game, the NBA, and the WNBA.
 
-I'm not very happy about working this way. I like control, and I like knowing how every piece works. I have less of that here than I'd want. But I've spent years building up expertise in analytics and data science, and this gives me a way to use it much faster than I could by typing everything myself. Without it, hoop2vec wouldn't exist.
+I'm not very happy about working this way. I like control, and I like knowing how every piece works. I have less of that here than I'd want. But I've spent years building up expertise in analytics and data science, and this gives me a way to use it much faster than I could by typing everything myself.
