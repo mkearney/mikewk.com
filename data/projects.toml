@@ -1,6 +1,21 @@
 # Projects shown on the home page and /projects/, in this order.
 
 [[projects]]
+name = "hoop2vec"
+kind = "Sports analytics"
+summary = "Daily men's college basketball ratings, game forecasts, team identities, NBA prospects, and a projected 2027 bracket, built only from free public data and tested against betting lines."
+tags = ["Python", "Machine learning", "College basketball"]
+  [[projects.links]]
+  label = "Site"
+  url = "https://mkearney.github.io/hoop2vec/"
+  [[projects.links]]
+  label = "Code"
+  url = "https://github.com/mkearney/hoop2vec"
+  [[projects.links]]
+  label = "Introduction"
+  url = "/post/2026-11-26-introducing-hoop2vec/"
+
+[[projects]]
 name = "pix"
 kind = "AI agent"
 summary = "One visual analysis of the world, every day. A scheduled Claude Code agent picks a question, finds the data, runs the analysis in Python, and publishes a chart in a consistent house style."
