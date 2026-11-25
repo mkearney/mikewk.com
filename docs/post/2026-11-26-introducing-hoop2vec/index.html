@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Introducing hoop2vec · Michael W. Kearney</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="author" content="kearneymw">
+<meta name="description" content="hoop2vec is a men’s college basketball site I built this fall. It rates all 365 Division I teams, forecasts every game, and updates itself every morning during the season. Everything on it comes from free public data, and it’s free to use.
+The Ratings page as of November 25.The site has eight tabs. …">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#fbfaf7">
+<meta name="google-site-verification" content="XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY">
+
+<link rel="canonical" href="https://mikewk.com/post/2026-11-26-introducing-hoop2vec/">
+<link rel="alternate" type="application/rss+xml" href="https://mikewk.com/index.xml" title="Michael W. Kearney">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Michael W. Kearney">
+<meta property="og:title" content="Introducing hoop2vec">
+<meta property="og:description" content="hoop2vec is a men’s college basketball site I built this fall. It rates all 365 Division I teams, forecasts every game, and updates itself every morning during the season. Everything on it comes from free public data, and it’s free to use.
+The Ratings page as of November 25.The site has eight tabs. …">
+<meta property="og:url" content="https://mikewk.com/post/2026-11-26-introducing-hoop2vec/">
+<meta property="og:image" content="https://mikewk.com/img/avatar.jpg">
+<meta name="twitter:card" content="summary">
+
+<link rel="icon" href="/img/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+<link rel="icon" sizes="192x192" href="/img/touch-icon-android.png">
+<link rel="apple-touch-icon" href="/img/touch-icon-apple.png">
+
+
+<script>try{var t=localStorage.getItem("theme");if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<link rel="stylesheet" href="/css/main.min.45f00f67d3916ebf4b9f5f5c17958d95601bdc02b4aaf1f8cd8e3e2886d90e84.css" integrity="sha256-RfAPZ9ORbr9Ln19cF5WNlWAb3AK0qvH4zY4&#43;KIbZDoQ=">
+
+</head>
+<body class="kind-page page-2026-11-26-introducing-hoop2vec">
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/">Michael W. Kearney</a>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="/post/" aria-current="page">Writing</a></li>
+        <li><a href="/projects/">Projects</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="https://cv.mikewk.com">CV</a></li>
+      </ul>
+    </nav>
+    <button class="theme-toggle" type="button" aria-label="Toggle dark mode" title="Toggle dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 1.5v2.5M12 20v2.5M4.22 4.22l1.77 1.77M18.01 18.01l1.77 1.77M1.5 12H4M20 12h2.5M4.22 19.78l1.77-1.77M18.01 5.99l1.77-1.77"/></svg>
+    </button>
+  </div>
+</header>
+
+  <main id="content">
+    
+
+<article class="wrap narrow">
+  <header class="page-head">
+    <p class="eyebrow"><a href="/post/">Writing</a></p>
+    <h1>Introducing hoop2vec</h1>
+    
+    <p class="post-meta">
+      <time datetime="2026-11-26">November 26, 2026</time>
+      <span aria-hidden="true">·</span> 3 min read
+    </p>
+    
+  </header>
+
+  <div class="prose">
+    <p><a href="https://mkearney.github.io/hoop2vec/">hoop2vec</a> is a men&rsquo;s college basketball site I built this fall. It rates all 365 Division I teams, forecasts every game, and updates itself every morning during the season. Everything on it comes from free public data, and it&rsquo;s free to use.</p>
+<figure><img src="/post/2026-11-26-introducing-hoop2vec/ratings_hu3185923272739338448.png" alt="The hoop2vec ratings page, with Illinois, Houston, and Connecticut at the top" width="1400" height="887" loading="lazy" decoding="async"><figcaption>The Ratings page as of November 25.</figcaption></figure><p>The site has eight tabs. Ratings ranks every team, and Players does the same for about 4,900 players. Prospects estimates who&rsquo;ll get drafted into the NBA and who&rsquo;ll last once they&rsquo;re there. Bracket projects the 2027 NCAA tournament and gives each team&rsquo;s odds of reaching each round. Games has forecasts for upcoming games, and Matchup Lab lets you set up any game yourself. Styles describes how each team plays, and Method explains how it all works.</p>
+<p>The name is a nod to word2vec, a method that learns a list of numbers for each word based on the words that show up around it. I liked the idea of doing that for teams and players. hoop2vec doesn&rsquo;t actually use word2vec or anything like it, at least not yet. I kept the name anyway.</p>
+<h2 id="how-it-got-built">How it got built</h2>
+<p>I&rsquo;ve been doing some version of this for a long time. About ten years ago I put a college basketball dataset on data.world. Since then I&rsquo;ve built a handful of rating models and used them to fill out my own brackets. None of them made it past my laptop.</p>
+<p>From about 2014 to 2020 I made a lot of things and shared most of them, mostly on Twitter. Some were academic and some were just for fun. Then came COVID, my first kid, and a career change. There are two kids at home now, and side projects pretty much stopped.</p>
+<p>What changed is that I can do this kind of work from my phone. I describe what I want to Claude Code, it writes the code, and I read it and push back. Most of hoop2vec was built that way, a few minutes at a time.</p>
+<p>hoop2vec started as two separate projects. For the first, I described what I wanted and how I thought it should work, then gave Claude Code license to build it and propose improvements. The second I directed much more closely, trying the things I thought would work and keeping what did. Then I merged the good ideas from both. Where the two overlapped, I kept whichever piece tested better, and in a few places I combined them.</p>
+<p>I don&rsquo;t love working this way. I like control, and I like knowing how every piece works down to the details. I have less of that here than I&rsquo;d want. But I&rsquo;ve spent a lot of years learning what makes an analysis good or bad, and this lets me put that to use much faster than I could by typing it all myself. Without it, I&rsquo;d have one more rating model on my laptop.</p>
+<p>Over the next couple of weeks I&rsquo;ll write a short post about each part of the site. The first one covers the ratings.</p>
+
+  </div>
+
+  
+  <footer class="post-footer">
+    
+    <ul class="tag-list" aria-label="Tags">
+      <li><a href="/tags/hoop2vec/">Hoop2vec</a></li><li><a href="/tags/college-basketball/">College Basketball</a></li><li><a href="/tags/claude-code/">Claude Code</a></li><li><a href="/tags/python/">Python</a></li>
+    </ul>
+    
+    <nav class="post-nav" aria-label="More posts">
+      <a class="post-nav-prev" href="/post/2026-11-28-hoop2vec-ratings/"><span>Newer</span>hoop2vec ratings: one number for every team</a>
+      <a class="post-nav-next" href="/post/2026-11-15-pix/"><span>Older</span>pix: an AI agent that publishes one chart a day</a>
+    </nav>
+  </footer>
+  
+  <section class="comments"><div id="disqus_thread"></div>
+<script>
+    window.disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "kearneymw" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></section>
+  
+  
+</article>
+
+  </main>
+  <footer class="site-footer">
+  <div class="wrap footer-inner">
+    <p>© 2017–2026 Michael W. Kearney</p>
+    <ul class="footer-links">
+      <li><a href="mailto:mike.wayne.kearney@gmail.com">Email</a></li>
+      <li><a href="https://github.com/mkearney" rel="me noopener">GitHub</a></li>
+      <li><a href="https://scholar.google.com/citations?user=j3EZl3MAAAAJ" rel="me noopener">Google Scholar</a></li>
+      <li><a href="https://twitter.com/kearneymw" rel="me noopener">Twitter</a></li>
+      <li><a href="https://www.facebook.com/mike.wayne.kearney" rel="me noopener">Facebook</a></li>
+      <li><a href="https://www.linkedin.com/in/mikewk" rel="me noopener">LinkedIn</a></li>
+      <li><a href="/index.xml">RSS</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+<script src="/js/site.min.0c7d8fa0384f0e614d15318d35344de7537e482138ae1baf216c82964b40bfc0.js" integrity="sha256-DH2PoDhPDmFNFTGNNTRN51N&#43;SCE4rhuvIWyClktAv8A=" defer></script>
+
+</body>
+</html>

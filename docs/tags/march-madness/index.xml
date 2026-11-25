@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>March Madness on Michael W. Kearney</title>
+    <link>https://mikewk.com/tags/march-madness/</link>
+    <description>Recent content in March Madness on Michael W. Kearney</description>
+    <generator>Hugo</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 10 Dec 2026 00:00:00 &#43;0000</lastBuildDate>
+    <atom:link href="https://mikewk.com/tags/march-madness/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The hoop2vec bracket</title>
+      <link>https://mikewk.com/post/2026-12-10-hoop2vec-bracket/</link>
+      <pubDate>Thu, 10 Dec 2026 00:00:00 &#43;0000</pubDate>
+      <guid>https://mikewk.com/post/2026-12-10-hoop2vec-bracket/</guid>
+      <description>&lt;p&gt;The 2027 NCAA tournament will have 76 teams, up from 68. That means a 12-game Opening Round before the usual first round of 64. &lt;a href=&#34;https://mkearney.github.io/hoop2vec/#/bracket&#34;&gt;hoop2vec&lt;/a&gt; already has a projected bracket for it, with each team&amp;rsquo;s odds of reaching each round.&lt;/p&gt;&#xA;&lt;figure&gt;&lt;img src=&#34;https://mikewk.com/post/2026-12-10-hoop2vec-bracket/bracket_hu5556835076537428886.png&#34; alt=&#34;The hoop2vec projected 2027 bracket page, with Illinois as the champion pick and title odds for the top eight teams&#34; width=&#34;1400&#34; height=&#34;910&#34; loading=&#34;lazy&#34; decoding=&#34;async&#34;&gt;&lt;figcaption&gt;The Bracket page as of November 25.&lt;/figcaption&gt;&lt;/figure&gt;&lt;h2 id=&#34;the-projected-field&#34;&gt;The projected field&lt;/h2&gt;&#xA;&lt;p&gt;Until Selection Sunday, the field is a projection. Each conference&amp;rsquo;s automatic bid goes to its tournament champion, or to its highest-rated team until that tournament is played. At-large bids and seeds follow Power, the site&amp;rsquo;s team rating. After Selection Sunday, the real bracket replaces the projection automatically.&lt;/p&gt;&#xA;&lt;h2 id=&#34;exact-odds&#34;&gt;Exact odds&lt;/h2&gt;&#xA;&lt;p&gt;Most bracket models simulate the tournament thousands of times and count how often each team wins. hoop2vec works out the odds exactly. It has a win probability for every possible game, including each team&amp;rsquo;s travel to that game&amp;rsquo;s site. From there it can calculate each team&amp;rsquo;s chances round by round, with no simulation noise.&lt;/p&gt;&#xA;&lt;p&gt;Right now Illinois has a 21 percent chance to win the title. That&amp;rsquo;s the best of any team, and it still means Illinois loses somewhere along the way about four times out of five. Houston is second at 14 percent, and Connecticut is the only other team above 10 percent.&lt;/p&gt;&#xA;&lt;h2 id=&#34;picks&#34;&gt;Picks&lt;/h2&gt;&#xA;&lt;p&gt;The page also fills out a bracket two ways. Most likely takes the favorite in every game. Pool-optimal is built for a pool that scores rounds 1, 2, 4, 8, 16, and 32 points. It picks the likeliest champion first, then works backward to the likeliest team to reach each game given that pick. Right now the two brackets are close, and both expect about 88 points out of a possible 192.&lt;/p&gt;&#xA;&lt;p&gt;Winning a pool takes more than being right. You also want to be right when other people in the pool are wrong. hoop2vec doesn&amp;rsquo;t know what your coworkers are picking, so it can&amp;rsquo;t help with that part.&lt;/p&gt;&#xA;&lt;p&gt;March is also just hard to predict. In 936 past tournament games, every reasonable model I tested landed within noise of the others, including a plain efficiency rating. A whole tournament is only 75 games.&lt;/p&gt;&#xA;</description>
+    </item>
+  </channel>
+</rss>

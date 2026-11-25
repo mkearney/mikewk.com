@@ -6,6 +6,10 @@ enableRobotsTXT = true
 summaryLength = 50
 copyright = "Michael W. Kearney"
 
+# Publish posts dated in the future (the hoop2vec series is pre-dated).
+# Set to false to hold each post until its date.
+buildFuture = true
+
 # R Markdown sources are rendered to .html by blogdown; Hugo only needs the output.
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
