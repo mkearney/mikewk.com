@@ -5,7 +5,7 @@
   <title>hoop2vec prospects: the draft and what comes after · Michael W. Kearney</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="kearneymw">
-<meta name="description" content="I’ve always thought the eye test was worth something. Not just for seeing a player’s skills, but for seeing how competitive he is and what his drive is like. I knew Marcus Smart and Christian Braun were going to play hard at the next level. I could tell Trae Young was going to be a difficult talent …">
+<meta name="description" content="I’ve always thought the eye test was worth something. Not just for seeing a player’s skills, but for seeing how competitive they are and what their drive is like. I knew Marcus Smart and Christian Braun were going to play hard at the next level. I could tell Trae Young was going to be a difficult …">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#fbfaf7">
 <meta name="google-site-verification" content="XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY">
@@ -16,7 +16,7 @@
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Michael W. Kearney">
 <meta property="og:title" content="hoop2vec prospects: the draft and what comes after">
-<meta property="og:description" content="I’ve always thought the eye test was worth something. Not just for seeing a player’s skills, but for seeing how competitive he is and what his drive is like. I knew Marcus Smart and Christian Braun were going to play hard at the next level. I could tell Trae Young was going to be a difficult talent …">
+<meta property="og:description" content="I’ve always thought the eye test was worth something. Not just for seeing a player’s skills, but for seeing how competitive they are and what their drive is like. I knew Marcus Smart and Christian Braun were going to play hard at the next level. I could tell Trae Young was going to be a difficult …">
 <meta property="og:url" content="https://mikewk.com/post/2026-12-08-hoop2vec-prospects/">
 <meta property="og:image" content="https://mikewk.com/img/avatar.jpg">
 <meta name="twitter:card" content="summary">
@@ -73,16 +73,16 @@
   </header>
 
   <div class="prose">
-    <p>I&rsquo;ve always thought the eye test was worth something. Not just for seeing a player&rsquo;s skills, but for seeing how competitive he is and what his drive is like. I knew Marcus Smart and Christian Braun were going to play hard at the next level. I could tell Trae Young was going to be a difficult talent to fit around, and that Andrew Wiggins didn&rsquo;t have the killer instinct you&rsquo;d want. That&rsquo;s all fun. But for the most part, who gets drafted and who sticks in the NBA can be modeled with reasonable accuracy.</p>
-<p>The <a href="https://mkearney.github.io/hoop2vec/#/prospects">Prospects page</a> on hoop2vec runs two of those models on every D-I player. Right now its top prospect is Quentin Coleman, an 18-year-old freshman guard at Illinois who&rsquo;s averaging 20.7 points a game. It gives him a 65 percent chance of going in the first round.</p>
-<figure><img src="/post/2026-12-08-hoop2vec-prospects/prospects_hu3761587081327125731.png" alt="The hoop2vec Prospects page, with the projected draft board and the best NBA bets" width="1400" height="747" loading="lazy" decoding="async"><figcaption>The Prospects page as of November 25.</figcaption></figure><h2 id="two-models">Two models</h2>
-<p>The draft model estimates the chance a player is picked in the top 5, in the lottery (the top 14), in the first round, and at all. It learned from every D-I player-season since 2008 and who actually got drafted.</p>
-<p>The success model estimates the chance a player gets 8 or more Win Shares in his first four NBA seasons. Win Shares is a stat that splits a team&rsquo;s wins among its players, and eight over four years is about what a steady rotation player gets. Players who went undrafted or never reached the NBA are in the data too, as misses.</p>
-<p>Both models use the same inputs: age, height, class, recruiting ranking, team and conference strength, role, and about 30 stats adjusted for opponents. Age matters more than anything else. A freshman putting up good numbers at 18 is a much better bet than a senior putting up the same numbers at 23.</p>
+    <p>I&rsquo;ve always thought the eye test was worth something. Not just for seeing a player&rsquo;s skills, but for seeing how competitive they are and what their drive is like. I knew Marcus Smart and Christian Braun were going to play hard at the next level. I could tell Trae Young was going to be a difficult talent to fit around, and that Andrew Wiggins didn&rsquo;t have the killer instinct you&rsquo;d want. That&rsquo;s all fun. But for the most part, who gets drafted and who sticks in the pros can be modeled with reasonable accuracy.</p>
+<p>The college sites on <a href="https://mkearney.github.io/hoop2vec/">hoop2vec</a> have a Prospects page that runs two of those models on every player: NBA prospects on the men&rsquo;s site and WNBA prospects on the women&rsquo;s.</p>
+<h2 id="two-models">Two models</h2>
+<p>The draft model estimates the chance a player is picked in each tier of the draft, from the very top down to getting picked at all. For the NBA that&rsquo;s the top 5, the lottery (the top 14), the first round, and both rounds. The WNBA draft is three rounds and 36 picks, so its tiers are the top 4, the top 12, the top 24, and drafted. The model learned from every past college player-season and who actually got drafted.</p>
+<p>The success model estimates the chance a player becomes a real contributor early in a pro career, measured in Win Shares, a stat that splits a team&rsquo;s wins among its players. In the NBA the bar is 8 Win Shares in the first four seasons, about what a steady rotation player gets. WNBA seasons are shorter and the rosters are smaller, so the bar there is 2.5 Win Shares in the first three seasons. Players who went undrafted or never made it are in the data too, as misses.</p>
+<p>Both models use age, height, class, team and conference strength, role, and a few dozen stats adjusted for opponents. On the men&rsquo;s side, age matters more than anything else. A freshman putting up good numbers at 18 is a much better bet than a senior putting up the same numbers at 23. There aren&rsquo;t free birth dates or recruiting rankings for women&rsquo;s players, so class and height have to stand in.</p>
 <h2 id="how-well-it-works">How well it works</h2>
-<p>I tested both models one draft at a time, training each only on earlier drafts. From 2012 through 2026, an average of 20 of the model&rsquo;s top 30 players were drafted. A simple baseline using recruiting ranking, box plus/minus, and age got about 15.</p>
-<p>NBA teams are still better at this than I am. For players who were drafted, where they were picked predicts their NBA careers better than my success model does, and adding my model to the draft slot didn&rsquo;t improve on the slot alone. Teams get workouts, medical reports, and interviews. I get box scores. The model also only covers college players, so international and G League prospects aren&rsquo;t on the board, and its slots run ahead of where players will really go.</p>
-<p>Each prospect also gets comps. A separate model learns how college stats turn into NBA stats over a player&rsquo;s first four seasons, then finds past college players at the same stage whose projected NBA profile is closest. Coleman&rsquo;s closest comps include V.J. Edgecombe, Jeremiah Fears, and Dylan Harper, three freshman guards picked in the top seven in 2025. Some things carry over better than others. Rebounding, blocks, assists, and how many threes a player takes translate well. Shooting efficiency and overall impact translate much less.</p>
+<p>I tested the models one draft at a time, training each only on earlier drafts. In the NBA version, an average of 20 of the model&rsquo;s top 30 players were drafted, compared with about 15 for a simple baseline using recruiting ranking, box plus/minus, and age. The WNBA version is about as good at picking who gets drafted, and better than its baseline at predicting the order.</p>
+<p>Pro teams are still better at this than I am, in both leagues. For players who were drafted, where they were picked predicts their careers better than my success model does. Teams get workouts, medical reports, and interviews. I get box scores. The models also only cover college players, so international and G League prospects aren&rsquo;t on the board, and the board&rsquo;s slots run ahead of where players will really go.</p>
+<p>Each prospect also gets comps. A separate model learns how college stats turn into pro stats over a player&rsquo;s first few seasons, then finds past college players at the same stage whose projected pro profile is closest, and shows what they became. Some things carry over better than others. On the men&rsquo;s side, rebounding, blocks, assists, and how many threes a player takes translate well. Shooting efficiency and overall impact translate much less.</p>
 <p>None of this is hard to show. ESPN, KenPom, or Sports Reference could offer this kind of detail in a way that&rsquo;s easy to use. They also have years of existing pages and habits to work around, and I got to start from scratch.</p>
 
   </div>
@@ -91,11 +91,11 @@
   <footer class="post-footer">
     
     <ul class="tag-list" aria-label="Tags">
-      <li><a href="/tags/hoop2vec/">Hoop2vec</a></li><li><a href="/tags/college-basketball/">College Basketball</a></li><li><a href="/tags/nba-draft/">NBA Draft</a></li><li><a href="/tags/machine-learning/">Machine Learning</a></li>
+      <li><a href="/tags/hoop2vec/">Hoop2vec</a></li><li><a href="/tags/college-basketball/">College Basketball</a></li><li><a href="/tags/nba-draft/">NBA Draft</a></li><li><a href="/tags/wnba-draft/">WNBA Draft</a></li><li><a href="/tags/machine-learning/">Machine Learning</a></li>
     </ul>
     
     <nav class="post-nav" aria-label="More posts">
-      <a class="post-nav-prev" href="/post/2026-12-10-hoop2vec-bracket/"><span>Newer</span>The hoop2vec bracket</a>
+      <a class="post-nav-prev" href="/post/2026-12-10-hoop2vec-bracket/"><span>Newer</span>hoop2vec brackets and playoffs</a>
       <a class="post-nav-next" href="/post/2026-12-06-hoop2vec-identities/"><span>Older</span>hoop2vec identities: how teams play</a>
     </nav>
   </footer>

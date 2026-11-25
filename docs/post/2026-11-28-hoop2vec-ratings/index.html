@@ -5,8 +5,8 @@
   <title>hoop2vec ratings: one number for every team · Michael W. Kearney</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="kearneymw">
-<meta name="description" content="Most college basketball ratings come down to one number per team. On hoop2vec that number is called Power, and right now Illinois leads at &#43;42.0, about five points ahead of Houston. Arkansas Pine Bluff is last at −33.4.
-Illinois’s team page as of November 25.Power is how many points per 100 …">
+<meta name="description" content="Most basketball ratings come down to one number per team. On hoop2vec that number is called Power, and it works the same way in all four leagues: men’s and women’s college, the NBA, and the WNBA.
+Power is how many points per 100 possessions a team would beat an average team in its league by on a …">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#fbfaf7">
 <meta name="google-site-verification" content="XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY">
@@ -17,8 +17,8 @@ Illinois’s team page as of November 25.Power is how many points per 100 …">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Michael W. Kearney">
 <meta property="og:title" content="hoop2vec ratings: one number for every team">
-<meta property="og:description" content="Most college basketball ratings come down to one number per team. On hoop2vec that number is called Power, and right now Illinois leads at &#43;42.0, about five points ahead of Houston. Arkansas Pine Bluff is last at −33.4.
-Illinois’s team page as of November 25.Power is how many points per 100 …">
+<meta property="og:description" content="Most basketball ratings come down to one number per team. On hoop2vec that number is called Power, and it works the same way in all four leagues: men’s and women’s college, the NBA, and the WNBA.
+Power is how many points per 100 possessions a team would beat an average team in its league by on a …">
 <meta property="og:url" content="https://mikewk.com/post/2026-11-28-hoop2vec-ratings/">
 <meta property="og:image" content="https://mikewk.com/img/avatar.jpg">
 <meta name="twitter:card" content="summary">
@@ -75,15 +75,16 @@ Illinois’s team page as of November 25.Power is how many points per 100 …">
   </header>
 
   <div class="prose">
-    <p>Most college basketball ratings come down to one number per team. On <a href="https://mkearney.github.io/hoop2vec/">hoop2vec</a> that number is called Power, and right now Illinois leads at +42.0, about five points ahead of Houston. Arkansas Pine Bluff is last at −33.4.</p>
-<figure><img src="/post/2026-11-28-hoop2vec-ratings/illinois_hu15768668150211274049.png" alt="The top of the Illinois team page on hoop2vec, showing Power, adjusted offense and defense, tempo, and win chances" width="1400" height="362" loading="lazy" decoding="async"><figcaption>Illinois&rsquo;s team page as of November 25.</figcaption></figure><p>Power is how many points per 100 possessions a team would beat an average Division I team by on a neutral floor, so zero is average. A possession is one trip down the court, ending when the other team gets the ball, and a typical game has about 70 for each side. That makes +42 worth about 29 points against an average team in a normal game.</p>
-<p>Counting per possession takes pace out of it. A slow team that wins 60 to 40 and a fast team that wins 90 to 70 both won by 20, but the slow team did it with fewer chances. The team pages also turn Power into odds. Illinois would beat an average team 96 percent of the time on a neutral floor, and a typical top-25 team 71 percent of the time.</p>
+    <p>Most basketball ratings come down to one number per team. On <a href="https://mkearney.github.io/hoop2vec/">hoop2vec</a> that number is called Power, and it works the same way in all four leagues: men&rsquo;s and women&rsquo;s college, the NBA, and the WNBA.</p>
+<p>Power is how many points per 100 possessions a team would beat an average team in its league by on a neutral floor, so zero is average. A possession is one trip down the court, ending when the other team gets the ball, and a typical game has somewhere around 70 to 100 of them for each side depending on the league. In a college game with about 70 possessions, a team at +30 would beat an average Division I team by about 21 points.</p>
+<p>Counting per possession takes pace out of it. A slow team that wins 60 to 40 and a fast team that wins 90 to 70 both won by 20, but the slow team did it with fewer chances. The team pages also turn Power into odds, like how often a team would beat an average opponent, or one of the league&rsquo;s better teams, on a neutral floor.</p>
+<p>The spread looks very different from league to league. Pro teams are bunched together, and even the best and worst are usually within about ten points of average. Division I has hundreds of teams with huge differences in money, size, and talent, so the range is much wider. It&rsquo;s widest in women&rsquo;s college basketball, where the best teams can be more than 60 points per 100 possessions better than average.</p>
 <h2 id="where-it-comes-from">Where it comes from</h2>
-<p>Underneath Power are three ratings. The first is adjusted efficiency, the approach Ken Pomeroy made famous: points scored and allowed per 100 possessions, adjusted for opponent and venue. hoop2vec recalculates it from scratch every day and gives recent games a little more weight. By that measure Illinois has the best offense in the country, scoring 131.5 points per 100 possessions against an average defense.</p>
+<p>Underneath Power are three ratings. The first is adjusted efficiency, the approach Ken Pomeroy made famous: points scored and allowed per 100 possessions, adjusted for opponent and venue. hoop2vec recalculates it from scratch every day and gives recent games a little more weight.</p>
 <p>The second is a dynamic rating that updates after every game and keeps track of how sure it is. Early in the season it leans on last year&rsquo;s team and how much of the roster came back. The third is Elo, the system chess uses, which is mostly there as a baseline.</p>
-<p>Those three feed the game model, the same one that makes the forecasts, along with player data, injuries, and a bunch of box score stats. To get Power, I ask that model how each team would do on a neutral floor against each of the top 100 teams, then shift the scale so an average team lands at zero. Measuring against good opponents keeps a team from padding its number on bad ones. Beating the 350th-best team by 40 doesn&rsquo;t say much about March.</p>
-<p>The ratings page also has strength of schedule, which is the average Power of the teams you&rsquo;ve played. Florida is 6-1 against the 12th-toughest schedule in the country. UCLA is 6-0 against the 315th. The records look about the same until you see who they came against.</p>
-<p>It&rsquo;s November, and most teams have played four to seven games, so all of this will move. Illinois&rsquo;s dynamic rating comes with an uncertainty of about five points either way, which is roughly its whole lead over Houston.</p>
+<p>Those three feed the game model, the same one that makes the forecasts, along with player values, injuries, and a bunch of box score stats. To get Power, I ask that model how each team would do on a neutral floor against a set of opponents, then shift the scale so an average team lands at zero. In the pros, the opponents are every team in the league. In college they&rsquo;re the top 100 teams. Beating the 350th-best team by 40 doesn&rsquo;t say much about March, and measuring against good opponents keeps a team from padding its number on bad ones.</p>
+<p>The college ratings pages also show strength of schedule, which is the average Power of the teams you&rsquo;ve played. Two teams with the same record can look very different once you see who they played.</p>
+<p>Early in a season, all of this moves a lot. The dynamic rating reports its own uncertainty, and in November it&rsquo;s often about as big as the gap between the top two teams. By March it&rsquo;s much smaller.</p>
 
   </div>
 
@@ -91,7 +92,7 @@ Illinois’s team page as of November 25.Power is how many points per 100 …">
   <footer class="post-footer">
     
     <ul class="tag-list" aria-label="Tags">
-      <li><a href="/tags/hoop2vec/">Hoop2vec</a></li><li><a href="/tags/college-basketball/">College Basketball</a></li><li><a href="/tags/python/">Python</a></li>
+      <li><a href="/tags/hoop2vec/">Hoop2vec</a></li><li><a href="/tags/college-basketball/">College Basketball</a></li><li><a href="/tags/nba/">NBA</a></li><li><a href="/tags/wnba/">WNBA</a></li><li><a href="/tags/python/">Python</a></li>
     </ul>
     
     <nav class="post-nav" aria-label="More posts">

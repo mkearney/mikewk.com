@@ -3,8 +3,8 @@
 [[projects]]
 name = "hoop2vec"
 kind = "Sports analytics"
-summary = "Daily men's college basketball ratings, game forecasts, team identities, NBA prospects, and a projected 2027 bracket, built only from free public data and tested against betting lines."
-tags = ["Python", "Machine learning", "College basketball"]
+summary = "Daily ratings, game forecasts, player values, and team identities for men's and women's college basketball, the NBA, and the WNBA, plus draft prospects, NCAA brackets, and playoff odds. Built only from free public data and tested against betting lines."
+tags = ["Python", "Machine learning", "Basketball"]
   [[projects.links]]
   label = "Site"
   url = "https://mkearney.github.io/hoop2vec/"

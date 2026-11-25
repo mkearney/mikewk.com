@@ -67,16 +67,17 @@
     
     <p class="post-meta">
       <time datetime="2026-12-02">December 2, 2026</time>
-      <span aria-hidden="true">·</span> 2 min read
+      <span aria-hidden="true">·</span> 3 min read
     </p>
     
   </header>
 
   <div class="prose">
     <p>Everyone who works with data leaks it eventually. Leakage is when a model gets to see information it wouldn&rsquo;t have had at the moment it&rsquo;s supposed to be predicting, and it&rsquo;s very easy to do by accident. When you test a basketball model on past seasons, you pretend it&rsquo;s the morning of each game. The hard part is making sure the model only knows what someone could have known that morning. If anything from later sneaks in, the model looks better than it really is.</p>
-<p>An early version of <a href="https://mkearney.github.io/hoop2vec/">hoop2vec</a> had a leak. In testing, it beat the betting lines on NCAA tournament games, which a model built on free public data shouldn&rsquo;t be able to do. Sportsbooks have the same data and a lot more reason to get it right. That&rsquo;s what sent me looking.</p>
-<p>The leak was in a player stat that rates every player for every game, an estimate of how much he helped his team that night. To make those ratings fair, the stat adjusts for how good his team and the opponent are, and it does that using each team&rsquo;s rating from the end of the season. That&rsquo;s fine for looking back on a season, which is what the stat is meant for. It&rsquo;s a problem for predicting one. Add up a team&rsquo;s player ratings in November and you get a number that partly knows how good the team will be in March.</p>
+<p>An early version of <a href="https://mkearney.github.io/hoop2vec/">hoop2vec</a> had a leak. In testing, it beat the betting lines on men&rsquo;s NCAA tournament games, which a model built on free public data shouldn&rsquo;t be able to do. Sportsbooks have the same data and a lot more reason to get it right. That&rsquo;s what sent me looking.</p>
+<p>The leak was in a player stat that rates every player for every game, an estimate of how much each one helped their team that night. To make those ratings fair, the stat adjusts for how good the team and the opponent are, and it does that using each team&rsquo;s rating from the end of the season. That&rsquo;s fine for looking back on a season, which is what the stat is meant for. It&rsquo;s a problem for predicting one. Add up a team&rsquo;s player ratings in November and you get a number that partly knows how good the team will be in March.</p>
 <p>On its own, that one number beat the betting line in all ten seasons I checked. Once I redid the player ratings using only the team ratings from the morning of each game, the same number lost to the line in all ten. The full model got worse too. Its tournament forecasts went from beating the betting lines to trailing them slightly, which is about where an honest public-data model should be.</p>
+<p>The same symptom came up again when I added women&rsquo;s college basketball. The women&rsquo;s model slightly beats the few sportsbook lines ESPN carries for those games. Women&rsquo;s betting markets are thinner, so that&rsquo;s plausible, but it&rsquo;s exactly what the men&rsquo;s leak looked like. So I ran the same check. The player ratings alone did worse than the line, and the plain dynamic rating was about even with it. That&rsquo;s what you&rsquo;d expect from a model that&rsquo;s honest and a market that isn&rsquo;t very sharp.</p>
 <p>If you&rsquo;re early in a data science career, this is the part worth taking seriously. You&rsquo;ll leak data at some point. What matters is taking steps to avoid it, checking for it when results look too good, and being honest about it when it happens.</p>
 
   </div>
