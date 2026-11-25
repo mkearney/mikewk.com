@@ -63,9 +63,9 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   author = "Michael W. Kearney, Ph.D."
   avatar = "/img/aintnoseats.jpeg"
   shareImage = "/img/avatar.jpg"
-  role = "Principal Data Scientist at Meijer"
+  role = "Principal Data Scientist at a large retailer"
   focus = ["Natural language processing", "Machine learning", "Responsible AI", "Creative solutions"]
-  description = "Michael W. Kearney is a Principal Data Scientist at Meijer working on machine learning, NLP, and AI agents."
+  description = "Michael W. Kearney is a data scientist who works on machine learning, NLP, and AI, and builds side projects with data."
   googleSiteVerification = "XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY"
 
   # Social links, shown in this order in the footer.

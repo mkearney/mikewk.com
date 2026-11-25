@@ -3,11 +3,11 @@ title: "About"
 comments: false
 ---
 
-I'm a Principal Data Scientist at [Meijer](https://www.meijer.com/), working across data science, natural language processing, and AI.
+I'm a principal data scientist at a large retailer, working on machine learning, natural language processing, and AI.
 
-Before Meijer I was a Senior Data Scientist and Core Labs member at [Aware](https://www.awarehq.com/). Before that I was an assistant professor at the University of Missouri in [Journalism](https://journalism.missouri.edu/) and [Data Science](https://dsa.missouri.edu/), where I studied political communication and social media and wrote open-source R packages like [rtweet](https://github.com/ropensci/rtweet).
+Before that I was a Senior Data Scientist and Core Labs member at [Aware](https://www.awarehq.com/). Before that I was an assistant professor at the University of Missouri in [Journalism](https://journalism.missouri.edu/) and [Data Science](https://dsa.missouri.edu/), where I studied political communication and social media and wrote open-source R packages like [rtweet](https://github.com/ropensci/rtweet).
 
-These days my side projects are AI agents that run on a schedule: [pix](/projects/), which publishes one data visualization a day, and [daily](/projects/), a morning news brief. I write about how they work [here](/post/).
+On my own time I build side projects with data. The most recent is [hoop2vec](https://mkearney.github.io/hoop2vec/), a men's college basketball site with daily team ratings, game forecasts, and NBA draft projections. The rest are on the [projects](/projects/) page, and I write about how they work [here](/post/).
 
 ### Elsewhere
 
