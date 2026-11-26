@@ -67,6 +67,8 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   focus = ["Natural language processing", "Machine learning", "Responsible AI", "Creative solutions"]
   description = "Michael W. Kearney is a data scientist who works on machine learning, NLP, and AI, and builds side projects with data."
   googleSiteVerification = "XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY"
+  # Cloudflare Web Analytics beacon token (only loaded in production builds).
+  cloudflareAnalyticsToken = "26865612da0046b9b90db7caa4f89018"
 
   # Social links, shown in this order in the footer.
   [[params.social]]
