@@ -5,8 +5,7 @@
   <title>Introducing hoop2vec · Michael W. Kearney</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="kearneymw">
-<meta name="description" content="hoop2vec is a basketball ratings and forecasting site. It covers four leagues: men’s and women’s Division I, the NBA, and the WNBA. Every team gets a new rating each morning, every game gets a forecast, and every player gets a value. All of it comes from free public data.
-Each league has its own …">
+<meta name="description" content="hoop2vec is a basketball ratings and forecasting site. It covers four leagues: men’s and women’s Division I, the NBA, and the WNBA. Every team gets a new rating a few minutes after each of its games ends, and the whole thing is rebuilt from scratch every morning. Every game gets a forecast, and …">
 <meta name="color-scheme" content="light">
 <meta name="theme-color" content="#fbfaf7">
 <meta name="google-site-verification" content="XjRg6K6oRqzExBrXKJh8Z2BrPJsc9WCVNOEWvhN68oY">
@@ -17,8 +16,7 @@ Each league has its own …">
 <meta property="og:type" content="article">
 <meta property="og:site_name" content="Michael W. Kearney">
 <meta property="og:title" content="Introducing hoop2vec">
-<meta property="og:description" content="hoop2vec is a basketball ratings and forecasting site. It covers four leagues: men’s and women’s Division I, the NBA, and the WNBA. Every team gets a new rating each morning, every game gets a forecast, and every player gets a value. All of it comes from free public data.
-Each league has its own …">
+<meta property="og:description" content="hoop2vec is a basketball ratings and forecasting site. It covers four leagues: men’s and women’s Division I, the NBA, and the WNBA. Every team gets a new rating a few minutes after each of its games ends, and the whole thing is rebuilt from scratch every morning. Every game gets a forecast, and …">
 <meta property="og:url" content="https://mikewk.com/post/2026-11-26-introducing-hoop2vec/">
 <meta property="og:image" content="https://mikewk.com/img/avatar.jpg">
 <meta name="twitter:card" content="summary">
@@ -36,7 +34,7 @@ Each league has its own …">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;1,400&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap">
 
-<link rel="stylesheet" href="/css/main.min.38a6265d07360b7b2d05266d24de691d228c00c668e6bb885d560e3d4d706846.css" integrity="sha256-OKYmXQc2C3stBSZtJN5pHSKMAMZo5ruIXVYOPU1waEY=">
+<link rel="stylesheet" href="/css/main.min.e7ab090e73f3d60ebd9cb06e19d21fe849c0c01df9b9a59cf80cfc47f5e54acd.css" integrity="sha256-56sJDnPz1g69nLBuGdIf6EnAwB35uaWc&#43;Az8R/XlSs0=">
 
 </head>
 <body class="kind-page page-2026-11-26-introducing-hoop2vec">
@@ -69,24 +67,143 @@ Each league has its own …">
     
     <p class="post-meta">
       <time datetime="2026-11-26">November 26, 2026</time>
-      <span aria-hidden="true">·</span> 4 min read
+      <span aria-hidden="true">·</span> 5 min read
     </p>
     
   </header>
 
   <div class="prose">
-    <p><a href="https://mkearney.github.io/hoop2vec/">hoop2vec</a> is a basketball ratings and forecasting site. It covers four leagues: men&rsquo;s and women&rsquo;s Division I, the NBA, and the WNBA. Every team gets a new rating each morning, every game gets a forecast, and every player gets a value. All of it comes from free public data.</p>
-<p>Each league has its own ratings, player values, team identities, and a Matchup Lab where you can pit any two teams against each other at any site. The college sites add NBA or WNBA draft projections and a projected NCAA tournament bracket. The pro sites have playoff odds instead. There&rsquo;s also a page for each league on how the models work and how well they&rsquo;ve done in testing. I&rsquo;ll write about each part in its own post.</p>
-<p>The name is a nod to word2vec, a method that learns a list of numbers for each word based on the words around it. I liked the idea of doing that for teams and players. hoop2vec doesn&rsquo;t actually use word2vec or anything like it, at least not yet. I kept the name anyway.</p>
+    <p><a href="https://hoop2vec.net/">hoop2vec</a> is a basketball ratings and forecasting site. It covers four leagues: men&rsquo;s and women&rsquo;s Division I, the NBA, and the WNBA. Every team gets a new rating a few minutes after each of its games ends, and the whole thing is rebuilt from scratch every morning. Every game gets a forecast, and every player gets a value. All of it comes from free public data.</p>
+<figure><img src="/post/2026-11-26-introducing-hoop2vec/home_hu894392900926266177.png" alt="The hoop2vec home page, with a card for each league and its top five teams" width="1400" height="1394" loading="lazy" decoding="async"><figcaption>The home page on November 26, with each league&rsquo;s top five.</figcaption></figure><p>Each league has the same set of pages. There&rsquo;s a ratings table, a list of games with forecasts, a players table, and a Matchup Lab where you can pit any two teams against each other at any site. Every team has its own page, and so does every player, with career stats and a shot chart. The college sites add NBA or WNBA draft projections and a projected NCAA tournament bracket. The pro sites have playoff odds instead. The next post walks through a team page, and the one after that covers how the forecasts get made.</p>
+<h2 id="how-it-compares">How it compares</h2>
+<p>There are a bunch of good basketball sites already. Most cover one league, and some of the best parts cost money. This is how hoop2vec lines up with the ones I use most, as of November 2026. Men&rsquo;s and Women&rsquo;s are Division I. Odds means bracket or playoff odds, and Code means the code is public. A check means free, a dollar sign means paid, and an X means the site doesn&rsquo;t offer it.</p>
+<table>
+  <thead>
+      <tr>
+          <th>Site</th>
+          <th>Men&rsquo;s</th>
+          <th>Women&rsquo;s</th>
+          <th>NBA</th>
+          <th>WNBA</th>
+          <th>Ratings</th>
+          <th>Forecasts</th>
+          <th>Players</th>
+          <th>Odds</th>
+          <th>Code</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><a href="https://hoop2vec.net/">hoop2vec</a></td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+      </tr>
+      <tr>
+          <td><a href="https://kenpom.com">KenPom</a></td>
+          <td>$</td>
+          <td>✗</td>
+          <td>✗</td>
+          <td>✗</td>
+          <td>✓</td>
+          <td>$</td>
+          <td>$</td>
+          <td>✗</td>
+          <td>✗</td>
+      </tr>
+      <tr>
+          <td><a href="https://barttorvik.com">Bart Torvik</a></td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✗</td>
+          <td>✗</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✗</td>
+      </tr>
+      <tr>
+          <td><a href="https://evanmiya.com">EvanMiya</a></td>
+          <td>✓</td>
+          <td>✗</td>
+          <td>✗</td>
+          <td>✗</td>
+          <td>✓</td>
+          <td>$</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✗</td>
+      </tr>
+      <tr>
+          <td><a href="https://haslametrics.com">Haslametrics</a></td>
+          <td>✓</td>
+          <td>✗</td>
+          <td>✗</td>
+          <td>✗</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✗</td>
+          <td>✓</td>
+          <td>✗</td>
+      </tr>
+      <tr>
+          <td><a href="https://www.espn.com/mens-college-basketball/bpi">ESPN BPI</a></td>
+          <td>✓</td>
+          <td>✗</td>
+          <td>✗</td>
+          <td>✗</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✗</td>
+          <td>✓</td>
+          <td>✗</td>
+      </tr>
+      <tr>
+          <td><a href="https://herhoopstats.com">Her Hoop Stats</a></td>
+          <td>✗</td>
+          <td>✓</td>
+          <td>✗</td>
+          <td>✓</td>
+          <td>$</td>
+          <td>$</td>
+          <td>✓</td>
+          <td>✓</td>
+          <td>✗</td>
+      </tr>
+      <tr>
+          <td><a href="https://dunksandthrees.com">Dunks &amp; Threes</a></td>
+          <td>✗</td>
+          <td>✗</td>
+          <td>$</td>
+          <td>✗</td>
+          <td>$</td>
+          <td>$</td>
+          <td>$</td>
+          <td>$</td>
+          <td>✗</td>
+      </tr>
+  </tbody>
+</table>
+<p>A check doesn&rsquo;t mean equal quality. KenPom and Torvik have years of trust that hoop2vec hasn&rsquo;t earned, and nobody has tested hoop2vec head to head against them. EvanMiya&rsquo;s college player ratings are more sophisticated than mine, and so are Dunks &amp; Threes&rsquo; NBA ones. A sharp sportsbook still beats hoop2vec during the regular season.</p>
+<p>What hoop2vec has is coverage. It&rsquo;s the only site on the list with all four leagues, and the only one where you can read the code behind every number.</p>
+<p>The name is a nod to word2vec, a method that learns a short list of numbers for each word based on the words around it. hoop2vec&rsquo;s game model does something loosely similar for teams. It learns a list of numbers for each one and uses them to score how any two teams fit together. That&rsquo;s close enough for me to keep the name.</p>
 <h2 id="why-basketball">Why basketball</h2>
-<p>I used to be a big San Antonio Spurs fan, starting with David Robinson and going through the Tim Duncan years. Then I went to graduate school at the University of Kansas, where I tutored players on the men&rsquo;s and women&rsquo;s basketball teams and went to a bunch of games. I live in Michigan now, and I still crave Free State Brewing Company and Burger Stand about once a week. My favorite college team is the correct favorite team. These days I like pretty much all basketball.</p>
+<p>I used to be a big San Antonio Spurs fan, starting with David Robinson and going through the Tim Duncan years. As I write this, hoop2vec has the Spurs at No. 1 in the NBA. I didn&rsquo;t touch anything.</p>
+<p>Then I went to graduate school at the University of Kansas, where I tutored players on the men&rsquo;s and women&rsquo;s basketball teams and went to a bunch of games. I live in Michigan now, and I still crave Free State Brewing Company and Burger Stand about once a week. My favorite college team is the correct favorite team. These days I like pretty much all basketball.</p>
 <p>Most of my modeling has been on men&rsquo;s college basketball, on and off for about ten years, going back to a college basketball dataset I put on data.world. I&rsquo;ve tried to predict upsets. I&rsquo;ve tried strange hybrids of Bayesian models, latent variable models, Elo, XGBoost, and a transformer fine-tuned on press coverage. A few of them filled out my brackets. I usually compared them against KenPom, and mostly what I learned is how simple and effective KenPom is. The site still looks like it&rsquo;s from the 90s, though.</p>
-<p>I&rsquo;ve always wanted a free site that shows advanced stats and is easy to get around, and for every league, not just men&rsquo;s college basketball. That&rsquo;s what hoop2vec is trying to be.</p>
+<p>I&rsquo;ve always wanted a free site that shows advanced stats and is easy to get around, for every league and not just men&rsquo;s college basketball. That&rsquo;s what hoop2vec is trying to be.</p>
 <h2 id="how-it-got-built">How it got built</h2>
 <p>From about 2014 to 2020 I was making things all the time and sharing most of them, a lot of it on Twitter. Some of it was academic and some of it was just for fun. Then COVID hit, I had my first kid, and I changed careers. Now there are two young kids at home, and side projects pretty much stopped.</p>
 <p>What&rsquo;s different now is that I can do this kind of work from my phone. I describe what I want to Claude Code, it writes the code, and I read what it did and push back. Most of hoop2vec got built that way, a few minutes at a time.</p>
-<p>It started as two separate men&rsquo;s college projects. On the first, I described what I wanted and how I thought it should be done, then gave Claude Code license to build it and propose improvements. The second I directed much more strictly, iterating on what I thought would work. Then I merged the good ideas from both into hoop2vec, keeping whichever piece tested better where they overlapped. Once that worked, I carried the same approach over to the women&rsquo;s game, the NBA, and the WNBA.</p>
-<p>I&rsquo;m not very happy about working this way. I like control, and I like knowing how every piece works. I have less of that here than I&rsquo;d want. But I&rsquo;ve spent years building up expertise in analytics and data science, and this gives me a way to use it much faster than I could by typing everything myself.</p>
+<p>It started as two separate men&rsquo;s college projects. On the first, I described what I wanted and how I thought it should be done, then let Claude Code build it and propose improvements. The second I directed much more strictly. Then I merged the good ideas from both, keeping whichever piece tested better where they overlapped. Once that worked, I carried the same approach over to the women&rsquo;s game, the NBA, and the WNBA.</p>
+<p>I&rsquo;m not totally comfortable working this way. I like control, and I like knowing how every piece works. I have less of that here than I&rsquo;d want. But I&rsquo;ve spent years building up expertise in analytics and data science, and this lets me use it a lot faster than typing everything myself.</p>
 
   </div>
 
@@ -98,7 +215,7 @@ Each league has its own …">
     </ul>
     
     <nav class="post-nav" aria-label="More posts">
-      <a class="post-nav-prev" href="/post/2026-11-28-hoop2vec-ratings/"><span>Newer</span>hoop2vec ratings: one number for every team</a>
+      <a class="post-nav-prev" href="/post/2026-11-28-hoop2vec-teams/"><span>Newer</span>hoop2vec teams: clicking on Kansas</a>
       <a class="post-nav-next" href="/post/2026-11-15-pix/"><span>Older</span>pix: an AI agent that publishes one chart a day</a>
     </nav>
   </footer>

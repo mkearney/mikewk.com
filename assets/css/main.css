@@ -563,7 +563,7 @@ img { max-width: 100%; height: auto; }
   font-size: 0.925rem;
 }
 .prose th, .prose td {
-  padding: 0.5rem 0.9rem;
+  padding: 0.5rem 0.6rem;
   border-bottom: 1px solid var(--border);
   text-align: left;
 }

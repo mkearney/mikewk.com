@@ -7,7 +7,7 @@ summary = "Daily ratings, game forecasts, player values, and team identities for
 tags = ["Python", "Machine learning", "Basketball"]
   [[projects.links]]
   label = "Site"
-  url = "https://mkearney.github.io/hoop2vec/"
+  url = "https://hoop2vec.net/"
   [[projects.links]]
   label = "Code"
   url = "https://github.com/mkearney/hoop2vec"
