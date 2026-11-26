@@ -78,6 +78,9 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
     name = "Google Scholar"
     url = "https://scholar.google.com/citations?user=j3EZl3MAAAAJ"
   [[params.social]]
+    name = "Bluesky"
+    url = "https://bsky.app/profile/mikewk.com"
+  [[params.social]]
     name = "Twitter"
     url = "https://twitter.com/kearneymw"
   [[params.social]]
