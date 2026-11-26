@@ -42,9 +42,7 @@ The name is a nod to word2vec, a method that learns a short list of numbers for 
 
 ## Why basketball
 
-I used to be a big San Antonio Spurs fan, starting with David Robinson and going through the Tim Duncan years. As I write this, hoop2vec has the Spurs at No. 1 in the NBA. I didn't touch anything.
-
-Then I went to graduate school at the University of Kansas, where I tutored players on the men's and women's basketball teams and went to a bunch of games. I live in Michigan now, and I still crave Free State Brewing Company and Burger Stand about once a week. My favorite college team is the correct favorite team. These days I like pretty much all basketball.
+I used to be a big San Antonio Spurs fan, starting with David Robinson and going through the Tim Duncan years. I also went to graduate school at the University of Kansas, where I tutored players on the men's and women's basketball teams and went to a bunch of games. (I live in Michigan now, and I still crave Free State Brewing Company and Burger Stand about once a week.) These days I like pretty much all basketball.
 
 Most of my modeling has been on men's college basketball, on and off for about ten years, going back to a college basketball dataset I put on data.world. I've tried to predict upsets. I've tried strange hybrids of Bayesian models, latent variable models, Elo, XGBoost, and a transformer fine-tuned on press coverage. A few of them filled out my brackets. I usually compared them against KenPom, and mostly what I learned is how simple and effective KenPom is. The site still looks like it's from the 90s, though.
 
