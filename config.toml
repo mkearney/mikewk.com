@@ -32,9 +32,6 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
   # Code is highlighted client-side with highlight.js.
   codeFences = false
 
-[services.disqus]
-  shortname = "kearneymw"
-
 [[menu.main]]
   name = "Writing"
   identifier = "writing"

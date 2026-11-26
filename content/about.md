@@ -1,6 +1,5 @@
 ---
 title: "About"
-comments: false
 ---
 
 I'm a principal data scientist at a large retailer, working on machine learning, natural language processing, and AI.

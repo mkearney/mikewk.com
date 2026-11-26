@@ -477,8 +477,6 @@ img { max-width: 100%; height: auto; }
   .post-nav-next { grid-column: auto; }
 }
 
-.comments { margin-top: 3rem; }
-
 /* ---- Prose ------------------------------------------------------------- */
 
 .prose {

@@ -28,9 +28,6 @@
       {{ with .PrevInSection }}<a class="post-nav-next" href="{{ .RelPermalink }}"><span>Older</span>{{ .Title }}</a>{{ end }}
     </nav>
   </footer>
-  {{ if and site.Config.Services.Disqus.Shortname (ne .Params.comments false) }}
-  <section class="comments">{{ template "_internal/disqus.html" . }}</section>
-  {{ end }}
   {{ end }}
 </article>
 {{ end }}
